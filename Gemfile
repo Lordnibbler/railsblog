@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
+gem 'rouge' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'slim' # templating
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
