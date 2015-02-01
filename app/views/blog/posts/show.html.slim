@@ -1,0 +1,6 @@
+article
+  h1= @post.title
+  = render partial: "meta", locals: { post: @post }
+  = markdown @post.content
+  hr
+  p.action= link_to "← Back to Overview", blog_posts_path

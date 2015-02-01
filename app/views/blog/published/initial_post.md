@@ -10,8 +10,14 @@ The post's excerpt goes here.
 
 The post's content goes here!!!
 
-<pre>
+```ruby
+# some ruby
 def foo(bar='baz')
   puts 'bing!'
 end
-</pre>
+```
+
+* A list
+  * of things
+  * and more things
+* and other things
