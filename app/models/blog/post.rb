@@ -45,12 +45,13 @@ class Blog::Post
   end
 
   #
-  # @return [Array<Blog::Post>] all Blog::Post .md files located in the {posts_path}
+  # @return [Array<Blog::Post>] all Blog::Post .md files located in {posts_path} sorted by newest
   #
   def self.all
-    post_files.reverse.map do |file|
-      self.new extract_data_from(file)
-    end
+    post_files
+      .map { |file| self.new extract_data_from(file) }
+      .sort_by { |post| post.created_at }
+      .reverse!
   end
 
   #
@@ -63,21 +64,14 @@ class Blog::Post
   private
 
   #
-  #
+  # @return [Array<Blog::Post>] sorted by date created
   #
   def self.post_files
-    sort_by_id Dir.glob("#{posts_path}/*.md")
+    Dir.glob("#{posts_path}/*.md")
   end
 
   #
-  #
-  #
-  def self.sort_by_id(files)
-    files.sort_by { |x| File.basename(x, '.*').to_i }
-  end
-
-  #
-  #
+  # @return [String] full path to .md file in posts_path that matches {name}
   #
   def self.find_file_by(name)
     id = post_files.index { |x| x =~ /#{name}.md/ }
@@ -100,11 +94,16 @@ class Blog::Post
   end
 
   #
-  # @return [Hash] YAML frontmatter metadata
+  # @return [HashWithIndifferentAccess] YAML frontmatter metadata
   #
   def self.yaml_frontmatter_metadata_from(file)
-    YAML.load_file(file)
+    HashWithIndifferentAccess.new(YAML.load_file(file))
   end
+
+  # def self.generate_permalink_from(file)
+  #   date = yaml_frontmatter_metadata_from(file)[:created_at].to_date.strftime('%Y/%m/%d')
+  #   "#{date}/#{File.basename(file, '.*')}"
+  # end
 
   #
   # @return [String] sanitized string with YAML frontmatter removed

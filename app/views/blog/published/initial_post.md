@@ -6,7 +6,7 @@ author: "Ben Radler"
 
 The post's excerpt goes here.
 
-<!--more-->
+
 
 The post's content goes here!!!
 
@@ -21,3 +21,7 @@ end
   * of things
   * and more things
 * and other things
+
+<!--more-->
+
+This is the actual content
