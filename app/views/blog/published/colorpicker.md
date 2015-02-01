@@ -1,5 +1,5 @@
 ---
-title:  "Colorpicker test"
+title:  "Colorpicker"
 created_at: "2015-01-30"
 author: "Ben Radler"
 ---
