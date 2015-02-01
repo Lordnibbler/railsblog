@@ -57,8 +57,7 @@ class Blog::Post
   # @return [Blog::Post] Blog::Post matching the {name} parameter
   #
   def self.find_by_name(name)
-    file = find_file_by(name)
-    self.new extract_data_from(file)
+    self.new extract_data_from(find_file_by(name))
   end
 
   private
@@ -93,7 +92,7 @@ class Blog::Post
   end
 
   #
-  # @return [Hash]
+  # @return [Hash] post data from {file}, including yaml frontmatter
   #
   def self.extract_data_from(file)
     { content: File.read(file), permalink: File.basename(file, '.*') }
@@ -101,7 +100,7 @@ class Blog::Post
   end
 
   #
-  # @return [] YAML frontmatter metadata
+  # @return [Hash] YAML frontmatter metadata
   #
   def self.yaml_frontmatter_metadata_from(file)
     YAML.load_file(file)
