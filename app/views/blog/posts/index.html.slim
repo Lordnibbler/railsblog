@@ -1,7 +1,7 @@
 - @posts.each do |post|
   article
-    h2= link_to post.title, blog_post_path(post)
+    h2= link_to post.title, blog_posts_permalink_path(post)
     = render partial: 'meta', locals: { post: post }
     = markdown post.excerpt
     - if post.has_more_text?
-      p= link_to 'Continue reading →', blog_post_path(post)
+      p= link_to 'Continue reading →', blog_posts_permalink_path(post)

@@ -5,6 +5,13 @@ Rails.application.routes.draw do
   #
   namespace :blog do
     resources :posts, path: '', only: [:index, :show]
+
+    #
+    # @note
+    #   this route introduces an issue where you can access a Blog::Post with any year/month/day
+    #   params as long as you have the correct :id
+    #
+    get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
