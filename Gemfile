@@ -16,6 +16,8 @@ gem 'slim' # templating
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap', '~> 1.0.1'
 
 group :development do
   gem 'better_errors' # improved error pages
