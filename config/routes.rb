@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
-  #
-  # /blog
-  # /blog/:name-of-the-article
-  #
+  root 'blog/posts#index'
+
   namespace :blog do
+    #
+    # GET /blog
+    # GET /blog/:name-of-the-article
+    #
     resources :posts, path: '', only: [:index, :show]
 
     #
+    # GET /blog/2015/01/31/post-title
     # @note
     #   this route introduces an issue where you can access a Blog::Post with any year/month/day
     #   params as long as you have the correct :id
@@ -16,9 +19,6 @@ Rails.application.routes.draw do
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
