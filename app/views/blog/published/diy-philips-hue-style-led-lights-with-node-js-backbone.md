@@ -1,6 +1,6 @@
 ---
-title:  "Colorpicker"
-created_at: "2015-01-30"
+title:  "DIY Philips-Hue-Style LED Lights with Node.js + Backbone!"
+created_at: "2014-05-10"
 author: "Ben Radler"
 ---
 
@@ -9,7 +9,7 @@ author: "Ben Radler"
 <!--more-->
 
 ## Video Demo
-<iframe width="1280" height="720" src="//www.youtube.com/embed/92aIxuRP2jo" frameborder="0" allowfullscreen></iframe>
+<iframe width="720" height="400" src="//www.youtube.com/embed/92aIxuRP2jo" frameborder="0" allowfullscreen></iframe>
 
 ## Backstory
 My roommate works for Apple, and travels to China for work. He brought back a spool of LED lights, and hacked together a script for an Arduino that played a series of 12 lights on repeat.

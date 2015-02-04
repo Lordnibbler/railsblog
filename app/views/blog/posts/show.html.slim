@@ -1,6 +1,7 @@
 article
-  h2= @post.title
+  h2 = @post.title
   = render partial: 'meta', locals: { post: @post }
   = markdown @post.content
   hr
-  p.action= link_to '← Back to Overview', blog_posts_path
+  p.action = link_to '← Back to Overview', blog_posts_path
+  = render 'shared/disqus_thread'
