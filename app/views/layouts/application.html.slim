@@ -1,13 +1,20 @@
 doctype html
 html
   head
-    title Brog
+    title = yield(:page_title)
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+    javascript:
+      var disqus = {
+        'activate' : true,
+        'shortname' : 'benradler'
+      };
   body
     = render 'shared/navigation'
     .container
       .col-sm-8
         = yield
       = render 'shared/sidebar'
+    = render 'shared/footer'
+    = render 'shared/analytics' if Rails.env.production?

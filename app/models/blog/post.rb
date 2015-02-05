@@ -100,11 +100,6 @@ class Blog::Post
     HashWithIndifferentAccess.new(YAML.load_file(file))
   end
 
-  # def self.generate_permalink_from(file)
-  #   date = yaml_frontmatter_metadata_from(file)[:created_at].to_date.strftime('%Y/%m/%d')
-  #   "#{date}/#{File.basename(file, '.*')}"
-  # end
-
   #
   # @return [String] sanitized string with YAML frontmatter removed
   #
