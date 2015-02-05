@@ -25,5 +25,8 @@ module Brog
 
     # configure autoload paths
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # add paths to asset pipeline
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
