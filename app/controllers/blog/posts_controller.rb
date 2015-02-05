@@ -1,5 +1,3 @@
-require 'will_paginate/array'
-
 #
 # simple controller for rendering published Blog::Post .md files
 #
@@ -9,6 +7,6 @@ class Blog::PostsController < ApplicationController
   end
 
   def show
-    @post = Blog::Post.find_by_name(params[:id])
+    @post = Blog::Post.published.friendly.find(params[:id])
   end
 end

@@ -15,5 +15,4 @@
 //= require turbolinks
 //= require bootstrap/collapse
 //= require bootstrap/transition
-//= require vue/dist/vue
 //= require_tree .

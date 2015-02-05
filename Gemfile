@@ -3,12 +3,15 @@ ruby '2.2.0'
 
 gem 'rails', '~> 4.2.0'
 
+gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'bootswatch-rails'
 gem 'bower-rails', '~> 0.9.2'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
+gem 'devise', '~> 3.4.1' # authentication
+gem 'friendly_id', '~> 5.1.0' # canonical URLs
 gem 'high_voltage', '~> 2.2.1' # static pages
-gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. @see https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
@@ -18,8 +21,8 @@ gem 'slim' # templating
 gem 'sqlite3' # Use sqlite3 as the database for Active Record
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-gem 'will_paginate', '~> 3.0'
-gem 'will_paginate-bootstrap', '~> 1.0.1'
+gem 'will_paginate', '~> 3.0' # pagination
+gem 'will_paginate-bootstrap', '~> 1.0.1' # will_paginate bootstrap 3.3 styling
 
 group :development do
   gem 'better_errors' # improved error pages
