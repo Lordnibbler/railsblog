@@ -1,8 +1,18 @@
-@import 'bootswatch/paper/variables'
+@import 'bootswatch/united/variables'
 @import './bootstrap/variables'
 @import 'bootstrap-sprockets'
 @import 'bootstrap'
-@import 'bootswatch/paper/bootswatch'
+@import 'bootswatch/united/bootswatch'
+@import './bootstrap/grid'
 @import './monokai'
-@import './shared/**/*'
+
+//
+// have to import .sass.erb files individuall due to bug
+// @see https://github.com/rails/sass-rails/issues/185
+//
+@import './shared/keyframes'
+@import './shared/fonts'
+@import './shared/layout'
+@import './shared/navigation'
+@import './shared/footer'
 @import './blog/**/*'

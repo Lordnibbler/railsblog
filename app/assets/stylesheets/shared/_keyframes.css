@@ -1,0 +1,430 @@
+/******************************************************************************\
+    Keyframes
+\******************************************************************************/
+@-webkit-keyframes bounce-in {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.3); }
+
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05); }
+
+    70% {
+        -webkit-transform: scale(0.9); }
+
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 1; } }
+
+@-moz-keyframes bounce-in {
+    0% {
+        opacity: 0;
+        -moz-transform: scale(0.3); }
+
+    50% {
+        opacity: 1;
+        -moz-transform: scale(1.05); }
+
+    70% {
+        -moz-transform: scale(0.9); }
+
+    100% {
+        -moz-transform: scale(1);
+        opacity: 1; } }
+
+@-o-keyframes bounce-in {
+    0% {
+        opacity: 0;
+        -o-transform: scale(0.3); }
+
+    50% {
+        opacity: 1;
+        -o-transform: scale(1.05); }
+
+    70% {
+        -o-transform: scale(0.9); }
+
+    100% {
+        -o-transform: scale(1);
+        opacity: 1; } }
+
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.3); }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05); }
+
+    70% {
+        transform: scale(0.9); }
+
+    100% {
+        transform: scale(1);
+        opacity: 1; } }
+
+@-webkit-keyframes colorflow {
+    0% {
+        color: white;
+        line-height: 2.5em; }
+
+    49% {
+        color: transparent;
+        line-height: 3.5em; }
+
+    51% {
+        color: transparent;
+        line-height: 1.5em; }
+
+    100% {
+        color: white;
+        line-height: 2.5em; } }
+
+@-moz-keyframes colorflow {
+    0% {
+        color: white;
+        line-height: 2.5em; }
+
+    49% {
+        color: transparent;
+        line-height: 3.5em; }
+
+    51% {
+        color: transparent;
+        line-height: 1.5em; }
+
+    100% {
+        color: white;
+        line-height: 2.5em; } }
+
+@-o-keyframes colorflow {
+    0% {
+        color: white;
+        line-height: 2.5em; }
+
+    49% {
+        color: transparent;
+        line-height: 3.5em; }
+
+    51% {
+        color: transparent;
+        line-height: 1.5em; }
+
+    100% {
+        color: white;
+        line-height: 2.5em; } }
+
+@keyframes colorflow {
+    0% {
+        color: white;
+        line-height: 2.5em; }
+
+    49% {
+        color: transparent;
+        line-height: 3.5em; }
+
+    51% {
+        color: transparent;
+        line-height: 1.5em; }
+
+    100% {
+        color: white;
+        line-height: 2.5em; } }
+
+@-webkit-keyframes fadeText {
+    0% {
+        opacity: 0;
+        font-size: 0.5em; }
+
+    70% {
+        opacity: 1; }
+
+    100% {
+        opacity: 0;
+        font-size: 1.5em;
+        width: 5em;
+        height: 5em;
+        line-height: 5em;
+        margin: -2.5em 0 0 -2.5em; } }
+
+@-moz-keyframes fadeText {
+    0% {
+        opacity: 0;
+        font-size: 0.5em; }
+
+    70% {
+        opacity: 1; }
+
+    100% {
+        opacity: 0;
+        font-size: 1.5em;
+        width: 5em;
+        height: 5em;
+        line-height: 5em;
+        margin: -2.5em 0 0 -2.5em; } }
+
+@-o-keyframes fadeText {
+    0% {
+        opacity: 0;
+        font-size: 0.5em; }
+
+    70% {
+        opacity: 1; }
+
+    100% {
+        opacity: 0;
+        font-size: 1.5em;
+        width: 5em;
+        height: 5em;
+        line-height: 5em;
+        margin: -2.5em 0 0 -2.5em; } }
+
+@keyframes fadeText {
+    0% {
+        opacity: 0;
+        font-size: 0.5em; }
+
+    70% {
+        opacity: 1; }
+
+    100% {
+        opacity: 0;
+        font-size: 1.5em;
+        width: 5em;
+        height: 5em;
+        line-height: 5em;
+        margin: -2.5em 0 0 -2.5em; } }
+
+@-webkit-keyframes slide-in {
+    0% {
+        opacity: 0;
+        right: 200px; }
+
+    100% {
+        opacity: 1;
+        right: 30px; } }
+
+@-moz-keyframes slide-in {
+    0% {
+        opacity: 0;
+        right: 200px; }
+
+    100% {
+        opacity: 1;
+        right: 30px; } }
+
+@-o-keyframes slide-in {
+    0% {
+        opacity: 0;
+        right: 200px; }
+
+    100% {
+        opacity: 1;
+        right: 30px; } }
+
+@keyframes slide-in {
+    0% {
+        opacity: 0;
+        right: 200px; }
+
+    100% {
+        opacity: 1;
+        right: 30px; } }
+
+@-webkit-keyframes slide-in-tablet {
+    0% {
+        opacity: 0;
+        left: -200px; }
+
+    100% {
+        opacity: 1;
+        left: 30px; } }
+
+@-moz-keyframes slide-in-tablet {
+    0% {
+        opacity: 0;
+        left: -200px; }
+
+    100% {
+        opacity: 1;
+        left: 30px; } }
+
+@-o-keyframes slide-in-tablet {
+    0% {
+        opacity: 0;
+        left: -200px; }
+
+    100% {
+        opacity: 1;
+        left: 30px; } }
+
+@keyframes slide-in-tablet {
+    0% {
+        opacity: 0;
+        left: -200px; }
+
+    100% {
+        opacity: 1;
+        left: 30px; } }
+
+@-webkit-keyframes bounce-in-up {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(2000px); }
+
+    60% {
+        opacity: 1;
+        -webkit-transform: translateY(-30px); }
+
+    80% {
+        -webkit-transform: translateY(10px); }
+
+    100% {
+        -webkit-transform: translateY(0);
+        opacity: 1; } }
+
+@-moz-keyframes bounce-in-up {
+    0% {
+        opacity: 0;
+        -moz-transform: translateY(2000px); }
+
+    60% {
+        opacity: 1;
+        -moz-transform: translateY(-30px); }
+
+    80% {
+        -moz-transform: translateY(10px); }
+
+    100% {
+        -moz-transform: translateY(0);
+        opacity: 1; } }
+
+@-o-keyframes bounce-in-up {
+    0% {
+        opacity: 0;
+        -o-transform: translateY(2000px); }
+
+    60% {
+        opacity: 1;
+        -o-transform: translateY(-30px); }
+
+    80% {
+        -o-transform: translateY(10px); }
+
+    100% {
+        -o-transform: translateY(0);
+        opacity: 1; } }
+
+@keyframes bounce-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(2000px); }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-30px); }
+
+    80% {
+        transform: translateY(10px); }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1; } }
+
+@-webkit-keyframes slide-in-menu {
+    0% {
+        opacity: 0;
+        margin-top: 20px; }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px; } }
+
+@-moz-keyframes slide-in-menu {
+    0% {
+        opacity: 0;
+        margin-top: 20px; }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px; } }
+
+@-o-keyframes slide-in-menu {
+    0% {
+        opacity: 0;
+        margin-top: 20px; }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px; } }
+
+@keyframes slide-in-menu {
+    0% {
+        opacity: 0;
+        margin-top: 20px; }
+
+    100% {
+        opacity: 1;
+        margin-top: 0px; } }
+
+@-webkit-keyframes flip-in-y {
+    0% {
+        -webkit-transform: perspective(400px) rotateY(90deg);
+        opacity: 0; }
+
+    40% {
+        -webkit-transform: perspective(400px) rotateY(-10deg); }
+
+    70% {
+        -webkit-transform: perspective(400px) rotateY(10deg); }
+
+    100% {
+        -webkit-transform: perspective(400px) rotateY(0deg);
+        opacity: 1; } }
+
+@-moz-keyframes flip-in-y {
+    0% {
+        -moz-transform: perspective(400px) rotateY(90deg);
+        opacity: 0; }
+
+    40% {
+        -moz-transform: perspective(400px) rotateY(-10deg); }
+
+    70% {
+        -moz-transform: perspective(400px) rotateY(10deg); }
+
+    100% {
+        -moz-transform: perspective(400px) rotateY(0deg);
+        opacity: 1; } }
+
+@-o-keyframes flip-in-y {
+    0% {
+        -o-transform: perspective(400px) rotateY(90deg);
+        opacity: 0; }
+
+    40% {
+        -o-transform: perspective(400px) rotateY(-10deg); }
+
+    70% {
+        -o-transform: perspective(400px) rotateY(10deg); }
+
+    100% {
+        -o-transform: perspective(400px) rotateY(0deg);
+        opacity: 1; } }
+
+@keyframes flip-in-y {
+    0% {
+        transform: perspective(400px) rotateY(90deg);
+        opacity: 0; }
+
+    40% {
+        transform: perspective(400px) rotateY(-10deg); }
+
+    70% {
+        transform: perspective(400px) rotateY(10deg); }
+
+    100% {
+        transform: perspective(400px) rotateY(0deg);
+        opacity: 1; } }

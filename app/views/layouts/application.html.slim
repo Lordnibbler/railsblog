@@ -11,10 +11,9 @@ html
         'shortname' : 'benradler'
       };
   body
-    = render 'shared/navigation'
-    .container
-      .col-sm-8
+    .container-fluid
+      = render 'shared/navigation'
+      #main.col-sm-8.col-sm-offset-4
         = yield
-      = render 'shared/sidebar'
-    = render 'shared/footer'
+        = render 'shared/footer'
     = render 'shared/analytics' if Rails.env.production?

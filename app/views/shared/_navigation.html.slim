@@ -1,19 +1,28 @@
-nav class='navbar navbar-default'
+nav id='navigation' class='navbar navbar-default col-sm-4'
   div class='container-fluid'
-    - # Brand and toggle get grouped for better mobile display
-    div class='navbar-header'
-      button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'
-        span class='sr-only' Toggle navigation
-        span class='icon-bar'
-        span class='icon-bar'
-        span class='icon-bar'
-      = link_to 'benradler.com', root_path, class: 'navbar-brand'
+    .row.first
+      .col-sm-12
+        - # Brand and toggle get grouped for better mobile display
+        div class='navbar-header'
+          button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#bs-example-navbar-collapse-1'
+            span class='sr-only' Toggle navigation
+            span class='icon-bar'
+            span class='icon-bar'
+            span class='icon-bar'
+          = link_to 'benradler.com', root_path, class: 'navbar-brand'
+          p.hidden-xs engineer @ onelogin in san francisco
+          .social-icons
+            a href="http://stackoverflow.com/users/418864/professormeowingtons" title="stackoverflow" &#x73;
+            a href="http://github.com/lordnibbler" title="GitHub" n
+            a href="http://youtube.com/benradler" title="youtube" o
+            a href="http://twitter.com/benradler" title="twitter" &#x6b;
+            a href="http://instagram.com/lordradler" title="instagram" r
+            a href="#{blog_posts_path(format: 'atom')}" title="RSS Feed" &#x76;
 
-    - # Collect the nav links, forms, and other content for toggling
-    div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'
-      ul class='nav navbar-nav'
-        li class='active'
-          = link_to 'Home', root_path
-          span class='sr-only' (current)
-        li
-          = link_to 'Contact Us', page_path(:contact_us)
+    .row.second
+      .col-sm-12
+        - # Collect the nav links, forms, and other content for toggling
+        div class='collapse navbar-collapse' id='bs-example-navbar-collapse-1'
+          ul class='nav navbar-nav'
+            li = link_to 'Home', root_path
+            li = link_to 'Contact Us', page_path(:contact_us)
