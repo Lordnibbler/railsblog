@@ -14,3 +14,8 @@
 // Overriding any non-variable SASS must be done after the fact.
 @import "admin/variables";
 @import "admin/markdown_editor";
+
+// remove padding above and below fieldsets
+form fieldset {
+  padding: 0px;
+}

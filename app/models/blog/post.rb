@@ -15,11 +15,12 @@ class Blog::Post < ActiveRecord::Base
   # @return [String] human-readable name of the author
   #
   def author
-    user.name
+    user.name.titleize
   end
 
   #
   # @return [String] the post's content split at the EXCERPT_TAG tag
+  # @note if no EXCERPT_TAG present, entire :body is returned
   #
   def excerpt
     body.split(EXCERPT_TAG).first

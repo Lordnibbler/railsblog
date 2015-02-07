@@ -1,5 +1,9 @@
 = active_admin_form_for resource, url: resource.new_record? ? admin_blog_posts_path : admin_blog_post_path(resource) do |f|
-  - inputs :title, :published, :created_at, :updated_at
-  - f.input :user_id, as: :select, collection: User.all.map{ |u| [u.name, u.id] }
-  - render 'admin/blog_posts/markdown_editor'
+  - f.inputs 'Post Metadata' do
+    - f.input :title
+    - f.input :published
+    - f.input :user_id, as: :select, collection: User.all.map{ |u| [u.name, u.id] }
+    - f.input :created_at
+    - f.input :updated_at
+  - render 'admin/blog_posts/markdown_editor',  f: f
   - actions
