@@ -7,6 +7,8 @@ class Blog::Post < ActiveRecord::Base
 
   scope :published, -> { where(published: true) }
 
+  paginates_per 5
+
   EXCERPT_TAG = '<!--more-->'
 
   #

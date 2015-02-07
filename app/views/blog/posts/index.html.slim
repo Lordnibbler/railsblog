@@ -5,4 +5,4 @@
     = markdown post.excerpt
     - if post.has_more_text?
       p= link_to 'Continue reading →', blog_posts_permalink_path(post)
-= will_paginate @posts, renderer: BootstrapPagination::Rails
+= paginate @posts, theme: 'twitter-bootstrap-3'
