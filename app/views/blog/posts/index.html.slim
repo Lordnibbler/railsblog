@@ -1,8 +1,12 @@
 - @posts.each do |post|
-  article
-    h1 = link_to post.title, blog_posts_permalink_path(post)
-    = render partial: 'meta', locals: { post: post }
-    = markdown post.excerpt
-    - if post.has_more_text?
-      p= link_to 'Continue reading →', blog_posts_permalink_path(post)
-= paginate @posts, theme: 'twitter-bootstrap-3'
+  article id="post-#{post.id}" class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
+    .post-thumbnail
+      - # featured image goes here
+
+    .content-wrapper
+      = render partial: 'meta', locals: { post: post }
+      div class='post-content' itemprop='articleBody'
+        = markdown post.excerpt
+        = link_to 'Continue reading →', blog_posts_permalink_path(post), class: 'read-more'
+
+= paginate @posts

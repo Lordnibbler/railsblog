@@ -1,7 +1,12 @@
-article
-  h1 = @post.title
-  = render partial: 'meta', locals: { post: @post }
-  = markdown @post.body
-  hr
-  p.action = link_to '← Back to Overview', blog_posts_path
-  = render 'shared/disqus_thread'
+article id="post-#{@post.id}" class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
+
+  .post-thumbnail
+    - # featured image goes here
+
+    .content-wrapper
+      = render partial: 'meta', locals: { post: @post }
+      div class='post-content' itemprop='articleBody'
+        = markdown @post.body
+        hr
+        p.action = link_to '← Back to Overview', blog_posts_path
+        = render 'shared/disqus_thread'

@@ -1,5 +1,14 @@
-.meta
-  time pubdate='' datetime="#{post.created_at}"
+h2 class='post-title'
+  a href="#{blog_posts_permalink_path(post)}" rel='bookmark'
+    = post.title
+
+.post-meta
+  | Posted&nbsp;
+  span datetime="#{post.created_at}" itemprop='datePublished'
     = l post.created_at, format: :long
-  |&nbsp;by&nbsp;
-  = post.author
+    | &nbsp;by&nbsp;
+    a href=''
+    = post.author
+    /- if post.tags
+    /  .post-tags
+    /    | Tags:

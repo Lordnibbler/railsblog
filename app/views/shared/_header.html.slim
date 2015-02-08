@@ -1,0 +1,26 @@
+header class='sidebar-header'
+
+  .first
+    .header-content
+      a class='blog-title' href="#{root_path}" title='benradler.com'
+        | benradler.com
+        span class='byline' engineer @ onelogin in san francisco
+      .social-icons
+        a href='http://stackoverflow.com/users/418864/professormeowingtons' title='stackoverflow' &#x73;
+        a href='http://github.com/lordnibbler' title='GitHub' n
+        a href='http://youtube.com/benradler' title='youtube' o
+        a href='http://twitter.com/benradler' title='twitter' &#x6b;
+        a href='http://instagram.com/lordradler' title='instagram' r
+        a href="#{blog_posts_path(format: :atom)}" title='RSS Feed' &#x76;
+
+  .second
+    a class='expander' title='Show menu'
+      .expand
+        span class='icon'
+        | Menu
+      .collapse
+        span class='icon collapse'
+        | Collapse
+    ul.main-menu
+      li.menu-item = link_to 'home', root_path
+      li.menu-item = link_to 'contact us', page_path(:contact_us)
