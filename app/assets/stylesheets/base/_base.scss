@@ -25,7 +25,6 @@ input, textarea, select, input[type="submit"], input[type="button"] {
     -webkit-border-radius:0!important;
     border-radius:0!important;
     -webkit-appearance: none!important;
-    padding: 0;
 }
 
 video {
@@ -55,10 +54,6 @@ blockquote {
 		font-weight: bold;
 	}
 
-}
-
-.home-template blockquote:before {
-	display:none;
 }
 
 p code {
