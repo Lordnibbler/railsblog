@@ -12,12 +12,12 @@ gem 'high_voltage', '~> 2.2.1' # static pages
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. @see https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.16.2' # pagination
+gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
 gem 'rouge' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'slim' # templating
-gem 'sqlite3' # Use sqlite3 as the database for Active Record
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
@@ -39,4 +39,8 @@ group :development, :test do
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
   gem 'web-console', '~> 2.0' # Access IRB on exception pages or by using <%= console %> in views
+end
+
+group :production do
+  gem 'rails_12factor'
 end
