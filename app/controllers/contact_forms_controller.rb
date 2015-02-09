@@ -4,7 +4,7 @@ class ContactFormsController < ApplicationController
     contact_form.request = request # append remote ip, user agent and session
 
     if contact_form.deliver
-      flash[:notice] = 'Email sent successfully'
+      flash[:success] = 'Email sent successfully'
     else
       flash[:error] = 'Email failed to send'
     end

@@ -16,6 +16,7 @@ gem 'mail_form', '~> 1.5.0' # send email straight from a <form>
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
+gem 'refills', '~> 0.1.0' # patterns and components for bourbon/neat
 gem 'rouge' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'sendgrid-ruby', '~> 0.0.3' # Sending emails
