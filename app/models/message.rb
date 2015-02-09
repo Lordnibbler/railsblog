@@ -41,9 +41,10 @@ class Message
 
   #
   # public API to send an email using sendgrid
+  # @return [Boolean] did the email send successfully
   #
   def send_email
-    sendgrid_client.send(email)
+    !!(sendgrid_client.send(mail) =~ /success/)
   end
 
   private
@@ -61,7 +62,7 @@ class Message
   #
   # @return [SendGrid::Mail] mail object prepared from this message instance's attr_accessors
   #
-  def email
+  def mail
     SendGrid::Mail.new do |m|
       m.to        = 'benradler@me.com'
       m.from_name = @name
