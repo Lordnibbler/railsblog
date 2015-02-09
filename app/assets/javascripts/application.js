@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require modernizr/modernizr
 //= require fitvids/jquery.fitvids
+//= require rails.validations
 //= require custom

@@ -1,0 +1,6 @@
+- content_for :page_title, 'Contact Me'
+= form_for ContactForm.new, url: contact_forms_path, validate: true do |f|
+  = f.text_field :name,    placeholder: 'name'
+  = f.text_field :email,   placeholder: 'email'
+  = f.text_area  :message, placeholder: 'message'
+  = f.submit 'Send', data: { disable_with: 'Sending' }
