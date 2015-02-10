@@ -3,9 +3,11 @@ alpha:
   body: 'Bacon ipsum dolor amet shankle beef ribs bresaola chicken.'
   user: ben
   slug: 'i-love-bacon'
+  published: true
 
 beta:
   title: 'I hate bacon'
   body: 'Bacon ipsum dolor amet shankle beef ribs bresaola chicken. <!--more--> Shoulder boudin pork, capicola venison doner landjaeger prosciutto biltong filet mignon porchetta chicken pork belly tenderloin pancetta.'
   user: ben
   slug: 'i-hate-bacon'
+  published: true
