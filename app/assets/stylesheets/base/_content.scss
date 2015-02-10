@@ -126,20 +126,6 @@ article.post .post-title {
     }
 }
 
-article.post .read-more {
-    @include inline-block;
-    @include transition(background 0.2s ease-in-out);
-    margin-top: 1em;
-    background: $color-1;
-    padding: 0.65em 1.25em;
-    color: #fff;
-    border-radius: 0.25em;
-
-    &:hover {
-        background: shade($color-1, 10%);
-    }
-}
-
 article.post .post-meta,
 .author .author-meta {
     font-style: italic;
