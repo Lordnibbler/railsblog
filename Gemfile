@@ -37,6 +37,7 @@ end
 
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
+  gem 'brakeman', '~> 3.0.1'
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails', '~> 3.2' # rspec test suite!
   gem 'rubocop', '~> 0.28.0', require: false # keep coding styles consistent

@@ -17,4 +17,5 @@ script:
   - bundle exec rspec spec --format progress
   - bundle exec ruby -rubygems spec/travis/brakeman.rb
   - bundle exec rubocop -R
-  - bundle exec cane
+  - bundle exec brakeman
+#  - bundle exec cane
