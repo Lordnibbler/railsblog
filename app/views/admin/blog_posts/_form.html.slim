@@ -2,6 +2,7 @@
   - f.inputs 'Post Metadata' do
     - f.input :title
     - f.input :published
+    - f.input :featured_image_url, as: :string
     - f.input :user_id, as: :select, collection: User.all.map{ |u| [u.name, u.id] }
     - f.input :created_at
     - f.input :updated_at
