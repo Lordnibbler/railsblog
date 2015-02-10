@@ -47,4 +47,9 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  config.before(:all) do
+    # custom fixtures classes
+    self.class.set_fixture_class posts: Blog::Post
+  end
 end
