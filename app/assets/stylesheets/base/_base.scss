@@ -7,62 +7,59 @@
  */
 
 body {
-    background: $light;
-    color: $text;
+  background: $light;
+  color: $text;
 }
 
 a {
-    color: $color-1;
-    text-decoration: none;
+  color: $color-1;
+  text-decoration: none;
 }
 
 h1 a {
-    color: $text;
+  color: $text;
 }
 
 input, textarea, select, input[type="submit"], input[type="button"] {
-    @include appearance(none);
-    -webkit-border-radius:0!important;
-    border-radius:0!important;
-    -webkit-appearance: none!important;
+  @include appearance(none);
+  -webkit-border-radius:0!important;
+  border-radius:0!important;
+  -webkit-appearance: none!important;
 }
 
 video {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 
 iframe,
 embed,
 object {
-	width: 100%;
+  width: 100%;
 }
 
-
-
 blockquote {
-	@include icon('before', true, 'quote') {
-		font-size: 1.8em;
-		position: absolute;
-		margin-left: -1.1em;
-		margin-top: -0.1em;
-	}
+  @include icon('before', true, 'quote') {
+    font-size: 1.8em;
+    position: absolute;
+    margin-left: -1.1em;
+    margin-top: -0.1em;
+  }
 
-	font-style: italic;
+  font-style: italic;
 
-	cite {
-		font-weight: bold;
-	}
-
+  cite {
+    font-weight: bold;
+  }
 }
 
 p code {
-	background: #f5f2f0;
-	padding: 0 0.3em;
+  background: #f5f2f0;
+  padding: 0 0.3em;
 }
 
 .site {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 pre {
