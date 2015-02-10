@@ -76,3 +76,16 @@ select {
   max-width: 100%;
   width: auto;
 }
+
+// client-side-validations gem styling
+.field_with_errors {
+  input,
+  textarea{
+    margin-bottom: 0px;
+    border: 1px solid red;
+  }
+  label {
+    color: red;
+    margin-bottom: 0.75em;
+  }
+}
