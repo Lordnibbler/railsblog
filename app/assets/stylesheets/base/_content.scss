@@ -187,7 +187,7 @@ article.page .post-meta {
 
 .edit-link a {
     color: $color-1;
-    font-family: $headings;
+    font-family: $heading-font-family;
     display: block;
     margin: -1em 0 1em;
 }
@@ -204,8 +204,8 @@ article.page .post-meta {
     margin-top: 2em;
 
     li {
-        /*background: shade($color-2, 10%);*/
-        font-family: $headings;
+        // background: shade($color-2, 10%);
+        font-family: $heading-font-family;
         font-size: 1.2em;
         height: 3em;
         width: 3em;

@@ -45,7 +45,7 @@
     @include position(absolute, 50% 0 0 50%);
     display: none;
     opacity: 0;
-    font-family: $headings;
+    font-family: $heading-font-family;
     pointer-events: none;
     color: #fff;
     text-transform: uppercase;
@@ -107,7 +107,7 @@
     @include animation(slide-in-tablet .4s ease-in-out);
     @include animation-fill-mode(forwards);
     @include animation-iteration-count(1);
-    font-family: $headings;
+    font-family: $heading-font-family;
     text-transform: uppercase;
     color: #fff;
     display: block;
@@ -205,7 +205,7 @@
     @include animation-delay(.4s);
     @include transition(color 0.2s ease-in-out);
     color: tint($color-1, 70%);
-    font-family: $headings;
+    font-family: $heading-font-family;
     text-transform: uppercase;
     cursor: pointer;
     padding: 0 1em;
@@ -243,7 +243,7 @@ ul.main-menu {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    font-family: $headings;
+    font-family: $heading-font-family;
     text-transform: uppercase;
     padding: 0;
     font-size: 1em;

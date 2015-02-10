@@ -82,10 +82,10 @@ select {
   input,
   textarea{
     margin-bottom: 0px;
-    border: 1px solid red;
+    border: 1px solid $red;
   }
   label {
-    color: red;
+    color: $red;
     margin-bottom: 0.75em;
   }
 }
