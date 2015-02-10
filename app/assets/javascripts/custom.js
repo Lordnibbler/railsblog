@@ -13,3 +13,9 @@ $(function(){
     $(this).slideUp();
   });
 });
+
+// activate disqus
+var disqus = {
+  'activate' : true,
+  'shortname' : 'benradler'
+};
