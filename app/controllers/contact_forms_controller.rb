@@ -5,6 +5,6 @@ class ContactFormsController < ApplicationController
     else
       flash[:error] = 'Email failed to send'
     end
-    redirect_to page_path(:contact_me)
+    redirect_to page_path('contact-me')
   end
 end
