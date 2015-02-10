@@ -5,6 +5,9 @@ require 'rouge/plugins/redcarpet'
 # @see http://www.watchsumo.com/posts/adding-github-flavoured-markdown-with-syntax-highlighting-in-your-rails-application
 #
 class MarkdownService
+  #
+  # enable rouge in redcarpet
+  #
   class Renderer < Redcarpet::Render::HTML
     include Rouge::Plugins::Redcarpet
   end

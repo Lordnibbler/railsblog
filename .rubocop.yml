@@ -9,6 +9,7 @@ AllCops:
     - 'script/**/*'
     - 'vendor/**/*'
     - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
   RunRailsCops: true
 
 Metrics/LineLength:
