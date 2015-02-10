@@ -1,3 +1,6 @@
+- set_meta_tags title: meta_title(@post.title),
+                description: meta_description_markdown(@post.body)
+
 article id="post-#{@post.id}" class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
   .post-thumbnail = image_tag @post.featured_image_url if @post.featured_image_url
   .content-wrapper
