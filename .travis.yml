@@ -1,0 +1,20 @@
+language: ruby
+bundler_args: --without development production
+cache: bundler
+rvm:
+  - 2.2.0
+addons:
+  postgresql: '9.3'
+before_script:
+    # - "echo test: > config/local_env.yml"
+    - psql -c 'create database travis_ci_test;' -U postgres
+    - mv config/database.yml.test config/database.yml
+    - RAILS_ENV=test bundle exec rake db:setup --trace
+
+# See https://cowbell-labs.com/2014-03-06-capistrano-deploys-from-travis.html
+# Automatically deploy to QA if running against the master branch
+script:
+  - bundle exec rspec spec --format progress
+  - bundle exec ruby -rubygems spec/travis/brakeman.rb
+  - bundle exec rubocop -R
+  - bundle exec cane

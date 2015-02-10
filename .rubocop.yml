@@ -1,0 +1,48 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'vendor/**/*'
+    - 'spec/spec_helper.rb'
+  RunRailsCops: true
+
+Metrics/LineLength:
+  Max: 100
+
+Style/Blocks:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+NumericLiterals:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Lambda:
+  Enabled: false
+
+Next:
+  Enabled: false
+
+DoubleNegation:
+  Enabled: false
+
+HasAndBelongsToMany:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
