@@ -1,6 +1,6 @@
 module Blog::PostsHelper
   #
-  # @return [String] a <=55 character meta title for a post based on its title
+  # @return [String] a <=55 character meta title
   #
   def meta_title(title)
     truncate(title, length: 55, separator: ' ')
@@ -11,7 +11,7 @@ module Blog::PostsHelper
   # @param [String] a markdown formatted string
   #
   def meta_description_markdown(md)
-    html = markdown(md)
+    html = MarkdownService.call(md)
     meta_description(html)
   end
 

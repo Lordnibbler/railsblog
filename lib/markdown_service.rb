@@ -14,12 +14,16 @@ class MarkdownService
 
   attr_reader :markdown
 
-  def self.call(markdown)
-    new(markdown).call
-  end
-
   def initialize(markdown)
     @markdown = markdown
+  end
+
+  #
+  # public API to invoke the MarkdownService
+  # @example MarkdownService.call('# markdown')
+  #
+  def self.call(markdown)
+    new(markdown).call
   end
 
   def call
@@ -28,6 +32,9 @@ class MarkdownService
 
   private
 
+  #
+  # @return [Redcarpet::Markdown] a redcarpet markdown renderer instance
+  #
   def markdown_renderer
     Redcarpet::Markdown.new(Renderer,
       autolink: true,
@@ -37,6 +44,9 @@ class MarkdownService
     )
   end
 
+  #
+  # @return [String] render {markdown} as an HTML string
+  #
   def render
     markdown_renderer.render(markdown)
   end
