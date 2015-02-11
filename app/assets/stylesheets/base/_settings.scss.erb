@@ -82,8 +82,8 @@ $xlarge: new-breakpoint(min-width 1200px);
 \******************************************************************************/
 
 // include icon font files
+$asset-pipeline: true; // tell bourbon internals to use font-url()
 @include font-face('northemes-icons', 'northemes-icons');
-
 
 /******************************************************************************\
     Functions
