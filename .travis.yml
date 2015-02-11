@@ -11,11 +11,8 @@ before_script:
     - mv config/database.yml.test config/database.yml
     - RAILS_ENV=test bundle exec rake db:setup --trace
 
-# See https://cowbell-labs.com/2014-03-06-capistrano-deploys-from-travis.html
-# Automatically deploy to QA if running against the master branch
 script:
   - bundle exec rspec spec --format progress
-  - bundle exec ruby -rubygems spec/travis/brakeman.rb
-  - bundle exec rubocop -R
   - bundle exec brakeman
-#  - bundle exec cane
+  - bundle exec rubocop -R
+  # - bundle exec cane
