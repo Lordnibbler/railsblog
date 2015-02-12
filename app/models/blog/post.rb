@@ -6,6 +6,7 @@ class Blog::Post < ActiveRecord::Base
   validates :user_id, presence: true
 
   scope :published, -> { where(published: true) }
+  scope :newest,    -> { order('created_at DESC') }
 
   paginates_per 5
 

@@ -4,7 +4,7 @@
 class Blog::PostsController < ApplicationController
   def index
     set_body_class('home')
-    @posts = Blog::Post.published.page(params[:page])
+    @posts = Blog::Post.published.newest.page(params[:page])
   end
 
   def show
