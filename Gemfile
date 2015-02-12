@@ -42,7 +42,6 @@ group :development, :test do
   gem 'rubocop', '~> 0.28.0', require: false # keep coding styles consistent
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
-  gem 'web-console', '~> 2.0' # Access IRB on exception pages or by using <%= console %> in views
 end
 
 group :production do
