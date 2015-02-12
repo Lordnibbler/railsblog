@@ -12,6 +12,11 @@ $(function(){
   $('.flash').on('click', function(event) {
     $(this).slideUp();
   });
+
+  // ensure client-side-validations gem runs on turbolinks page load
+  $(document).bind('page:change', function() {
+    $('form[data-validate]').validate();
+  });
 });
 
 // activate disqus
