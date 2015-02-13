@@ -66,6 +66,20 @@
 }
 
 .sidebar-header {
+  .first {
+    @include transition(background 0.2s ease-in-out);
+    background: $color-2;
+    height: auto;
+  }
+
+  .first,
+  .second{
+    @include clearfix;
+    padding: 1px 0 0 0;
+
+    @include media($medium) { padding: 0 2em; }
+  }
+
   @include transition(background 0.2s ease-in-out);
   @include span-columns(12);
   background: $color-1;
@@ -86,22 +100,6 @@
 }
 
 .admin-bar .sidebar-header { top: 32px; }
-
-.first,
-.second{
-  @include clearfix;
-  padding: 1px 0 0 0;
-
-  ul { @extend %clearul; }
-
-  @include media($medium) { padding: 0 2em; }
-}
-
-.first {
-  @include transition(background 0.2s ease-in-out);
-  background: $color-2;
-  height: auto;
-}
 
 .header-content {
   @include animation(slide-in-tablet .4s ease-in-out);
