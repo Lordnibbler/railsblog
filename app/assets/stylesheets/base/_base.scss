@@ -21,10 +21,8 @@ h1 a {
 }
 
 input, textarea, select, input[type="submit"], input[type="button"] {
-  @include appearance(none);
   -webkit-border-radius:0!important;
   border-radius:0!important;
-  -webkit-appearance: none!important;
 }
 
 video {
