@@ -13,6 +13,7 @@ gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.16.2' # pagination
 gem 'mail_form', '~> 1.5.0' # send email straight from a <form>
 gem 'meta-tags', '~> 2.0.0' # meta tags in HTML
+gem 'newrelic_rpm'
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
