@@ -1,4 +1,5 @@
-$(function(){
+// ensure client-side-validations gem runs on turbolinks page load
+$(document).on('page:change', function() {
   // collapsible mobile navigation menu
   $('.expander').click(function() {
     $(this).toggleClass('expanded');
@@ -13,10 +14,8 @@ $(function(){
     $(this).slideUp();
   });
 
-  // ensure client-side-validations gem runs on turbolinks page load
-  $(document).bind('page:change', function() {
-    $('form[data-validate]').validate();
-  });
+  // enable client-side-validations
+  $('form[data-validate]').validate();
 });
 
 // activate disqus
