@@ -3,10 +3,12 @@
 #
 class Blog::PostsController < ApplicationController
   def index
-    @posts = Blog::Post.all
+    set_body_class('home')
+    @posts = Blog::Post.published.newest.page(params[:page])
   end
 
   def show
-    @post = Blog::Post.find_by_name(params[:id])
+    set_body_class('post')
+    @post = Blog::Post.published.friendly.find(params[:id])
   end
 end

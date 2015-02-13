@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap/collapse
-//= require bootstrap/transition
-//= require_tree .
+//= require modernizr/modernizr
+//= require fitvids/jquery.fitvids
+//= require rails.validations
+//= require custom

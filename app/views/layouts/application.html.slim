@@ -1,13 +1,21 @@
 doctype html
 html
   head
-    title Brog
+    = display_meta_tags
+    meta name='HandheldFriendly' content='True'
+    meta name='MobileOptimized' content='320'
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  body
-    = render 'shared/navigation'
-    .container
-      .col-sm-8
-        = yield
-      = render 'shared/sidebar'
+  body class="#{@body_class}"
+    .site
+      = render 'shared/header'
+      section class='page-content primary' role='main'
+        = render 'shared/flash'
+        - if controller_name =~ /page/
+          = render 'shared/page'
+        - else
+          = yield
+        = render 'shared/footer'
+    = render 'shared/analytics' if Rails.env.production?

@@ -3,9 +3,9 @@ atom_feed do |feed|
   feed.updated(@posts[0].created_at) if @posts.length > 0
 
   @posts.each do |post|
-    feed.entry(post, url: blog_post_url(post)) do |entry|
+    feed.entry(post, url: blog_posts_permalink_path(post)) do |entry|
       entry.title(post.title)
-      entry.content(markdown(post.content), type: 'html')
+      entry.body(markdown(post.body), type: 'html')
       entry.author do |author|
         author.name(post.author)
       end

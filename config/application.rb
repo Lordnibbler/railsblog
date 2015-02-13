@@ -14,7 +14,7 @@ module Brog
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Pacific Time (US & Canada)'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -25,5 +25,21 @@ module Brog
 
     # configure autoload paths
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # add paths to asset pipeline
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+
+    # load environment variables from local_env.yml
+    def config_local_env
+      env_file = File.join(Rails.root, 'config', 'local_env.yml')
+      YAML.load(File.open(env_file))[Rails.env].each do |key, value|
+        ENV[key.to_s] = value
+      end if File.exists?(env_file)
+    end
+
+    config.before_configuration do
+      config_local_env
+    end
   end
 end

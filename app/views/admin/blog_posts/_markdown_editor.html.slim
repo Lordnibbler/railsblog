@@ -1,0 +1,16 @@
+- f.inputs 'Body' do
+  #editor
+    textarea#blog_post_body name="blog_post[body]" v-model="input"
+      = resource.body
+    div v-html="input | marked"
+
+javascript:
+  var vm = new Vue({
+    el: '#editor',
+    data: {
+      input: ''
+    },
+    filters: {
+      marked: marked
+    }
+  });
