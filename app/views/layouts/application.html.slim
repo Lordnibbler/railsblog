@@ -6,6 +6,7 @@ html
     meta name='MobileOptimized' content='320'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
     = auto_discovery_link_tag(:rss, blog_posts_path(format: :rss))
+    = auto_discovery_link_tag(:atom, blog_posts_path(format: :atom))
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
