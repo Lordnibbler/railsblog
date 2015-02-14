@@ -1,3 +1,6 @@
+#
+# Represents the message to be emailed from the contact-me <form>
+#
 class ContactForm < MailForm::Base
   attribute :name,     validate: true
   attribute :email,    validate: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i

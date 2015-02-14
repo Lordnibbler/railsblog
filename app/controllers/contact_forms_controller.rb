@@ -1,3 +1,6 @@
+#
+# endpoints to submit a contact-me <form> for validation and email delivery
+#
 class ContactFormsController < ApplicationController
   def create
     sent = ContactForm.new(params[:contact_form].merge(request: request)).deliver

@@ -8,6 +8,7 @@
       = render partial: 'meta', locals: { post: post }
       div class='post-content' itemprop='articleBody'
         = markdown post.excerpt
-        = link_to 'Continue reading →', blog_posts_permalink_path(post), class: 'button'
+        - if post.more_text?
+          = link_to 'Continue reading →', blog_posts_permalink_path(post), class: 'button'
 
 = paginate @posts

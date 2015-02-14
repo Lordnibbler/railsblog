@@ -1,3 +1,6 @@
+#
+# represents a blog post with a markdown (or HTML) formatted :body
+#
 class Blog::Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
@@ -32,7 +35,7 @@ class Blog::Post < ActiveRecord::Base
   #
   # @return [Boolean] is there more body beyond the EXCERPT_TAG tag?
   #
-  def has_more_text?
+  def more_text?
     body != excerpt
   end
 end

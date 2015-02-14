@@ -38,16 +38,16 @@ RSpec.describe Blog::Post, type: :model do
     end
   end
 
-  describe 'has_more_text?' do
+  describe 'more_text?' do
     context 'when no EXCERPT_TAG' do
       it 'returns false' do
-        expect(post.has_more_text?).to be false
+        expect(post.more_text?).to be false
       end
     end
 
     context 'when EXCERPT_TAG' do
       it 'returns true' do
-        expect(long_post.has_more_text?).to be true
+        expect(long_post.more_text?).to be true
       end
     end
   end
