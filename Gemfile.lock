@@ -152,6 +152,8 @@ GEM
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    health_check (1.5.0)
+      rails (>= 2.3.0)
     high_voltage (2.2.1)
     highline (1.6.21)
     hike (1.2.3)
@@ -371,6 +373,7 @@ DEPENDENCIES
   guard-rspec (~> 4.5)
   guard-rubocop (~> 1.2.0)
   guard-yard (~> 2.1.4)
+  health_check (~> 1.5.0)
   high_voltage (~> 2.2.1)
   jbuilder (~> 2.0)
   jquery-rails
