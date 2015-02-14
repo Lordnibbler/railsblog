@@ -7,12 +7,14 @@ gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise', '~> 3.4.1' # authentication
 gem 'friendly_id', '~> 5.1.0' # canonical URLs
+gem 'health_check', '~> 1.5.0' # health check endpoint for NewRelic
 gem 'high_voltage', '~> 2.2.1' # static pages
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. @see https://github.com/rails/jbuilder
 gem 'jquery-rails' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.16.2' # pagination
 gem 'mail_form', '~> 1.5.0' # send email straight from a <form>
 gem 'meta-tags', '~> 2.0.0' # meta tags in HTML
+gem 'newrelic_rpm'
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
