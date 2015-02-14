@@ -13,7 +13,7 @@ describe BlogHelper do
   describe 'blog_posts_permalink_path' do
     fixtures :posts
     let(:post) { posts(:alpha) }
-    let(:date) { Time.now.strftime('%Y/%m/%d') }
+    let(:date) { post.created_at.strftime('%Y/%m/%d') }
     it 'returns permalink-formatted path to post' do
       expect(helper.blog_posts_permalink_path(post)).to eql("/blog/#{date}/i-love-bacon")
     end
