@@ -19,7 +19,7 @@ describe ContactFormsController do
       end
 
       it 'flashes success' do
-        expect(controller.flash['success']).to match /email sent successfully/i
+        expect(controller.flash['success']).to match(/email sent successfully/i)
       end
 
       it 'redirects to contact-me' do
@@ -42,7 +42,7 @@ describe ContactFormsController do
       end
 
       it 'flashes error' do
-        expect(controller.flash['error']).to match /email failed to send/i
+        expect(controller.flash['error']).to match(/email failed to send/i)
       end
 
       it 'redirects to contact-me' do
