@@ -9,7 +9,7 @@
 .page-content {
   @include animation(bounce-in-up .7s ease);
   @include animation-fill-mode(both);
-  @include animation-delay(.8s);
+  @include animation-delay(.1s);
   @include span-columns(12);
   overflow: hidden;
 
