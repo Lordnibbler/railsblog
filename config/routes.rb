@@ -22,6 +22,11 @@ Rails.application.routes.draw do
 
   resources :contact_forms, only: [:create]
 
+  #
+  # /sitemap.xml.gz
+  #
+  get 'sitemap.xml.gz' => redirect('https://benradler.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

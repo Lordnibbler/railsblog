@@ -6,6 +6,7 @@ gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise', '~> 3.4.1' # authentication
+gem 'fog', '~> 1.28.0' # upload to cloud services like AWS
 gem 'friendly_id', '~> 5.1.0' # canonical URLs
 gem 'health_check', '~> 1.5.0' # health check endpoint for NewRelic
 gem 'high_voltage', '~> 2.2.1' # static pages
@@ -22,6 +23,7 @@ gem 'refills', '~> 0.1.0' # patterns and components for bourbon/neat
 gem 'rouge' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'sendgrid-ruby', '~> 0.0.3' # Sending emails
+gem 'sitemap_generator', '~> 5.0.5' # XML sitemaps for search engines
 gem 'slim' # templating
 gem 'turbolinks' # Turbolinks makes following links in your web application faster.
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
