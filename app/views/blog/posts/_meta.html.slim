@@ -4,8 +4,9 @@ h2 class='post-title'
 
 .post-meta
   | Posted&nbsp;
-  span datetime="#{post.created_at}" itemprop='datePublished'
-    = l post.created_at, format: :long
+  span
+    time datetime="#{post.created_at.to_formatted_s(:iso8601)}" itemprop='datePublished'
+      = l post.created_at, format: :long
     | &nbsp;by&nbsp;
     a href=''
     = post.author
