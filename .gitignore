@@ -22,7 +22,7 @@ config/database.yml
 vendor/assets/bower_components
 
 # local environment variables
-config/local_env.yml
+config/env.yml
 
 # sitemap files
 public/sitemap*
