@@ -2,11 +2,11 @@ language: ruby
 bundler_args: --without development production
 cache: bundler
 rvm:
-  - 2.2.0
+  - 2.2.1
 addons:
   postgresql: '9.3'
 before_script:
-    # - "echo test: > config/local_env.yml"
+    # - "echo test: > config/env.yml"
     - psql -c 'create database travis_ci_test;' -U postgres
     - mv config/database.yml.test config/database.yml
     - RAILS_ENV=test bundle exec rake db:setup --trace
