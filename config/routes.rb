@@ -4,6 +4,11 @@ Rails.application.routes.draw do
 
   root 'blog/posts#index'
 
+  #
+  # @note for legacy redirects from old blog which didn't have /blog prefix in route
+  # GET /2015/01/31/post-title
+  #
+  get '/:year/:month/:day/:id' => 'blog/posts#show', as: 'permalink'
   namespace :blog do
     #
     # GET /blog
