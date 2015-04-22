@@ -3,6 +3,7 @@ ruby '2.2.2'
 gem 'rails', '~> 4.2.1'
 
 gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
+gem 'acts-as-taggable-on', '~> 3.4' # tagging
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise', '~> 3.4.1' # authentication

@@ -5,6 +5,8 @@ class Blog::Post < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
 
+  acts_as_taggable_on :tags
+
   belongs_to :user
   validates :user_id, presence: true
   validates :title,   presence: true, uniqueness: true

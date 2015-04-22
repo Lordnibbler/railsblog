@@ -3,8 +3,9 @@
     - f.input :title
     - f.input :published
     - f.input :featured_image_url, as: :string
-    - f.input :user_id, as: :select, collection: User.all.map{ |u| [u.name, u.id] }
+    - f.input :user_id, as: :select, collection: User.all.map { |u| [u.name, u.id] }
     - f.input :created_at
     - f.input :updated_at
+    - f.input :tag_list, as: :select, multiple: :true, collection: ActsAsTaggableOn::Tag.pluck(:name)
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions
