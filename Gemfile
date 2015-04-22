@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.1'
+ruby '2.2.2'
 gem 'rails', '~> 4.2.1'
 
 gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
@@ -19,7 +19,6 @@ gem 'newrelic_rpm'
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb' # Syntax highlighting
 gem 'redcarpet' # For the Markdown parsing
-gem 'refills', '~> 0.1.0' # patterns and components for bourbon/neat
 gem 'rouge' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'sendgrid-ruby', '~> 0.0.3' # Sending emails
@@ -36,6 +35,7 @@ group :development do
   gem 'guard-yard', '~> 2.1.4', require: false
   gem 'guard-rubocop', '~> 1.2.0'
   gem 'quiet_assets' # shut up the asset pipeline logging
+  gem 'refills', '~> 0.1.0' # patterns and components for bourbon/neat
 end
 
 group :development, :test do
