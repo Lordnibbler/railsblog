@@ -3,7 +3,7 @@ aside class='post-aside'
     javascript:
       if (disqus.activate) {
         var disqus_shortname = disqus.shortname;
-        var disqus_identifier = '{{id}}';
+        var disqus_identifier = "#{@post.slug}";
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function () {
           var dsq = document.createElement('script');
