@@ -11,4 +11,4 @@
         - if post.more_text?
           = link_to 'Continue Reading →', blog_posts_permalink_path(post), class: 'button'
 
-= paginate @posts
+= paginate @posts, theme: 'bourbon'
