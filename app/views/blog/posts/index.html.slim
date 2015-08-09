@@ -9,6 +9,6 @@
       div class='post-content' itemprop='articleBody'
         = markdown post.excerpt
         - if post.more_text?
-          = link_to 'Continue reading →', blog_posts_permalink_path(post), class: 'button'
+          = link_to 'Continue Reading →', blog_posts_permalink_path(post), class: 'button'
 
 = paginate @posts
