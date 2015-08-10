@@ -1,5 +1,5 @@
 #
-# simple controller for rendering published Blog::Post .md files
+# render published Blog::Post objects
 #
 class Blog::PostsController < ApplicationController
   def index
