@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Blog::Post, type: :model do
   fixtures :users, :posts
 
-  let(:post)      { posts(:alpha) }
-  let(:long_post) { posts(:beta) }
+  let(:post)      { posts(:short) }
+  let(:long_post) { posts(:long) }
 
   describe 'author' do
     let(:user) { users(:ben) }
