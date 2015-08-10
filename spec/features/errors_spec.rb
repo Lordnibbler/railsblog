@@ -2,11 +2,22 @@ require 'features_helper'
 
 describe 'Custom Errors' do
   context '404' do
-    # @todo test invalid route via comment in http://thepugautomatic.com/2014/08/404-with-rails-4/
-    it 'returns appropriate status code and content' do
-      visit '/404'
-      expect(page.status_code).to eql 404
-      expect(page).to have_content '404 - File Not Found'
+    before do
+      method = Rails.application.method(:env_config)
+      expect(Rails.application).to receive(:env_config).with(no_args) do
+        method.call.merge(
+          'action_dispatch.show_exceptions' => true,
+          'action_dispatch.show_detailed_exceptions' => false
+        )
+      end
+    end
+
+    %w(/404 /not-a-real-page).each do |url|
+      it 'returns appropriate status code and content' do
+        visit url
+        expect(page.status_code).to eql 404
+        expect(page).to have_content '404 - File Not Found'
+      end
     end
   end
 
