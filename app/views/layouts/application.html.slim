@@ -15,7 +15,7 @@ html lang='en'
       = render 'shared/header'
       section class='page-content primary' role='main'
         = render 'shared/flash'
-        - if controller_name =~ /page/
+        - if controller_name =~ /pages|errors/
           = render 'shared/page'
         - else
           = yield
