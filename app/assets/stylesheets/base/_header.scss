@@ -149,9 +149,9 @@
 }
 
 .social-icons {
-  @include animation(flip-in-y 1s ease);
+  @include animation(flip-in-y 0.7s ease);
   @include animation-fill-mode(forwards);
-  @include animation-delay(.4s);
+  @include animation-delay(.2s);
   @include clearfix;
   -webkit-backface-visibility: visible !important;
   -moz-backface-visibility: visible !important;
