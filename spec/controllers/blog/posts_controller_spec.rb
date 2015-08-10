@@ -3,8 +3,8 @@ require 'rails_helper'
 describe Blog::PostsController do
   fixtures :posts, :users
 
-  let!(:post) { posts(:alpha) }
-  let!(:long_post) { posts(:beta) }
+  let!(:post) { posts(:short) }
+  let!(:long_post) { posts(:long) }
 
   describe 'index' do
     it 'sets the @posts ivar' do

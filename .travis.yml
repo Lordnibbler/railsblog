@@ -1,6 +1,7 @@
 language: ruby
 bundler_args: --without development production
 cache: bundler
+sudo: false
 rvm:
   - 2.2.2
 addons:
@@ -10,6 +11,8 @@ before_script:
     - psql -c 'create database travis_ci_test;' -U postgres
     - mv config/database.yml.test config/database.yml
     - RAILS_ENV=test bundle exec rake db:setup --trace
+    - npm install -g bower
+    - bower install
 
 script:
   - bundle exec rspec spec --format progress

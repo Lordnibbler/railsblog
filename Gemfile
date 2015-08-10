@@ -40,12 +40,18 @@ end
 
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
-  gem 'brakeman', '~> 3.0.1'
+  gem 'brakeman', '~> 3.0.1' # security tests
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails', '~> 3.3' # rspec test suite!
   gem 'rubocop', '~> 0.28.0', require: false # keep coding styles consistent
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
+end
+
+group :test do
+  gem 'capybara', '~> 2.4.4' # integration tests
+  gem 'launchy', '~> 2.4.3' # capybara save_and_open_page automatic launching
+  gem 'poltergeist', '~> 1.6.0' # phantomjs driver for capybara
 end
 
 group :production do
