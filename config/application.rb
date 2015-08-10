@@ -41,5 +41,8 @@ module Brog
     config.before_configuration do
       config_local_env
     end
+
+    # custom error pages defined by errors_controller.rb
+    config.exceptions_app = self.routes
   end
 end
