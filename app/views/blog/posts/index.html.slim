@@ -1,5 +1,5 @@
 - set_meta_tags title: 'My Blog about Technology',
-                description: 'Ben Radler is an Engineer at OneLogin Inc in San Francisco. He works with technologies like Ruby, Rails, Javascript, Node.js'
+                description: 'Ben Radler is an Engineer in San Francisco. He uses technology like Ruby, Rails, Javascript, Node.js'
 
 - @posts.each do |post|
   article id="post-#{post.id}" class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
@@ -9,6 +9,6 @@
       div class='post-content' itemprop='articleBody'
         = markdown post.excerpt
         - if post.more_text?
-          = link_to 'Continue reading →', blog_posts_permalink_path(post), class: 'button'
+          = link_to 'Continue Reading →', blog_posts_permalink_path(post), class: 'button'
 
-= paginate @posts
+= paginate @posts, theme: 'bourbon'

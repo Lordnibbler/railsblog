@@ -7,9 +7,10 @@
  */
 
 .page-content {
-  @include animation(bounce-in-up .7s ease);
-  @include animation-fill-mode(both);
-  @include animation-delay(.1s);
+  // disable page bounce in animation
+  // @include animation(bounce-in-up .7s ease);
+  // @include animation-fill-mode(both);
+  // @include animation-delay(.1s);
   @include span-columns(12);
   overflow: hidden;
 
@@ -42,7 +43,7 @@ article.post,
   padding: 0 0 3em 0;
   position: relative;
   overflow: hidden;
-  font-size: 1.1em;
+  font-size: 1.2em;
 
   img {
     width: 100%;
@@ -180,7 +181,7 @@ article.page .post-meta {
 
 .pagination {
   @include clearfix;
-  margin: 1em 5%;
+  margin: 1em 5% 2em 5%;
   text-align: center;
   font-size: 1.1em;
 }
@@ -190,7 +191,6 @@ article.page .post-meta {
   margin-top: 2em;
 
   li {
-    // background: shade($color-2, 10%);
     font-family: $heading-font-family;
     font-size: 1.2em;
     height: 3em;
