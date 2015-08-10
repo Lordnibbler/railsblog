@@ -34,7 +34,7 @@ group :development do
   gem 'guard-rspec', '~> 4.5'
   gem 'guard-yard', '~> 2.1.4', require: false
   gem 'guard-rubocop', '~> 1.2.0'
-  gem 'pry-rails', '~> 0.3.4'
+  gem 'pry-rails', '~> 0.3.4' # pry in rails console
   gem 'quiet_assets' # shut up the asset pipeline logging
   gem 'refills', '~> 0.1.0' # patterns and components for bourbon/neat
 end
