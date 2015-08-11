@@ -127,8 +127,7 @@
     text-align: center;
     color: #fff;
     font-size: 1.4em;
-
-    @include media($medium) { font-size: 1.8em; }
+    @include media($medium) { font-size: 1.7em; }
   }
 
   a:hover {
