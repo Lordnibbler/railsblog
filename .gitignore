@@ -26,3 +26,6 @@ config/env.yml
 
 # sitemap files
 public/sitemap*
+
+# why apple :(
+.DS_Store
