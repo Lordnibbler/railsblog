@@ -10,6 +10,7 @@ gem 'fog', '~> 1.28.0' # upload to cloud services like AWS
 gem 'friendly_id', '~> 5.1.0' # canonical URLs
 gem 'health_check', '~> 1.5.0' # health check endpoint for NewRelic
 gem 'high_voltage', '~> 2.2.1' # static pages
+gem 'instagram', '~> 1.1.5' # interact with instagram's API
 gem 'jbuilder', '~> 2.0' # Build JSON APIs with ease. @see https://github.com/rails/jbuilder
 gem 'jquery-rails', '~> 4.0' # Use jquery as the JavaScript library
 gem 'kaminari', '~> 0.16.2' # pagination
@@ -19,6 +20,7 @@ gem 'newrelic_rpm', '~> 3'
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb', '~> 0.6.3' # Syntax highlighting
 gem 'redcarpet', '~> 3.2.2' # For the Markdown parsing
+gem 'redis-rails', github: 'redis-store/redis-rails'
 gem 'rouge', '~> 1.8.0' # syntax highlighting
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'sendgrid-ruby', '~> 0.0.3' # Sending emails

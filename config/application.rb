@@ -25,6 +25,7 @@ module Brog
 
     # configure autoload paths
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/services/**/"]
 
     # add paths to asset pipeline
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
@@ -44,5 +45,8 @@ module Brog
 
     # custom error pages defined by errors_controller.rb
     config.exceptions_app = self.routes
+
+    # for caching expensive requests to redis, like external API calls
+    config.cache_store = :redis_store, ENV['REDISCLOUD_URL'], { expires_in: 10.minutes }
   end
 end
