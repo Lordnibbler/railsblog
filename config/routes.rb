@@ -32,6 +32,15 @@ Rails.application.routes.draw do
 
   resources :contact_forms, only: [:create]
 
+  namespace :api do
+    namespace :v1 do
+      #
+      # GET /api/v1/stream
+      #
+      resources :stream, only: [:index]
+    end
+  end
+
   #
   # /sitemap.xml.gz
   #
