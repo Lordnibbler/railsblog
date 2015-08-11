@@ -43,7 +43,11 @@ article.post,
   padding: 0 0 3em 0;
   position: relative;
   overflow: hidden;
-  font-size: 1.2em;
+  font-size: $base-font-size * 0.9;
+
+  @include media($medium) {
+    font-size: $base-font-size * 1.2;
+  }
 
   img {
     width: 100%;
