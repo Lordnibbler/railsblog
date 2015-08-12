@@ -7,7 +7,7 @@
     "node": "0.12.7"
   },
   "scripts": {
-    "postinstall": "cd ./client && npm install && cd ../ && npm install -g bower && bower install",
+    "postinstall": "cd ./client && npm install",
     "gulp": "cd ./client && npm run gulp",
     "test": "rspec && client/bin/lint && (cd client && npm run jscs .)"
   },
@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/lordnibbler/railsblog/issues"
   },
-  "homepage": "https://github.com/lordnibbler/railsblog"
+  "homepage": "https://github.com/lordnibbler/railsblog",
+  "dependencies": {
+    "bower": "latest"
+  }
 }
