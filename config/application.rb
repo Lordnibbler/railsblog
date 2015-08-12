@@ -1,12 +1,12 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
-require 'rails/all'
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Brog
+module RailsReactTutorial
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -29,7 +29,8 @@ module Brog
 
     # add paths to asset pipeline
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
-    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.paths << Rails.root.join('app',    'assets', 'fonts')
+    config.assets.paths << Rails.root.join('client', 'assets', 'stylesheets')
 
     # load environment variables from env.yml
     def config_local_env

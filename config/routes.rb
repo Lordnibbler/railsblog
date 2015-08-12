@@ -32,6 +32,9 @@ Rails.application.routes.draw do
 
   resources :contact_forms, only: [:create]
 
+  # @todo remove me
+  resources :comments
+
   namespace :api do
     namespace :v1 do
       #
