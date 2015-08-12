@@ -19,6 +19,7 @@ gem 'meta-tags', '~> 2.0.0' # meta tags in HTML
 gem 'newrelic_rpm', '~> 3'
 gem 'pg', '~> 0.18' # Use postgres as the database for Active Record
 gem 'pygments.rb', '~> 0.6.3' # Syntax highlighting
+gem 'react-rails', '~> 1.1.0' # react.js and .jsx for asset pipeline
 gem 'redcarpet', '~> 3.2.2' # For the Markdown parsing
 gem 'redis-rails', github: 'redis-store/redis-rails'
 gem 'rouge', '~> 1.8.0' # syntax highlighting
@@ -28,6 +29,12 @@ gem 'sitemap_generator', '~> 5.0.5' # XML sitemaps for search engines
 gem 'slim', '~> 3.0.3' # templating
 gem 'turbolinks', '~> 2.5.3' # Turbolinks makes following links in your web application faster.
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
+
+# added by react-webpack
+gem 'es5-shim-rails'
+gem 'rails-html-sanitizer'
+gem 'unicorn' # Use Unicorn as the app server
+gem 'autoprefixer-rails'
 
 group :development do
   gem 'better_errors' # improved error pages
@@ -49,12 +56,24 @@ group :development, :test do
   gem 'rubocop', '~> 0.28.0', require: false # keep coding styles consistent
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
+
+  # added by react-webpack
+  gem 'foreman' # Manage application processes
+  # gem 'factory_girl_rails'
+  gem 'ruby-lint', require: false
+  gem 'scss_lint', require: false
+  gem 'bundler-audit', require: false
+  gem 'rainbow'
 end
 
 group :test do
   gem 'capybara', '~> 2.4.4' # integration tests
   gem 'launchy', '~> 2.4.3' # capybara save_and_open_page automatic launching
   gem 'poltergeist', '~> 1.6.0' # phantomjs driver for capybara
+
+  # added by react-webpack
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
 end
 
 group :production do

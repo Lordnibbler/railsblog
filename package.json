@@ -1,0 +1,27 @@
+{
+  "name": "benradler.com",
+  "version": "1.1.1",
+  "description": "benradler.com website",
+  "main": "server.js",
+  "engines": {
+    "node": "0.12.7"
+  },
+  "scripts": {
+    "postinstall": "cd ./client && npm install && cd ../ && npm install -g bower && bower install",
+    "gulp": "cd ./client && npm run gulp",
+    "test": "rspec && client/bin/lint && (cd client && npm run jscs .)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lordnibbler/railsblog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "ben radler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lordnibbler/railsblog/issues"
+  },
+  "homepage": "https://github.com/lordnibbler/railsblog"
+}
