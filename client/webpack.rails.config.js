@@ -1,9 +1,13 @@
-// Run like this:
-// cd client && $(npm bin)/webpack -w --config webpack.rails.config.js
-// Note that Foreman (Procfile.dev) has also been configured to take care of this.
-
-// NOTE: All style sheets handled by the asset pipeline in rails
-
+//
+// automatically watches changes in js and generates
+// app/assets/javascript/generated/client-bundle.js
+// @note all stylesheets are handled by the asset pipeline in rails
+//
+// @example usage
+//   cd client && $(npm bin)/webpack -w --config webpack.rails.config.js
+//
+// @note Foreman (Procfile.dev) has also been configured to take care of this.
+//
 const config = require('./webpack.common.config');
 
 config.output = {

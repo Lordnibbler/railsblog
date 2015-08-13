@@ -1,3 +1,4 @@
+// sets up the JS and CSS assets for the Webpack Dev Server
 // Run like this:
 // cd client && node server.js
 
