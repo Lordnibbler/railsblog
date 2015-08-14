@@ -1,9 +1,19 @@
 import $ from 'jquery';
 import React from 'react';
 import CommentBox from './components/CommentBox';
+import StreamPostBox from './components/StreamPostBox';
 
 $(function onLoad() {
-  function render() {
+  function renderStream() {
+    if ($('#stream').length > 0) {
+      React.render(
+        <StreamPostBox url='api/v1/stream' />,
+        document.getElementById('stream')
+      )
+    };
+  }
+
+  function renderComments() {
     if ($('#content').length > 0) {
       React.render(
         <div>
@@ -27,10 +37,12 @@ $(function onLoad() {
     }
   }
 
-  render();
+  renderStream();
+  renderComments();
 
   // Next part is to make this work with turbo-links
   $(document).on('page:change', () => {
-    render();
+    renderStream();
+    renderComments();
   });
 });
