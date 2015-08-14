@@ -7,7 +7,7 @@ $(function onLoad() {
   function renderStream() {
     if ($('#stream').length > 0) {
       React.render(
-        <StreamPostBox url='api/v1/stream' />,
+        <StreamPostBox/>,
         document.getElementById('stream')
       )
     };

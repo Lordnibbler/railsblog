@@ -7,7 +7,7 @@ const StreamPostBox = React.createClass({
   displayName: 'StreamPostBox',
 
   propTypes: {
-    url: React.PropTypes.string.isRequired
+    //url: React.PropTypes.string.isRequired
   },
 
   getStoreState() {
@@ -22,7 +22,7 @@ const StreamPostBox = React.createClass({
 
   componentDidMount() {
     StreamPostStore.listen(this.onChange);
-    StreamPostActions.fetchStreamPosts(this.props.url, true);
+    StreamPostActions.fetchStreamPosts(true);
   },
 
   componentWillUnmount() {

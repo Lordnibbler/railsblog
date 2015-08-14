@@ -9,10 +9,10 @@ class StreamPostActions {
    * @param {Boolean} displaySpinner - Flag whether to show wait spinner
    * @return {void}
    */
-  fetchStreamPosts(url, displaySpinner) {
+  fetchStreamPosts(displaySpinner) {
     // @todo loading spinner
     // this.dispatch(displaySpinner);
-    StreamPostsManager.fetchStreamPosts(url)
+    StreamPostsManager.fetchStreamPosts()
       .then((streamPosts) => this.actions.updateStreamPosts(streamPosts),
       (errorMessage) => this.actions.updateStreamPostsError(errorMessage));
   }
