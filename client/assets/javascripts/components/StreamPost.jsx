@@ -1,17 +1,17 @@
 import React from 'react';
 
 const StreamPost = React.createClass({
-    displayName: 'StreamPost',
+  displayName: 'StreamPost',
 
-    propTypes: {
-        post: React.PropTypes.object.isRequired
-    },
+  propTypes: {
+    post: React.PropTypes.object.isRequired
+  },
 
-    render() {
-        return (
-            <img className='stream-post' src={this.props.post.url_thumbnail} />
-        );
-    },
+  render() {
+    return (
+      <img className='stream-post' src={this.props.post.url_thumbnail} />
+    );
+  },
 });
 
 export default StreamPost;

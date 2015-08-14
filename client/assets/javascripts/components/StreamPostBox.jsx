@@ -35,7 +35,7 @@ const StreamPostBox = React.createClass({
 
   renderStreamPosts() {
     return this.state.posts.posts.map(function (post) {
-      return <StreamPost key={post.created_at} post={post} />;
+      return <StreamPost key={post.key} post={post} />;
     });
   },
 

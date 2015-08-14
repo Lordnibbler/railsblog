@@ -6,6 +6,7 @@ gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
 gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations'
 gem 'coffee-rails', '~> 4.1.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise', '~> 3.4.1' # authentication
+gem 'flickraw', '~> 0.9.8' # interact with flickr's API
 gem 'fog', '~> 1.28.0' # upload to cloud services like AWS
 gem 'friendly_id', '~> 5.1.0' # canonical URLs
 gem 'health_check', '~> 1.5.0' # health check endpoint for NewRelic
