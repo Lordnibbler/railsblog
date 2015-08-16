@@ -34,6 +34,7 @@
     "marked": "^0.3.5",
     "react": "^0.13.3",
     "react-bootstrap": "^0.24.3",
+    "react-masonry-component": "^1.0.4",
     "sleep": "^3.0.0",
     "webpack": "^1.10.5"
   },

@@ -2,6 +2,8 @@ import React from 'react';
 import StreamPostActions from '../actions/StreamPostActions';
 import StreamPostStore from '../stores/StreamPostStore';
 import StreamPost from './StreamPost';
+import MasonryComponent from 'react-masonry-component'
+const Masonry = MasonryComponent(React);
 
 const StreamPostBox = React.createClass({
   displayName: 'StreamPostBox',
@@ -37,17 +39,24 @@ const StreamPostBox = React.createClass({
    * return a StreamPost for each post in store's state
    * @return {Array<StreamPost>}
    */
-  renderStreamPosts() {
-    return this.state.posts.posts.map(function (post) {
+  render() {
+    var childElements = this.state.posts.posts.map(function (post) {
       return <StreamPost key={post.key} post={post} />;
     });
-  },
 
-  render() {
+    var masonryOptions = {
+      transitionDuration: 0
+    };
+
     return(
-      <div className='stream-post-container'>
-        {this.renderStreamPosts()}
-      </div>
+      <Masonry
+        className={'stream-post-container'} // default ''
+        elementType={'div'} // default 'div'
+        options={masonryOptions} // default {}
+        disableImagesLoaded={false} // default false
+      >
+        {childElements}
+      </Masonry>
     );
   }
 });
