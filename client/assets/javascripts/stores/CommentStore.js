@@ -27,6 +27,7 @@ class CommentStore {
     this.errorMessage = errorMessage;
   }
 
+  // @todo use this approach for ajax API requests for stream posts
   handleAddComment(comment) {
     const oldComments = this.comments;
     this.comments = React.addons.update(oldComments, {$push: [comment]});

@@ -28,6 +28,13 @@ class FlickrService
       end
     end
 
+    # @return [Hash]
+    def get_photo(photo_id)
+      Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.year do
+        flickr.photos.getInfo(photo_id: photo_id)
+      end
+    end
+
     private
 
     # @return [Array<Hash>] munged Flickr API response data into a useful array of hashes
@@ -36,13 +43,13 @@ class FlickrService
         response.each do |photo|
           array << {
             source:        'flickr',
-            key:           SecureRandom.hex(3),
+            key:           photo.id,
             url_thumbnail: generate_img_url(photo, SIZE_SUFFIXES[:small_320]),
             url_original:  generate_img_url(photo, SIZE_SUFFIXES[:large_1024]),
-            created_at:    '',
+            created_at:    get_photo(photo.id).dateuploaded,
             url:           generate_url(photo),
-            description:   '',
-            title:         ''
+            description:   get_photo(photo.id).description,
+            title:         get_photo(photo.id).title
           }
         end
       end

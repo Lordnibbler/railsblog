@@ -8,7 +8,7 @@ class InstagramService
     # @param id [Fixnum] the user's id on instagram
     #
     def all(id: INSTAGRAM_USER_ID, max_id: nil)
-      Rails.cache.fetch 'instagram_photos', expires_in: 5.minutes do
+      Rails.cache.fetch 'instagram_photos', expires_in: 12.hours do
         munge(client.user_recent_media(id, count: 100, max_id: max_id))
       end
     end
@@ -20,14 +20,14 @@ class InstagramService
       [].tap do |array|
         response.each do |media|
           array << {
-              source:        'instagram',
-              key:           SecureRandom.hex(3),
-              url_thumbnail: media.images.low_resolution.url,
-              url_original:  media.images.standard_resolution.url,
-              created_at:    media.created_time,
-              url:           media.link,
-              description:   media.caption.text,
-              title:         ''
+            source:        'instagram',
+            key:           media.id,
+            url_thumbnail: media.images.low_resolution.url,
+            url_original:  media.images.standard_resolution.url,
+            created_at:    media.created_time,
+            url:           media.link,
+            description:   media.caption.text,
+            title:         ''
           }
         end
       end

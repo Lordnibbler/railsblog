@@ -7,7 +7,7 @@ const StreamPostBox = React.createClass({
   displayName: 'StreamPostBox',
 
   propTypes: {
-    //url: React.PropTypes.string.isRequired
+    // url: React.PropTypes.string.isRequired
   },
 
   getStoreState() {
@@ -33,6 +33,10 @@ const StreamPostBox = React.createClass({
     this.setState(this.getStoreState());
   },
 
+  /**
+   * return a StreamPost for each post in store's state
+   * @return {Array<StreamPost>}
+   */
   renderStreamPosts() {
     return this.state.posts.posts.map(function (post) {
       return <StreamPost key={post.key} post={post} />;

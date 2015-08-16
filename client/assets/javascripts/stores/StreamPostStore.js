@@ -3,28 +3,36 @@ import React from 'react/addons';
 import StreamPostActions from '../actions/StreamPostActions';
 
 class StreamPostStore {
-    constructor() {
-        this.posts = [];
-        this.errorMessage = null;
-        this.bindListeners({
-            handleFetchStreamPosts: StreamPostActions.FETCH_STREAM_POSTS,
-            handleUpdateStreamPosts: StreamPostActions.UPDATE_STREAM_POSTS,
-            handleUpdateStreamPostsError: StreamPostActions.UPDATE_STREAM_POSTS_ERROR
-        });
-    }
+  constructor() {
+    this.posts = [];
+    this.errorMessage = null;
+    this.bindListeners({
+      handleFetchStreamPosts: StreamPostActions.FETCH_STREAM_POSTS,
+      handleUpdateStreamPosts: StreamPostActions.UPDATE_STREAM_POSTS,
+      handleUpdateStreamPostsError: StreamPostActions.UPDATE_STREAM_POSTS_ERROR
+    });
+  }
 
-    handleFetchStreamPosts() {
-        return false;
-    }
+  handleFetchStreamPosts() {
+    return false;
+  }
 
-    handleUpdateStreamPosts(posts) {
-        this.posts = posts;
-        this.errorMessage = null;
-    }
+  /**
+   * update posts store state to newest posts ordered by created_at
+   *
+   * @param {Array<Object>} psots - array of post objects to add to the store state
+   * @return {void}
+   */
+  handleUpdateStreamPosts(posts) {
+    this.posts = this.posts.concat(posts).sort(function(a, b) {
+      return parseInt(b.created_at) - parseInt(a.created_at);
+    });
+    this.errorMessage = null;
+  }
 
-    handleUpdateStreamPostsError(errorMessage) {
-        this.errorMessage = errorMessage;
-    }
+  handleUpdateStreamPostsError(errorMessage) {
+    this.errorMessage = errorMessage;
+  }
 }
 
 export default alt.createStore(StreamPostStore, 'StreamPostStore');

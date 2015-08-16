@@ -6,6 +6,25 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
+  resources :contact_forms, only: [:create]
+
+  # @todo remove me
+  resources :comments
+
+  namespace :api do
+    namespace :v1 do
+      #
+      # GET /api/v1/stream
+      #
+      resources :stream, only: [:index] do
+        collection do
+          get :instagram
+          get :flickr
+        end
+      end
+    end
+  end
+
   root 'blog/posts#index'
 
   #
@@ -26,22 +45,9 @@ Rails.application.routes.draw do
     # @note
     #   this route introduces an issue where you can access a Blog::Post with any year/month/day
     #   params as long as you have the correct :id
+    # @note this route acts like a catchall so until refactoring it out keep it low priority
     #
     get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
-  end
-
-  resources :contact_forms, only: [:create]
-
-  # @todo remove me
-  resources :comments
-
-  namespace :api do
-    namespace :v1 do
-      #
-      # GET /api/v1/stream
-      #
-      resources :stream, only: [:index]
-    end
   end
 
   #

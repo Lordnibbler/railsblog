@@ -17,4 +17,12 @@ class Api::V1::StreamController < ApiController
   def index
     render json: StreamService.all
   end
+
+  def instagram
+    render json: InstagramService.all
+  end
+
+  def flickr
+    render json: FlickrService.get_photos
+  end
 end

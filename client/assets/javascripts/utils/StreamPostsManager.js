@@ -5,29 +5,28 @@ const FLICKR_API_URL = 'api/v1/stream/flickr';
 const INSTAGRAM_API_URL = 'api/v1/stream/instagram';
 
 const StreamPostsManager = {
-  /**
-   * Retrieve stream posts from server using AJAX call.
-   *
-   * @param {String} url - Url of server to retrieve comments.
-   * @returns {Deferred} - jqXHR result of ajax call.
-   */
+
   fetchStreamPosts() {
-    return $.ajax({
-      url: STREAM_API_URL,
-      dataType: 'json'
-    });
+    return this._get(STREAM_API_URL);
   },
 
   fetchInstagramPosts() {
-    return $.ajax({
-      url: INSTAGRAM_API_URL,
-      dataType: 'json'
-    });
+    return this._get(INSTAGRAM_API_URL);
   },
 
   fetchFlickrPosts() {
+    return this._get(FLICKR_API_URL);
+  },
+
+  /**
+   * GET {url} using AJAX call.
+   *
+   * @param {String} url - API endpoint to issue GET request to
+   * @returns {Deferred} - jqXHR result of ajax call.
+   */
+  _get(url) {
     return $.ajax({
-      url: FLICKR_API_URL,
+      url: url,
       dataType: 'json'
     });
   }

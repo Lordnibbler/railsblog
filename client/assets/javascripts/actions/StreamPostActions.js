@@ -5,14 +5,18 @@ class StreamPostActions {
   /**
    * Fetch stream posts from server.
    *
-   * @param {String} url - Url used for remote request.
    * @param {Boolean} displaySpinner - Flag whether to show wait spinner
    * @return {void}
    */
   fetchStreamPosts(displaySpinner) {
     // @todo loading spinner
     // this.dispatch(displaySpinner);
-    StreamPostsManager.fetchStreamPosts()
+
+    StreamPostsManager.fetchInstagramPosts()
+      .then((streamPosts) => this.actions.updateStreamPosts(streamPosts),
+      (errorMessage) => this.actions.updateStreamPostsError(errorMessage));
+
+    StreamPostsManager.fetchFlickrPosts()
       .then((streamPosts) => this.actions.updateStreamPosts(streamPosts),
       (errorMessage) => this.actions.updateStreamPostsError(errorMessage));
   }
