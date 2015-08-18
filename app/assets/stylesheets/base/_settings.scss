@@ -83,7 +83,6 @@ $xlarge: new-breakpoint(min-width 1200px);
 
 // include icon font files
 $asset-pipeline: true; // tell bourbon internals to use font-url()
-// @note might need to update this like https://github.com/justin808/react-webpack-rails-tutorial/blob/master/client/assets/stylesheets/_bootstrap-variables-customization.scss#L15-L22
 @include font-face('northemes-icons', 'northemes-icons', $file-formats: eot woff ttf svg);
 
 /******************************************************************************\
