@@ -32,8 +32,26 @@ config.module.loaders.push(
   {test: /\.css$/, loader: 'style-loader!css-loader'},
   {
     test: /\.scss$/,
-    loader: 'style!css!sass?outputStyle=expanded&imagePath=/assets/images&includePaths[]=' +
-    path.resolve(__dirname, './assets/stylesheets'),
+    loader: 'style!css!sass?outputStyle=expanded&imagePath=/assets/images&' +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, './assets/stylesheets')) + '&' +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, '../vendor/assets/stylesheets')) + '&' +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, '../vendor/assets/bower_components'))
+    ,
+  },
+
+  {
+    test: /\.sass$/,
+    // Passing indentedSyntax query param to node-sass
+    loader: 'style!css!sass?indentedSyntax&outputStyle=expanded&imagePath=/assets/images&'  +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, './assets/stylesheets')) + '&' +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, '../vendor/assets/stylesheets')) + '&' +
+    'includePaths[]=' +
+    encodeURIComponent(path.resolve(__dirname, '../vendor/assets/bower_components'))
   },
 
   // The url-loader uses DataUrls. The file-loader emits files.
