@@ -26,9 +26,11 @@ class StreamPostStore {
    */
   handleUpdateStreamPosts(posts) {
     this.pagination[posts.source] = posts.page;
-    this.posts = this.posts.concat(posts.posts).sort(function(a, b) {
-      return parseInt(b.created_at) - parseInt(a.created_at);
-    });
+    // turn off sorting by created_at for now, as it makes for weird UX
+    // this.posts = this.posts.concat(posts.posts).sort(function(a, b) {
+    //   return parseInt(b.created_at) - parseInt(a.created_at);
+    // });
+    this.posts = this.posts.concat(posts.posts);
     this.errorMessage = null;
   }
 

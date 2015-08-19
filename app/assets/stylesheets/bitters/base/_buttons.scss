@@ -31,4 +31,9 @@ button,
     cursor: not-allowed;
     opacity: 0.5;
   }
+  &.centered {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

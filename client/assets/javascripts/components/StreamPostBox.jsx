@@ -50,7 +50,7 @@ const StreamPostBox = React.createClass({
     });
 
     var masonryOptions = {
-      transitionDuration: 0
+      transitionDuration: '0.2s'
     };
 
     return(
@@ -63,7 +63,7 @@ const StreamPostBox = React.createClass({
         >
           {childElements}
         </Masonry>
-        <button className='load-more' onClick={this.loadMore}>Load More</button>
+        <button className='load-more centered' onClick={this.loadMore}>Load More</button>
       </div>
     );
   }

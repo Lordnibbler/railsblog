@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   resources :contact_forms, only: [:create]
+  resources :stream, only: [:index]
 
   # @todo remove me
   resources :comments
