@@ -8,15 +8,15 @@ class StreamPostActions {
    * @param {Boolean} displaySpinner - Flag whether to show wait spinner
    * @return {void}
    */
-  fetchStreamPosts(displaySpinner) {
+  fetchStreamPosts(pagination) {
     // @todo loading spinner
     // this.dispatch(displaySpinner);
 
-    StreamPostsManager.fetchInstagramPosts()
+    StreamPostsManager.fetchInstagramPosts(pagination)
       .then((streamPosts) => this.actions.updateStreamPosts(streamPosts),
       (errorMessage) => this.actions.updateStreamPostsError(errorMessage));
 
-    StreamPostsManager.fetchFlickrPosts()
+    StreamPostsManager.fetchFlickrPosts(pagination)
       .then((streamPosts) => this.actions.updateStreamPosts(streamPosts),
       (errorMessage) => this.actions.updateStreamPostsError(errorMessage));
   }

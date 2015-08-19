@@ -35,6 +35,11 @@ const StreamPostBox = React.createClass({
     this.setState(this.getStoreState());
   },
 
+  loadMore() {
+    // console.log(this.state.posts.pagination)
+    StreamPostActions.fetchStreamPosts(this.state.posts.pagination);
+  },
+
   /**
    * return a StreamPost for each post in store's state
    * @return {Array<StreamPost>}
@@ -49,14 +54,17 @@ const StreamPostBox = React.createClass({
     };
 
     return(
-      <Masonry
-        className={'stream-post-container'} // default ''
-        elementType={'div'} // default 'div'
-        options={masonryOptions} // default {}
-        disableImagesLoaded={false} // default false
-      >
-        {childElements}
-      </Masonry>
+      <div>
+        <Masonry
+          className={'stream-post-container'} // default ''
+          elementType={'div'} // default 'div'
+          options={masonryOptions} // default {}
+          disableImagesLoaded={false} // default false
+        >
+          {childElements}
+        </Masonry>
+        <button className='load-more' onClick={this.loadMore}>Load More</button>
+      </div>
     );
   }
 });

@@ -5,6 +5,7 @@ import StreamPostActions from '../actions/StreamPostActions';
 class StreamPostStore {
   constructor() {
     this.posts = [];
+    this.pagination = {};
     this.errorMessage = null;
     this.bindListeners({
       handleFetchStreamPosts: StreamPostActions.FETCH_STREAM_POSTS,
@@ -20,11 +21,12 @@ class StreamPostStore {
   /**
    * update posts store state to newest posts ordered by created_at
    *
-   * @param {Array<Object>} psots - array of post objects to add to the store state
+   * @param {Array<Object>} posts - array of post objects to add to the store state
    * @return {void}
    */
   handleUpdateStreamPosts(posts) {
-    this.posts = this.posts.concat(posts).sort(function(a, b) {
+    this.pagination[posts.source] = posts.page;
+    this.posts = this.posts.concat(posts.posts).sort(function(a, b) {
       return parseInt(b.created_at) - parseInt(a.created_at);
     });
     this.errorMessage = null;
