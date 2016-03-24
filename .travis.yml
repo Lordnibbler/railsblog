@@ -3,9 +3,9 @@ bundler_args: --without development production
 cache: bundler
 sudo: false
 rvm:
-  - 2.2.3
+  - 2.3.0
 addons:
-  postgresql: '9.3'
+  postgresql: '9.4'
 before_script:
     # - "echo test: > config/env.yml"
     - psql -c 'create database travis_ci_test;' -U postgres
