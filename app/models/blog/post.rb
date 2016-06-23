@@ -15,7 +15,7 @@ class Blog::Post < ActiveRecord::Base
 
   paginates_per 5
 
-  EXCERPT_TAG = '<!--more-->'
+  EXCERPT_TAG = '<!--more-->'.freeze
 
   #
   # @return [String] human-readable name of the author

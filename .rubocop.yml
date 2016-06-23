@@ -10,13 +10,13 @@ AllCops:
     - 'vendor/**/*'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
-  RunRailsCops: true
+    - 'client/**/*'
+
+Rails:
+  Enabled: true
 
 Metrics/LineLength:
   Max: 100
-
-Style/Blocks:
-  Enabled: false
 
 Metrics/MethodLength:
   Enabled: false

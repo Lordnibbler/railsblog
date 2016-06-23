@@ -44,7 +44,7 @@ group :development, :test do
   gem 'brakeman', '~> 3.0.1' # security tests
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails', '~> 3.3' # rspec test suite!
-  gem 'rubocop', '~> 0.28.0', require: false # keep coding styles consistent
+  gem 'rubocop', '~> 0.40.0', require: false # keep coding styles consistent
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
 end
