@@ -12,4 +12,20 @@ ActiveAdmin.register Blog::Post do
     column :created_at
     actions
   end
+
+  show do
+    attributes_table do
+      row :id
+      row :published
+      row :title
+      row :body do |post|
+        post.body.truncate(100)
+      end
+      row :created_at
+      row :updated_at
+      row :user
+      row :slug
+      row :featured_image_url
+    end
+  end
 end
