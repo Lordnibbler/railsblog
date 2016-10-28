@@ -1,5 +1,5 @@
 // ensure client-side-validations gem runs on turbolinks page load
-$(document).on('page:change', function() {
+$(document).on('turbolinks:load', function() {
   // collapsible mobile navigation menu
   $('.expander').click(function() {
     $(this).toggleClass('expanded');
