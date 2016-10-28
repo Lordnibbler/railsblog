@@ -6,7 +6,7 @@ module BlogHelper
   # @return [String] {text} rendered as HTML
   #
   def markdown(text)
-    MarkdownService.call(text).html_safe
+    simple_format(MarkdownService.call(text))
   end
 
   #
