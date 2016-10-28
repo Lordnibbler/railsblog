@@ -7,9 +7,11 @@ module BlogHelper
   #
   # @return [String] {text} rendered as HTML
   #
+  # rubocop:disable Ruby/OutputSafety
   def markdown(text)
-    simple_format(MarkdownService.call(text))
+    MarkdownService.call(text).html_safe
   end
+  # rubocop:enable Ruby/OutputSafety
 
   #
   # @return [String] path to a permalink with the created_at date of Blog::Post
