@@ -1,3 +1,5 @@
+require 'markdown_service'
+
 #
 # helper methods for rendering markdown, syntax highlighted code, generating permalink paths
 #
