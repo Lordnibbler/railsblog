@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 gem 'rails', '5.0.0.1'
 
-gem 'activeadmin', github: 'activeadmin' # admin UI scaffolding
-gem 'inherited_resources', github: 'activeadmin/inherited_resources'
-gem 'client_side_validations', github: 'DavyJonesLocker/client_side_validations', branch: 'rails5'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
+gem 'client_side_validations', git: 'https://github.com/DavyJonesLocker/client_side_validations.git', branch: 'rails5'
 gem 'coffee-rails'
 gem 'devise' # authentication for activeadmin
 gem 'fog' # upload to cloud services like AWS
@@ -14,7 +14,7 @@ gem 'high_voltage' # static pages
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
-gem 'mail_form', github: 'plataformatec/mail_form' # send email straight from a <form> (contact page)
+gem 'mail_form', git: 'https://github.com/plataformatec/mail_form.git' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
 gem 'pg'

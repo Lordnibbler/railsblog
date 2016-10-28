@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/DavyJonesLocker/client_side_validations.git
+  remote: https://github.com/DavyJonesLocker/client_side_validations.git
   revision: e354dcf08650fa718d5ec0cfc568fb47bcc826b7
   branch: rails5
   specs:
@@ -9,7 +9,7 @@ GIT
       rails (>= 5.0.0, < 5.1.0)
 
 GIT
-  remote: git://github.com/activeadmin/activeadmin.git
+  remote: https://github.com/activeadmin/activeadmin.git
   revision: 3a16a1fc45961c0dfea3111a87995eae4382a59c
   specs:
     activeadmin (1.0.0.pre4)
@@ -28,7 +28,7 @@ GIT
       sprockets (< 4.1)
 
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
+  remote: https://github.com/activeadmin/inherited_resources.git
   revision: 4434f0ae72f790cf371728838c927c338100555d
   specs:
     inherited_resources (1.6.0)
@@ -38,7 +38,7 @@ GIT
       responders
 
 GIT
-  remote: git://github.com/plataformatec/mail_form.git
+  remote: https://github.com/plataformatec/mail_form.git
   revision: 9c35673410e0d9b648d2862c5d4e30723a1b5ca7
   specs:
     mail_form (1.5.0)
