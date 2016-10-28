@@ -36,11 +36,13 @@ class MarkdownService
   # @return [Redcarpet::Markdown] a redcarpet markdown renderer instance
   #
   def markdown_renderer
-    Redcarpet::Markdown.new(Renderer,
+    Redcarpet::Markdown.new(
+      Renderer,
       autolink: true,
       tables: true,
       fenced_code_blocks: true,
-      line_numbers: true)
+      line_numbers: true
+    )
   end
 
   #

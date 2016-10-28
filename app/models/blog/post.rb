@@ -1,7 +1,7 @@
 #
 # represents a blog post with a markdown (or HTML) formatted :body
 #
-class Blog::Post < ActiveRecord::Base
+class Blog::Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
 

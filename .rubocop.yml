@@ -21,6 +21,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Enabled: false
 
+Metrics/BlockLength:
+  Enabled: false
+
 NumericLiterals:
   Enabled: false
 
@@ -46,4 +49,7 @@ HasAndBelongsToMany:
   Enabled: false
 
 Metrics/AbcSize:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
   Enabled: false

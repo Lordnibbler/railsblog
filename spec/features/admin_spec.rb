@@ -25,7 +25,7 @@ describe '/admin' do
           fill_in 'user_password', with: 'invalid'
         end
         click_button 'Login'
-        expect(page).to have_content 'Invalid email or password'
+        expect(page).to have_content 'Invalid Email or password'
       end
     end
   end
