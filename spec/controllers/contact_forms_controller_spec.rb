@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe ContactFormsController do
-  describe 'create' do
+  describe 'GET #create' do
+    subject(:get_create) { get :create, params: contact_form }
+
+    before { get_create }
+
     context 'with valid contact form params' do
       let(:contact_form) do
         {
@@ -12,10 +16,6 @@ describe ContactFormsController do
             nickname: ''
           }
         }
-      end
-
-      before :each do
-        get :create, contact_form
       end
 
       it 'flashes success' do
@@ -35,10 +35,6 @@ describe ContactFormsController do
             nickname: 'foobar'
           }
         }
-      end
-
-      before :each do
-        get :create, contact_form
       end
 
       it 'flashes error' do

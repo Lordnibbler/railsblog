@@ -21,12 +21,12 @@ describe Blog::PostsController do
 
   describe 'show' do
     it 'sets the @posts ivar' do
-      get :show, id: post.slug
+      get :show, params: { id: post.slug }
       expect(assigns(:post)).to eql(post)
     end
 
     it 'sets the body class' do
-      get :show, id: post.slug
+      get :show, params: { id: post.slug }
       expect(assigns(:body_class)).to eql('post-template')
     end
   end

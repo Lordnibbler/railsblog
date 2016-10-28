@@ -29,7 +29,7 @@ describe MarkdownService do
           '<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span>'   \
           "<span class=\"n\">bar</span> <span class=\"o\">=</span> <span class=\"s1\">'baz'"       \
           "</span><span class=\"p\">)</span>\n  <span class=\"nb\">puts</span> <span class=\"n\">" \
-          "bar</span>\n<span class=\"k\">end</span>\n</code></pre>\n"
+          "bar</span>\n<span class=\"k\">end</span>\n</code></pre>"
       end
 
       it 'returns formatted <code>' do
