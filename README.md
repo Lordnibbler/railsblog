@@ -1,5 +1,5 @@
 # benradler.com rails blog
-This is a rails 4.2 blogging application that renders Markdown-formatted blog posts as HTML.
+This is a rails 5.0 blogging application that renders Markdown-formatted blog posts as HTML.
 
 ## Getting Started
 
