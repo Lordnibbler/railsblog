@@ -3,21 +3,18 @@
 #
 class ContactFormsController < ApplicationController
   def create
-    if deliver_contact_form!
-      flash[:success] = 'Email sent successfully'
-    else
-      flash[:error] = 'Email failed to send'
-    end
+    deliver_contact_form!
+    flash[:success] = 'Email sent successfully'
     redirect_to page_path('contact-me')
   end
 
   private
 
   def deliver_contact_form!
-    contact_form.deliver
+    ContactFormWorker.perform_async(contact_form_params)
   end
 
-  def contact_form
-    @contact_form ||= ContactForm.new(params[:contact_form].merge(request: request))
+  def contact_form_params
+    params[:contact_form].merge(request: request)
   end
 end
