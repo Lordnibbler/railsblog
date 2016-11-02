@@ -22,21 +22,24 @@ class InstagramService
       [].tap do |array|
         response.each do |media|
           array << {
-            source:        'instagram',
-            key:           media.id,
+            source: 'instagram',
+            key: media.id,
             url_thumbnail: media.images.low_resolution.url,
-            url_original:  media.images.standard_resolution.url,
-            created_at:    media.created_time,
-            url:           media.link,
-            description:   media.caption.text,
-            title:         ''
+            url_original: media.images.standard_resolution.url,
+            created_at: media.created_time,
+            url: media.link,
+            description: media.caption.text,
+            title: ''
           }.with_indifferent_access
         end
       end
     end
 
     def client
-      @client ||= Instagram.client(client_id: ENV['INSTAGRAM_CLIENT_ID'])
+      @client ||= Instagram.client(
+        client_id: ENV['INSTAGRAM_CLIENT_ID'],
+        access_token: ENV['INSTAGRAM_ACCESS_TOKEN']
+      )
     end
   end
 end

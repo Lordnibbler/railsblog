@@ -1,10 +1,10 @@
 require 'features_helper'
 
-describe '/contact-me', js: true do
+describe '/contact-me', :js do
   before { visit '/contact-me' }
 
   context 'with invalid data' do
-    it 'shows inline validations' do
+    it 'shows inline validations', :vcr do
       within '#new_contact_form' do
         fill_in 'contact_form_email', with: 'not an email'
       end
@@ -17,7 +17,7 @@ describe '/contact-me', js: true do
   end
 
   context 'with valid data' do
-    it 'submits' do
+    it 'submits', :vcr do
       within '#new_contact_form' do
         fill_in 'contact_form_name', with: 'Ben Radler'
         fill_in 'contact_form_email', with: 'test@example.com'
