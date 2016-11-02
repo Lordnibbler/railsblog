@@ -30,5 +30,7 @@ module Brog
 
     # custom error pages defined by errors_controller.rb
     config.exceptions_app = self.routes
+    
+    config.cache_store = :redis_store, ENV['REDISCLOUD_URL'], { expires_in: 10.minutes }
   end
 end

@@ -22,6 +22,7 @@ gem 'newrelic_rpm'
 gem 'pg'
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
+gem 'redis-rails'
 gem 'rouge' # syntax highlighting
 gem 'sass-rails'
 gem 'sendgrid-ruby' # Sending emails
