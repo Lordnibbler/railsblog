@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load
 
 module Brog
   class Application < Rails::Application
@@ -26,18 +27,6 @@ module Brog
     # add paths to asset pipeline
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
-    # load environment variables from env.yml
-    def config_local_env
-      env_file = File.join(Rails.root, 'config', 'env.yml')
-      YAML.load(File.open(env_file))[Rails.env].each do |key, value|
-        ENV[key.to_s] = value
-      end if File.exists?(env_file)
-    end
-
-    config.before_configuration do
-      config_local_env
-    end
 
     # custom error pages defined by errors_controller.rb
     config.exceptions_app = self.routes

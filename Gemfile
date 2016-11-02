@@ -44,6 +44,7 @@ group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'pry-byebug' # pry debugger for ruby 2.1
+  gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'spring' # speed up dev env
