@@ -6,6 +6,18 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
+  namespace :api do
+    namespace :v1 do
+      # GET /api/v1/stream
+      resources :stream, only: [:index] do
+        collection do
+          get :instagram
+          get :flickr
+        end
+      end
+    end
+  end
+
   root 'blog/posts#index'
 
   # @note for legacy redirects from old blog which didn't have /blog prefix in route
@@ -26,17 +38,6 @@ Rails.application.routes.draw do
 
   resources :contact_forms, only: [:create]
 
-  namespace :api do
-    namespace :v1 do
-      # GET /api/v1/stream
-      resources :stream, only: [:index] do
-        collection do
-          get :instagram
-          get :flickr
-        end
-      end
-    end
-  end
 
   # /sitemap.xml.gz
   get 'sitemap.xml.gz' => redirect('https://benradler.s3.amazonaws.com/sitemaps/sitemap.xml.gz')

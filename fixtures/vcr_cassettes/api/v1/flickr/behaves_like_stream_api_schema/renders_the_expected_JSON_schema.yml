@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: method=flickr.reflection.getMethods&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.9
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="BZZPqgqiOhkfUXSglBjHZU61mLjRilvQkr0RdkO0Bzk%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1478067668", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 02 Nov 2016 06:20:51 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1428'
+      P3p:
+      - policyref="https://policies.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM
+        DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND
+        PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private
+      X-Served-By:
+      - www326.flickr.bf1.yahoo.com
+      X-Frame-Options:
+      - SAMEORIGIN
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '0'
+      Via:
+      - http/1.1 fts103.flickr.bf1.yahoo.com (ApacheTrafficServer [cMsSf ]), http/1.1
+        e4.ycpi.sja.yahoo.com (ApacheTrafficServer [cMsSf ])
+      Server:
+      - ATS
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"methods":{"method":[{"_content":"flickr.activity.userComments"},{"_content":"flickr.activity.userPhotos"},{"_content":"flickr.auth.checkToken"},{"_content":"flickr.auth.getFrob"},{"_content":"flickr.auth.getFullToken"},{"_content":"flickr.auth.getToken"},{"_content":"flickr.auth.oauth.checkToken"},{"_content":"flickr.auth.oauth.getAccessToken"},{"_content":"flickr.blogs.getList"},{"_content":"flickr.blogs.getServices"},{"_content":"flickr.blogs.postPhoto"},{"_content":"flickr.cameras.getBrandModels"},{"_content":"flickr.cameras.getBrands"},{"_content":"flickr.collections.getInfo"},{"_content":"flickr.collections.getTree"},{"_content":"flickr.commons.getInstitutions"},{"_content":"flickr.contacts.getList"},{"_content":"flickr.contacts.getListRecentlyUploaded"},{"_content":"flickr.contacts.getPublicList"},{"_content":"flickr.contacts.getTaggingSuggestions"},{"_content":"flickr.favorites.add"},{"_content":"flickr.favorites.getContext"},{"_content":"flickr.favorites.getList"},{"_content":"flickr.favorites.getPublicList"},{"_content":"flickr.favorites.remove"},{"_content":"flickr.galleries.addPhoto"},{"_content":"flickr.galleries.create"},{"_content":"flickr.galleries.editMeta"},{"_content":"flickr.galleries.editPhoto"},{"_content":"flickr.galleries.editPhotos"},{"_content":"flickr.galleries.getInfo"},{"_content":"flickr.galleries.getList"},{"_content":"flickr.galleries.getListForPhoto"},{"_content":"flickr.galleries.getPhotos"},{"_content":"flickr.groups.browse"},{"_content":"flickr.groups.discuss.replies.add"},{"_content":"flickr.groups.discuss.replies.delete"},{"_content":"flickr.groups.discuss.replies.edit"},{"_content":"flickr.groups.discuss.replies.getInfo"},{"_content":"flickr.groups.discuss.replies.getList"},{"_content":"flickr.groups.discuss.topics.add"},{"_content":"flickr.groups.discuss.topics.getInfo"},{"_content":"flickr.groups.discuss.topics.getList"},{"_content":"flickr.groups.getInfo"},{"_content":"flickr.groups.join"},{"_content":"flickr.groups.joinRequest"},{"_content":"flickr.groups.leave"},{"_content":"flickr.groups.members.getList"},{"_content":"flickr.groups.pools.add"},{"_content":"flickr.groups.pools.getContext"},{"_content":"flickr.groups.pools.getGroups"},{"_content":"flickr.groups.pools.getPhotos"},{"_content":"flickr.groups.pools.remove"},{"_content":"flickr.groups.search"},{"_content":"flickr.interestingness.getList"},{"_content":"flickr.machinetags.getNamespaces"},{"_content":"flickr.machinetags.getPairs"},{"_content":"flickr.machinetags.getPredicates"},{"_content":"flickr.machinetags.getRecentValues"},{"_content":"flickr.machinetags.getValues"},{"_content":"flickr.panda.getList"},{"_content":"flickr.panda.getPhotos"},{"_content":"flickr.people.findByEmail"},{"_content":"flickr.people.findByUsername"},{"_content":"flickr.people.getGroups"},{"_content":"flickr.people.getInfo"},{"_content":"flickr.people.getLimits"},{"_content":"flickr.people.getPhotos"},{"_content":"flickr.people.getPhotosOf"},{"_content":"flickr.people.getPublicGroups"},{"_content":"flickr.people.getPublicPhotos"},{"_content":"flickr.people.getUploadStatus"},{"_content":"flickr.photos.addTags"},{"_content":"flickr.photos.comments.addComment"},{"_content":"flickr.photos.comments.deleteComment"},{"_content":"flickr.photos.comments.editComment"},{"_content":"flickr.photos.comments.getList"},{"_content":"flickr.photos.comments.getRecentForContacts"},{"_content":"flickr.photos.delete"},{"_content":"flickr.photos.geo.batchCorrectLocation"},{"_content":"flickr.photos.geo.correctLocation"},{"_content":"flickr.photos.geo.getLocation"},{"_content":"flickr.photos.geo.getPerms"},{"_content":"flickr.photos.geo.photosForLocation"},{"_content":"flickr.photos.geo.removeLocation"},{"_content":"flickr.photos.geo.setContext"},{"_content":"flickr.photos.geo.setLocation"},{"_content":"flickr.photos.geo.setPerms"},{"_content":"flickr.photos.getAllContexts"},{"_content":"flickr.photos.getContactsPhotos"},{"_content":"flickr.photos.getContactsPublicPhotos"},{"_content":"flickr.photos.getContext"},{"_content":"flickr.photos.getCounts"},{"_content":"flickr.photos.getExif"},{"_content":"flickr.photos.getFavorites"},{"_content":"flickr.photos.getInfo"},{"_content":"flickr.photos.getNotInSet"},{"_content":"flickr.photos.getPerms"},{"_content":"flickr.photos.getRecent"},{"_content":"flickr.photos.getSizes"},{"_content":"flickr.photos.getUntagged"},{"_content":"flickr.photos.getWithGeoData"},{"_content":"flickr.photos.getWithoutGeoData"},{"_content":"flickr.photos.licenses.getInfo"},{"_content":"flickr.photos.licenses.setLicense"},{"_content":"flickr.photos.notes.add"},{"_content":"flickr.photos.notes.delete"},{"_content":"flickr.photos.notes.edit"},{"_content":"flickr.photos.people.add"},{"_content":"flickr.photos.people.delete"},{"_content":"flickr.photos.people.deleteCoords"},{"_content":"flickr.photos.people.editCoords"},{"_content":"flickr.photos.people.getList"},{"_content":"flickr.photos.recentlyUpdated"},{"_content":"flickr.photos.removeTag"},{"_content":"flickr.photos.search"},{"_content":"flickr.photos.setContentType"},{"_content":"flickr.photos.setDates"},{"_content":"flickr.photos.setMeta"},{"_content":"flickr.photos.setPerms"},{"_content":"flickr.photos.setSafetyLevel"},{"_content":"flickr.photos.setTags"},{"_content":"flickr.photos.suggestions.approveSuggestion"},{"_content":"flickr.photos.suggestions.getList"},{"_content":"flickr.photos.suggestions.rejectSuggestion"},{"_content":"flickr.photos.suggestions.removeSuggestion"},{"_content":"flickr.photos.suggestions.suggestLocation"},{"_content":"flickr.photos.transform.rotate"},{"_content":"flickr.photos.upload.checkTickets"},{"_content":"flickr.photosets.addPhoto"},{"_content":"flickr.photosets.comments.addComment"},{"_content":"flickr.photosets.comments.deleteComment"},{"_content":"flickr.photosets.comments.editComment"},{"_content":"flickr.photosets.comments.getList"},{"_content":"flickr.photosets.create"},{"_content":"flickr.photosets.delete"},{"_content":"flickr.photosets.editMeta"},{"_content":"flickr.photosets.editPhotos"},{"_content":"flickr.photosets.getContext"},{"_content":"flickr.photosets.getInfo"},{"_content":"flickr.photosets.getList"},{"_content":"flickr.photosets.getPhotos"},{"_content":"flickr.photosets.orderSets"},{"_content":"flickr.photosets.removePhoto"},{"_content":"flickr.photosets.removePhotos"},{"_content":"flickr.photosets.reorderPhotos"},{"_content":"flickr.photosets.setPrimaryPhoto"},{"_content":"flickr.places.find"},{"_content":"flickr.places.findByLatLon"},{"_content":"flickr.places.getChildrenWithPhotosPublic"},{"_content":"flickr.places.getInfo"},{"_content":"flickr.places.getInfoByUrl"},{"_content":"flickr.places.getPlaceTypes"},{"_content":"flickr.places.getShapeHistory"},{"_content":"flickr.places.getTopPlacesList"},{"_content":"flickr.places.placesForBoundingBox"},{"_content":"flickr.places.placesForContacts"},{"_content":"flickr.places.placesForTags"},{"_content":"flickr.places.placesForUser"},{"_content":"flickr.places.resolvePlaceId"},{"_content":"flickr.places.resolvePlaceURL"},{"_content":"flickr.places.tagsForPlace"},{"_content":"flickr.prefs.getContentType"},{"_content":"flickr.prefs.getGeoPerms"},{"_content":"flickr.prefs.getHidden"},{"_content":"flickr.prefs.getPrivacy"},{"_content":"flickr.prefs.getSafetyLevel"},{"_content":"flickr.push.getSubscriptions"},{"_content":"flickr.push.getTopics"},{"_content":"flickr.push.subscribe"},{"_content":"flickr.push.unsubscribe"},{"_content":"flickr.reflection.getMethodInfo"},{"_content":"flickr.reflection.getMethods"},{"_content":"flickr.stats.getCollectionDomains"},{"_content":"flickr.stats.getCollectionReferrers"},{"_content":"flickr.stats.getCollectionStats"},{"_content":"flickr.stats.getCSVFiles"},{"_content":"flickr.stats.getPhotoDomains"},{"_content":"flickr.stats.getPhotoReferrers"},{"_content":"flickr.stats.getPhotosetDomains"},{"_content":"flickr.stats.getPhotosetReferrers"},{"_content":"flickr.stats.getPhotosetStats"},{"_content":"flickr.stats.getPhotoStats"},{"_content":"flickr.stats.getPhotostreamDomains"},{"_content":"flickr.stats.getPhotostreamReferrers"},{"_content":"flickr.stats.getPhotostreamStats"},{"_content":"flickr.stats.getPopularPhotos"},{"_content":"flickr.stats.getTotalViews"},{"_content":"flickr.tags.getClusterPhotos"},{"_content":"flickr.tags.getClusters"},{"_content":"flickr.tags.getHotList"},{"_content":"flickr.tags.getListPhoto"},{"_content":"flickr.tags.getListUser"},{"_content":"flickr.tags.getListUserPopular"},{"_content":"flickr.tags.getListUserRaw"},{"_content":"flickr.tags.getMostFrequentlyUsed"},{"_content":"flickr.tags.getRelated"},{"_content":"flickr.test.echo"},{"_content":"flickr.test.login"},{"_content":"flickr.test.null"},{"_content":"flickr.urls.getGroup"},{"_content":"flickr.urls.getUserPhotos"},{"_content":"flickr.urls.getUserProfile"},{"_content":"flickr.urls.lookupGallery"},{"_content":"flickr.urls.lookupGroup"},{"_content":"flickr.urls.lookupUser"}]},"stat":"ok"}'
+    http_version: 
+  recorded_at: Wed, 02 Nov 2016 06:21:08 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=33668819%40N03&per_page=20&page=&method=flickr.people.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.9
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="OqB6sq0p3sLagX46DuW7erjGIeJvYl%2Fn%2BgyrHp%2F3STY%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1478067668", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 02 Nov 2016 06:20:51 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '617'
+      P3p:
+      - policyref="https://policies.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM
+        DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND
+        PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      X-Content-Type-Options:
+      - nosniff
+      Cache-Control:
+      - private
+      X-Served-By:
+      - www-bm007.flickr.bf1.yahoo.com
+      X-Frame-Options:
+      - SAMEORIGIN
+      Vary:
+      - Accept-Encoding
+      Age:
+      - '2'
+      Via:
+      - http/1.1 fts106.flickr.bf1.yahoo.com (ApacheTrafficServer [cMsSf ]), http/1.1
+        e15.ycpi.sja.yahoo.com (ApacheTrafficServer [cMsSf ])
+      Server:
+      - ATS
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photos":{"page":1,"pages":60,"perpage":20,"total":"1195","photo":[{"id":"15889417869","owner":"33668819@N03","secret":"d3b603109b","server":"8580","farm":9,"title":"IMG_6661","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16075507845","owner":"33668819@N03","secret":"a6f897ba56","server":"8679","farm":9,"title":"IMG_6659","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15889416779","owner":"33668819@N03","secret":"51f10c906d","server":"7532","farm":8,"title":"IMG_6651","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16049708866","owner":"33668819@N03","secret":"2dbeba6b4f","server":"8672","farm":9,"title":"IMG_6649","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16049708266","owner":"33668819@N03","secret":"84b7ee487e","server":"7483","farm":8,"title":"IMG_6630","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15889415009","owner":"33668819@N03","secret":"822d0e12f4","server":"8592","farm":9,"title":"IMG_6625","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16073576461","owner":"33668819@N03","secret":"1c20cf9881","server":"7469","farm":8,"title":"IMG_6619","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16074806432","owner":"33668819@N03","secret":"da7251e039","server":"8594","farm":9,"title":"IMG_6601","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16049705786","owner":"33668819@N03","secret":"60048fa5cb","server":"7509","farm":8,"title":"IMG_6572","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15889412109","owner":"33668819@N03","secret":"b0e5c3326e","server":"7569","farm":8,"title":"IMG_6560","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16073573181","owner":"33668819@N03","secret":"3ef9cbcb69","server":"7539","farm":8,"title":"IMG_6550","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16049703136","owner":"33668819@N03","secret":"3f42338b47","server":"8661","farm":9,"title":"IMG_6536","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16074802412","owner":"33668819@N03","secret":"afccc82d46","server":"7506","farm":8,"title":"IMG_6523","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16074801712","owner":"33668819@N03","secret":"768e0d61c6","server":"7489","farm":8,"title":"IMG_6522","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16075498235","owner":"33668819@N03","secret":"39eddc5a02","server":"7551","farm":8,"title":"IMG_6521","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15889734797","owner":"33668819@N03","secret":"1fbe6045dd","server":"8652","farm":9,"title":"IMG_6513","ispublic":1,"isfriend":0,"isfamily":0},{"id":"16075496405","owner":"33668819@N03","secret":"d0fac92f66","server":"7535","farm":8,"title":"IMG_6511","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15455835233","owner":"33668819@N03","secret":"35b87b65f9","server":"8663","farm":9,"title":"IMG_6510","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15888063008","owner":"33668819@N03","secret":"1c6550244c","server":"7494","farm":8,"title":"IMG_6507","ispublic":1,"isfriend":0,"isfamily":0},{"id":"15888216420","owner":"33668819@N03","secret":"71c4e3dfd1","server":"7541","farm":8,"title":"IMG_6498","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
+    http_version: 
+  recorded_at: Wed, 02 Nov 2016 06:21:08 GMT
+recorded_with: VCR 3.0.3
