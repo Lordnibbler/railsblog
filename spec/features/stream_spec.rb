@@ -1,10 +1,14 @@
 require 'features_helper'
 
-RSpec.shared_examples 'stream api schema' do |path|
+RSpec.shared_context 'api response' do
   let(:response) { JSON.parse(page.body).with_indifferent_access }
   let(:posts) { response[:posts] }
+end
 
-  it 'renders the expected JSON schema' do
+RSpec.shared_examples 'stream api schema' do |path|
+  include_context 'api response'
+
+  it 'renders the expected JSON schema', :vcr do
     visit send(path)
     expect(response).to have_key(:source)
     expect(response).to have_key(:page)
@@ -26,11 +30,11 @@ RSpec.shared_examples 'stream api schema' do |path|
 end
 
 describe 'api/v1' do
-  describe '/instagram', :vcr do
+  describe '/instagram' do
     it_behaves_like 'stream api schema', :instagram_api_v1_stream_index_path
   end
 
-  describe '/flickr', :vcr do
+  describe '/flickr' do
     it_behaves_like 'stream api schema', :flickr_api_v1_stream_index_path
   end
 end
