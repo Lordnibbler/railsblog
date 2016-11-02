@@ -7,10 +7,12 @@ gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resour
 gem 'client_side_validations', git: 'https://github.com/DavyJonesLocker/client_side_validations.git', branch: 'rails5'
 gem 'coffee-rails'
 gem 'devise' # authentication for activeadmin
+gem 'flickraw' # interact with flickr's API
 gem 'fog' # upload to cloud services like AWS
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
+gem 'instagram', '~> 1.1.5' # interact with instagram's API
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
@@ -43,8 +45,9 @@ end
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
-  gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'dotenv-rails'
+  gem 'foreman' # Manage application processes
+  gem 'pry-byebug' # pry debugger for ruby 2.2+
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'spring' # speed up dev env
