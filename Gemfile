@@ -43,6 +43,7 @@ end
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
+  gem 'dotenv-rails'
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false

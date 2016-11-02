@@ -19,7 +19,7 @@ config/database.yml
 .idea
 
 # local environment variables
-config/env.yml
+.env
 
 # sitemap files
 public/sitemap*
