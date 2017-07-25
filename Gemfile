@@ -1,9 +1,9 @@
 
 source 'https://rubygems.org'
-ruby '2.3.1'
-gem 'rails', '5.0.0.1'
+ruby '2.4.1'
+gem 'rails', '~> 5.1'
 
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
 gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise' # authentication for activeadmin
@@ -15,7 +15,7 @@ gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resour
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
-gem 'mail_form', git: 'https://github.com/plataformatec/mail_form.git' # email from a <form>
+gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
 gem 'pg'

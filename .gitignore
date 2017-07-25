@@ -29,3 +29,6 @@ public/sitemap*
 
 # why apple :(
 .DS_Store
+
+# dotenv
+.env
