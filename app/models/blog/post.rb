@@ -3,7 +3,7 @@
 #
 class Blog::Post < ApplicationRecord
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :finders]
+  friendly_id :title, use: %i[slugged finders]
 
   belongs_to :user
   validates :user_id, presence: true

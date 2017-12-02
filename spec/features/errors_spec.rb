@@ -12,7 +12,7 @@ describe 'Custom Errors' do
       end
     end
 
-    %w(/404 /not-a-real-page).each do |url|
+    %w[/404 /not-a-real-page].each do |url|
       it 'returns appropriate status code and content' do
         visit url
         expect(page.status_code).to eql 404

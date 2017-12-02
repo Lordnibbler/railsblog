@@ -1,6 +1,6 @@
 atom_feed do |feed|
   feed.title('Ben Radler\'s Blog')
-  feed.updated(@posts[0].created_at) if @posts.length > 0
+  feed.updated(@posts[0].created_at) unless @posts.empty?
 
   @posts.each do |post|
     feed.entry(post, url: blog_posts_permalink_path(post)) do |entry|

@@ -1,5 +1,6 @@
 AllCops:
   Include:
+    - '**/Gemfile'
     - '**/Rakefile'
     - '**/config.ru'
   Exclude:
@@ -11,6 +12,7 @@ AllCops:
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
     - 'client/**/*'
+    - Guardfile
 
 Rails:
   Enabled: true
@@ -49,6 +51,9 @@ HasAndBelongsToMany:
   Enabled: false
 
 Metrics/AbcSize:
+  Enabled: false
+
+Rails/SkipsModelValidations:
   Enabled: false
 
 Style/FrozenStringLiteralComment:

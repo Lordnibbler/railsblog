@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe HighVoltage::PagesController, '#show' do
-  %w(contact-me).each do |page|
-    context 'on GET to #{page}' do
+  %w[contact-me].each do |page|
+    context "on GET to #{page}" do
       before do
         get :show, params: { id: page }
       end
