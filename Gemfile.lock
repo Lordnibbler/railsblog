@@ -351,7 +351,6 @@ GEM
       websocket-driver (>= 0.2.0)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
-    posix-spawn (0.3.11)
     powerpack (0.1.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -363,9 +362,8 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     puma (3.6.0)
-    pygments.rb (0.6.3)
-      posix-spawn (~> 0.3.6)
-      yajl-ruby (~> 1.2.0)
+    pygments.rb (1.2.0)
+      multi_json (>= 1.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -501,7 +499,6 @@ GEM
     xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
-    yajl-ruby (1.2.1)
     yard (0.9.5)
 
 PLATFORMS
