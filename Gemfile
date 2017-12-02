@@ -1,20 +1,21 @@
+
 source 'https://rubygems.org'
 ruby '2.3.1'
 gem 'rails', '5.0.0.1'
 
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
-gem 'client_side_validations', git: 'https://github.com/DavyJonesLocker/client_side_validations.git', branch: 'rails5'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
+gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise' # authentication for activeadmin
 gem 'fog' # upload to cloud services like AWS
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
-gem 'mail_form', git: 'https://github.com/plataformatec/mail_form.git' # send email straight from a <form> (contact page)
+gem 'mail_form', git: 'https://github.com/plataformatec/mail_form.git' # email from a <form>
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
 gem 'pg'
@@ -33,8 +34,8 @@ group :development do
   gem 'binding_of_caller' # interact with ruby in the browser via better errors
   gem 'guard'
   gem 'guard-rspec'
-  gem 'guard-yard', require: false
   gem 'guard-rubocop'
+  gem 'guard-yard', require: false
   gem 'pry-rails'
   # gem 'quiet_assets' # shut up the asset pipeline logging
   gem 'refills'
