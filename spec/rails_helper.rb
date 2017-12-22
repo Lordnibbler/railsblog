@@ -5,6 +5,15 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'vcr'
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'fixtures/vcr_cassettes'
+  c.hook_into :webmock
+  c.configure_rspec_metadata!
+  c.ignore_localhost = true # avoid phantomjs __identify__ requests being recorded
+  c.filter_sensitive_data('<INSTAGRAM_ACCESS_TOKEN>') { ENV['INSTAGRAM_ACCESS_TOKEN'] }
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

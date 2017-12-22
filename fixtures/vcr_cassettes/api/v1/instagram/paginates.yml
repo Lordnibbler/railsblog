@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.instagram.com/v1/users/193210551/media/recent.json?access_token=193210551.bfc4af8.caf1f79fb7a4463da4cfbc04ed528088&count=20&max_tag_id=true
+    uri: https://api.instagram.com/v1/users/193210551/media/recent.json?access_token=<INSTAGRAM_ACCESS_TOKEN>&count=20&max_tag_id=true
     body:
       encoding: US-ASCII
       string: ''
@@ -12,7 +12,7 @@ http_interactions:
       User-Agent:
       - Instagram Ruby Gem 1.1.6
       Authorization:
-      - Token token="193210551.bfc4af8.caf1f79fb7a4463da4cfbc04ed528088"
+      - Token token="<INSTAGRAM_ACCESS_TOKEN>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -424,7 +424,7 @@ http_interactions:
   recorded_at: Thu, 03 Nov 2016 06:37:25 GMT
 - request:
     method: get
-    uri: https://api.instagram.com/v1/users/193210551/media/recent.json?access_token=193210551.bfc4af8.caf1f79fb7a4463da4cfbc04ed528088&count=20&max_tag_id=1333285849114246251_193210551
+    uri: https://api.instagram.com/v1/users/193210551/media/recent.json?access_token=<INSTAGRAM_ACCESS_TOKEN>&count=20&max_tag_id=1333285849114246251_193210551
     body:
       encoding: US-ASCII
       string: ''
@@ -434,7 +434,7 @@ http_interactions:
       User-Agent:
       - Instagram Ruby Gem 1.1.6
       Authorization:
-      - Token token="193210551.bfc4af8.caf1f79fb7a4463da4cfbc04ed528088"
+      - Token token="<INSTAGRAM_ACCESS_TOKEN>"
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:

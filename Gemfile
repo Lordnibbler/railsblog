@@ -56,6 +56,8 @@ group :test do
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'poltergeist' # phantomjs driver for capybara
   gem 'rails-controller-testing'
+  gem 'vcr'
+  gem 'webmock', '~> 3.0.1'
 end
 
 group :production do
