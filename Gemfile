@@ -1,17 +1,18 @@
 
 source 'https://rubygems.org'
-ruby '2.4.1'
-gem 'rails', '~> 5.1'
+ruby '2.6.5'
+gem 'rails', '5.1.7'
 
-gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git', ref: 'de200b12a5257f26071d558a4b71e601775f8b79' # admin UI scaffolding
+gem 'bower-rails', '~> 0.11.0'
 gem 'client_side_validations'
 gem 'coffee-rails'
-gem 'devise' # authentication for activeadmin
+gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'fog' # upload to cloud services like AWS
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git', ref: '8603b3054683fa798134d76c12a32d9e287b307e'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
@@ -21,6 +22,7 @@ gem 'newrelic_rpm'
 gem 'pg'
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
+gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
 gem 'sass-rails'
 gem 'sendgrid-ruby' # Sending emails
