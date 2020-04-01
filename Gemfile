@@ -4,6 +4,7 @@ ruby '2.6.5'
 gem 'rails', '5.1.7'
 
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git', ref: 'de200b12a5257f26071d558a4b71e601775f8b79' # admin UI scaffolding
+gem 'bower-rails', '~> 0.11.0'
 gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
