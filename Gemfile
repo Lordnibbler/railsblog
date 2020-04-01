@@ -1,6 +1,6 @@
 
 source 'https://rubygems.org'
-ruby '2.4.1'
+ruby '2.7.0'
 gem 'rails', '~> 5.1'
 
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
