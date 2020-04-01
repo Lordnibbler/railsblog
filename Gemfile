@@ -1,7 +1,7 @@
 
 source 'https://rubygems.org'
 ruby '2.7.0'
-gem 'rails', '~> 5.1'
+gem 'rails', '5.1.7'
 
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git' # admin UI scaffolding
 gem 'client_side_validations'
@@ -11,7 +11,7 @@ gem 'fog' # upload to cloud services like AWS
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
-gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources.git', ref: '8603b3054683fa798134d76c12a32d9e287b307e'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'kaminari' # pagination
