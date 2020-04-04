@@ -528,6 +528,10 @@ GEM
       rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.5.1)
+      activesupport
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
     ruby-progressbar (1.10.1)
     ruby_http_client (3.5.0)
     sass-rails (6.0.0)
@@ -634,6 +638,7 @@ DEPENDENCIES
   rouge
   rspec-rails
   rubocop
+  rubocop-rails
   sass-rails
   sendgrid-ruby
   sitemap_generator

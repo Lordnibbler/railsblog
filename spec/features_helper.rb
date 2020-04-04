@@ -9,3 +9,4 @@ Warden.test_mode!
 
 # use phantomjs headless driver
 Capybara.javascript_driver = :poltergeist
+Capybara.server = :webrick
