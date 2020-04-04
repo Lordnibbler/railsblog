@@ -18,7 +18,7 @@ before_script:
 script:
   - bundle exec rspec spec --format progress
   - bundle exec brakeman
-  - bundle exec rubocop -R
+  - bundle exec rubocop -E
 
 cache:
   bundler: true

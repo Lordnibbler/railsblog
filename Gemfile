@@ -1,4 +1,3 @@
-
 source 'https://rubygems.org'
 ruby '2.6.5'
 gem 'rails', '5.2.4.2'
@@ -48,6 +47,7 @@ group :development, :test do
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'spring' # speed up dev env
   gem 'spring-commands-rspec' # faster rspec loading
 end

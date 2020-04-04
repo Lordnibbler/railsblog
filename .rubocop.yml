@@ -14,10 +14,9 @@ AllCops:
     - 'client/**/*'
     - Guardfile
 
-Rails:
-  Enabled: true
+require: rubocop-rails
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
 
 Metrics/MethodLength:
@@ -26,10 +25,10 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Enabled: false
 
-NumericLiterals:
+Style/NumericLiterals:
   Enabled: false
 
-Style/AlignParameters:
+Layout/ParameterAlignment:
   Enabled: false
 
 Style/RedundantSelf:
@@ -38,13 +37,13 @@ Style/RedundantSelf:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Lambda:
+Style/Lambda:
   Enabled: false
 
-Next:
+Style/Next:
   Enabled: false
 
-DoubleNegation:
+Style/DoubleNegation:
   Enabled: false
 
 HasAndBelongsToMany:
