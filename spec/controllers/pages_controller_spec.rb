@@ -8,7 +8,7 @@ describe HighVoltage::PagesController, '#show' do
       end
 
       it 'responds with success' do
-        expect(response).to be_succes
+        expect(response).to have_http_status(:success)
         expect(response.code).to eql('200')
       end
 
