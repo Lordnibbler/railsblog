@@ -15,4 +15,30 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+import Turbolinks from "turbolinks"
+Turbolinks.start()
+
+// If you are using Turbolinks 5.2, use the require syntax and make sure that
+// @client-side-validations/client-side-validations is required afterTurbolinks.start(),
+// so ClientSideValidations can properly attach its event handlers.
+require('@client-side-validations/client-side-validations')
+
+var fitvids = require('fitvids');
+
 console.log('Hello World from Webpacker')
+
+// TODO: move to custom.js and load via webpacker
+$(document).on('turbolinks:load', function() {
+  $('.expander').click(function() {
+    $(this).toggleClass('expanded');
+    $('.main-menu').toggleClass('expanded');
+  });
+
+  // ensure videos fit width of page
+  fitvids('.site');
+
+  // flash hiding
+  $('.flash').on('click', function(event) {
+    $(this).slideUp();
+  });
+});

@@ -781,6 +781,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@client-side-validations/client-side-validations@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.1.2.tgz#dceee3c18aac0f3d38ace3d6391ec8bd30e1b455"
+  integrity sha512-mymU93mQpLftRHELG/blhMHndWfx2uHUf78KWKdNE6i9qP8s5LrO7dBcwumj2IxrhG9uLjbJiykERE/AnA62xw==
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -4545,7 +4550,7 @@ mkdirp@0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-modernizr@3.9.1:
+modernizr@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/modernizr/-/modernizr-3.9.1.tgz#9d48cb5f8c47392e94c9e31564b8f1133b5f8863"
   integrity sha512-FajsZDehpsu+UPe/oCYpeQah59uLret52+5XCNhiNsUxweRj8FbPqWb1EEEpoMIlS6P+7erAzraCNLyB2CdfUw==
@@ -7187,6 +7192,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+turbolinks@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/turbolinks/-/turbolinks-5.2.0.tgz#e6877a55ea5c1cb3bb225f0a4ae303d6d32ff77c"
+  integrity sha512-pMiez3tyBo6uRHFNNZoYMmrES/IaGgMhQQM+VFF36keryjb5ms0XkVpmKHkfW/4Vy96qiGW3K9bz0tF5sK9bBw==
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

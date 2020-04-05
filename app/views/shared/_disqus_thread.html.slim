@@ -1,6 +1,12 @@
 aside class='post-aside'
   #disqus_thread.comments
     javascript:
+      // activate disqus
+      var disqus = {
+        'activate' : true,
+        'shortname' : 'benradler'
+      };
+
       if (disqus.activate) {
         var disqus_shortname = disqus.shortname;
         var disqus_identifier = "#{@post.slug}";
