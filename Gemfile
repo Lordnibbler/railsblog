@@ -39,7 +39,6 @@ group :development do
   gem 'guard-yard', require: false
   gem 'pry-rails'
   # gem 'quiet_assets' # shut up the asset pipeline logging
-  gem 'refills'
 end
 
 group :development, :test do

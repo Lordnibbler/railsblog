@@ -485,7 +485,6 @@ GEM
       nokogiri (~> 1.5)
       optimist (~> 3.0)
     redcarpet (3.5.0)
-    refills (0.2.0)
     regexp_parser (1.7.0)
     regexp_property_values (1.0.0)
     representable (3.0.4)
@@ -648,7 +647,6 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   redcarpet
-  refills
   regexp_parser (>= 0.5.0)
   rouge
   rspec-rails
