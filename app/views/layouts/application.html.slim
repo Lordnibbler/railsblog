@@ -8,7 +8,6 @@ html lang='en'
     = auto_discovery_link_tag :rss,  blog_posts_path(format: :rss)
     = auto_discovery_link_tag :atom, blog_posts_path(format: :atom)
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = csrf_meta_tags
   body class="#{@body_class}"
