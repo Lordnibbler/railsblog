@@ -3,7 +3,6 @@ ruby '2.6.5'
 gem 'rails', '5.2.4.2'
 
 gem 'activeadmin' # admin UI scaffolding
-gem 'bower-rails', '~> 0.11.0'
 gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
@@ -28,6 +27,7 @@ gem 'sitemap_generator'
 gem 'slim'
 gem 'turbolinks'
 gem 'uglifier'
+gem 'webpacker'
 
 group :development do
   gem 'better_errors' # improved error pages
