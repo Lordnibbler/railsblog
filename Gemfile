@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.7.1'
-gem 'rails', '5.2.4.2'
+gem 'rails', '~> 6'
 
 gem 'activeadmin' # admin UI scaffolding
 gem 'bourbon', '4.2.0'
