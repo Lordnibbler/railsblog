@@ -11,10 +11,10 @@
 \******************************************************************************/
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700"); // google fonts
-@import "normalize.css/normalize"; // reset html elements
-@import "bourbon/app/assets/stylesheets/bourbon"; // mixin library
+@import "/normalize"; // reset html elements
+@import "bourbon"; // mixin library
 @import "../bitters/base/base"; // bitters 1.0
-@import "neat/app/assets/stylesheets/neat-helpers"; // helpers for the grid
+@import "neat/neat-helpers"; // helpers for the grid
 
 /******************************************************************************\
     Variables
@@ -74,7 +74,7 @@ $large: new-breakpoint(min-width 1024px);
 $xlarge: new-breakpoint(min-width 1200px);
 
 // Import the grid system
-@import "neat/app/assets/stylesheets/neat"; // grid system
+@import "neat/neat"; // grid system
 
 
 /******************************************************************************\

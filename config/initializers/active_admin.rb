@@ -6,6 +6,9 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = 'benradler.com'
 
+  # instead of sprockets (rails 6 default)
+  config.use_webpacker = true
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #

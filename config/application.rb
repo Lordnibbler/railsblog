@@ -24,7 +24,6 @@ module Brog
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # add paths to asset pipeline
-    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     # load environment variables from env.yml
