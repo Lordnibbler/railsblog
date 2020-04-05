@@ -25,7 +25,6 @@ require('@client-side-validations/client-side-validations')
 
 var fitvids = require('fitvids');
 
-console.log('Hello World from Webpacker')
 
 // TODO: move to custom.js and load via webpacker
 $(document).on('turbolinks:load', function() {

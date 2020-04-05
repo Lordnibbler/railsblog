@@ -1,4 +1,5 @@
-@import "neat/app/assets/stylesheets/neat-helpers"; // or "../neat/neat-helpers" when not in Rails
+// @import "neat/app/assets/stylesheets/neat-helpers"; // or "../neat/neat-helpers" when not in Rails
+@import "neat/neat-helpers"; // helpers for the grid
 
 // Neat Overrides
 // $column: 90px;

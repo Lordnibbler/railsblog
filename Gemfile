@@ -3,6 +3,7 @@ ruby '2.6.5'
 gem 'rails', '5.2.4.2'
 
 gem 'activeadmin' # admin UI scaffolding
+gem 'bourbon', '4.2.0'
 gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
