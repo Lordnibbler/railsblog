@@ -53,9 +53,10 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-selenium', '~> 0.0.6'
   gem 'launchy' # capybara save_and_open_page automatic launching
-  gem 'poltergeist' # phantomjs driver for capybara
   gem 'rails-controller-testing'
+  gem 'webdrivers', '~> 3.7', '>= 3.7.2'
 end
 
 group :production do

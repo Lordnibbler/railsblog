@@ -9,14 +9,13 @@ describe 'Custom Errors' do
           'action_dispatch.show_exceptions' => true,
           'action_dispatch.show_detailed_exceptions' => false
         )
-      end
+      end.at_least(:once)
     end
 
     %w[/404 /not-a-real-page].each do |url|
       it 'returns appropriate status code and content' do
         visit url
-        expect(page.status_code).to eql 404
-        expect(page).to have_content '404 - File Not Found'
+        expect(page).to have_content(/404 - File Not Found/i)
       end
     end
   end
@@ -24,16 +23,14 @@ describe 'Custom Errors' do
   context '422' do
     it 'returns appropriate status code and content' do
       visit '/422'
-      expect(page.status_code).to eql 422
-      expect(page).to have_content '422 - Unprocessable Entity'
+      expect(page).to have_content(/422 - Unprocessable Entity/i)
     end
   end
 
   context '500' do
     it 'returns appropriate status code and content' do
       visit '/500'
-      expect(page.status_code).to eql 500
-      expect(page).to have_content '500 - Internal Server Error'
+      expect(page).to have_content(/500 - Internal Server Error/i)
     end
   end
 end
