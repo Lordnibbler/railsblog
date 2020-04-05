@@ -88,6 +88,13 @@ GEM
       rails (>= 5.0.0.1, < 6.1)
     cliver (0.3.2)
     coderay (1.1.2)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
@@ -405,6 +412,7 @@ DEPENDENCIES
   brakeman
   capybara
   client_side_validations
+  coffee-rails
   devise (>= 4.4.0)
   fog-aws
   friendly_id
@@ -446,7 +454,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.6.6p146
 
 BUNDLED WITH
    1.17.2

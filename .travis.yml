@@ -2,7 +2,7 @@ language: ruby
 bundler_args: --without development production
 sudo: false
 rvm:
-  - 2.6.5
+  - 2.6.6
 
 addons:
   postgresql: '9.4'

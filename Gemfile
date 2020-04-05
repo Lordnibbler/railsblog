@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.6.5'
+ruby '2.6.6'
 gem 'rails', '5.2.4.2'
 
 gem 'activeadmin' # admin UI scaffolding
 gem 'bourbon', '4.2.0'
 gem 'client_side_validations'
+gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
