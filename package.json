@@ -3,8 +3,6 @@
     "@activeadmin/activeadmin": "^2.7.0",
     "@client-side-validations/client-side-validations": "^0.1.2",
     "@rails/webpacker": "5.0.1",
-    "bourbon": "4.2.0",
-    "bourbon-neat": "1.7.1",
     "fitvids": "1.0.2",
     "marked": "0.3.1",
     "modernizr": "^3.9.1",
