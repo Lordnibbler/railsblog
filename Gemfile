@@ -7,7 +7,7 @@ gem 'bourbon', '4.2.0'
 gem 'client_side_validations'
 gem 'coffee-rails'
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
-gem 'fog' # upload to cloud services like AWS; used for sitemap s3 upload
+gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
