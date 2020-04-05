@@ -10,11 +10,13 @@ const marked = require('marked');
 // from markdown on the left pane to HTML on the right pane
 document.addEventListener('DOMContentLoaded', () => {
   const blogPostBodyElement = document.querySelector('#blog_post_body');
+  blogPostBodyElement.addEventListener('input', updateRenderedMarkdown);
 
-  blogPostBodyElement.addEventListener('input', updateValue);
+  // populate the rendered markdown once at page load
+  updateRenderedMarkdown()
 
-  function updateValue(e) {
-    const markdownValue = marked(e.target.value);
+  function updateRenderedMarkdown(){
+    const markdownValue = marked(blogPostBodyElement.value);
     const blogPostBodyMarkedElement = document.querySelector('#blog_post_body_marked');
     blogPostBodyMarkedElement.innerHTML = markdownValue;
   }
