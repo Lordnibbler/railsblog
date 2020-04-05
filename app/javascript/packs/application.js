@@ -23,21 +23,5 @@ Turbolinks.start()
 // so ClientSideValidations can properly attach its event handlers.
 require('@client-side-validations/client-side-validations')
 
-var fitvids = require('fitvids');
-
-
-// TODO: move to custom.js and load via webpacker
-$(document).on('turbolinks:load', function() {
-  $('.expander').click(function() {
-    $(this).toggleClass('expanded');
-    $('.main-menu').toggleClass('expanded');
-  });
-
-  // ensure videos fit width of page
-  fitvids('.site');
-
-  // flash hiding
-  $('.flash').on('click', function(event) {
-    $(this).slideUp();
-  });
-});
+// custom javascripts used throughout the frontend of the site
+import './custom';
