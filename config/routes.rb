@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  root 'blog/posts#index'
+  root 'pages#show', id: 'hire-me', format: false
 
   #
   # @note for legacy redirects from old blog which didn't have /blog prefix in route
@@ -30,6 +30,14 @@ Rails.application.routes.draw do
     get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
   end
 
+  #
+  # custom controller for HighVoltage static pages
+  #
+  get "/pages/*id" => 'pages#show', as: :page, format: false
+
+  #
+  # POST for contact form
+  #
   resources :contact_forms, only: [:create]
 
   #
