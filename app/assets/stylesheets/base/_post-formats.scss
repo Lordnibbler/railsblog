@@ -12,8 +12,7 @@
     display: none;
   }
 
-  .tag-format-tweet, .tag-format-quote {
-
+  .tag-format-tweet, .tag-format-quote, .tag-format-tag {
     h2 {
       display:none;
     }
@@ -44,6 +43,15 @@
     };
 
     background-color: tint( $twitter, 90% );
+
+  }
+
+  .tag-format-tag {
+    @include icon('before', false, 'tag') {
+      background-color: $color-1;
+    };
+
+    background-color: tint( $color-1, 90% );
 
   }
 

@@ -5,12 +5,29 @@
 
 article class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
   div class='post-content' itemprop='articleBody'
-    | Ben has over 12 years of professional experience as a Software Engineer at prestigious, successful companies in the San Francisco Bay Area.
+    p Ben has over 12 years of professional experience as a Software Engineer at prestigious, successful companies in the San Francisco Bay Area.
+    hr
+    div.centered
+      = image_tag('logo-teespring.jpg', class: 'logo')
+      = image_tag('logo-lyft.png', class: 'logo')
+      = image_tag('logo-onelogin.png', class: 'logo')
+    hr
+    p He's built complex security systems at Onelogin, online store platforms which integrate with YouTube and Amazon at Teespring, and simulation platforms to scale Lyft to thousands of rides per minute.
+
+article class='post tag-format-tag' role='article' itemscope='' itemtype='http://schema.org/Article'
+  div class='post-content' itemprop='articleBody'
+    | I'm available to help build your products!
+    hr
+    = link_to 'Contact Me Now', page_path('contact-me'), class: 'button large'
+
+article class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
+  div class='post-content' itemprop='articleBody'
+    | Programming Languages:
     hr
       div.centered
-        = image_tag('logo-teespring.jpg', class: 'logo')
-        = image_tag('logo-lyft.png', class: 'logo')
-        = image_tag('logo-onelogin.png', class: 'logo')
+        = image_tag('language-ruby.png', class: 'logo large', alt: 'Ruby', title: 'Ruby')
+        = image_tag('language-python.png', class: 'logo large', alt: 'Python', title: 'Python')
+        = image_tag('language-javascript.png', class: 'logo large', alt: 'Javascript', title: 'Javascript')
 
 article class='post tag-format-quote' role='article' itemscope='' itemtype='http://schema.org/Article'
   div class='post-content' itemprop='articleBody'

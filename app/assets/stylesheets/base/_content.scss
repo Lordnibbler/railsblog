@@ -113,6 +113,9 @@ article.post,
     vertical-align: middle;
     margin: 10px;
     object-fit: contain;
+    &.large {
+      height: 100px;
+    }
   }
 }
 
