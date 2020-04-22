@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   resources :contact_forms, only: [:create]
 
   #
+  # custom route for short link to contact-me page
+  #
+  get '/contact-me' => 'pages#show', id: 'contact-me'
+
+  #
   # /sitemap.xml.gz
   #
   get 'sitemap.xml.gz' => redirect('https://benradler.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
