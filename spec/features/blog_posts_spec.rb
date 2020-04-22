@@ -1,12 +1,12 @@
 require 'features_helper'
 
-describe '/' do
+describe '/blog' do
   fixtures :users, :posts
 
   let!(:post) { posts(:short) }
   let!(:long_post) { posts(:long) }
 
-  before { visit '/' }
+  before { visit blog_posts_path }
 
   context 'when clicking Continue Reading' do
     it 'shows full post' do
@@ -23,7 +23,7 @@ describe '/' do
     it 'removes it from the blog_posts_index_path' do
       expect(page).to have_selector('article.post', count: Blog::Post.count)
       post.update_column(:published, false)
-      visit '/'
+      visit blog_posts_path
       expect(page).to have_selector('article.post', count: Blog::Post.count - 1)
       expect(page).to_not have_selector("post-#{post.id}")
     end

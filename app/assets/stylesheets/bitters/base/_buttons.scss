@@ -31,4 +31,8 @@ button,
     cursor: not-allowed;
     opacity: 0.5;
   }
+  &.large {
+    padding: 1.5em 2em;
+    font-size: 1.5em;
+  }
 }

@@ -12,15 +12,16 @@
     display: none;
   }
 
-  .tag-format-tweet, .tag-format-quote {
-
+  .tag-format-tweet, .tag-format-quote, .tag-format-tag {
     h2 {
       display:none;
     }
 
     .post-content {
       margin-top: 2em;
-      font-size: 1.4em;
+      margin-left: 6em;
+      margin-right: 2em;
+      font-size: 0.85em;
       font-style: italic;
     }
 
@@ -42,6 +43,15 @@
     };
 
     background-color: tint( $twitter, 90% );
+
+  }
+
+  .tag-format-tag {
+    @include icon('before', false, 'tag') {
+      background-color: $color-1;
+    };
+
+    background-color: tint( $color-1, 90% );
 
   }
 

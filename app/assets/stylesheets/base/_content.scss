@@ -6,6 +6,11 @@
  * @since Plattan 1.0
  */
 
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
 .page-content {
   // disable page bounce in animation
   // @include animation(bounce-in-up .7s ease);
@@ -40,7 +45,8 @@
 
 article.post,
 .author {
-  padding: 0 0 3em 0;
+  padding: 0 0 1.5em 0;
+  margin-bottom: 3em;
   position: relative;
   overflow: hidden;
   font-size: $base-font-size * 0.9;
@@ -100,6 +106,17 @@ article.post,
 .home-template .post-content>img:first-child,
 .home-template .post-content>.fluid-width-video-wrapper:first-child {
   display:none;
+
+  &.logo {
+    display: flex;
+    height: 50px;
+    vertical-align: middle;
+    margin: 10px;
+    object-fit: contain;
+    &.large {
+      height: 100px;
+    }
+  }
 }
 
 article.post .content-wrapper,
