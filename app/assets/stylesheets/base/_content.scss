@@ -6,6 +6,11 @@
  * @since Plattan 1.0
  */
 
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
 .page-content {
   // disable page bounce in animation
   // @include animation(bounce-in-up .7s ease);
@@ -100,6 +105,13 @@ article.post,
 .home-template .post-content>img:first-child,
 .home-template .post-content>.fluid-width-video-wrapper:first-child {
   display:none;
+
+  &.logo {
+    display: flex;
+    height: 50px;
+    vertical-align: middle;
+    margin: 10px;
+  }
 }
 
 article.post .content-wrapper,
