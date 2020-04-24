@@ -38,6 +38,17 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
+  # tagging rspec tests or context with :vcr records network calls
+  config.around(:each) do |ex|
+    if ex.metadata.key?(:vcr)
+      ex.run
+    else
+      WebMock.allow_net_connect!
+      VCR.turned_off { ex.run }
+      WebMock.disable_net_connect!
+    end
+  end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

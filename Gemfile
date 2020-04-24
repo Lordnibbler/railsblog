@@ -59,7 +59,9 @@ group :test do
   gem 'capybara-selenium', '~> 0.0.6'
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
+  gem 'vcr'
   gem 'webdrivers', '~> 3.7', '>= 3.7.2'
+  gem 'webmock'
 end
 
 group :production do
