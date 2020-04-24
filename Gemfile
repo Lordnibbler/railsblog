@@ -7,6 +7,7 @@ gem 'bourbon', '4.2.0'
 gem 'client_side_validations'
 gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
+gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
