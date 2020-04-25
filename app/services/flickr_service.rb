@@ -34,15 +34,28 @@ class FlickrService
       [].tap do |array|
         response.each do |photo|
           get_photo_response = get_photo(photo.id)
+
+          sizes = client.photos.getSizes(photo_id: photo.id)
+          large_size = sizes.find { |s| s.label == 'Large 1600' }
+          thumbnail_size = sizes.find { |s| s.label == 'Thumbnail' }
+
           array << {
-              source:        'flickr',
-              key:           photo.id,
-              url_thumbnail: FlickRaw.url_n(photo),
-              url_original:  FlickRaw.url_b(photo),
-              created_at:    get_photo_response.dateuploaded,
-              url:           FlickRaw.url_photopage(photo),
-              description:   get_photo_response.description,
-              title:         get_photo_response.title
+            source: 'flickr',
+            key: photo.id,
+            photo_thumbnail: {
+              url: FlickRaw.url_n(photo),
+              width: thumbnail_size.width,
+              height: thumbnail_size.height,
+            },
+            photo_large: {
+              url: FlickRaw.url_b(photo),
+              width: large_size.width,
+              height: large_size.height,
+            },
+            created_at: get_photo_response.dateuploaded,
+            url: FlickRaw.url_photopage(photo),
+            description: get_photo_response.description,
+            title: get_photo_response.title,
           }
         end
       end
