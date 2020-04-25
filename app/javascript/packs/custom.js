@@ -3,6 +3,8 @@ import 'photoswipe/dist/default-skin/default-skin.css'
 import PhotoSwipe from 'photoswipe';
 import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
 import InfiniteScroll from 'infinite-scroll';
+import Masonry from 'masonry-layout';
+import imagesLoaded from 'imagesloaded';
 
 var fitvids = require('fitvids');
 
@@ -21,12 +23,47 @@ $(document).on('turbolinks:load', function() {
     $(this).slideUp();
   });
 
-  var elem = document.querySelector('.my-gallery');
+  // todo: move everything below here to photography page specific js via webpack
+  var elem = document.querySelector('.my-gallery.grid');
+
+  var msnry = new Masonry( elem, {
+    // use outer width of grid-sizer for columnWidth
+    columnWidth: '.grid-sizer',
+    // do not use .grid-sizer in layout
+    itemSelector: '.grid-item',
+    percentPosition: true,
+
+    // itemSelector: 'figure.image', // select none at first
+    // columnWidth: 25,
+    // percentPosition: true,
+    //
+    // itemSelector: 'none',
+    // gutter: '.page-content.primary',
+    // stagger: 30,
+    // gutter: 50,
+
+    // nicer reveal transition
+    visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+    hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
+  });
+
+  imagesLoaded( elem, function() {
+    elem.classList.remove('are-images-unloaded');
+    msnry.options.itemSelector = 'figure.image.grid-item';
+    var items = elem.querySelectorAll('figure.image.grid-item');
+    msnry.appended( items );
+  });
+
+  // make imagesLoaded available for InfiniteScroll
+  InfiniteScroll.imagesLoaded = imagesLoaded;
+
+
   var infScroll = new InfiniteScroll( elem, {
     // options
     path: 'photography?page={{#}}',
-    append: 'figure.image',
+    append: 'figure.image.grid-item',
     history: false,
+    outlayer: msnry,
   });
 
   var initPhotoSwipeFromDOM = function(gallerySelector) {
@@ -52,6 +89,10 @@ $(document).on('turbolinks:load', function() {
         }
 
         linkEl = figureEl.children[0]; // <a> element
+        if (linkEl === undefined) {
+          // skip the .grid-sizer required by masonry.js
+          continue;
+        }
 
         size = linkEl.getAttribute('data-size').split('x');
 
@@ -211,6 +252,9 @@ $(document).on('turbolinks:load', function() {
       if(disableAnimation) {
         options.showAnimationDuration = 0;
       }
+
+      // disable back button support
+      // options.history = false;
 
       // Pass data to PhotoSwipe and initialize it
       gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);

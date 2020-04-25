@@ -1,8 +1,7 @@
 class PhotographyController < ApplicationController
+  before_action :set_body_class
+
   def index
-    ap '*' * 50
-    ap photography_params
-    # params[:page] ||= 1
     @photos = FlickrService.get_photos(page: photography_params[:page])
   end
 
@@ -10,5 +9,9 @@ class PhotographyController < ApplicationController
 
   def photography_params
     params.permit(:page)
+  end
+
+  def set_body_class
+    body_class 'photography'
   end
 end
