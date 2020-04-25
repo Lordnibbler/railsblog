@@ -79,7 +79,7 @@ $(document).on('turbolinks:load', function() {
           size,
           item;
 
-      for(var i = 0; i < numNodes; i++) {
+      for(var i = 1; i < numNodes; i++) {
 
         figureEl = thumbElements[i]; // <figure> element
 
@@ -89,11 +89,6 @@ $(document).on('turbolinks:load', function() {
         }
 
         linkEl = figureEl.children[0]; // <a> element
-        if (linkEl === undefined) {
-          // skip the .grid-sizer required by masonry.js
-          continue;
-        }
-
         size = linkEl.getAttribute('data-size').split('x');
 
         // create slide object
@@ -151,7 +146,7 @@ $(document).on('turbolinks:load', function() {
           nodeIndex = 0,
           index;
 
-      for (var i = 0; i < numChildNodes; i++) {
+      for (var i = 1; i < numChildNodes; i++) {
         if(childNodes[i].nodeType !== 1) {
           continue;
         }
