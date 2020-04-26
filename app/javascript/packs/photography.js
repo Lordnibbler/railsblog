@@ -56,6 +56,7 @@ $(document).on('turbolinks:load', function() {
             append: 'figure.image.grid-item',
             history: false,
             outlayer: masonry,
+            status: '.page-load-status',
         });
     }
     createInfiniteScroll(msnry);

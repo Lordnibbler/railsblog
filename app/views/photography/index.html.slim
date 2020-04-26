@@ -6,6 +6,7 @@
   = javascript_pack_tag 'photography', 'data-turbolinks-track': 'reload'
   = stylesheet_pack_tag 'photography'
 
+- # thumbnail gallery markup
 .my-gallery.grid.are-images-unloaded itemscope="" itemtype="http://schema.org/ImageGallery"
   .grid-sizer
   - @photos.each do |photo|
@@ -14,6 +15,25 @@
         img alt="#{photo[:description]}" itemprop="thumbnail" src="#{photo[:photo_medium][:url]}"
       figcaption itemprop="caption description"
         = photo[:description]
+
+- # page loading spinner wheel
+.page-load-status
+  p.infinite-scroll-request
+    .loader-wheel
+      i
+        i
+          i
+            i
+              i
+                i
+                  i
+                    i
+                      i
+                        i
+                          i
+                            i
+  p.infinite-scroll-last No more images!
+  p.infinite-scroll-error No more images!
 
 /! Root element of PhotoSwipe. Must have class pswp.
 .pswp aria-hidden="true" role="dialog" tabindex="-1"
