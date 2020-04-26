@@ -2,7 +2,7 @@ class PhotographyController < ApplicationController
   before_action :set_body_class
 
   def index
-    @photos = FlickrService.get_photos(page: photography_params[:page])
+    @photos = FlickrService.get_photos(page: photography_params[:page]) || []
   end
 
   private

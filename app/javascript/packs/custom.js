@@ -60,6 +60,7 @@ $(document).on('turbolinks:load', function() {
 
   var infScroll = new InfiniteScroll( elem, {
     // options
+    checkLastPage: 'figure.image.grid-item',
     path: 'photography?page={{#}}',
     append: 'figure.image.grid-item',
     history: false,
