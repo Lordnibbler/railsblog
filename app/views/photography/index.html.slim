@@ -2,6 +2,9 @@
         description: 'Home | Hire Ben Radler for software engineering. Ruby, Rails, Python, ReactJS, Javascript'
 
 - content_for :page_title, 'Photography Gallery'
+- content_for :head do
+  = javascript_pack_tag 'photography', 'data-turbolinks-track': 'reload'
+  = stylesheet_pack_tag 'photography'
 
 .my-gallery.grid.are-images-unloaded itemscope="" itemtype="http://schema.org/ImageGallery"
   .grid-sizer

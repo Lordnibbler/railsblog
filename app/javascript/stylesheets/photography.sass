@@ -1,0 +1,27 @@
+.photography-template
+  figure
+    margin: 0
+    // masonry is putting this gap below each image, adjust explicitly here
+    margin-bottom: -7px !important
+
+.my-gallery
+  // avoid small white space on right edge of gallery
+  width: 100.5%
+
+// fluid 3 columns sizing
+// weird percentages to force full 3 column width:
+// https://metafizzy.co/blog/beyonce-seamless-fluid-image-masonry/
+.grid-sizer,
+.grid-item
+  width: 33.2%
+  img
+    width: 100.5%
+
+// reveal grid after images loaded, otherwise we may see images
+// stacked on top of each other for a moment as page loads
+.grid.are-images-unloaded
+  opacity: 0
+
+  // hide by default
+  .image.grid_item
+    opacity: 0
