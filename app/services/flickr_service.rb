@@ -18,14 +18,14 @@ class FlickrService
       # flickraw is dumb and returns the final page of results for any page after the final page
       return nil if resp.page > resp.pages
 
-      Rails.cache.fetch key, expires_in: 5.minutes do
+      Rails.cache.fetch key, expires_in: 1.day do
         munge(resp)
       end
     end
 
     # @return [Hash]
     def get_photo(photo_id)
-      Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.year do
+      Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.month do
         client.photos.getInfo(photo_id: photo_id)
       end
     end

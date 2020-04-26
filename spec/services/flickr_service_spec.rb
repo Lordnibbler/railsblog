@@ -26,7 +26,7 @@ describe FlickrService do
     it 'uses the cache to fetch' do
       expect(Rails.cache).to receive(:fetch).with(
         'flickr_photos_33668819@N03_20_1',
-        expires_in: 5.minutes
+        expires_in: 1.day
       )
 
       get_photos
