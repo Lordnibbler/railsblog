@@ -4,7 +4,9 @@
 // todo: move to photography page specific stylesheet via webpack
 .photography-template
   figure
-     margin: 0
+    margin: 0
+    // masonry is putting this gap below each image, adjust explicitly here
+    margin-bottom: -7px !important
 
 // fluid 3 columns sizing
 // weird percentages to force full 3 column width:
