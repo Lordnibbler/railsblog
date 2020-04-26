@@ -1,8 +1,8 @@
 class FlickrService
   class << self
-    FlickRaw.api_key = ENV['FLICKR_API_KEY']
+    FlickRaw.api_key       = ENV['FLICKR_API_KEY']
     FlickRaw.shared_secret = ENV['FLICKR_SECRET']
-    FLICKR_USER_ID = '33668819@N03'.freeze
+    FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
     # @return [Array<Hash>]
