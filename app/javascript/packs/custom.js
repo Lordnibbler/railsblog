@@ -29,16 +29,11 @@ $(document).on('turbolinks:load', function() {
   var createMasonry = function() {
     return new Masonry( elem, {
       // use outer width of grid-sizer for columnWidth
+      // do not use .grid-sizer in layout!
       columnWidth: '.grid-sizer',
-      // do not use .grid-sizer in layout
       itemSelector: '.grid-item',
       percentPosition: true,
 
-      // itemSelector: 'figure.image', // select none at first
-      // columnWidth: 25,
-      // percentPosition: true,
-      //
-      // itemSelector: 'none',
       // gutter: '.page-content.primary',
       // stagger: 30,
       // gutter: 50,
@@ -53,6 +48,7 @@ $(document).on('turbolinks:load', function() {
 
   // Unloaded images can throw off Masonry layouts and cause item elements to overlap.
   // imagesLoaded resolves this issue.
+  // note: this seems to work and only is important for first page load
   imagesLoaded( elem, function() {
     // important: reset masonry layout once all images load
     // for some reason, creating masonry here causes images to
@@ -81,7 +77,8 @@ $(document).on('turbolinks:load', function() {
   createInfiniteScroll(msnry);
 
   window.addEventListener('resize', function () {
-    console.log('resize, destrying masonry', msnry)
+    // ensure masonry is recreated upon resize, and that a new infinite scroll
+    // with the new masonry is created as well
     msnry.destroy();
     msnry = createMasonry();
     createInfiniteScroll(msnry);
@@ -270,8 +267,10 @@ $(document).on('turbolinks:load', function() {
         options.showAnimationDuration = 0;
       }
 
-      // disable back button support
-      // options.history = false;
+      // backing out of the photoswipe full screen causes page reload (turbolinks)
+      // disable back button support until this is fixed:
+      // https://github.com/dimsemenov/PhotoSwipe/issues/700
+      options.history = false;
 
       // Pass data to PhotoSwipe and initialize it
       gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
