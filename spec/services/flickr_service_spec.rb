@@ -29,7 +29,7 @@ describe FlickrService do
       expect(photo).to include(:title)
     end
 
-    it 'uses the cache to fetch' do
+    it 'uses the cache to fetch', :vcr do
       expect(Rails.cache).to receive(:fetch).with(
         'flickr_photos_33668819@N03_20_1',
         expires_in: 1.day
@@ -38,8 +38,8 @@ describe FlickrService do
       get_photos
     end
 
-    it 'returns nil instead of repeating the last page' do
-      expect(described_class.get_photos(page: 3)).to be_nil
+    it 'returns nil instead of repeating the last page', :vcr do
+      expect(described_class.get_photos(page: 8)).to be_nil
     end
   end
 end

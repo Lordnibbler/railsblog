@@ -1,0 +1,58 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=33668819%40N03&per_page=20&page=1&method=flickr.people.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.10
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="lqXzzPWZjq0wxciYXBSxgBVOiL6LaXDvjvBXfNuGxzE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1587944014", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Sun, 26 Apr 2020 23:33:34 GMT
+      Server:
+      - Apache/2.4.43 (Ubuntu)
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 58b53da3f7d231b76d30fcffbf4945a1.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - SFO20-C1
+      X-Amz-Cf-Id:
+      - LJkskst-WALoE4sTmlMAcg6HXKamgdajtWfx6LTSshChRowIyO1DTA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photos":{"page":1,"pages":7,"perpage":20,"total":"123","photo":[{"id":"49823443921","owner":"33668819@N03","secret":"1edf677c80","server":"65535","farm":66,"title":"DSC00092
+        (1)","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823443776","owner":"33668819@N03","secret":"fab747ca5c","server":"65535","farm":66,"title":"DSC00234","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823764472","owner":"33668819@N03","secret":"30d9b9638c","server":"65535","farm":66,"title":"DSC00292","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823443521","owner":"33668819@N03","secret":"99374f9df5","server":"65535","farm":66,"title":"DSC00391","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822923338","owner":"33668819@N03","secret":"a1c3d28c36","server":"65535","farm":66,"title":"A7300540","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774267","owner":"33668819@N03","secret":"1d4b17d822","server":"65535","farm":66,"title":"A7300572","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774222","owner":"33668819@N03","secret":"e755182efc","server":"65535","farm":66,"title":"A7300629","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774062","owner":"33668819@N03","secret":"72c55d0438","server":"65535","farm":66,"title":"A7301115","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822923008","owner":"33668819@N03","secret":"35ffbc50d1","server":"65535","farm":66,"title":"A7301228","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823773812","owner":"33668819@N03","secret":"4cf33c20e6","server":"65535","farm":66,"title":"A7301360","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822922653","owner":"33668819@N03","secret":"2c415d93c1","server":"65535","farm":66,"title":"A7301498","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822922273","owner":"33668819@N03","secret":"b34cf6d495","server":"65535","farm":66,"title":"A7302913","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822922093","owner":"33668819@N03","secret":"d43e1ccd15","server":"65535","farm":66,"title":"A7303027","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823452271","owner":"33668819@N03","secret":"608209e364","server":"65535","farm":66,"title":"A7303110","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823451786","owner":"33668819@N03","secret":"270b3ddc86","server":"65535","farm":66,"title":"A7303529","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823772132","owner":"33668819@N03","secret":"c870a9c844","server":"65535","farm":66,"title":"A7303832","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823771347","owner":"33668819@N03","secret":"28a73c2097","server":"65535","farm":66,"title":"A7304432","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823770887","owner":"33668819@N03","secret":"7d23e8183a","server":"65535","farm":66,"title":"A7304748","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823770772","owner":"33668819@N03","secret":"452ff87b18","server":"65535","farm":66,"title":"A7304944","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822919438","owner":"33668819@N03","secret":"7e59d57fa1","server":"65535","farm":66,"title":"A7305160","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
+    http_version: null
+  recorded_at: Sun, 26 Apr 2020 23:33:34 GMT
+recorded_with: VCR 5.1.0
