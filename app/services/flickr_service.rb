@@ -40,18 +40,30 @@ class FlickrService
 
           sizes = client.photos.getSizes(photo_id: photo.id)
           large_size = sizes.find { |s| s.label == 'Large 1600' }
+          medium_size = sizes.find { |s| s.label == 'Medium 800' }
+          small_size = sizes.find { |s| s.label == 'Small 400' }
           thumbnail_size = sizes.find { |s| s.label == 'Thumbnail' }
 
           array << {
             source: 'flickr',
             key: photo.id,
             photo_thumbnail: {
-              url: FlickRaw.url_n(photo),
+              url: thumbnail_size.source,
               width: thumbnail_size.width,
               height: thumbnail_size.height,
             },
+            photo_small: {
+              url: small_size.source,
+              width: small_size.width,
+              height: small_size.height,
+            },
+            photo_medium: {
+              url: medium_size.source,
+              width: medium_size.width,
+              height: medium_size.height,
+            },
             photo_large: {
-              url: FlickRaw.url_b(photo),
+              url: large_size.source,
               width: large_size.width,
               height: large_size.height,
             },

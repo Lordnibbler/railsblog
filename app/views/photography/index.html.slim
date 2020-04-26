@@ -11,7 +11,7 @@
   - @photos.each do |photo|
     figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
       a data-size="#{photo[:photo_large][:width]}x#{photo[:photo_large][:height]}" href="#{photo[:photo_large][:url]}" itemprop="contentUrl"
-        img alt=("Image description") itemprop="thumbnail" src="#{photo[:photo_thumbnail][:url]}" /
+        img alt=("Image description") itemprop="thumbnail" src="#{photo[:photo_medium][:url]}"
 
 /! Root element of PhotoSwipe. Must have class pswp.
 .pswp aria-hidden="true" role="dialog" tabindex="-1"
