@@ -31,5 +31,9 @@ describe FlickrService do
 
       get_photos
     end
+
+    it 'returns nil instead of repeating the last page' do
+      expect(described_class.get_photos(page: 3)).to be_nil
+    end
   end
 end

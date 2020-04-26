@@ -1,5 +1,3 @@
-# require 'hashie'
-
 class FlickrService
   class << self
     FlickRaw.api_key = ENV['FLICKR_API_KEY']
@@ -15,8 +13,13 @@ class FlickrService
     def get_photos(args = {})
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       key  = "flickr_photos_#{args[:user_id]}_#{args[:per_page]}_#{args[:page]}"
+      resp = client.people.getPhotos(args)
+
+      # flickraw is dumb and returns the final page of results for any page after the final page
+      return nil if resp.page > resp.pages
+
       Rails.cache.fetch key, expires_in: 5.minutes do
-        munge(client.people.getPhotos(args))
+        munge(resp)
       end
     end
 
