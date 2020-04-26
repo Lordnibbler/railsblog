@@ -3,7 +3,7 @@
 
 - content_for :page_title, 'Photography Gallery'
 
-.my-gallery.grid itemscope="" itemtype="http://schema.org/ImageGallery"
+.my-gallery.grid.are-images-unloaded itemscope="" itemtype="http://schema.org/ImageGallery"
   .grid-sizer
   - @photos.each do |photo|
     figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"

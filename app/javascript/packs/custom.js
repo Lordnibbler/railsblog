@@ -26,28 +26,38 @@ $(document).on('turbolinks:load', function() {
   // todo: move everything below here to photography page specific js via webpack
   var elem = document.querySelector('.my-gallery.grid');
 
-  var msnry = new Masonry( elem, {
-    // use outer width of grid-sizer for columnWidth
-    columnWidth: '.grid-sizer',
-    // do not use .grid-sizer in layout
-    itemSelector: '.grid-item',
-    percentPosition: true,
+  var createMasonry = function() {
+    return new Masonry( elem, {
+      // use outer width of grid-sizer for columnWidth
+      columnWidth: '.grid-sizer',
+      // do not use .grid-sizer in layout
+      itemSelector: '.grid-item',
+      percentPosition: true,
 
-    // itemSelector: 'figure.image', // select none at first
-    // columnWidth: 25,
-    // percentPosition: true,
-    //
-    // itemSelector: 'none',
-    // gutter: '.page-content.primary',
-    // stagger: 30,
-    // gutter: 50,
+      // itemSelector: 'figure.image', // select none at first
+      // columnWidth: 25,
+      // percentPosition: true,
+      //
+      // itemSelector: 'none',
+      // gutter: '.page-content.primary',
+      // stagger: 30,
+      // gutter: 50,
 
-    // nicer reveal transition
-    visibleStyle: { transform: 'translateY(0)', opacity: 1 },
-    hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
-  });
+      // nicer reveal transition
+      visibleStyle: { transform: 'translateY(0)', opacity: 1 },
+      hiddenStyle: { transform: 'translateY(100px)', opacity: 0 },
+    });
+  }
 
+  var msnry = createMasonry()
+
+  // Unloaded images can throw off Masonry layouts and cause item elements to overlap.
+  // imagesLoaded resolves this issue.
   imagesLoaded( elem, function() {
+    // important: reset masonry layout once all images load
+    // for some reason, creating masonry here causes images to
+    // appear below the fold.
+    msnry._resetLayout()
     elem.classList.remove('are-images-unloaded');
     msnry.options.itemSelector = 'figure.image.grid-item';
     var items = elem.querySelectorAll('figure.image.grid-item');
@@ -57,15 +67,26 @@ $(document).on('turbolinks:load', function() {
   // make imagesLoaded available for InfiniteScroll
   InfiniteScroll.imagesLoaded = imagesLoaded;
 
+  var createInfiniteScroll = function(masonry) {
+    // construct the InfiniteScroll object
+    return new InfiniteScroll( elem, {
+      // options
+      checkLastPage: 'figure.image.grid-item',
+      path: 'photography?page={{#}}',
+      append: 'figure.image.grid-item',
+      history: false,
+      outlayer: masonry,
+    });
+  }
+  createInfiniteScroll(msnry);
 
-  var infScroll = new InfiniteScroll( elem, {
-    // options
-    checkLastPage: 'figure.image.grid-item',
-    path: 'photography?page={{#}}',
-    append: 'figure.image.grid-item',
-    history: false,
-    outlayer: msnry,
+  window.addEventListener('resize', function () {
+    console.log('resize, destrying masonry', msnry)
+    msnry.destroy();
+    msnry = createMasonry();
+    createInfiniteScroll(msnry);
   });
+
 
   var initPhotoSwipeFromDOM = function(gallerySelector) {
 
