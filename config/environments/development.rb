@@ -40,4 +40,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # use in-memory caching for development, instead of redis
+  config.cache_store = :memory_store, { size: 64.megabytes }
 end
