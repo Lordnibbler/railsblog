@@ -1,5 +1,5 @@
 #
-# API returns aggregate stream data for "me feed"
+# API for cached photos from Flickr
 #
 class Api::V1::StreamController < ApiController
   def index
@@ -14,8 +14,11 @@ class Api::V1::StreamController < ApiController
   #       {
   #         "source": "flickr",
   #         "key": "15889417869",
-  #         "url_thumbnail": "https://farm9.staticflickr.com/8580/15889417869_d3b603109b_n.jpg",
-  #         "url_original": "https://farm9.staticflickr.com/8580/15889417869_d3b603109b_b.jpg",
+  #         "photo_thumbnail": {
+  #           url: "https://farm9.staticflickr.com/8580/15889417869_d3b603109b_n.jpg",
+  #           width: 100,
+  #           height: 67,
+  #         },
   #         "created_at": "1419208668",
   #         "url": "https://www.flickr.com/photos/33668819@N03/15889417869",
   #         "description": "",
