@@ -146,8 +146,9 @@
   font-family: $heading-font-family;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0 1em;
+  padding: 0.2em 1em;
   line-height: 3em;
+  font-size: 1.25em;
   display: block;
 
   div.collapse {
@@ -160,7 +161,7 @@
     vertical-align: top;
 
     &.collapse {
-      @include icon('before', true, 'collapse');
+      @include icon('before', true, 'menu');
     }
   }
 
@@ -184,7 +185,7 @@ ul.main-menu {
   font-family: $heading-font-family;
   text-transform: uppercase;
   padding: 0;
-  font-size: 1em;
+  font-size: 1.5em;
 
   @include media($medium) {
     @include rem(max-width, 26);
@@ -194,9 +195,9 @@ ul.main-menu {
     opacity: 1;
     display: block;
     padding: 1em 1em 1em 0;
-    font-size: 1.5em;
+    font-size: 2em;
     float: right;
-    margin: 0.5em 0 0 0;
+    margin: 0;
   }
 
   .menu-item {
