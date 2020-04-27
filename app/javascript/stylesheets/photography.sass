@@ -1,3 +1,6 @@
+// ------
+// layout
+// ------
 .photography-template
   figure
     margin: 0
@@ -8,7 +11,11 @@
   // avoid small white space on right edge of gallery
   width: 100.5%
 
-// fluid 3 columns sizing
+// -------
+// Masonry
+// -------
+//
+// fluid 3 columns sizing used by masonry to determine sizing of items
 // weird percentages to force full 3 column width:
 // https://metafizzy.co/blog/beyonce-seamless-fluid-image-masonry/
 .grid-sizer,
@@ -19,6 +26,10 @@
   figcaption
     display: none
 
+// --------------------
+// imagesLoaded library
+// --------------------
+//
 // reveal grid after images loaded, otherwise we may see images
 // stacked on top of each other for a moment as page loads
 .grid.are-images-unloaded
@@ -28,10 +39,19 @@
   .image.grid_item
     opacity: 0
 
+
+// ------------------
+// photoswipe gallery
+// ------------------
 .pswp__caption__center
   text-align: center
 
 
+// --------------
+// InfiniteScroll
+// --------------
+//
+// loading spinner
 .page-load-status
   display: none // hidden by default
   padding-top: 20px
@@ -39,31 +59,31 @@
   text-align: center
   color: #777
 
-.loader-wheel
-  text-align: center
-  margin: 0 auto
-  font-size: 64px
-  position: relative
-  height: 1em
-  width: 1em
-  padding-left: 0.45em
-  animation: loader-wheel-rotate 0.5s steps(12) infinite
-  overflow: hidden
+  .loader-wheel
+    text-align: center
+    margin: 0 auto
+    font-size: 64px
+    position: relative
+    height: 1em
+    width: 1em
+    padding-left: 0.45em
+    animation: loader-wheel-rotate 0.5s steps(12) infinite
+    overflow: hidden
 
-.loader-wheel i
-  display: block
-  position: absolute
-  height: 0.3em
-  width: 0.1em
-  border-radius: 0.05em
-  background: #333
-  opacity: 0.8
-  transform: rotate(-30deg)
-  transform-origin: center 0.5em
+  .loader-wheel i
+    display: block
+    position: absolute
+    height: 0.3em
+    width: 0.1em
+    border-radius: 0.05em
+    background: #333
+    opacity: 0.8
+    transform: rotate(-30deg)
+    transform-origin: center 0.5em
 
-@keyframes loader-wheel-rotate
-  from
-    transform: rotate(0deg)
-  to
-    transform: rotate(360deg)
+  @keyframes loader-wheel-rotate
+    from
+      transform: rotate(0deg)
+    to
+      transform: rotate(360deg)
 
