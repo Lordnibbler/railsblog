@@ -1,0 +1,55 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=33668819%40N03&per_page=20&page=8&method=flickr.people.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - FlickRaw/0.9.10
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="VAWOcjBAUSPdTikQy6Uq07OZPOUsgnch6xbg7AmETnE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1587944066", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '531'
+      Connection:
+      - keep-alive
+      Date:
+      - Sun, 26 Apr 2020 23:34:26 GMT
+      Server:
+      - Apache/2.4.43 (Ubuntu)
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 467698b4f3792e6d6dff5f0d69c5a503.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - SFO5-C3
+      X-Amz-Cf-Id:
+      - mwRktacVqRg96WWeVIayF6An5935x_dkldjfF3rTJmFSRVaj5P4AWQ==
+    body:
+      encoding: UTF-8
+      string: '{"photos":{"page":8,"pages":7,"perpage":20,"total":123,"photo":[{"id":"49823444111","owner":"33668819@N03","secret":"0979f96034","server":"65535","farm":66,"title":"DJI_0086","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823444851","owner":"33668819@N03","secret":"9866a630a2","server":"65535","farm":66,"title":"A7309412","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823765457","owner":"33668819@N03","secret":"5d40e26e55","server":"65535","farm":66,"title":"A7309544","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
+    http_version: null
+  recorded_at: Sun, 26 Apr 2020 23:34:26 GMT
+recorded_with: VCR 5.1.0

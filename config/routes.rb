@@ -8,6 +8,19 @@ Rails.application.routes.draw do
 
   root 'pages#show', id: 'home', format: false
 
+  namespace :api do
+    namespace :v1 do
+      # GET /api/v1/stream
+      resources :stream, only: [:index] do
+        collection do
+          get :flickr
+        end
+      end
+    end
+  end
+
+  get '/photography', to: 'photography#index'
+
   #
   # @note for legacy redirects from old blog which didn't have /blog prefix in route
   # GET /2015/01/31/post-title

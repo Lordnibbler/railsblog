@@ -7,6 +7,7 @@ gem 'bourbon', '4.2.0'
 gem 'client_side_validations'
 gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
+gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
@@ -19,6 +20,7 @@ gem 'newrelic_rpm'
 gem 'pg'
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
+gem 'redis-rails' # redis client
 gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
 gem 'sass-rails'
@@ -57,7 +59,9 @@ group :test do
   gem 'capybara-selenium', '~> 0.0.6'
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
+  gem 'vcr'
   gem 'webdrivers', '~> 3.7', '>= 3.7.2'
+  gem 'webmock'
 end
 
 group :production do
