@@ -6,7 +6,7 @@
   = javascript_pack_tag 'photography', 'data-turbolinks-track': 'reload'
   = stylesheet_pack_tag 'photography', 'data-turbolinks-track': 'reload'
 
-- # thumbnail gallery markup
+- # thumbnail gallery
 .my-gallery.grid.are-images-unloaded itemscope="" itemtype="http://schema.org/ImageGallery"
   .grid-sizer
   - @photos.each do |photo|
@@ -32,34 +32,33 @@
                         i
                           i
                             i
-  p.infinite-scroll-last No more images!
-  p.infinite-scroll-error No more images!
+  p.infinite-scroll-last No more images, bucko!
+  p.infinite-scroll-error No more images, bucko!
 
-/! Root element of PhotoSwipe. Must have class pswp.
+- # Root element of PhotoSwipe. Must have class pswp.
 .pswp aria-hidden="true" role="dialog" tabindex="-1"
-  /!
-    | Background of PhotoSwipe.
-    | It's a separate element, as animating opacity is faster than rgba().
+  - # Background of PhotoSwipe.
+  - # It's a separate element, as animating opacity is faster than rgba().
   .pswp__bg
-  /! Slides wrapper with overflow:hidden.
+  - # Slides wrapper with overflow:hidden.
   .pswp__scroll-wrap
-    /! Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory.
-    /! don't modify these 3 pswp__item elements, data is added later on.
+    - # Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory.
+    - # don't modify these 3 pswp__item elements, data is added later on.
     .pswp__container
       .pswp__item
       .pswp__item
       .pswp__item
-    /! Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed.
+    - # Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed.
     .pswp__ui.pswp__ui--hidden
       .pswp__top-bar
-        /! Controls are self-explanatory. Order can be changed.
+        - # Controls are self-explanatory. Order can be changed.
         .pswp__counter
         button.pswp__button.pswp__button--close title=("Close (Esc)")
         button.pswp__button.pswp__button--share title="Share"
         button.pswp__button.pswp__button--fs title=("Toggle fullscreen")
         button.pswp__button.pswp__button--zoom title=("Zoom in/out")
-        /! Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR
-        /! element will get class pswp__preloader--active when preloader is running
+        - # Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR
+        - # element will get class pswp__preloader--active when preloader is running
         .pswp__preloader
           .pswp__preloader__icn
             .pswp__preloader__cut
