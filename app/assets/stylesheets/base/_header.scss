@@ -33,11 +33,15 @@
   transform: translatez(0);
 
   @include media($medium) {
-    @include span-columns(5);
+    @include span-columns(4);
     @include position(fixed, 0em 0 0em 0em);
+    font-size: $base-font-size * 0.8;
   }
 
-  @include media($large) { @include span-columns(4); }
+  @include media($large) {
+    @include span-columns(4);
+    font-size: $base-font-size;
+  }
 }
 
 .admin-bar .sidebar-header { top: 32px; }
@@ -106,6 +110,10 @@
     height: 1.2em;
     float: none;
     margin: 1em 0 0 0;
+    font-size: $base-font-size * 0.9;
+  }
+  @include media($large) {
+    font-size: $base-font-size * 1.1;
   }
 
   a {

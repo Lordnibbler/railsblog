@@ -20,8 +20,8 @@
   overflow: hidden;
 
   @include media($medium) {
-    @include span-columns(7);
-    @include shift(5);
+    @include span-columns(8);
+    @include shift(4);
   }
 
   @include media($large) {
@@ -50,6 +50,10 @@ article.post,
   position: relative;
   overflow: hidden;
   font-size: $base-font-size * 0.9;
+
+  @include media($xsmall) {
+    font-size: $base-font-size * 1.05;
+  }
 
   @include media($medium) {
     font-size: $base-font-size * 1.2;
