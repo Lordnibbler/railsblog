@@ -18,11 +18,24 @@
     }
 
     .post-content {
-      margin-top: 2em;
-      margin-left: 6em;
-      margin-right: 2em;
+      margin: 2em 2em 0 2em;
       font-size: 0.85em;
       font-style: italic;
+      @include media($medium) {
+        padding: 0 0.5em 0 2.0em;
+      }
+      @include media($large) {
+        padding: 0 4.5em;
+      }
+      a.button {
+        @include media($medium) {
+          font-size: 1em;
+        }
+        @include media($large) {
+          padding: 1.5em 2em;
+          font-size: 1.5em;
+        }
+      }
     }
 
     p {
@@ -34,7 +47,6 @@
     .read-more {
       display:none;
     }
-
   }
 
   .tag-format-tweet {
@@ -71,6 +83,19 @@
 
     .quote-title {
       display: inline;
+    }
+  }
+  .tag-format-tweet, .tag-format-link, .tag-format-quote, .tag-format-tag {
+    &:before{
+      @include media($small) {
+        font-size: $base-font-size * 0.8;
+      }
+      @include media($medium) {
+        font-size: $base-font-size * 1.2;
+      }
+      @include media($large) {
+        font-size: $base-font-size * 2.0;
+      }
     }
   }
 
