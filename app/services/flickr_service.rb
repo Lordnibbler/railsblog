@@ -67,9 +67,9 @@ class FlickrService
           get_photo_response = get_photo(photo.id)
 
           sizes = client.photos.getSizes(photo_id: photo.id)
-          large_size = sizes.find { |s| s.label == 'Large 1600' }
-          medium_size = sizes.find { |s| s.label == 'Medium 800' }
-          small_size = sizes.find { |s| s.label == 'Small 400' }
+          large_size     = sizes.find { |s| s.label == 'Large 1600' }
+          medium_size    = sizes.find { |s| s.label == 'Medium 800' }
+          small_size     = sizes.find { |s| s.label == 'Small 400' }
           thumbnail_size = sizes.find { |s| s.label == 'Thumbnail' }
 
           array << {
