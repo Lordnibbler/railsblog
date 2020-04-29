@@ -5,13 +5,11 @@ class FlickrService
     FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
-    #
     # fetches `pages` worth of photos from flickr and caches them
     # in a shuffled order since flickr does not allow sorting
     # in their API
     #
     # @param pages [Fixnum] the number of pages to fetch from flickr
-    #
     def warm_cache_shuffled(pages:)
       pages_shuffled = (1..pages).to_a.shuffle
       pages_shuffled.each_with_index do |page, index|
@@ -20,7 +18,7 @@ class FlickrService
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
           page: page,
         )
-        self.get_photos({ page: index + 1 }, cache_key)
+        self.get_photos({ page: index + 1 }, cache_key, true)
       end
     end
 
@@ -30,7 +28,7 @@ class FlickrService
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
     # @param cache_key [String] a specific cache key to write the response from Flickr to
-    def get_photos(args = {}, cache_key = nil)
+    def get_photos(args = {}, cache_key = nil, shuffle = false)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?
         cache_key = self.generate_cache_key(
@@ -41,15 +39,15 @@ class FlickrService
       end
 
       Rails.cache.fetch cache_key, expires_in: 1.day do
-        resp = client.people.getPhotos(args)
+        response = client.people.getPhotos(args)
 
         # flickraw is dumb and returns the final page of
         # results for any page after the final page. to
         # circumvent this we return nil if we've exceeded
-        # the final page of results (resp.pages)
-        return nil if resp.page > resp.pages
+        # the final page of results (response.pages)
+        return nil if response.page > response.pages
 
-        normalize(resp)
+        normalize(response: response, shuffle: shuffle)
       end
     end
 
@@ -62,8 +60,10 @@ class FlickrService
 
     private
 
+    # @param response [FlickRaw::Response]
+    # @param shuffle [Boolean] should images be shuffled in the array before being returned
     # @return [Array<Hash>] normalize Flickr API response data into a useful array of hashes
-    def normalize(response)
+    def normalize(response:, shuffle:)
       [].tap do |array|
         response.each do |photo|
           get_photo_response = get_photo(photo.id)
@@ -103,7 +103,7 @@ class FlickrService
             title: get_photo_response.title,
           }
         end
-      end.shuffle
+      end.tap { |array| shuffle ? array.shuffle! : array }
     end
 
     def client
