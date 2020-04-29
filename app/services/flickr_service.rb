@@ -13,12 +13,16 @@ class FlickrService
     def get_photos(args = {})
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       key  = "flickr_photos_#{args[:user_id]}_#{args[:per_page]}_#{args[:page]}"
-      resp = client.people.getPhotos(args)
-
-      # flickraw is dumb and returns the final page of results for any page after the final page
-      return nil if resp.page > resp.pages
 
       Rails.cache.fetch key, expires_in: 1.day do
+        resp = client.people.getPhotos(args)
+
+        # flickraw is dumb and returns the final page of
+        # results for any page after the final page. to
+        # circumvent this we return nil if we've exceeded
+        # the final page of results (resp.pages)
+        return nil if resp.page > resp.pages
+
         munge(resp)
       end
     end
