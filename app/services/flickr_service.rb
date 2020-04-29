@@ -5,25 +5,49 @@ class FlickrService
     FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
+    #
+    # fetches `pages` worth of photos from flickr and caches them
+    # in a shuffled order since flickr does not allow sorting
+    # in their API
+    #
+    def warm_cache_shuffled(pages:)
+      pages_shuffled = (1..pages).to_a.shuffle
+      pages_shuffled.each_with_index do |page, index|
+        cache_key = self.generate_cache_key(
+          user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
+          per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
+          page: page,
+        )
+        ap "get_photos() for page: #{index + 1} with cache key: #{cache_key}"
+        self.get_photos({ page: index + 1 }, cache_key)
+      end
+    end
+
     # @return [Array<Hash>]
     # @param args [Hash]
     # @option args [Fixnum] :per_page
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
-    def get_photos(args = {})
+    def get_photos(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
-      key  = "flickr_photos_#{args[:user_id]}_#{args[:per_page]}_#{args[:page]}"
+      if cache_key.nil?
+        cache_key = self.generate_cache_key(
+          user_id: args[:user_id],
+          per_page: args[:per_page],
+          page: args[:page],
+        )
+      end
 
-      Rails.cache.fetch key, expires_in: 1.day do
+      ap "Rails.cache.fetch page #{args[:page]} to cache with key #{cache_key}"
+      Rails.cache.fetch cache_key, expires_in: 1.day do
+        ap "getPhotos with args: #{args}"
         resp = client.people.getPhotos(args)
-
-        # flickraw is dumb and returns the final page of
-        # results for any page after the final page. to
-        # circumvent this we return nil if we've exceeded
-        # the final page of results (resp.pages)
-        return nil if resp.page > resp.pages
-
-        munge(resp)
+        # flickraw is dumb and returns the final page of results for any page after the final page
+        if resp.page > resp.pages
+          nil
+        else
+          normalize(resp)
+        end
       end
     end
 
@@ -36,8 +60,8 @@ class FlickrService
 
     private
 
-    # @return [Array<Hash>] munged Flickr API response data into a useful array of hashes
-    def munge(response)
+    # @return [Array<Hash>] normalize Flickr API response data into a useful array of hashes
+    def normalize(response)
       [].tap do |array|
         response.each do |photo|
           get_photo_response = get_photo(photo.id)
@@ -82,6 +106,10 @@ class FlickrService
 
     def client
       @client ||= FlickRaw::Flickr.new
+    end
+
+    def generate_cache_key(user_id:, per_page:, page:)
+      "flickr_photos_#{user_id}_#{per_page}_#{page}"
     end
   end
 end
