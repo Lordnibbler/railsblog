@@ -18,7 +18,7 @@ class FlickrService
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
           page: page,
         )
-        ap "get_photos() for page: #{index + 1} with cache key: #{cache_key}"
+        # ap "get_photos() for page: #{index + 1} with cache key: #{cache_key}"
         self.get_photos({ page: index + 1 }, cache_key)
       end
     end
@@ -38,9 +38,9 @@ class FlickrService
         )
       end
 
-      ap "Rails.cache.fetch page #{args[:page]} to cache with key #{cache_key}"
+      # ap "Rails.cache.fetch page #{args[:page]} to cache with key #{cache_key}"
       Rails.cache.fetch cache_key, expires_in: 1.day do
-        ap "getPhotos with args: #{args}"
+        # ap "getPhotos with args: #{args}"
         resp = client.people.getPhotos(args)
         # flickraw is dumb and returns the final page of results for any page after the final page
         if resp.page > resp.pages
