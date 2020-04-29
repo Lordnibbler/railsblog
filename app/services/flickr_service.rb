@@ -29,7 +29,7 @@ class FlickrService
     # @option args [Fixnum] :per_page
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
-    # @param cache_key [String]
+    # @param cache_key [String] a specific cache key to write the response from Flickr to
     def get_photos(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?
@@ -42,12 +42,14 @@ class FlickrService
 
       Rails.cache.fetch cache_key, expires_in: 1.day do
         resp = client.people.getPhotos(args)
-        if resp.page > resp.pages
-          # flickraw is dumb and returns the final page of results for any page after the final page
-          nil
-        else
-          normalize(resp)
-        end
+
+        # flickraw is dumb and returns the final page of
+        # results for any page after the final page. to
+        # circumvent this we return nil if we've exceeded
+        # the final page of results (resp.pages)
+        return nil if resp.page > resp.pages
+
+        normalize(resp)
       end
     end
 
