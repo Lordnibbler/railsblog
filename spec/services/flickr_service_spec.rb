@@ -42,4 +42,16 @@ describe FlickrService do
       expect(described_class.get_photos(page: 8)).to be_nil
     end
   end
+
+  describe 'warm_cache_shuffled' do
+    it 'fetches photos and caches them in a shuffled order' do
+      allow(FlickrService).to receive(:get_photos)
+      allow(FlickrService).to receive(:generate_cache_key).and_call_original
+
+      FlickrService.warm_cache_shuffled(pages: 10)
+
+      expect(FlickrService).to have_received(:get_photos).exactly(10).times
+      expect(FlickrService).to have_received(:generate_cache_key).exactly(10).times
+    end
+  end
 end

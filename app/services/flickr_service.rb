@@ -10,6 +10,8 @@ class FlickrService
     # in a shuffled order since flickr does not allow sorting
     # in their API
     #
+    # @param pages [Fixnum] the number of pages to fetch from flickr
+    #
     def warm_cache_shuffled(pages:)
       pages_shuffled = (1..pages).to_a.shuffle
       pages_shuffled.each_with_index do |page, index|
@@ -22,11 +24,12 @@ class FlickrService
       end
     end
 
-    # @return [Array<Hash>]
+    # @return [Array<Hash>, nil]
     # @param args [Hash]
     # @option args [Fixnum] :per_page
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
+    # @param cache_key [String]
     def get_photos(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?
