@@ -1,19 +1,20 @@
 namespace :cache_warmer do
-  # usage: bx rails 'cache_warmer:flickr[benradler-staging.herokuapp.com,8]'
-  desc "Warms cache for flickr API"
-  task :flickr, [:url, :num_pages] => :environment do |task, args|
+  # usage: bx rails 'cache_warmer:flickr[7]'
+  desc 'Warms cache for flickr API'
+  task :flickr, [:num_pages] => :environment do |_task, args|
+    puts 'warming cache'
+
+    # clear out the existing Rails.cache
     Rails.cache.clear
-    threads = []
+
+    # determine how many pages of Flickr photos (in groups of 20) we should fetch
     num_pages = args[:num_pages].to_i
-    (1..num_pages).each do |i|
-      threads << Thread.new do
-        url = "http://#{args[:url]}/api/v1/stream/flickr.json?page=#{i}"
-        puts "warming cache for #{url}"
-        `curl #{url}`
-        puts "completed warming cache for #{url}"
-      end
-    end
-    threads.each(&:join)
+
+    # warm the cache for num_pages worth of Flickr photos, saving
+    # each page to a random index between 1..num_pages
+    FlickrService.warm_cache_shuffled(pages: num_pages)
+
+    puts 'completed warming cache'
   end
 end
 

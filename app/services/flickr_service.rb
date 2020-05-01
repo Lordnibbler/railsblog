@@ -5,25 +5,49 @@ class FlickrService
     FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
-    # @return [Array<Hash>]
+    # fetches `pages` worth of photos from flickr and caches them
+    # in a shuffled order since flickr does not allow sorting
+    # in their API
+    #
+    # @param pages [Fixnum] the number of pages to fetch from flickr
+    def warm_cache_shuffled(pages:)
+      pages_shuffled = (1..pages).to_a.shuffle
+      pages_shuffled.each_with_index do |page, index|
+        cache_key = self.generate_cache_key(
+          user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
+          per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
+          page: page,
+        )
+        self.get_photos({ page: index + 1 }, cache_key, true)
+      end
+    end
+
+    # @return [Array<Hash>, nil]
     # @param args [Hash]
     # @option args [Fixnum] :per_page
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
-    def get_photos(args = {})
+    # @param cache_key [String] a specific cache key to write the response from Flickr to
+    def get_photos(args = {}, cache_key = nil, shuffle = false)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
-      key  = "flickr_photos_#{args[:user_id]}_#{args[:per_page]}_#{args[:page]}"
+      if cache_key.nil?
+        cache_key = self.generate_cache_key(
+          user_id: args[:user_id],
+          per_page: args[:per_page],
+          page: args[:page],
+        )
+      end
 
-      Rails.cache.fetch key, expires_in: 1.day do
-        resp = client.people.getPhotos(args)
+      Rails.cache.fetch cache_key, expires_in: 1.day do
+        response = client.people.getPhotos(args)
 
         # flickraw is dumb and returns the final page of
         # results for any page after the final page. to
         # circumvent this we return nil if we've exceeded
-        # the final page of results (resp.pages)
-        return nil if resp.page > resp.pages
+        # the final page of results (response.pages)
+        return nil if response.page > response.pages
 
-        munge(resp)
+        normalize(response: response, shuffle: shuffle)
       end
     end
 
@@ -36,16 +60,18 @@ class FlickrService
 
     private
 
-    # @return [Array<Hash>] munged Flickr API response data into a useful array of hashes
-    def munge(response)
+    # @param response [FlickRaw::Response]
+    # @param shuffle [Boolean] should images be shuffled in the array before being returned
+    # @return [Array<Hash>] normalize Flickr API response data into a useful array of hashes
+    def normalize(response:, shuffle:)
       [].tap do |array|
         response.each do |photo|
           get_photo_response = get_photo(photo.id)
 
           sizes = client.photos.getSizes(photo_id: photo.id)
-          large_size = sizes.find { |s| s.label == 'Large 1600' }
-          medium_size = sizes.find { |s| s.label == 'Medium 800' }
-          small_size = sizes.find { |s| s.label == 'Small 400' }
+          large_size     = sizes.find { |s| s.label == 'Large 1600' }
+          medium_size    = sizes.find { |s| s.label == 'Medium 800' }
+          small_size     = sizes.find { |s| s.label == 'Small 400' }
           thumbnail_size = sizes.find { |s| s.label == 'Thumbnail' }
 
           array << {
@@ -77,11 +103,15 @@ class FlickrService
             title: get_photo_response.title,
           }
         end
-      end
+      end.tap { |array| shuffle ? array.shuffle! : array }
     end
 
     def client
       @client ||= FlickRaw::Flickr.new
+    end
+
+    def generate_cache_key(user_id:, per_page:, page:)
+      "flickr_photos_#{user_id}_#{per_page}_#{page}"
     end
   end
 end
