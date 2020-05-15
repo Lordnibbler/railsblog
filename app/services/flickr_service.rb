@@ -5,14 +5,22 @@ class FlickrService
     FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
+    def total_pages
+      response = client.people.getPhotos(GET_PHOTOS_DEFAULT_OPTIONS.dup)
+      response.pages
+    end
+
     # fetches `pages` worth of photos from flickr and caches them
     # in a shuffled order since flickr does not allow sorting
     # in their API
     #
     # @param pages [Fixnum] the number of pages to fetch from flickr
-    def warm_cache_shuffled(pages:)
+    def warm_cache_shuffled(pages: nil)
+      pages ||= total_pages
+      puts "total pages #{pages}"
       pages_shuffled = (1..pages).to_a.shuffle
       pages_shuffled.each_with_index do |page, index|
+        puts "warming cache page #{page} index #{index}"
         cache_key = self.generate_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
