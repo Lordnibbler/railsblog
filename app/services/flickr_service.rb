@@ -5,11 +5,6 @@ class FlickrService
     FLICKR_USER_ID         = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
-    def total_pages
-      response = client.people.getPhotos(GET_PHOTOS_DEFAULT_OPTIONS.dup)
-      response.pages
-    end
-
     # fetches `pages` worth of photos from flickr and caches them
     # in a shuffled order since flickr does not allow sorting
     # in their API
@@ -67,6 +62,12 @@ class FlickrService
     end
 
     private
+
+    # @return [Fixnum] total number of pages on user's photostream
+    def total_pages
+      response = client.people.getPhotos(GET_PHOTOS_DEFAULT_OPTIONS.dup)
+      response.pages
+    end
 
     # @param response [FlickRaw::Response]
     # @param shuffle [Boolean] should images be shuffled in the array before being returned
