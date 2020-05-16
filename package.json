@@ -1,4 +1,5 @@
 {
+  "license": "UNLICENSED",
   "dependencies": {
     "@activeadmin/activeadmin": "^2.7.0",
     "@client-side-validations/client-side-validations": "^0.1.2",
