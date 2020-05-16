@@ -1,5 +1,5 @@
 namespace :cache_warmer do
-  # usage: bx rails 'cache_warmer:flickr[7]'
+  # usage: bx rails 'cache_warmer:flickr'
   desc 'Warms cache for flickr API'
   task :flickr => :environment do |_task, _args|
     Rails.logger.info('warming cache')
