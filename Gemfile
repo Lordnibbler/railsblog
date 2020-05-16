@@ -25,6 +25,7 @@ gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
 gem 'sass-rails'
 gem 'sendgrid-ruby' # Sending emails
+gem 'sidekiq'
 gem 'sitemap_generator'
 gem 'slim'
 gem 'turbolinks'

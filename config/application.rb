@@ -22,6 +22,7 @@ module Brog
 
     # configure autoload paths
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.autoload_paths += Dir["#{config.root}/app/workers/**/"]
 
     # add paths to asset pipeline
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
