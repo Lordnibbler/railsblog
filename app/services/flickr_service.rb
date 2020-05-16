@@ -10,9 +10,12 @@ class FlickrService
     # in their API
     #
     # @param pages [Fixnum] the number of pages to fetch from flickr
-    def warm_cache_shuffled(pages:)
+    def warm_cache_shuffled(pages: nil)
+      pages ||= total_pages
+      Rails.logger.info("total pages #{pages}")
       pages_shuffled = (1..pages).to_a.shuffle
       pages_shuffled.each_with_index do |page, index|
+        Rails.logger.info("warming cache page #{page} index #{index}")
         cache_key = self.generate_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
@@ -59,6 +62,12 @@ class FlickrService
     end
 
     private
+
+    # @return [Fixnum] total number of pages on user's photostream
+    def total_pages
+      response = client.people.getPhotos(GET_PHOTOS_DEFAULT_OPTIONS.dup)
+      response.pages
+    end
 
     # @param response [FlickRaw::Response]
     # @param shuffle [Boolean] should images be shuffled in the array before being returned

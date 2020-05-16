@@ -54,4 +54,15 @@ describe FlickrService do
       expect(FlickrService).to have_received(:generate_cache_key).exactly(10).times
     end
   end
+
+  describe 'total_pages' do
+    it 'returns the total number of pages on users photostream' do
+      response = double(FlickRaw::ResponseList, pages: 3)
+      allow(FlickrService.send(:client).people).to receive(:getPhotos).and_return(response)
+
+      total_pages = FlickrService.send(:total_pages)
+
+      expect(total_pages).to eq(3)
+    end
+  end
 end
