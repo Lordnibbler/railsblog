@@ -1,5 +1,8 @@
 # benradler.com rails blog
-This is a rails 5.0 blogging application that renders Markdown-formatted blog posts as HTML.
+This is a rails 6.0 app. It does the following:
+* renders Markdown-formatted blog posts as HTML
+* fetches a Flickr.com feed of my photos and renders them using photoswipe.js
+* offers a contact form
 
 ## Getting Started
 
