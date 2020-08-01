@@ -114,12 +114,17 @@ article.post,
   &.logo {
     display: flex;
     height: 50px;
-    width: 30%;
     vertical-align: middle;
     margin: 10px;
     object-fit: contain;
     &.large {
       height: 100px;
+    }
+    &.span-3 {
+      width: 30%;
+    }
+    &.span-4 {
+      width: 20%;
     }
   }
 }
