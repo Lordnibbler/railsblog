@@ -3,8 +3,8 @@ ruby '2.7.1'
 gem 'rails', '~> 6'
 
 gem 'activeadmin' # admin UI scaffolding
-gem 'bourbon', '4.2.0'
-gem 'client_side_validations'
+gem 'bourbon', '4.2.0' # lightweight SASS toolset
+gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
@@ -12,24 +12,24 @@ gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
-gem 'jbuilder'
+gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
-gem 'pg'
+gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
 gem 'redis-rails' # redis client
 gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
-gem 'sass-rails'
+gem 'sass-rails' # SASS integration
 gem 'sendgrid-ruby' # Sending emails
-gem 'sitemap_generator'
-gem 'slim'
-gem 'turbolinks'
+gem 'sitemap_generator' # generate sitemaps for submitting to search engines
+gem 'slim' # view templating
+gem 'turbolinks' # faster page loads
 gem 'uglifier'
-gem 'webpacker'
+gem 'webpacker' # webpack integration with rails
 
 group :development do
   gem 'better_errors' # improved error pages
