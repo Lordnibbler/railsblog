@@ -3,7 +3,7 @@
   "dependencies": {
     "@activeadmin/activeadmin": "^2.7.0",
     "@client-side-validations/client-side-validations": "^0.1.2",
-    "@rails/webpacker": "5.0.1",
+    "@rails/webpacker": "5.2.0",
     "fitvids": "1.0.2",
     "imagesloaded": "^4.1.4",
     "infinite-scroll": "^3.0.6",
