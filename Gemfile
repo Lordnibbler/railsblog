@@ -30,6 +30,7 @@ gem 'slim' # view templating
 gem 'turbolinks' # faster page loads
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
+gem "webrick" # web server for capybara and local dev
 
 group :development do
   gem 'better_errors' # improved error pages
