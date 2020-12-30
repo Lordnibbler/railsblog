@@ -151,8 +151,8 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
+    formtastic (4.0.0.rc1)
+      actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
     friendly_id (5.4.1)
       activerecord (>= 4.0.0)
@@ -468,6 +468,7 @@ DEPENDENCIES
   dotenv-rails
   flickraw
   fog-aws
+  formtastic (= 4.0.0rc1)
   friendly_id
   guard
   guard-rspec
