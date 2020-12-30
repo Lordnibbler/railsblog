@@ -21,7 +21,7 @@ gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
-gem 'redis-rails' # redis client
+gem 'redis'
 gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
 gem 'sass-rails' # SASS integration
