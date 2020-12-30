@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.2'
+ruby '3.0.0'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
@@ -9,6 +9,7 @@ gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
+gem 'formtastic', '4.0.0rc1' # TODO: remove after 4.0 is adopted by activeadmin for ruby 3 i18n bug
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
@@ -20,7 +21,7 @@ gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
-gem 'redis-rails' # redis client
+gem 'redis'
 gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
 gem 'rouge' # syntax highlighting
 gem 'sass-rails' # SASS integration
@@ -30,6 +31,7 @@ gem 'slim' # view templating
 gem 'turbolinks' # faster page loads
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
+gem 'webrick' # web server for capybara and local dev
 
 group :development do
   gem 'better_errors' # improved error pages

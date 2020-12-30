@@ -46,7 +46,7 @@ describe FlickrService do
   describe 'warm_cache_shuffled' do
     it 'fetches photos and caches them in a shuffled order' do
       allow(FlickrService).to receive(:get_photos)
-      allow(FlickrService).to receive(:generate_cache_key).and_call_original
+      allow(FlickrService).to receive(:generate_cache_key).and_return("flickr_photos_user_10_1")
 
       FlickrService.warm_cache_shuffled(pages: 10)
 

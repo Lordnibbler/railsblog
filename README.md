@@ -1,5 +1,6 @@
 # benradler.com rails blog
-This is a rails 6.0 app. It does the following:
+This is a rails 6.1 app. It does the following:
+* offers a static homepage
 * renders Markdown-formatted blog posts as HTML
 * fetches a Flickr.com feed of my photos and renders them using photoswipe.js
 * offers a contact form

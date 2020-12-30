@@ -12,10 +12,10 @@ class FlickrService
     # @param pages [Fixnum] the number of pages to fetch from flickr
     def warm_cache_shuffled(pages: nil)
       pages ||= total_pages
-      Rails.logger.info("total pages #{pages}")
+      Rails.logger.info("--->  Cache Warmer: total pages #{pages}")
       pages_shuffled = (1..pages).to_a.shuffle
       pages_shuffled.each_with_index do |page, index|
-        Rails.logger.info("warming cache page #{page} index #{index}")
+        Rails.logger.info("--->  Cache Warmer: fetching page #{page} and writing to index #{index}")
         cache_key = self.generate_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],

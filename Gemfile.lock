@@ -151,8 +151,8 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
+    formtastic (4.0.0.rc1)
+      actionpack (>= 5.2.0)
     formtastic_i18n (0.6.0)
     friendly_id (5.4.1)
       activerecord (>= 4.0.0)
@@ -314,22 +314,6 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     redis (4.2.5)
-    redis-actionpack (5.2.0)
-      actionpack (>= 5, < 7)
-      redis-rack (>= 2.1.0, < 3)
-      redis-store (>= 1.1.0, < 2)
-    redis-activesupport (5.2.0)
-      activesupport (>= 3, < 7)
-      redis-store (>= 1.3, < 2)
-    redis-rack (2.1.3)
-      rack (>= 2.0.8, < 3)
-      redis-store (>= 1.2, < 2)
-    redis-rails (5.0.2)
-      redis-actionpack (>= 5.0, < 6)
-      redis-activesupport (>= 5.0, < 6)
-      redis-store (>= 1.2, < 2)
-    redis-store (1.9.0)
-      redis (>= 4, < 5)
     regexp_parser (1.8.2)
     regexp_property_values (1.0.0)
     responders (3.0.1)
@@ -441,6 +425,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
+    webrick (1.7.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -467,6 +452,7 @@ DEPENDENCIES
   dotenv-rails
   flickraw
   fog-aws
+  formtastic (= 4.0.0rc1)
   friendly_id
   guard
   guard-rspec
@@ -488,7 +474,7 @@ DEPENDENCIES
   rails (~> 6.1)
   rails-controller-testing
   redcarpet
-  redis-rails
+  redis
   regexp_parser (>= 0.5.0)
   rouge
   rspec-rails
@@ -506,9 +492,10 @@ DEPENDENCIES
   webdrivers (~> 3.7, >= 3.7.2)
   webmock
   webpacker
+  webrick
 
 RUBY VERSION
-   ruby 2.7.2p137
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

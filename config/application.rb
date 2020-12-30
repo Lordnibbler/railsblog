@@ -30,6 +30,6 @@ module Brog
     config.exceptions_app = self.routes
 
     # set redis as the default cache storage
-    config.cache_store = :redis_store, ENV['REDISCLOUD_URL'], { expires_in: 10.minutes }
+    config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
   end
 end
