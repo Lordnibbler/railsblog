@@ -11,6 +11,7 @@ html lang='en'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = yield :head
     = csrf_meta_tags
+    = render 'shared/analytics_google' if Rails.env.production?
   body class="#{@body_class}"
     .site
       = render 'shared/header'
