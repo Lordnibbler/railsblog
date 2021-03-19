@@ -1,5 +1,12 @@
 - # Global site tag (gtag.js) - Google Analytics
-= render 'shared/analytics_google' if Rails.env.production?
+script async="" src="https://www.googletagmanager.com/gtag/js?id=G-X5JZQX6X89"
+javascript:
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-X5JZQX6X89');
 
 - # heap.js
 javascript:
