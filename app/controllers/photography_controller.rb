@@ -1,3 +1,5 @@
+# renders photography page, fetching flickr photos from cache or
+# directly from flickr if no cache available
 class PhotographyController < ApplicationController
   before_action :set_body_class
 

@@ -1,3 +1,4 @@
+# interface for fetching and caching photos from flickr API
 class FlickrService
   class << self
     FlickRaw.api_key       = ENV['FLICKR_API_KEY']

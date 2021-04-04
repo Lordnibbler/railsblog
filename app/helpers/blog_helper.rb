@@ -22,10 +22,10 @@ module BlogHelper
   def blog_posts_permalink_path(post)
     date = post.created_at
     blog_permalink_path(
-      year:  date.strftime('%Y'),
+      year: date.strftime('%Y'),
       month: date.strftime('%m'),
-      day:   date.strftime('%d'),
-      id:    post.slug
+      day: date.strftime('%d'),
+      id: post.slug,
     )
   end
 end

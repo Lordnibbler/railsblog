@@ -1,3 +1,4 @@
+# renders static pages
 class PagesController < ApplicationController
   include HighVoltage::StaticPage
 

@@ -2,14 +2,14 @@
 # @see http://easyactiverecord.com/blog/2014/08/19/redirecting-to-custom-404-and-500-pages-in-rails/
 class ErrorsController < ApplicationController
   def file_not_found
-    render status: 404
+    render status: :not_found
   end
 
   def unprocessable_entity
-    render status: 422
+    render status: :unprocessable_entity
   end
 
   def internal_server_error
-    render status: 500
+    render status: :internal_server_error
   end
 end
