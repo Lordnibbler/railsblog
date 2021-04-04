@@ -3,21 +3,26 @@ AllCops:
     - '**/Gemfile'
     - '**/Rakefile'
     - '**/config.ru'
+    - '**/*.rb'
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
+    - 'node_modules/**/*'
     - 'script/**/*'
     - 'vendor/**/*'
     - 'spec/spec_helper.rb'
+    - 'spec/features_helper.rb'
     - 'spec/rails_helper.rb'
-    - 'client/**/*'
     - Guardfile
 
 require: rubocop-rails
 
 Layout/LineLength:
-  Max: 100
+  Max: 120
+
+Layout/ParameterAlignment:
+  Enabled: false
 
 Metrics/MethodLength:
   Enabled: false
@@ -28,8 +33,23 @@ Metrics/BlockLength:
 Style/NumericLiterals:
   Enabled: false
 
-Layout/ParameterAlignment:
+Style/OptionalBooleanParameter:
   Enabled: false
+
+Style/MultilineBlockChain:
+  Enabled: false
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: 'consistent_comma'
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: 'consistent_comma'
+
+Style/TrailingCommaInBlockArgs:
+  EnforcedStyleForMultiline: 'consistent_comma'
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: 'consistent_comma'
 
 Style/RedundantSelf:
   Enabled: false

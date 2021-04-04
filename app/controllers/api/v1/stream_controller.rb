@@ -30,9 +30,9 @@ class Api::V1::StreamController < ApiController
     page = params[:page] ? params[:page].to_i + 1 : 2
 
     render json: {
-        source: 'flickr',
-        page: page, # provide to this API endpoint again for next page
-        posts: FlickrService.get_photos(page: params[:page])
+      source: 'flickr',
+      page: page, # provide to this API endpoint again for next page
+      posts: FlickrService.get_photos(page: params[:page]),
     }
   end
 end

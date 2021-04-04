@@ -41,7 +41,7 @@ class MarkdownService
       autolink: true,
       tables: true,
       fenced_code_blocks: true,
-      line_numbers: true
+      line_numbers: true,
     )
   end
 

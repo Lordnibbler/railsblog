@@ -7,7 +7,7 @@ describe 'Custom Errors' do
       expect(Rails.application).to receive(:env_config).with(no_args) do
         method.call.merge(
           'action_dispatch.show_exceptions' => true,
-          'action_dispatch.show_detailed_exceptions' => false
+          'action_dispatch.show_detailed_exceptions' => false,
         )
       end.at_least(:once)
     end

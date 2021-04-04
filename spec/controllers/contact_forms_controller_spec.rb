@@ -13,8 +13,8 @@ describe ContactFormsController do
             name: 'Ben',
             email: 'ben@benradler.com',
             message: 'Test message!',
-            nickname: ''
-          }
+            nickname: '',
+          },
         }
       end
 
@@ -32,8 +32,8 @@ describe ContactFormsController do
         {
           contact_form: {
             email: 'ben',
-            nickname: 'foobar'
-          }
+            nickname: 'foobar',
+          },
         }
       end
 

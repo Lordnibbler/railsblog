@@ -2,7 +2,7 @@
 class ApiController < ActionController::Metal
   # Removes features for API-only controllers like cookies, flash, csrf by excluding these modules
   # from {ActionController::Base::MODULES}
-  EXCLUDE_MODULES = [:Cookies, :Flash, :RequestForgeryProtection].freeze
+  EXCLUDE_MODULES = %i[Cookies Flash RequestForgeryProtection].freeze
 
   ActionController::Base.without_modules(*EXCLUDE_MODULES).each do |left|
     include left

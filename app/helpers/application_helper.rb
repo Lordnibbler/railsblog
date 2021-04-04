@@ -13,8 +13,8 @@ module ApplicationHelper
   # @return [String] a <=160 character meta description for a markdown-formatted string
   # @param [String] a markdown formatted string
   #
-  def meta_description_markdown(md)
-    html = MarkdownService.call(md)
+  def meta_description_markdown(markdown)
+    html = MarkdownService.call(markdown)
     meta_description(html)
   end
 
