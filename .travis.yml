@@ -22,7 +22,7 @@ install:
   - bundle install
 
   # webpack
-  - nvm install node
+  - nvm install 14
   - node -v
   - npm i -g yarn
   - yarn
