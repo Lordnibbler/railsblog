@@ -22,7 +22,7 @@ gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # For the Markdown parsing
 gem 'redis'
-gem 'regexp_parser', '>= 0.5.0' # force version for ruby 2.6.5+
+gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
 gem 'sass-rails' # SASS integration
 gem 'sendgrid-ruby' # Sending emails
