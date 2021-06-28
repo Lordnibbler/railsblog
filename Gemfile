@@ -3,6 +3,7 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
+gem 'bcrypt', git: 'https://github.com/bcrypt-ruby/bcrypt-ruby' # NOTE: temporary lock for big sur/m1
 gem 'bourbon', '4.2.0' # lightweight SASS toolset
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
@@ -18,9 +19,9 @@ gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
-gem 'pg' # ye olde database
+gem 'pg', git: 'https://github.com/ged/ruby-pg'  # NOTE: temporary lock for big sur/m1 # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
-gem 'redcarpet' # For the Markdown parsing
+gem 'redcarpet', git: 'https://github.com/vmg/redcarpet' # NOTE: temporary lock for big sur/m1 # For the Markdown parsing
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
@@ -47,6 +48,7 @@ group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'dotenv-rails'
+  gem 'byebug', git: 'https://github.com/deivid-rodriguez/byebug' # NOTE: temporary lock for big sur/m1
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false
