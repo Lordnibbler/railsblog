@@ -19,9 +19,9 @@ gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
-gem 'pg', git: 'https://github.com/ged/ruby-pg'  # NOTE: temporary lock for big sur/m1 # ye olde database
+gem 'pg', git: 'https://github.com/ged/ruby-pg' # NOTE: temporary lock for big sur/m1 # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
-gem 'redcarpet', git: 'https://github.com/vmg/redcarpet' # NOTE: temporary lock for big sur/m1 # For the Markdown parsing
+gem 'redcarpet', git: 'https://github.com/vmg/redcarpet' # NOTE: temporary lock for big sur/m1 # Markdown parsing
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
@@ -47,8 +47,8 @@ end
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
-  gem 'dotenv-rails'
   gem 'byebug', git: 'https://github.com/deivid-rodriguez/byebug' # NOTE: temporary lock for big sur/m1
+  gem 'dotenv-rails'
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false
