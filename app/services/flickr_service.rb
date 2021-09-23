@@ -42,7 +42,9 @@ class FlickrService
         )
       end
 
-      Rails.cache.fetch cache_key, expires_in: 1.day do
+      # cache warmer runs daily in heroku scheduler, but we keep the cache
+      # around for 3 days in case it does not run for some reason.
+      Rails.cache.fetch cache_key, expires_in: 3.days do
         response = client.people.getPhotos(args)
 
         # flickraw is dumb and returns the final page of
