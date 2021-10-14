@@ -1,5 +1,4 @@
 language: ruby
-dist: focal # temporary fix for https://github.com/rvm/rvm/issues/5133
 bundler_args: --without development production
 sudo: false
 rvm:
