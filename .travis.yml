@@ -7,14 +7,15 @@ services:
   - postgresql
 
 addons:
-  # Use a different PostgreSQL version than the default:
+  # Use a different PostgreSQL version than the default, borrowed from both:
+  # https://alphahydrae.com/2021/02/how-to-run-postgresql-13-on-travis-ci/
+  # https://gist.github.com/mustafa-travisci/529d77d29c07e2b37f0f19042ea1ef38
   postgresql: 13
   apt:
     update: true
     packages:
       - postgresql-13
       - postgresql-client-13
-      # - postgresql-13-postgis-3
       - postgresql-contrib
   chrome: stable
 
@@ -31,6 +32,8 @@ before_install:
   # Restart the PostgreSQL service:
   - sudo service postgresql restart
   - sleep 1
+
+  # print the verion for debugging
   - postgres --version
 
 install:
