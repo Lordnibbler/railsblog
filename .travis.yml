@@ -12,8 +12,13 @@ addons:
   postgresql: '13.4'
   chrome: stable
 
+env:
+  global:
+  - PGPORT=5433
+  - PGUSER=postgres
+
 install:
-  # rvm
+  # rvm must be manually installed on dist: focal
   - curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
   - rvm reload && rvm install 3.0.1
 
@@ -36,10 +41,10 @@ install:
   - yarn
 
 before_script:
-    # - psql -c 'create database travis_ci_test;' -U postgres
-    - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
-    - mv config/database.yml.test config/database.yml
-    - RAILS_ENV=test bundle exec rake db:setup --trace
+  # - psql -c 'create database travis_ci_test;' -U postgres
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
+  - mv config/database.yml.test config/database.yml
+  - RAILS_ENV=test bundle exec rake db:setup --trace
 
 script:
   - bundle exec rspec spec --format progress
