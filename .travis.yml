@@ -1,14 +1,46 @@
 language: ruby
+-dist: focal # temporary fix for https://github.com/rvm/rvm/issues/5133
 bundler_args: --without development production
 sudo: false
-rvm:
-  - 3.0.1
+
+services:
+  - postgresql
 
 addons:
-  postgresql: '9.4'
+  # Use a different PostgreSQL version than the default, borrowed from both:
+  # https://alphahydrae.com/2021/02/how-to-run-postgresql-13-on-travis-ci/
+  # https://gist.github.com/mustafa-travisci/529d77d29c07e2b37f0f19042ea1ef38
+  postgresql: 13
+  apt:
+    update: true
+    packages:
+      - postgresql-13
+      - postgresql-client-13
+      - postgresql-contrib
   chrome: stable
 
+env:
+  global:
+    - PGPORT=5433
+    - PGUSER=postgres
+    - PGHOST=localhost
+
+before_install:
+  # Use trust instead of peer authentication:
+  - sudo sed -i -e '/local.*peer/s/postgres/all/' -e 's/peer\|md5/trust/g' /etc/postgresql/*/main/pg_hba.conf
+
+  # Restart the PostgreSQL service:
+  - sudo service postgresql restart
+  - sleep 1
+
+  # print the verion for debugging
+  - postgres --version
+
 install:
+  # rvm must be manually installed on dist: focal
+  - curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
+  - rvm reload && rvm install 3.0.1
+
   # chromedriver
   - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
   - unzip ~/chromedriver_linux64.zip -d ~/
@@ -28,9 +60,12 @@ install:
   - yarn
 
 before_script:
-    - psql -c 'create database travis_ci_test;' -U postgres
-    - mv config/database.yml.test config/database.yml
-    - RAILS_ENV=test bundle exec rake db:setup --trace
+  # test the psql commands before continuiing
+  - psql -c 'CREATE DATABASE travis_ci_test;' -U postgres -p 5433
+
+  # set up the rails test database
+  - mv config/database.yml.test config/database.yml
+  - RAILS_ENV=test bundle exec rake db:setup --trace
 
 script:
   - bundle exec rspec spec --format progress
