@@ -106,9 +106,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    bourbon (4.2.0)
-      sass (~> 3.4)
-      thor
     brakeman (5.0.4)
     builder (3.2.4)
     capybara (3.34.0)
@@ -381,11 +378,6 @@ GEM
     ruby2_keywords (0.0.2)
     ruby_http_client (3.5.1)
     rubyzip (1.3.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -463,7 +455,6 @@ DEPENDENCIES
   bcrypt!
   better_errors
   binding_of_caller
-  bourbon (= 4.2.0)
   brakeman
   byebug!
   capybara
