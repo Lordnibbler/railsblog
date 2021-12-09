@@ -17,8 +17,9 @@
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-
 import Turbolinks from "turbolinks"
+import "stylesheets/application.scss"
+
 Turbolinks.start()
 
 // If you are using Turbolinks 5.2, use the require syntax and make sure that

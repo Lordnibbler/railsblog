@@ -7,11 +7,15 @@ html lang='en'
     meta name='viewport' content='width=device-width, initial-scale=1.0'
     = auto_discovery_link_tag :rss,  blog_posts_path(format: :rss)
     = auto_discovery_link_tag :atom, blog_posts_path(format: :atom)
+
+    link rel="stylesheet" href="https://rsms.me/inter/inter.css"
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    
     = yield :head
     = csrf_meta_tags
-  body class="#{@body_class}"
+  body class="#{@body_class} font-sans bg-white h-screen flex flex-col w-full"
     .site
       = render 'shared/header'
       section class='page-content primary' role='main'
