@@ -8,10 +8,18 @@ This is a rails 6.1 app. It does the following:
 ## Getting Started
 
 ```sh
-# bundle the application
-bundle
-
 # create a YAML file to stub environment variables
-mv config/env.yml.example config/env.yml
-vi config/env.yml
+$ mv config/env.yml.example config/env.yml
+$ vi config/env.yml
+
+# set up database
+$ rails db:setup
+
+# install dependencies
+$ bundle
+$ yarn
+
+# start the app
+$ rails s
+$ ./bin/webpack-dev-server
 ```
