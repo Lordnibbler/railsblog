@@ -19,6 +19,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import Turbolinks from "turbolinks"
 import "stylesheets/application.scss"
+// import "stylesheets/main.min.css"
 
 Turbolinks.start()
 

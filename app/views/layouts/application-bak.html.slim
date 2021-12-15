@@ -15,8 +15,8 @@ html lang='en'
     
     = yield :head
     = csrf_meta_tags
-  body class="#{@body_class} font-sans bg-white h-screen flex flex-col w-full"
-    .site class="h-screen bg-gradient-to-r from-green-400 to-blue-500"
+  body class="#{@body_class}"
+    .site
       = render 'shared/header'
       section class='page-content primary' role='main'
         = render 'shared/flash'
