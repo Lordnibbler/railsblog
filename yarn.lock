@@ -1065,18 +1065,6 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
   integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
 
-"@vue/reactivity@~3.1.1":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@vue/reactivity/-/reactivity-3.1.5.tgz#dbec4d9557f7c8f25c2635db1e23a78a729eb991"
-  integrity sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==
-  dependencies:
-    "@vue/shared" "3.1.5"
-
-"@vue/shared@3.1.5":
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.1.5.tgz#74ee3aad995d0a3996a6bb9533d4d280514ede03"
-  integrity sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==
-
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -1297,17 +1285,20 @@ alphanum-sort@^1.0.0:
   resolved "https://registry.yarnpkg.com/alphanum-sort/-/alphanum-sort-1.0.2.tgz#97a1119649b211ad33691d9f9f486a8ec9fbe0a3"
   integrity sha1-l6ERlkmyEa0zaR2fn0hqjsn74KM=
 
+alpine-magic-helpers@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/alpine-magic-helpers/-/alpine-magic-helpers-1.2.2.tgz#94715d8f25ff3806d65a1b4f7f7719418266ae71"
+  integrity sha512-eOEpIV22Qrp3R1Y3PO1ku1bishB5rDVlW9jcCfIwytmu//F7OirpBdGTgrQwPHQz3RWdy4+EEBJHnNs7CZVjaQ==
+
 alpine-turbo-drive-adapter@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/alpine-turbo-drive-adapter/-/alpine-turbo-drive-adapter-1.1.0.tgz#615eb19c13599b7a028130cc28d1416b3de58c17"
   integrity sha512-66D+DrSi6Y+aC73bsDSRNWY7232hlJtcNzT82upUughX4D7GqjAU7wTWKej/WP2dKaVIN4D+b0L72Pc+MYnmsQ==
 
-alpinejs@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.7.0.tgz#5aa4d286e69c2772b32be335129e81cac074a4ef"
-  integrity sha512-FL+DHOsO5gfE2YZqKoXUrNEOoaZnxta4Z+eZvJU6KEAwCW1ZnDEppUJ1Yo6MIBKLrVbB0ZnWphJyotX9khkm6A==
-  dependencies:
-    "@vue/reactivity" "~3.1.1"
+alpinejs@^2.8.2:
+  version "2.8.2"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-2.8.2.tgz#b14ec21ae3cd78dcee4aed0a78ed0f01b676dac4"
+  integrity sha512-5yOUtckn4CBp0qsHpo2qgjZyZit84uXvHbB7NJ27sn4FA6UlFl2i9PGUAdTXkcbFvvxDJBM+zpOD8RuNYFvQAw==
 
 ansi-colors@^3.0.0:
   version "3.2.4"

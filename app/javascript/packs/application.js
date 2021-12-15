@@ -24,7 +24,9 @@ Turbolinks.start()
 
 // import alpinejs and its necessary rails adaptation
 import 'alpine-turbo-drive-adapter'
-require("alpinejs")
+import 'alpine-magic-helpers'
+import 'alpinejs'
+
 
 // If you are using Turbolinks 5.2, use the require syntax and make sure that
 // @client-side-validations/client-side-validations is required afterTurbolinks.start(),
