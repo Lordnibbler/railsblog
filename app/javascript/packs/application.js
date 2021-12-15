@@ -23,6 +23,10 @@ import "stylesheets/application.scss"
 
 Turbolinks.start()
 
+// import alpinejs and its necessary rails adaptation
+import 'alpine-turbo-drive-adapter'
+require("alpinejs")
+
 // If you are using Turbolinks 5.2, use the require syntax and make sure that
 // @client-side-validations/client-side-validations is required afterTurbolinks.start(),
 // so ClientSideValidations can properly attach its event handlers.
