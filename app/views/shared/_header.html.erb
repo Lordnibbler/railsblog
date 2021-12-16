@@ -20,7 +20,16 @@ this.triggerNavItem(id)
                 <ul class="flex items-center">
 
                     <li class="group pl-6">
+                        <span
+                            class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">
+                            <%= link_to 'photography', photography_path %>
+                        </span>
 
+                        <span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span>
+                    </li>
+
+
+                    <li class="group pl-6">
                         <span @click="triggerNavItem('#about')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">About</span>
 
@@ -28,7 +37,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#services')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Services</span>
 
@@ -36,7 +44,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#portfolio')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Portfolio</span>
 
@@ -44,7 +51,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#clients')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Clients</span>
 
@@ -52,7 +58,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#work')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Work</span>
 
@@ -60,7 +65,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#statistics')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Statistics</span>
 
@@ -68,7 +72,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#blog')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Blog</span>
 
@@ -76,7 +79,6 @@ this.triggerNavItem(id)
                     </li>
 
                     <li class="group pl-6">
-
                         <span @click="triggerNavItem('#contact')"
                             class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Contact</span>
 
@@ -86,8 +88,7 @@ this.triggerNavItem(id)
                 </ul>
             </div>
             <div class="block lg:hidden">
-                <button @click="$parent.mobileMenu = true"><i
-                        class='bx bx-menu text-white text-4xl'></i></button>
+                <button @click="$parent.mobileMenu = true"><i class='bx bx-menu text-white text-4xl'></i></button>
             </div>
         </div>
     </div>
@@ -103,59 +104,50 @@ this.triggerNavItem(id)
             <ul class="flex flex-col mt-8">
 
                 <li class="py-2">
+                    <span
+                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">
+                        <%= link_to 'photography', photography_path %>
+                    </span>
+                </li>
 
+                <li class="py-2">
                     <span @click="triggerMobileNavItem('#about')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">About</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#services')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Services</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#portfolio')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Portfolio</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#clients')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Clients</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#work')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Work</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#statistics')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Statistics</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#blog')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Blog</span>
-
                 </li>
 
                 <li class="py-2">
-
                     <span @click="triggerMobileNavItem('#contact')"
                         class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Contact</span>
-
                 </li>
 
             </ul>
