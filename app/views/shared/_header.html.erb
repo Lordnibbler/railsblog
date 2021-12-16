@@ -7,7 +7,9 @@ $parent.mobileMenu = false;
 this.triggerNavItem(id)
 }
 }">
-    <div class="w-full z-50 top-0 py-3 sm:py-5  absolute  ">
+    <% # gross hack for different CSS class on home page "/" - can we use body_class instead? %>
+    <% # body_class in pages_controller applies to all static pages %>
+    <div class="w-full z-50 top-0 py-3 sm:py-5 <%= request.path == "/" ? "absolute" : "bg-primary" %> ">
         <div class="container flex justify-between items-center">
             <div>
                 <a href="/">
