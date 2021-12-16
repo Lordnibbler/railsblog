@@ -1,0 +1,26 @@
+<% set_meta_tags title: 'Coding, Hacking, Gadgets, and Technology Blog',
+                description: 'Ben Radler is an Engineer in San Francisco. He uses technology like Ruby, Rails, Javascript, Node.js' %>
+
+<div>
+    <div class="container py-6 md:py-10">          
+      <% @posts.each do |post| %>
+        <div class="max-w-4xl mx-auto mb-20 border-b pb-5 border-lila" role="article"  itemscope='' itemtype='http://schema.org/Article'>
+          <% # .post-thumbnail = image_tag post.featured_image_url if post.featured_image_url.present? %>
+          <%= render partial: 'meta', locals: { post: post } %>
+          <div class="pt-8 prose max-w-none" itemprop="articleBody">
+            <%= markdown post.excerpt %>
+            <% if post.more_text? %>
+              <a href="<%= blog_posts_permalink_path(post) %>" class="flex items-center no-underline">
+                  <span class="font-body font-bold text-primary text-lg uppercase block">
+                      Continue Reading
+                  </span>
+                  <i class='bx bx-right-arrow-alt text-2xl text-primary'></i>
+              </a>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+
+<%= paginate @posts, theme: 'bourbon' %>
