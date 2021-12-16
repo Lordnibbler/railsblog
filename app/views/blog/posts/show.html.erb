@@ -1,0 +1,101 @@
+<% set_meta_tags title: meta_title(@post.title),
+    description: meta_description_markdown(@post.body) %>
+
+<div>
+    <div class="container py-6 md:py-10">
+        <div class="max-w-4xl mx-auto">
+            <% # meta %>
+            <div class="">
+                <h1 class="font-body font-semibold text-primary text-3xl sm:text-4xl md:text-5xl xl:text-6xl pt-5">
+                    <%= link_to @post.title, blog_posts_permalink_path(@post), rel: "bookmark" %>
+                </h1>
+                <div class="flex items-center pt-5 md:pt-10">
+                    <div>
+                        <%= image_tag @post.user.avatar_url, alt: "author image", class: "w-20 h-20 rounded-full shadow border-2 border-grey-70" %>
+                    </div>
+                    <div class="pl-5">
+                        <span class="font-body font-bold text-grey-10 text-xl block">
+                            <%= "By #{@post.author}" %>
+                        </span>
+                        <span class="font-body font-bold text-grey-30 text-xl block pt-1">
+                            <time datetime="<%= @post.created_at.to_formatted_s(:iso8601) %>" itemprop='datePublished' />
+                            <%= @post.created_at.strftime('%B %-d, %Y %l:%M%P') %>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <% # post %>
+            <div class="pt-8 prose max-w-none" itemprop="articleBody">
+                <%= image_tag @post.featured_image_url if @post.featured_image_url %>
+                <%= markdown @post.body %>
+            </div>
+
+            <% # tags %>
+            <% # disabled for now since we dont have tags in the data model %>
+            <div class="flex pt-10 hidden">
+                <a href="/"
+                    class="bg-primary hover:bg-grey-20 px-4 py-1 font-body font-bold text-white rounded-xl">Frontend</a>
+                <a href="/"
+                    class="bg-primary hover:bg-grey-20 px-4 py-1 font-body font-bold text-white rounded-xl block ml-2">Design</a>
+            </div>
+
+            <% # pagination %>
+            <div class="flex justify-between border-t border-lila py-12 mt-10">
+                <% if @post.previous.present? %>
+                    <a href="<%= blog_posts_permalink_path(@post.previous) %>" class="flex items-center">
+                        <i class='bx bx-left-arrow-alt text-2xl text-primary'></i>
+                        <span class="font-body font-bold text-primary text-lg uppercase block pl-2 md:pl-5">
+                            Previous Post
+                        </span>
+                    </a>
+                <% end %>
+                <% if @post.next.present? %>
+                    <a href="<%= blog_posts_permalink_path(@post.next) %>" class="flex items-center">
+                        <span class="font-body font-bold text-primary text-lg uppercase block pr-2 md:pr-5">
+                            Next Post
+                        </span>
+                        <i class='bx bx-right-arrow-alt text-2xl text-primary'></i>
+                    </a>
+                <% end %>
+            </div>
+
+            <%= render 'shared/disqus_thread' %>
+
+            <% # author information %>
+            <div
+                class="border-t border-lila py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
+                <div class="w-3/4 sm:w-2/5 lg:w-1/4 xl:w-1/5">
+                    <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow" %>
+                </div>
+                <div class="ml-0 md:ml-10 md:w-5/6 text-center md:text-left">
+                    <h3 class="font-body font-bold text-secondary text-2xl pt-10 md:pt-0">
+                        <%= @post.author %>
+                    </h3>
+                    <p
+                        class="font-body text-secondary text-lg md:text-xl leading-8 sm:leading-9 md:leading-9 lg:leading-9 xl:leading-9 pt-5">
+                        <%= @post.user.biography %>
+                    </p>
+                    <div class="flex items-center justify-center md:justify-start pt-5">
+                        <a href="/">
+                            <i class='bx bxl-facebook-square text-primary hover:text-yellow text-2xl'></i>
+                        </a>
+                        <a href="/" class="pl-4">
+                            <i class='bx bxl-twitter text-primary hover:text-yellow text-2xl'></i>
+                        </a>
+                        <a href="/" class="pl-4">
+                            <i class='bx bxl-dribbble text-primary hover:text-yellow text-2xl'></i>
+                        </a>
+                        <a href="/" class="pl-4">
+                            <i class='bx bxl-linkedin text-primary hover:text-yellow text-2xl'></i>
+                        </a>
+                        <a href="/" class="pl-4">
+                            <i class='bx bxl-instagram text-primary hover:text-yellow text-2xl'></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
