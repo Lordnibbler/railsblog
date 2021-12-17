@@ -14,7 +14,7 @@ this.triggerNavItem(id)
         <div class="container flex justify-between items-center">
             <div>
                 <a href="/">
-                    <img src="/assets/logo.svg" class="w-24 lg:w-48" alt="logo image">
+                    <%= image_pack_tag "logo.svg", class: "w-24 lg:w-48", alt: "logo image" %>
                 </a>
             </div>
 
@@ -48,7 +48,7 @@ this.triggerNavItem(id)
 
             <% # close mobile nav %>
             <button class="absolute top-0 right-0 mt-4 mr-4" @click="$parent.mobileMenu = false">
-                <img src="/assets/icon-close.svg" class="h-10 w-auto" alt="">
+                <%= image_pack_tag "icon-close.svg", class: "h-10 w-auto", alt: "close" %>
             </button>
 
             <ul class="flex flex-col mt-8">
