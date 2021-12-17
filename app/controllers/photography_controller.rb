@@ -13,7 +13,11 @@ class PhotographyController < ApplicationController
     params.permit(:page)
   end
 
+  #
+  # masonry/photoswipe force some small gap on the right edge of the page
+  # use overflow-x-hidden to hide it
+  #
   def set_body_class
-    body_class 'photography'
+    body_class 'photography overflow-x-hidden'
   end
 end
