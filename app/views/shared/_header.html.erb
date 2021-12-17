@@ -52,54 +52,17 @@ this.triggerNavItem(id)
             </button>
 
             <ul class="flex flex-col mt-8">
+                <%= mobile_navigation_link name: 'photography', path: photography_path %>
+                <%= mobile_navigation_link(name: "blog",        path: blog_posts_path) %>
 
-                <li class="py-2">
-                    <span
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">
-                        <%= link_to 'photography', photography_path %>
-                    </span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#about')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">About</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#services')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Services</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#portfolio')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Portfolio</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#clients')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Clients</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#work')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Work</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#statistics')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Statistics</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#blog')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Blog</span>
-                </li>
-
-                <li class="py-2">
-                    <span @click="triggerMobileNavItem('#contact')"
-                        class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Contact</span>
-                </li>
-
+                <%= scrolling_mobile_navigation_link(name: "about",      path: "#about",      request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "services",   path: "#services",   request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "portfolio",  path: "#portfolio",  request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "clients",    path: "#clients",    request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "work",       path: "#work",       request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "statistics", path: "#statistics", request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "blog",       path: "#blog",       request_path: request.path) %>
+                <%= scrolling_mobile_navigation_link(name: "contact",    path: "#contact",    request_path: request.path) %>
             </ul>
         </div>
     </div>
