@@ -42,4 +42,5 @@ html[lang="en"]
         = render 'shared/page'
       - else 
         = yield
-      = render 'shared/footer' 
+      = render 'shared/footer'
+    = render 'shared/analytics' if Rails.env.production?
