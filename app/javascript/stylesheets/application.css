@@ -5,3 +5,15 @@ html {
 }
 
 @tailwind utilities;
+
+@font-face {
+    font-family: "northemes-icons";
+    src: url("../fonts/northemes-icons.ttf") format("truetype"), url("../fonts/northemes-icons.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+}
+
+.northemes-icons {
+    font-family: "northemes-icons";
+    font-style: normal;
+}

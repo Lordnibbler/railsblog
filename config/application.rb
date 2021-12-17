@@ -23,9 +23,6 @@ module Brog
     # configure autoload paths
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
-    # add paths to asset pipeline
-    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
-
     # custom error pages defined by errors_controller.rb
     config.exceptions_app = self.routes
 

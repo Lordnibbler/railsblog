@@ -14,6 +14,8 @@
 //
 const images = require.context('../images', true)
 const imagePath = (name) => images(name, true)
+const fonts = require.context('../fonts', true)
+const fontPath = (name) => fonts(name, true)
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
