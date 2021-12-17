@@ -19,6 +19,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import Turbolinks from "turbolinks"
 import "stylesheets/application.css"
+import "stylesheets/_pygment_monokai.sass"
 
 Turbolinks.start()
 
