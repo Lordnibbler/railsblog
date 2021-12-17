@@ -1,0 +1,5 @@
+li.page-next
+  = link_to url, rel: 'next', remote: remote, class: "flex items-center" do 
+    span[class="font-body font-bold text-primary text-lg uppercase block"]
+      = raw(t('views.pagination.next'))
+    i[class='bx bx-right-arrow-alt text-2xl text-primary']
