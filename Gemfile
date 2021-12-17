@@ -24,7 +24,6 @@ gem 'redcarpet', git: 'https://github.com/vmg/redcarpet' # NOTE: temporary lock 
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
-gem 'sass-rails' # SASS integration
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
