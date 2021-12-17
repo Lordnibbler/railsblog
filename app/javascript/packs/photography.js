@@ -268,12 +268,14 @@ $(document).on('turbolinks:load', function() {
     InfiniteScroll.imagesLoaded = imagesLoaded;
 
     // instantiate infinite scroll with the gallery and masonry
-    createInfiniteScroll(elem, msnry);
+    let infiniteScroll = createInfiniteScroll(elem, msnry);
 
     // ensure masonry is recreated upon resize, and that a new infinite scroll
     // with the new masonry is created as well
     window.addEventListener('resize', function () {
         msnry.destroy();
+        infiniteScroll.destroy()
+
         msnry = createMasonry(elem);
         createInfiniteScroll(elem, msnry);
     });
