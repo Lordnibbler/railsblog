@@ -247,25 +247,15 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
 
 // logic to fire on (turbolinks) page load
 $(document).on('turbolinks:load', function() {
-    // alert("load")
     const elem = document.querySelector('.my-gallery.grid');
     let msnry = createMasonry(elem)
-    // msnry.layout()
 
     // Unloaded images can throw off Masonry layouts and cause item elements to overlap.
     // imagesLoaded resolves this issue.
     // note: this seems to work and only is important for first page load
     imagesLoaded( elem, () => {
-        // important: reset masonry layout once all images load
-        // for some reason, creating masonry here causes images to
-        // appear below the fold.
-        // msnry._resetLayout()
-
-
         elem.classList.remove('are-images-unloaded');
         msnry.options.itemSelector = 'figure.image.grid-item';
-        // const items = elem.querySelectorAll('figure.image.grid-item');
-        // msnry.appended( items );
         msnry.layout()
     });
 
@@ -275,16 +265,15 @@ $(document).on('turbolinks:load', function() {
     // instantiate infinite scroll with the gallery and masonry
     let infiniteScroll = createInfiniteScroll(elem, msnry);
 
-    // ensure masonry is recreated upon resize, and that a new infinite scroll
-    // with the new masonry is created as well
+    // 250ms after a resize finishes, re-run masonry.layout(),
+    // and rebuild a new infinite scroll with the new masonry layout
+    let resizeComplete;
     window.addEventListener('resize', function () {
-        // alert("resize")
-        // msnry.destroy();
-        // infiniteScroll.destroy()
-        msnry.layout()
-
-        // msnry = createMasonry(elem);
-        createInfiniteScroll(elem, msnry);
+        this.clearTimeout(resizeComplete);
+        resizeComplete = this.setTimeout(() => {
+            msnry.layout();
+            createInfiniteScroll(elem, msnry);
+        }, 250);
     });
 
     // start up Photoswipe
