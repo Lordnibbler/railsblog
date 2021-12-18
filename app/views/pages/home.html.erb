@@ -4,6 +4,7 @@
 <% # content_for :page_title, 'I\'m Available To Help You!' %>
 
 <div>
+    <% # hero %>
     <div class="bg-center bg-cover bg-no-repeat relative py-8"
         style="background-image: url(<%= asset_pack_path("media/images/bg-hero.jpg") %>);">
         
@@ -51,6 +52,7 @@
         </div>
     </div>
 
+    <% # about %>
     <div class="bg-grey-50" id="about">
         <div class="container py-16 md:py-20 flex flex-col lg:flex-row items-center">
             <div class="w-full sm:w-3/4 lg:w-3/5 text-center lg:text-left">
@@ -144,6 +146,7 @@
         </div>
     </div>
 
+    <% # services %>
     <div class="container py-16 md:py-20" id="services">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
@@ -155,10 +158,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-development-white.svg" alt="development icon">
+                        <%= image_pack_tag "icon-development-white.svg", alt: "development icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-development-black.svg" alt="development icon">
+                        <%= image_pack_tag "icon-development-black.svg", alt: "development icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -173,10 +176,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-content-white.svg" alt="content marketing icon">
+                        <%= image_pack_tag "icon-content-white.svg", alt: "content marketing icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-content-black.svg" alt="content marketing icon">
+                        <%= image_pack_tag "icon-content-black.svg", alt: "content marketing icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -191,10 +194,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-mobile-white.svg" alt="Mobile Application icon">
+                        <%= image_pack_tag "icon-mobile-white.svg", alt: "Mobile Application icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-mobile-black.svg" alt="Mobile Application icon">
+                        <%= image_pack_tag "icon-mobile-black.svg", alt: "Mobile Application icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -209,10 +212,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-email-white.svg" alt="Email Marketing icon">
+                        <%= image_pack_tag "icon-email-white.svg", alt: "Email Marketing icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-email-black.svg" alt="Email Marketing icon">
+                        <%= image_pack_tag "icon-email-black.svg", alt: "Email Marketing icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -227,10 +230,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-design-white.svg" alt="Theme Design icon">
+                        <%= image_pack_tag "icon-design-white.svg", alt: "Theme Design icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-design-black.svg" alt="Theme Design icon">
+                        <%= image_pack_tag "icon-design-black.svg", alt: "Theme Design icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -245,10 +248,10 @@
             <div class="shadow px-8 py-12 hover:bg-primary group rounded">
                 <div class="text-center w-24 xl:w-28 h-24 xl:h-28 mx-auto">
                     <div class="hidden group-hover:block">
-                        <img src="/assets/icon-graphics-white.svg" alt="Graphic Design icon">
+                        <%= image_pack_tag "icon-graphics-white.svg", alt: "Graphic Design icon" %>
                     </div>
                     <div class="block group-hover:hidden">
-                        <img src="/assets/icon-graphics-black.svg" alt="Graphic Design icon">
+                        <%= image_pack_tag "icon-graphics-black.svg", alt: "Graphic Design icon" %>
                     </div>
                 </div>
                 <div class="text-center">
@@ -264,6 +267,7 @@
         </div>
     </div>
 
+    <% # portfolio %>
     <div class="container py-16 md:py-20" id="portfolio">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
@@ -273,20 +277,21 @@
 
         <div class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 pt-12">
             <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <img src="/assets/portfolio-apple.jpeg" class="shadow w-full" alt="portfolio image">
+                <%= image_pack_tag "portfolio-apple.jpeg", class: "shadow w-full", alt: "portfolio image" %>
             </a>
             <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <img src="/assets/portfolio-stripe.jpeg" class="shadow w-full" alt="portfolio image">
+                <%= image_pack_tag "portfolio-stripe.jpeg", class: "shadow w-full", alt: "portfolio image" %>
             </a>
             <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <img src="/assets/portfolio-fedex.jpeg" class="shadow w-full" alt="portfolio image">
+                <%= image_pack_tag "portfolio-fedex.jpeg", class: "shadow w-full", alt: "portfolio image" %>
             </a>
             <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <img src="/assets/portfolio-microsoft.jpeg" class="shadow w-full" alt="portfolio image">
+                <%= image_pack_tag "portfolio-microsoft.jpeg", class: "shadow w-full", alt: "portfolio image" %>
             </a>
         </div>
     </div>
 
+    <% # clients %>
     <div class="bg-grey-50" id="clients">
         <div class="container py-16 md:py-20">
             <div class="w-full sm:w-3/4 lg:w-full mx-auto">
@@ -295,32 +300,29 @@
                     My latest clients</h2>
                 <div class="flex flex-wrap items-center justify-center pt-4 sm:pt-4">
                     <span class="block m-8">
-                        <img src="/assets/logo-coca-cola.svg" alt="client logo"
-                            class="mx-auto block h-12 w-auto" />
+                        <%= image_pack_tag "logo-coca-cola.svg", alt: "client logo", class: "mx-auto block h-12 w-auto" %>
                     </span>
                     <span class="block m-8">
-                        <img src="/assets/logo-apple.svg" alt="client logo" class="mx-auto block h-12 w-auto" />
-                    </span>
-
-                    <span class="block m-8">
-                        <img src="/assets/logo-netflix.svg" alt="client logo"
-                            class="mx-auto block h-12 w-auto" />
+                        <%= image_pack_tag "logo-apple.svg", alt: "client logo", class: "mx-auto block h-12 w-auto" %>
                     </span>
 
                     <span class="block m-8">
-                        <img src="/assets/logo-amazon.svg" alt="client logo"
-                            class="mx-auto block h-12 w-auto" />
+                        <%= image_pack_tag "logo-netflix.svg", alt: "client logo", class: "mx-auto block h-12 w-auto" %>
                     </span>
 
                     <span class="block m-8">
-                        <img src="/assets/logo-stripe.svg" alt="client logo"
-                            class="mx-auto block h-12 w-auto" />
+                        <%= image_pack_tag "logo-amazon.svg", alt: "client logo", class: "mx-auto block h-12 w-auto" %>
+                    </span>
+
+                    <span class="block m-8">
+                        <%= image_pack_tag "logo-stripe.svg", alt: "client logo", class: "mx-auto block h-12 w-auto" %>
                     </span>
                 </div>
             </div>
         </div>
     </div>
 
+    <% # work %>
     <div class="container py-16 md:py-20" id="work">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
@@ -335,7 +337,7 @@
                 <div class="md:w-2/5">
                     <div class="flex justify-center md:justify-start">
                         <span class="flex-shrink-0">
-                            <img src="/assets/logo-spotify.svg" class="w-32 h-auto" alt="company logo" />
+                            <%= image_pack_tag "logo-spotify.svg", class: "w-32 h-auto", alt: "company logo" %>
                         </span>
                         <div class="relative w-full ml-3 hidden md:block">
                             <span
@@ -371,7 +373,7 @@
                 <div class="md:w-2/5">
                     <div class="flex justify-center md:justify-start">
                         <span class="flex-shrink-0">
-                            <img src="/assets/logo-microsoft.svg" class="w-32 h-auto" alt="company logo" />
+                            <%= image_pack_tag "logo-microsoft.svg", class: "w-32 h-auto", alt: "company logo" %>
                         </span>
                         <div class="relative w-full ml-3 hidden md:block">
                             <span
@@ -407,7 +409,7 @@
                 <div class="md:w-2/5">
                     <div class="flex justify-center md:justify-start">
                         <span class="flex-shrink-0">
-                            <img src="/assets/logo-fedex.svg" class="w-32 h-auto" alt="company logo" />
+                            <%= image_pack_tag "logo-fedex.svg", class: "w-32 h-auto", alt: "company logo" %>
                         </span>
                         <div class="relative w-full ml-3 hidden md:block">
                             <span
@@ -442,15 +444,15 @@
         </div>
     </div>
 
+    <% # statistics %>
     <div class="bg-top bg-cover bg-no-repeat pb-16 md:py-16 lg:py-24"
-        style="background-image:url(/assets/experience-figure.png)" id="statistics">
+        style="background-image:url(<%= asset_pack_path("media/images/experience-figure.png") %>)" id="statistics">
         <div class="container">
             <div class="bg-white w-5/6 md:w-11/12 2xl:w-full mx-auto py-16 lg:py-20 xl:py-24 shadow">
                 <div class="grid grid-cols-2 xl:grid-cols-4 gap-5 md:gap-8 xl:gap-5">
                     <div class="flex md:flex-row flex-col justify-center items-center text-center md:text-left">
                         <div>
-                            <img src="/assets/icon-project.svg" class="mx-auto h-12 md:h-20 w-auto"
-                                alt="icon project">
+                            <%= image_pack_tag "icon-project.svg", class: "mx-auto h-12 md:h-20 w-auto", alt: "icon project" %>
                         </div>
                         <div class="md:pl-5 md:pt-0 pt-5">
                             <h1 class="font-body font-bold md:text-4xl text-2xl text-primary">
@@ -463,8 +465,7 @@
 
                     <div class="flex md:flex-row flex-col justify-center items-center text-center md:text-left">
                         <div>
-                            <img src="/assets/icon-award.svg" class="mx-auto h-12 md:h-20 w-auto"
-                                alt="icon award">
+                            <%= image_pack_tag "icon-award.svg", class: "mx-auto h-12 md:h-20 w-auto", alt: "icon award" %>
                         </div>
                         <div class="md:pl-5 md:pt-0 pt-5">
                             <h1 class="font-body font-bold md:text-4xl text-2xl text-primary">
@@ -478,8 +479,7 @@
                     <div
                         class="flex md:flex-row flex-col justify-center items-center text-center md:text-left lg:mt-0 md:mt-10 mt-6">
                         <div>
-                            <img src="/assets/icon-happy.svg" class="mx-auto h-12 md:h-20 w-auto"
-                                alt="icon happy clients">
+                            <%= image_pack_tag "icon-happy.svg", class: "mx-auto h-12 md:h-20 w-auto", alt: "icon happy clients" %>
                         </div>
                         <div class="md:pl-5 md:pt-0 pt-5">
                             <h1 class="font-body font-bold md:text-4xl text-2xl text-primary">
@@ -493,8 +493,7 @@
                     <div
                         class="flex md:flex-row flex-col justify-center items-center text-center md:text-left lg:mt-0 md:mt-10 mt-6">
                         <div>
-                            <img src="/assets/icon-puzzle.svg" class="mx-auto h-12 md:h-20 w-auto"
-                                alt="icon puzzle">
+                            <%= image_pack_tag "icon-puzzle.svg", class: "mx-auto h-12 md:h-20 w-auto", alt: "icon puzzle" %>
                         </div>
                         <div class="md:pl-5 md:pt-0 pt-5">
                             <h1 class="font-body font-bold md:text-4xl text-2xl text-primary">
@@ -509,6 +508,7 @@
         </div>
     </div>
 
+    <% # blog %>
     <div class="bg-grey-50" id="blog">
         <div class="container py-16 md:py-20">
             <h2
@@ -519,7 +519,7 @@
             <div
                 class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10 pt-12">
                 <a href="/post" class="shadow">
-                    <div style="background-image:url(/assets/post-01.png);"
+                    <div style="background-image:url(<%= asset_pack_path("media/images/post-01.png") %>);"
                         class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                         <span
                             class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
@@ -536,7 +536,7 @@
                     </div>
                 </a>
                 <a href="/post" class="shadow">
-                    <div style="background-image:url(/assets/post-02.png);"
+                    <div style="background-image:url(<%= asset_pack_path("media/images/post-02.png") %>);"
                         class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                         <span
                             class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
@@ -553,7 +553,7 @@
                     </div>
                 </a>
                 <a href="/post" class="shadow">
-                    <div style="background-image:url(/assets/post-03.png);"
+                    <div style="background-image:url(<%= asset_pack_path("media/images/post-03.png") %>);"
                         class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                         <span
                             class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
@@ -573,6 +573,7 @@
         </div>
     </div>
 
+    <% # contact %>
     <div class="container py-16 md:py-20" id="contact">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
@@ -636,11 +637,13 @@
         </div>
     </div>
 
+    <% # map %>
     <div class="bg-center bg-cover bg-no-repeat h-72 sm:h-64 md:h-72 lg:h-96"
-        style="background-image: url(/assets/map.png);"></div>
+        style="background-image: url(<%= asset_pack_path("media/images/map.png") %>);"></div>
 
+    <% # newsletter %>
     <div class="bg-center bg-cover bg-no-repeat relative py-16 lg:py-24 bg-primary bg-blend-multiply"
-        style="background-image: url(/assets/bg-cta.jpg);">
+        style="background-image: url(<%= asset_pack_path("media/images/bg-cta.jpg") %>);">
         <div class="container z-30 relative">
             <h3
                 class="font-header text-white text-3xl sm:text-4xl lg:text-5xl uppercase leading-tight text-center tracking-wide">
