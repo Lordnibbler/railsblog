@@ -1,7 +1,7 @@
 ActiveAdmin.register Blog::Post do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :body, :published, :created_at, :updated_at, :user_id, :featured_image_url
+  permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id, :featured_image_url
   form partial: 'form'
 
   index do
@@ -16,6 +16,7 @@ ActiveAdmin.register Blog::Post do
   show do
     attributes_table do
       row :id
+      row :description
       row :published
       row :title
       row :body do |post|
