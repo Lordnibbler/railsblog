@@ -18,6 +18,6 @@ class PhotographyController < ApplicationController
   # use overflow-x-hidden to hide it
   #
   def set_body_class
-    body_class 'photography overflow-x-hidden'
+    body_class 'overflow-x-hidden photography'
   end
 end
