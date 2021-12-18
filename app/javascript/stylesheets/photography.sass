@@ -2,18 +2,16 @@
 // layout
 // ------
 .photography-template
-  width: 100%
-  overflow-x: hidden
-  // position: relative
   #main
+    // required for safari (macOS and iOS) to prevent horizontal scrolling
     overflow: hidden
   figure
     margin: 0
 
 .my-gallery
-  // avoid small white space on right edge of gallery
+  // avoid small white space on right edge of gallery by forcing some content off
+  // the page and hiding it with overflow: hidden in the parent container
   width: 100.5%
-  overflow-x: hidden
 
 // -------
 // Masonry
