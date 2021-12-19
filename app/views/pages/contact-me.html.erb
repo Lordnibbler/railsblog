@@ -14,23 +14,23 @@
 </div>
 <%= form_for ContactForm.new, url: contact_forms_path, validate: true, class: "w-full sm:w-3/4 mx-auto pt-10" do |f| %>
 
-<% # this invisible input is required for captcha %>
-<%= f.text_field :nickname, class: 'invisible' %>
+  <% # this invisible input is required for captcha %>
+  <%= f.text_field :nickname, class: 'invisible' %>
 
-<div class="flex flex-col md:flex-row">
-  <%= f.text_field :name, placeholder: 'name', class: "w-full md:w-1/2 mr-3 lg:mr-5 font-body text-black px-4 py-3 border-grey-50 rounded" %>
-</div>
-<div class="flex flex-col md:flex-row">
-  <%= f.text_field :email, placeholder: 'email', class: "w-full md:w-1/2 mr-3 mt-6 lg:mr-5 md:mt-6 font-body text-black px-4 py-3 border-grey-50 rounded" %>
-</div>
+  <div class="flex flex-col md:flex-row">
+    <%= f.text_field :name, placeholder: 'name', class: "w-full md:w-1/2 mr-3 lg:mr-5 font-body text-black px-4 py-3 border-grey-50 rounded" %>
+  </div>
+  <div class="flex flex-col md:flex-row">
+    <%= f.text_field :email, placeholder: 'email', class: "w-full md:w-1/2 mr-3 mt-6 lg:mr-5 md:mt-6 font-body text-black px-4 py-3 border-grey-50 rounded" %>
+  </div>
 
-<%= f.text_area  :message, placeholder: 'message', class:"w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
+  <%= f.text_area  :message, placeholder: 'message', class:"w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
 
-<button
-  class="bg-primary hover:bg-grey-20 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-6 rounded items-center uppercase">
-  <%= f.submit("Send") %>
-  <i class='bx bx-chevron-right text-3xl relative -right-2'></i>
-</button>
+  <button
+    class="bg-primary hover:bg-grey-20 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-6 rounded items-center uppercase">
+    <%= f.submit("Send") %>
+    <i class='bx bx-chevron-right text-3xl relative -right-2'></i>
+  </button>
 
 <% end %>
 
