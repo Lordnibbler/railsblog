@@ -1,5 +1,9 @@
 - if flash.count > 0
-  div[class="container pt-6 md:pt-10"]
+  - classes = "container pt-6 md:pt-10"
+  - if controller_name =~ /home/
+    - classes +=  " absolute top-0 left-0 z-50"
+
+  div[class=classes]
     .max-w-4xl.mx-auto
       - flash.each do |name, msg|
         - if name == "success"
