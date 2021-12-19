@@ -1,5 +1,10 @@
 <% set_meta_tags title: 'Contact Me', description: 'Contact Ben Radler for hiring or for help on Ruby, Rails, Node.js, Javascript' %>
 <% content_for :page_title, 'Contact Me' %>
+<% content_for :head do %>
+  <%= javascript_pack_tag 'contact-me', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_pack_tag 'contact-me', 'data-turbolinks-track': 'reload' %>
+<% end %>
+
 
 <h4 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6">
   Have Any Questions?</h4>
