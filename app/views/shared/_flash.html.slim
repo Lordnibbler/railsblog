@@ -1,2 +1,9 @@
-- flash.each do |name, msg|
-  = content_tag :div, msg, class: "flash flash-#{name}"
+div[class="container pt-6 md:pt-10"]
+  .max-w-4xl.mx-auto
+    - flash.each do |name, msg|
+      = content_tag :div, class: "flash flash-#{name} flex flex-row rounded-md border-2 border-lime-800 shadow-md cursor-pointer p-4 text-lime-900 bg-lime-100 hover:bg-lime-200" do
+        div[class="flex-1"]
+          = msg
+        span[class="flex-auto font-body font-bold text-sm md:text-base text-lime-800 uppercase rounded-full text-right relative left-0 top-0"]
+          = "X"
+

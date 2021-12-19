@@ -49,6 +49,7 @@ html[lang="en"]
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
     #main
       = render 'shared/header'
+      = render 'shared/flash'
       - if controller_name =~ /pages|errors/
         = render 'shared/page'
       - else 
