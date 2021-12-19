@@ -3,11 +3,12 @@
     .max-w-4xl.mx-auto
       - flash.each do |name, msg|
         - if name == "success"
-          - flash_color = "lime"
+          - flash_classes = "border-lime-800 p-4 text-lime-900 bg-lime-100 hover:bg-lime-200"
         - elsif name == "error"
-          - flash_color = "red"
-        = content_tag :div, class: "flash flash-#{name} flex flex-row rounded-md shadow-md cursor-pointer border-2 border-#{flash_color}-800 p-4 text-#{flash_color}-900 bg-#{flash_color}-100 hover:bg-#{flash_color}-200" do
+          - flash_classes = "border-red-800 p-4 text-red-900 bg-red-100 hover:bg-red-200"
+
+        div[class="flash flash-#{name} flex flex-row rounded-md shadow-md cursor-pointer border-2 #{flash_classes}"]
           div[class="flex-1"]
             = msg
-          span[class="flex-auto font-body font-bold text-sm md:text-base text-#{flash_color}-800 uppercase rounded-full text-right relative left-0 top-0"]
+          span[class="flex-auto font-body font-bold text-sm md:text-base text-slate-800 uppercase rounded-full text-right relative left-0 top-0"]
             = "X"
