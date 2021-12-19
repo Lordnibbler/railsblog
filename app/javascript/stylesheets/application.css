@@ -17,3 +17,17 @@ html {
     font-family: "northemes-icons";
     font-style: normal;
 }
+
+/*
+since this CSS class is applied with some JS trickery and is defined in config/initializers/client_side_validations.rb
+we have to apply all of the styles explicitly here, otherwise they are automatically purged. seems the tailwindcss purge
+logic is not smart enough to understand if we want to use CSS in dynamic ruby code.
+*/
+.field_with_errors input,
+.field_with_errors textarea {
+    border-color: theme('colors.red.500');
+}
+.field_with_errors label {
+    color: theme('colors.red.500');
+    font-weight: bold;
+}
