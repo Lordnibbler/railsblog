@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   #
-  # home page requires `absolute` container class
+  # home page requires `absolute` container class 
   # all other pages require bg-primary
   #
   def set_navigation_class
