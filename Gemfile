@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '3.0.2'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 6.1.4.4'
 
 gem 'activeadmin' # admin UI scaffolding
 gem 'bcrypt', git: 'https://github.com/bcrypt-ruby/bcrypt-ruby' # NOTE: temporary lock for big sur/m1

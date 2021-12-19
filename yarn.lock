@@ -897,10 +897,10 @@
     "@babel/helper-validator-identifier" "^7.15.7"
     to-fast-properties "^2.0.0"
 
-"@client-side-validations/client-side-validations@^0.1.2":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.1.4.tgz#fdd6c3f22ba1f08f64e32d72918cfc77e0f778e0"
-  integrity sha512-rloe9JV9FU3eFWH3JvDkJ3JIikTQDIvcG0ZEgkJc6Z1UKHMG/f4Pg0bN6jeFmsYp/9v6usN0RkPPNCOzfaG90w==
+"@client-side-validations/client-side-validations@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@client-side-validations/client-side-validations/-/client-side-validations-0.3.0.tgz#0cdfe1ddd3e4388c38a48efde1aa70d3e646c28d"
+  integrity sha512-UVCpiqU8YDO/jPkNFEzyDpyCatoMZfo43RrzATFe4JERnirONODuFqdaN6y5CfjeaxU5sMjLIdpcensR1zhLCA==
 
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
