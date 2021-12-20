@@ -48,7 +48,7 @@ module ApplicationHelper
       span_1 = if request.path == '/'
         raw("<span @click=\"triggerNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</span>")
       else
-        content_tag(:a, href: "#{root_path}#{path}", class: "font-header font-semibold text-white uppercase pt-0.5 cursor-pointe") do
+        content_tag(:a, href: "#{root_path}#{path}", class: "font-header font-semibold text-white uppercase pt-0.5 cursor-pointer") do
           raw(name)
         end
       end
