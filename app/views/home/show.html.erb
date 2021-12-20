@@ -28,7 +28,7 @@
                                 <i class='bx bx-chevron-right text-yellow text-3xl'></i>
                             </div>
                         </div>
-                        <%= render partial: 'shared/social_icons' %>
+                        <%= render partial: 'shared/social_icons', locals: { icon_classes: 'text-white hover:text-yellow' } %>
                     </div>
                 </div>
             </div>
@@ -61,23 +61,7 @@
                             <i class='bx bx-chevron-right text-primary text-2xl'></i>
                         </div>
                     </div>
-                    <div class="flex items-center justify-center sm:justify-start pt-5 sm:pt-0 pl-2">
-                        <a href="/">
-                            <i class='bx bxl-facebook-square text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-twitter text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-dribbble text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-linkedin text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-instagram text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                    </div>
+                    <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary hover:text-yellow" } %>
                 </div>
 
             </div>

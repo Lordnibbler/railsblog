@@ -2,4 +2,4 @@
   div[class="container py-6 flex flex-col sm:flex-row justify-between"]
     p[class="font-body text-white text-center md:text-left"]
       | © Copyright #{Time.now.year} #{link_to 'benradler.com', root_path}, All Rights Reserved. I love you.
-    = render partial: 'shared/social_icons'
+    = render partial: 'shared/social_icons', locals: { icon_classes: 'text-white hover:text-yellow' }
