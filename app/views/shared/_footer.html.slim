@@ -1,15 +1,5 @@
 .bg-primary
-  .container.py-6.flex.flex-col.sm:flex-row.justify-between
-    p.font-body.text-white.text-center.md:text-left
-      | © Copyright #{Time.now.year} #{link_to 'benradler.com', root_path}, all rights reserved. I love you.
-    .flex.items-center.justify-center.sm:justify-start.pt-5.sm:pt-0
-      a[href="/"]
-        i.bx.bxl-facebook-square.text-white.hover:text-yellow.text-2xl
-      a.pl-4[href="/"]
-        i.bx.bxl-twitter.text-white.hover:text-yellow.text-2xl
-      a.pl-4[href="/"]
-        i.bx.bxl-dribbble.text-white.hover:text-yellow.text-2xl
-      a.pl-4[href="/"]
-        i.bx.bxl-linkedin.text-white.hover:text-yellow.text-2xl
-      a.pl-4[href="/"]
-        i.bx.bxl-instagram.text-white.hover:text-yellow.text-2xl
+  div[class="container py-6 flex flex-col sm:flex-row justify-between"]
+    p[class="font-body text-white text-center md:text-left"]
+      | © Copyright #{Time.now.year} #{link_to 'benradler.com', root_path}, All Rights Reserved. I love you.
+    = render partial: 'shared/social_icons'

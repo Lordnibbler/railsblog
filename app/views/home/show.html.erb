@@ -18,7 +18,9 @@
                 <div class="lg:pl-8 pt-8 sm:pt-10 lg:pt-0">
                     <h1
                         class="font-header text-white text-4xl sm:text-5xl md:text-6xl text-center sm:text-left">
-                        Oh hai. I'm Ben Radler!</h1>
+                        <div class="font-bold uppercase">Ben Radler</div>
+                        <div class="font-thin uppercase">Software Engineer</div>
+                    </h1>
                     <div class="flex flex-col sm:flex-row justify-center lg:justify-start pt-3 sm:pt-5">
                         <div class="flex justify-center sm:justify-start items-center pl-0 md:pl-1">
                             <p class="font-body text-white text-lg uppercase">Find Me Here</p>
@@ -26,24 +28,7 @@
                                 <i class='bx bx-chevron-right text-yellow text-3xl'></i>
                             </div>
                         </div>
-                        <div class="flex items-center justify-center sm:justify-start pt-5 sm:pt-0 pl-2">
-                            <a href="/">
-                                <i class='bx bxl-facebook-square text-white hover:text-yellow text-2xl'></i>
-                            </a>
-                            <a href="/" class="pl-4">
-                                <i class='bx bxl-twitter text-white hover:text-yellow text-2xl'></i>
-                            </a>
-                            <a href="/" class="pl-4">
-                                <i class='bx bxl-dribbble text-white hover:text-yellow text-2xl'></i>
-                            </a>
-                            <a href="/" class="pl-4">
-                                <i class='bx bxl-linkedin text-white hover:text-yellow text-2xl'></i>
-                            </a>
-                            <a href="/" class="pl-4">
-                                <i class='bx bxl-instagram text-white hover:text-yellow text-2xl'></i>
-                            </a>
-                            <i class="text-white hover:text-yellow text-2xl northemes-icons text-white">o</i>
-                        </div>
+                        <%= render partial: 'shared/social_icons' %>
                     </div>
                 </div>
             </div>
