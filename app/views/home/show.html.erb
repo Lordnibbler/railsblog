@@ -4,7 +4,7 @@
 <div>
     <% # hero %>
     <div class="bg-center bg-cover bg-no-repeat relative py-8"
-        style="background-image: url(<%= asset_pack_path("media/images/bg-hero.jpg") %>);">
+        style="background-image: url(<%= asset_pack_path("media/images/bg-hero-1.jpg") %>);">
         
         <div
             class="bg-center bg-cover bg-no-repeat absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from to-hero-gradient-to">
@@ -187,32 +187,26 @@
         </div>
     </div>
 
-    <% # portfolio %>
-    <div class="bg-grey-50 container py-16 md:py-20" id="portfolio">
+    <% # games %>
+    <div class="bg-grey-50 container py-16 md:py-20" id="games">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
-            Check out my Portfolio</h2>
+            iOS Games</h2>
         <h3 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6 text-center">
-            Here's what I have done with the past</h3>
+            Here are games I created which are available to play in the Apple App Store</h3>
 
-        <div class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10 pt-12">
-            <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
+        <div class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-1 gap-8 md:gap-10 pt-12">
+            <a 
+                href="https://apps.apple.com/us/app/squarecrusher/id1518515040" 
+                class="mx-auto md:mx-0 transition-all transform hover:scale-105"
+                target="_blank">
                 <%= image_pack_tag "portfolio-apple.jpeg", class: "shadow w-full", alt: "portfolio image" %>
-            </a>
-            <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <%= image_pack_tag "portfolio-stripe.jpeg", class: "shadow w-full", alt: "portfolio image" %>
-            </a>
-            <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <%= image_pack_tag "portfolio-fedex.jpeg", class: "shadow w-full", alt: "portfolio image" %>
-            </a>
-            <a href="/" class="mx-auto md:mx-0 transition-all transform hover:scale-105">
-                <%= image_pack_tag "portfolio-microsoft.jpeg", class: "shadow w-full", alt: "portfolio image" %>
             </a>
         </div>
     </div>
 
     <% # work %>
-    <div class="bg-grey-50 container py-16 md:py-20" id="work">
+    <div class="container py-16 md:py-20" id="work">
         <h2
             class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
             My work experience</h2>
