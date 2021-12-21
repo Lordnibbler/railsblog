@@ -10,14 +10,14 @@ module.exports = {
     ],
     darkMode: "media",
     theme: {
+        screens: {
+            xs: "375px",
+            ...defaultTheme.screens
+        },
         extend: {
             fontFamily: {
                 header: ['Raleway', "sans-serif"],
                 body: ['Open Sans', "sans-serif"]
-            },
-            screens: {
-                xs: "375px",
-                ...defaultTheme.screens
             },
             colors: {
                 transparent: "transparent",
