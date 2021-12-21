@@ -58,6 +58,9 @@ Rails.application.routes.draw do
   #
   get '/contact-me' => 'pages#show', id: 'contact-me'
 
+  # POST for newsletter signup
+  resources :newsletter_signups, only: [:create]
+
   #
   # /sitemap.xml.gz
   #
