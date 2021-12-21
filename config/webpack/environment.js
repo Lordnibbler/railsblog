@@ -3,6 +3,17 @@ const jquery = require('./plugins/jquery')
 
 environment.plugins.prepend('jquery', jquery)
 
+const videoLoader = {
+  test: /\.(webm|mp4)$/i,
+  use: [{
+    loader: 'file-loader',
+    options: {
+      name: '[path][name]-[hash].[ext]',
+    }
+  }]
+}
+environment.loaders.prepend('video', videoLoader)
+
 // Get the actual sass-loader config
 const sassLoader = environment.loaders.get('sass')
 const sassLoaderConfig = sassLoader.use.find(function (element) {
