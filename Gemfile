@@ -9,7 +9,6 @@ gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
-gem 'formtastic', '4.0.0rc1' # TODO: remove after 4.0 is adopted by activeadmin for ruby 3 i18n bug
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
