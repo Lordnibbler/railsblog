@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '3.0.2'
-gem 'rails', '~> 6.1.4.4'
+gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
 gem 'bcrypt', git: 'https://github.com/bcrypt-ruby/bcrypt-ruby' # NOTE: temporary lock for big sur/m1
@@ -56,11 +56,10 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-selenium', '~> 0.0.6'
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'vcr'
-  gem 'webdrivers', '~> 3.7', '>= 3.7.2'
+  gem 'webdrivers'
   gem 'webmock'
 end
 
