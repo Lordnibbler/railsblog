@@ -21,5 +21,13 @@ describe PhotographyController do
 
       expect(assigns(:photos)).to eq([])
     end
+
+    it 'sets body class' do
+      allow(FlickrService).to receive(:get_photos).and_return(nil)
+
+      get :index, params: { page: 1 }
+
+      expect(assigns(:body_class)).to eq("overflow-x-hidden photography-template")
+    end
   end
 end
