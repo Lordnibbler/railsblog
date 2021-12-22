@@ -14,8 +14,8 @@ html[lang="en"]
     meta[content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"]
 
     - # TODO: are these 2 tags required/needed? esp. check photography page without them
-    meta name='HandheldFriendly' content='True'
-    meta name='MobileOptimized' content='320'
+    meta[name='HandheldFriendly' content='True']
+    meta[name='MobileOptimized' content='320']
 
     - # facebook open graph
     meta[property="og:title" content="Homepage - benradler.com"]
@@ -30,9 +30,11 @@ html[lang="en"]
 
     link[rel="canonical" href="//"]
     link[rel="icon" type="image/png" href="#{asset_pack_path("media/images/layout/favicon.png")}"]
+
+    - # for browsers/devices which customize UI based on theme
     meta[name="theme-color" content="#5540af"]
 
-    - # fonts
+    - # fonts and icons
     link[crossorigin="crossorigin" href="https://fonts.gstatic.com" rel="preconnect"]
     link[as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="preload"]
     link[href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"]
