@@ -10,7 +10,8 @@ RSpec.describe NewsletterSignup, type: :model do
   end
 
   it 'allows valid emails' do
-    model = NewsletterSignup.new(email: "foo@bar.com")
+    # TODO: get rid of fixtures
+    model = NewsletterSignup.new(email: "foo@baz.com")
 
     model.validate
 
