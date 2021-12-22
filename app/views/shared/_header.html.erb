@@ -1,11 +1,11 @@
 <div x-data="{
-triggerNavItem(id) {
-$scroll(id)
-},
-triggerMobileNavItem(id) {
-$parent.mobileMenu = false;
-this.triggerNavItem(id)
-}
+    triggerNavItem(id) {
+        $scroll(id)
+    },
+    triggerMobileNavItem(id) {
+        $parent.mobileMenu = false;
+        this.triggerNavItem(id)
+    }
 }"> 
     <% # desktop navigation %>
     <div class="w-full z-50 top-0 py-3 sm:py-5 <%= @navigation_class %> ">
