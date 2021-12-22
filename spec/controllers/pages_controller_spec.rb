@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe PagesController, '#show' do
-  %w[contact-me home].each do |page|
+  %w[contact-me squarecrusher/privacy-policy].each do |page|
     context "on GET to #{page}" do
       before do
         get :show, params: { id: page }

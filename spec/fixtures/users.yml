@@ -2,3 +2,5 @@ ben:
   email: 'ben@benradler.com'
   name: 'ben radler'
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  avatar_url: http://placekitten.com/200/300
+  biography: 'super cool'
