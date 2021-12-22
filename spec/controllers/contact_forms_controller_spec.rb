@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe ContactFormsController do
-  describe 'GET #create' do
-    subject(:get_create) { get :create, params: contact_form }
+  describe 'POST #create' do
+    subject(:post_create) { post :create, params: contact_form }
 
-    before { get_create }
+    before { post_create }
 
     context 'with valid contact form params' do
       let(:contact_form) do
@@ -24,6 +24,14 @@ describe ContactFormsController do
 
       it 'redirects to contact-me' do
         expect(subject).to redirect_to page_path('contact-me')
+      end
+
+      context 'when contact form is submitted from homepage' do
+        it 'redirects to homepage' do
+          contact_form[:request_route] = root_path
+        
+          expect(post :create, params: contact_form).to redirect_to(root_path)  
+        end
       end
     end
 
