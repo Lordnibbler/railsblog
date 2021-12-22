@@ -15,7 +15,7 @@ describe '/blog' do
       end
 
       expect(page).to have_content 'Shoulder boudin pork'
-      expect(page).to have_content 'Previous Post'
+      expect(page).to have_content /Previous Post/i
       expect(page).to_not have_content 'Continue Reading'
     end
   end
