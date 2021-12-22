@@ -4,7 +4,8 @@
 <% end %>
 
 <% form_classes ||= "" %>
-<%= form_for ContactForm.new, url: contact_forms_path, validate: true, html: { class: "w-full sm:w-3/4 pt-10 #{form_classes}" } do |f| %>
+<% request_route ||= "" %>
+<%= form_for ContactForm.new, url: contact_forms_path(request_route: request_route), validate: true, html: { class: "w-full sm:w-3/4 pt-10 #{form_classes}" } do |f| %>
 
   <% # this invisible input is required for captcha %>
   <%= f.text_field :nickname, class: 'hidden invisible' %>
