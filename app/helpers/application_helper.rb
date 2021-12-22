@@ -43,7 +43,7 @@ module ApplicationHelper
   #
   # @return [String] desktop navigation link for links that scroll the homepage when clicked, or link visitor pre-scrolled to the section
   #
-  def scrolling_desktop_navigation_link(name:, path:, request_path: nil)
+  def scrolling_desktop_navigation_link(name:, path:)
     content_tag(:li, class: "group pl-6") do
       span_1 = if request.path == '/'
         raw("<span @click=\"triggerNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</span>")
@@ -75,7 +75,7 @@ module ApplicationHelper
   #
   # @return [String] mobile navigation link for links that scroll the homepage when clicked, or link visitor pre-scrolled to the section
   #
-  def scrolling_mobile_navigation_link(name:, path:, request_path: nil)
+  def scrolling_mobile_navigation_link(name:, path:)
     content_tag(:li, class: "py-2") do
       span_1 = if request.path == '/'
         raw("<span @click=\"triggerMobileNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</span>")
