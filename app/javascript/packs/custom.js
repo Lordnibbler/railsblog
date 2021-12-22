@@ -1,6 +1,6 @@
-var fitvids = require('fitvids');
+import fitvids from 'fitvids';
 
-$(document).on('turbolinks:load', function() {
+$(document).on('turbo:load', function() {
   // ensure videos fit width of page
   fitvids('#main');
 

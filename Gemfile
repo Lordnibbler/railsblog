@@ -26,7 +26,6 @@ gem 'rouge' # syntax highlighting
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-gem 'turbolinks' # faster page loads
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
 gem 'webrick' # web server for capybara and local dev
