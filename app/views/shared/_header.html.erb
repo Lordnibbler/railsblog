@@ -18,7 +18,7 @@
 
             <div class="hidden lg:block">
                 <ul class="flex items-center">
-                    <%= desktop_navigation_link(name: "home", path: root_path) %>
+                    <%= desktop_navigation_link(name: "home",        path: root_path) %>
                     <%= desktop_navigation_link(name: "photography", path: photography_path) %>
                     <%= desktop_navigation_link(name: "blog",        path: blog_posts_path) %>
                     <%= scrolling_desktop_navigation_link(name: "about",      path: "#about") %>
@@ -48,7 +48,7 @@
             </button>
 
             <ul class="flex flex-col mt-8">
-                <%= mobile_navigation_link(name: 'home', path: root_path) %>
+                <%= mobile_navigation_link(name: 'home',        path: root_path) %>
                 <%= mobile_navigation_link(name: 'photography', path: photography_path) %>
                 <%= mobile_navigation_link(name: "blog",        path: blog_posts_path) %>
                 <%= scrolling_mobile_navigation_link(name: "about",      path: "#about") %>
