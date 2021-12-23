@@ -5,7 +5,6 @@ gem 'rails', '~> 6.1'
 gem 'activeadmin' # admin UI scaffolding
 gem 'bcrypt', git: 'https://github.com/bcrypt-ruby/bcrypt-ruby' # NOTE: temporary lock for big sur/m1
 gem 'client_side_validations' # validate forms in views before submitting to server
-gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
