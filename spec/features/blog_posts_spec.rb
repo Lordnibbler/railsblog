@@ -22,12 +22,13 @@ describe '/blog' do
 
   context 'when a Blog::Post is no longer published' do
     it 'removes it from the blog_posts_index_path' do
-      expect(page).to have_selector('[role="article"]', count: Blog::Post.count)
+      original_published_count = Blog::Post.published.count
+      expect(page).to have_selector('[role="article"]', count: original_published_count)
       post.update_column(:published, false)
 
       visit blog_posts_path
 
-      expect(page).to have_selector('[role="article"]', count: Blog::Post.count - 1)
+      expect(page).to have_selector('[role="article"]', count: original_published_count - 1)
       expect(page).to_not have_selector("post-#{post.id}")
     end
   end

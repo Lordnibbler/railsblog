@@ -2,6 +2,8 @@ require 'rails_helper'
 
 describe PhotographyController do
     it 'successfully renders the index template on GET photography_path', type: :request do
+      allow(FlickrService).to receive(:get_photos)
+
       get photography_path
       
       expect(response).to be_successful
