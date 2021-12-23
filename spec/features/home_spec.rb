@@ -13,14 +13,14 @@ describe '/' do
 
     it 'shows all published posts' do
       within '#latest' do
-        expect(page).to have_selector('a.shadow.bg-white', count: 2)
+        expect(page).to have_selector('a.bg-white', count: 2)
       end
     end
 
     context 'when clicking Continue Reading' do
       it 'shows full post' do
         within '#latest' do
-           page.first(:css, 'a.shadow.bg-white').click
+           page.first(:css, 'a.bg-white').click
         end
   
         expect(page).to have_content 'Bacon ipsum dolor amet shankle beef'
