@@ -23,6 +23,8 @@ ActiveAdmin.register User do
       f.input :name
       f.input :password
       f.input :password_confirmation
+      f.input :avatar_url
+      f.input :biography
     end
     f.actions
   end

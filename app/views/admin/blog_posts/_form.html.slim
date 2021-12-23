@@ -1,8 +1,8 @@
 = active_admin_form_for resource, url: resource.new_record? ? admin_blog_posts_path : admin_blog_post_path(resource) do |f|
   - f.inputs 'Post Metadata' do
+    - f.input :published
     - f.input :title
     - f.input :description
-    - f.input :published
     - f.input :featured_image_url, as: :string
     - f.input :user_id, as: :select, collection: User.all.map{ |u| [u.name, u.id] }
     - f.input :created_at
