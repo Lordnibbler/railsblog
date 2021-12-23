@@ -1,5 +1,7 @@
 # interface for fetching and caching photos from flickr API
 class FlickrService
+  PHOTOGRAPHY_CACHE_WARMED_KEY = "photography_cache_warmed".freeze
+
   class << self
     FlickRaw.api_key       = ENV['FLICKR_API_KEY']
     FlickRaw.shared_secret = ENV['FLICKR_SECRET']
@@ -62,6 +64,10 @@ class FlickrService
       Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.month do
         client.photos.getInfo(photo_id: photo_id)
       end
+    end
+
+    def cache_warmed?
+      Rails.cache.fetch(PHOTOGRAPHY_CACHE_WARMED_KEY)
     end
 
     private
