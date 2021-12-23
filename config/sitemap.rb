@@ -49,4 +49,7 @@ SitemapGenerator::Sitemap.create do
 
   # /contact-me
   add page_path 'contact-me', changefreq: 'monthly'
+
+  # /photography
+  add photography_path 'photography', changefreq: 'monthly'
 end
