@@ -39,7 +39,7 @@ before_install:
 install:
   # rvm must be manually installed on dist: focal
   - curl -sSL https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer | bash -s stable
-  - rvm reload && rvm install 3.0.2
+  - rvm reload && rvm install 3.0.3
 
   # chromedriver
   - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
