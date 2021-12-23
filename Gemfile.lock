@@ -203,6 +203,7 @@ GEM
     health_check (3.0.0)
       railties (>= 5.0)
     high_voltage (3.1.2)
+    humanize (2.5.1)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     inherited_resources (1.13.0)
@@ -464,6 +465,7 @@ DEPENDENCIES
   guard-yard
   health_check
   high_voltage
+  humanize
   jbuilder
   kaminari
   launchy

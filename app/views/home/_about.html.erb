@@ -6,7 +6,7 @@
             <h4 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6">
                 Technical and Creative</h4>
             <p class="font-body text-grey-20 pt-6 leading-relaxed">
-                I have <%= number_to_human(Time.now.year - 2011) %> years of professional experience as a <span class="font-black">Software Engineer</span> at industry-leading companies in the San Francisco Bay Area.
+                I have <%= (Time.now.year - 2011).humanize %> years of professional experience as a <span class="font-black">Software Engineer</span> at industry-leading companies in the San Francisco Bay Area.
             </p>
             <p class="font-body text-grey-20 pt-6 leading-relaxed">
                 At <span class="font-black">Lyft</span>, my team built a Simulation System which allows the business to handle thousands of rides per minute during our busiest moments.

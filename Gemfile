@@ -12,6 +12,7 @@ gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
+gem 'humanize' # convert 10 -> "ten"
 gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
