@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+html {
+    @apply font-body antialiased;
+}
+
+@tailwind utilities;
+
+@font-face {
+    font-family: "northemes-icons";
+    src: url("../fonts/northemes-icons.ttf") format("truetype"), url("../fonts/northemes-icons.woff") format("woff");
+    font-style: normal;
+    font-weight: 400;
+}
+
+/*
+'quote' 'a',
+'gallery' 'b',
+'image' 'c',
+'audio' 'd',
+'video' 'e',
+'pinterest' 'f',
+'category' 'g',
+'link' 'h',
+'comment' 'i',
+'facebook' 'j',
+'twitter' 'k',
+'google' 'l',
+'linkedin' 'm',
+'github' 'n',
+'youtube' 'o',
+'dribbble' 'p',
+'skype' 'q',
+'instagram' 'r',
+'stackoverflow' 's',
+'tubmlr' 't',
+'foursquare' 'u',
+'rss' 'v',
+'tag' 'w',
+'color' 'x',
+'Ghost' 'y',
+'pin' 'z',
+'pen' '\e600',
+'menu' '\e601',
+'collapse' '\e602'
+*/
+.northemes-icons {
+    font-family: "northemes-icons";
+    font-style: normal;
+}

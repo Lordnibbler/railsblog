@@ -1,0 +1,63 @@
+<div x-data="{
+    triggerNavItem(id) {
+        $scroll(id)
+    },
+    triggerMobileNavItem(id) {
+        $parent.mobileMenu = false;
+        this.triggerNavItem(id)
+    }
+}"> 
+    <% # desktop navigation %>
+    <div class="w-full z-50 top-0 py-3 sm:py-5 <%= @navigation_class %> ">
+        <div class="container flex justify-between items-center">
+            <div>
+                <a href="/" class="uppercase text-white text-2xl sm:text-4xl">
+                    <span class="font-black">Radler</span> <span class="font-thin">Designs</span>
+                </a>
+            </div>
+
+            <div class="hidden lg:block">
+                <ul class="flex items-center">
+                    <%= desktop_navigation_link(name: "home",        path: root_path) %>
+                    <%= desktop_navigation_link(name: "photography", path: photography_path) %>
+                    <%= desktop_navigation_link(name: "blog",        path: blog_posts_path) %>
+                    <%= scrolling_desktop_navigation_link(name: "about",      path: "#about") %>
+                    <%= scrolling_desktop_navigation_link(name: "work",       path: "#work") %>
+                    <%= scrolling_desktop_navigation_link(name: "games",      path: "#games") %>
+                    <%= scrolling_desktop_navigation_link(name: "videos",     path: "#videos") %>
+                    <%= scrolling_desktop_navigation_link(name: "latest",     path: "#latest") %>
+                    <%= scrolling_desktop_navigation_link(name: "contact",    path: "#contact") %>
+                </ul>
+            </div>
+
+            <% # hamburger icon %>
+            <div class="block lg:hidden">
+                <button @click="$parent.mobileMenu = true"><i class='bx bx-menu text-white text-4xl'></i></button>
+            </div>
+        </div>
+    </div>
+
+    <% # mobile navigation %>
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 min-h-screen lg:hidden transition-opacity opacity-0 pointer-events-none"
+        :class="{ 'opacity-100 pointer-events-auto': $parent.mobileMenu }">
+        <div class="w-2/3 md:w-1/3 bg-primary min-h-screen absolute right-0 shadow py-4 px-8">
+
+            <% # close mobile nav %>
+            <button class="absolute top-0 right-0 mt-4 mr-4" @click="$parent.mobileMenu = false">
+                <%= image_pack_tag "icon-close.svg", class: "h-10 w-auto", alt: "close" %>
+            </button>
+
+            <ul class="flex flex-col mt-8">
+                <%= mobile_navigation_link(name: 'home',        path: root_path) %>
+                <%= mobile_navigation_link(name: 'photography', path: photography_path) %>
+                <%= mobile_navigation_link(name: "blog",        path: blog_posts_path) %>
+                <%= scrolling_mobile_navigation_link(name: "about",      path: "#about") %>
+                <%= scrolling_mobile_navigation_link(name: "work",       path: "#work") %>
+                <%= scrolling_mobile_navigation_link(name: "games",      path: "#games") %>
+                <%= scrolling_mobile_navigation_link(name: "videos",     path: "#videos") %>
+                <%= scrolling_mobile_navigation_link(name: "latest",     path: "#latest") %>
+                <%= scrolling_mobile_navigation_link(name: "contact",    path: "#contact") %>
+            </ul>
+        </div>
+    </div>
+</div>

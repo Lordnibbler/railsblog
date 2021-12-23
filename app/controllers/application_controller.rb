@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_meta_tags_title
+  before_action :set_navigation_class
 
   private
 
@@ -23,5 +24,13 @@ class ApplicationController < ActionController::Base
   #
   def body_class(name)
     @body_class = "#{name}-template"
+  end
+
+  #
+  # home page requires `absolute` container class 
+  # all other pages require bg-primary
+  #
+  def set_navigation_class
+    @navigation_class = request.path == "/" ? "absolute" : "bg-primary"
   end
 end

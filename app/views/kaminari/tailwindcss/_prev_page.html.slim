@@ -1,0 +1,5 @@
+li.page-prev
+  = link_to url, rel: 'prev', remote: remote, class: "flex items-center mr-3" do 
+    i[class='bx bx-left-arrow-alt text-2xl text-primary']
+    span[class="font-body font-bold text-primary text-lg uppercase block"]
+      = raw(t('views.pagination.previous'))

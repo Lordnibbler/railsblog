@@ -4,16 +4,15 @@ gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
 gem 'bcrypt', git: 'https://github.com/bcrypt-ruby/bcrypt-ruby' # NOTE: temporary lock for big sur/m1
-gem 'bourbon', '4.2.0' # lightweight SASS toolset
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'coffee-rails' # required by sprockets, remove after migrating to webpack
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
-gem 'formtastic', '4.0.0rc1' # TODO: remove after 4.0 is adopted by activeadmin for ruby 3 i18n bug
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
+gem 'humanize' # convert 10 -> "ten"
 gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
@@ -25,11 +24,9 @@ gem 'redcarpet', git: 'https://github.com/vmg/redcarpet' # NOTE: temporary lock 
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
-gem 'sass-rails' # SASS integration
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-gem 'turbolinks' # faster page loads
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
 gem 'webrick' # web server for capybara and local dev
@@ -59,11 +56,10 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-selenium', '~> 0.0.6'
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'vcr'
-  gem 'webdrivers', '~> 3.7', '>= 3.7.2'
+  gem 'webdrivers'
   gem 'webmock'
 end
 

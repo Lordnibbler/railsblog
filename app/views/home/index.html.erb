@@ -1,0 +1,14 @@
+<% set_meta_tags title: 'Home - Software Engineer and Filmmaker',
+  description: 'Home - Hire Ben Radler for software engineering. Ruby, Rails, Python, ReactJS, Javascript' %>
+
+<div>
+    <%= render partial: "hero" %>
+    <%= render partial: "about" %>
+    <%= render partial: "expertise" %>
+    <%= render partial: "work" %>
+    <%= render partial: "games" %>
+    <%= render partial: "videos" %>
+    <%= render partial: 'blog', locals: { posts: @posts } %>
+    <%= render partial: "contact" %>
+    <%= render partial: "newsletter" %>
+</div>

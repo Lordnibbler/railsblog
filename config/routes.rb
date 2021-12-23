@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   match '/422', to: 'errors#unprocessable_entity', via: :all
   match '/500', to: 'errors#internal_server_error', via: :all
 
-  root 'pages#show', id: 'home', format: false
+  root 'home#index', format: false
 
   namespace :api do
     namespace :v1 do
@@ -57,6 +57,11 @@ Rails.application.routes.draw do
   # custom route for short link to contact-me page
   #
   get '/contact-me' => 'pages#show', id: 'contact-me'
+
+  #
+  # POST for newsletter signup
+  #
+  resources :newsletter_signups, only: [:create]
 
   #
   # /sitemap.xml.gz

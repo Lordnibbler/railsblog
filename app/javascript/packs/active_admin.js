@@ -1,6 +1,6 @@
 // Load Active Admin's styles into Webpacker,
 // see `active_admin.scss` for customization.
-import "../stylesheets/active_admin";
+import "./active_admin/active_admin.scss";
 
 import "@activeadmin/activeadmin";
 
@@ -10,10 +10,12 @@ const marked = require('marked');
 // from markdown on the left pane to HTML on the right pane
 document.addEventListener('DOMContentLoaded', () => {
   const blogPostBodyElement = document.querySelector('#blog_post_body');
-  blogPostBodyElement.addEventListener('input', updateRenderedMarkdown);
+  if (blogPostBodyElement !== null) {
+    blogPostBodyElement.addEventListener('input', updateRenderedMarkdown);
 
-  // populate the rendered markdown once at page load
-  updateRenderedMarkdown()
+    // populate the rendered markdown once at page load
+    updateRenderedMarkdown()
+  }
 
   function updateRenderedMarkdown(){
     const markdownValue = marked(blogPostBodyElement.value);

@@ -1,5 +1,6 @@
-article id="#{controller_name}-#{action_name}" class='post' role='article' itemscope='' itemtype='http://schema.org/Article'
-  .content-wrapper
-    h2.post-title = yield(:page_title)
-    div class='post-content' itemprop='articleBody'
+div id="#{controller_name}-#{action_name}"
+  .container.py-6.md:py-10
+    .max-w-4xl.mx-auto
+      h1.font-body.font-semibold.text-primary.text-3xl.sm:text-4xl.md:text-5xl.xl:text-6xl.pt-5
+        = yield(:page_title)
       = yield

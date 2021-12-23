@@ -51,4 +51,24 @@ RSpec.describe Blog::Post, type: :model do
       end
     end
   end
+
+  describe 'next' do
+    it 'returns the next post' do
+      expect(post.next).to eq(long_post)
+    end
+
+    it 'returns nil if no next post exists' do
+      expect(long_post.next).to be_nil
+    end
+  end
+
+  describe 'previous' do
+    it 'returns the previous post' do
+      expect(long_post.previous).to eq(post)
+    end
+
+    it 'returns nil if no previous post exists' do
+      expect(post.previous).to be_nil
+    end
+  end
 end

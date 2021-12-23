@@ -1,24 +1,55 @@
 doctype html
-html lang='en'
+html[lang="en"]
   head
+    - # title and description
     = display_meta_tags
-    meta name='HandheldFriendly' content='True'
-    meta name='MobileOptimized' content='320'
-    meta name='viewport' content='width=device-width, initial-scale=1.0'
-    = auto_discovery_link_tag :rss,  blog_posts_path(format: :rss)
+
+    - # rss
+    = auto_discovery_link_tag :rss, blog_posts_path(format: :rss)
     = auto_discovery_link_tag :atom, blog_posts_path(format: :atom)
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = yield :head
+    
+    - # content and device information
+    meta[charset="utf-8"]
+    meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
+
+    - # facebook open graph
+    meta[property="og:title" content="Homepage - benradler.com"]
+    meta[property="og:locale" content="en_US"]
+    meta[property="og:url" content="//"]
+    meta[property="og:site_name" content="benradler.com"]
+    meta[property="og:image" content="#{asset_pack_path("media/images/layout/social.jpg")}"]
+
+    - # twitter
+    meta[name="twitter:card" content="summary_large_image"]
+    meta[name="twitter:site" content="@benradler"]
+
+    link[rel="canonical" href="//"]
+    link[rel="icon" type="image/png" href="#{asset_pack_path("media/images/layout/favicon.png")}"]
+
+    - # for browsers/devices which customize UI based on theme
+    meta[name="theme-color" content="#5540af"]
+
+    - # fonts and icons
+    link[crossorigin="crossorigin" href="https://fonts.gstatic.com" rel="preconnect"]
+    link[as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="preload"]
+    link[href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"]
+    link[href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"]
+    
+    - # staging/production require this
+    = stylesheet_pack_tag 'application'
+    
+    - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
+    = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
+    
+    = yield :head 
     = csrf_meta_tags
-  body class="#{@body_class}"
-    .site
+  body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
+    #main
       = render 'shared/header'
-      section class='page-content primary' role='main'
-        = render 'shared/flash'
-        - if controller_name =~ /pages|errors/
-          = render 'shared/page'
-        - else
-          = yield
-        = render 'shared/footer'
+      = render 'shared/flash'
+      - if controller_name =~ /pages|errors/
+        = render 'shared/page'
+      - else 
+        = yield
+      = render 'shared/footer'
     = render 'shared/analytics' if Rails.env.production?

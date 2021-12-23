@@ -1,0 +1,16 @@
+/* 
+since .field_with_errors CSS class is applied with some JS trickery from client_side_validations, 
+and is defined in config/initializers/client_side_validations.rb,
+we MUST apply all of the styles explicitly here.
+if we do not,  they are automatically purged since it seems tailwindcss purge
+logic is not smart enough to understand that there are tailwindcss classes in the initializer
+even if we add it to the content array in tailwind.config.js
+*/
+.field_with_errors input,
+.field_with_errors textarea {
+    border-color: theme('colors.red.500');
+}
+.field_with_errors label {
+    color: theme('colors.red.500');
+    font-weight: bold;
+}

@@ -1,6 +1,7 @@
 - set_meta_tags title: '500 - Internal Server Error', description: '500 - Internal Server Error'
 - content_for :page_title, '500 - Internal Server Error'
 
-| Something's wrong! It looks like we've broken something on our system. We've been notified and will work to fix it ASAP. Feel free to&nbsp;
-= link_to 'contact me here', page_path('contact-me')
-|&nbsp;if you need immediate help.
+p[class="font-body text-grey-10 pt-5"]
+    = "Something's wrong! It looks like we've broken something on our system. We've been notified and will work to fix it ASAP. Feel free to "
+    = link_to 'contact me here', page_path('contact-me'), class: "text-primary"
+    = " if you need immediate help."

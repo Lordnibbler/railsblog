@@ -38,4 +38,12 @@ class Blog::Post < ApplicationRecord
   def more_text?
     body != excerpt
   end
+
+  def next
+    Blog::Post.where("id > ? AND user_id = ? AND published = ?", id, user.id, true).first
+  end
+
+  def previous
+    Blog::Post.where("id < ? AND user_id = ? AND published = ?", id, user.id, true).last
+  end
 end

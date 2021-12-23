@@ -1,14 +1,8 @@
-var fitvids = require('fitvids');
+import fitvids from 'fitvids';
 
-$(document).on('turbolinks:load', function() {
-  // main menu expander for smaller displays
-  $('.expander').click(function() {
-    $(this).toggleClass('expanded');
-    $('.main-menu').toggleClass('expanded');
-  });
-
+$(document).on('turbo:load', function() {
   // ensure videos fit width of page
-  fitvids('.site');
+  fitvids('#main');
 
   // flash auto-hiding
   $('.flash').on('click', function(event) {

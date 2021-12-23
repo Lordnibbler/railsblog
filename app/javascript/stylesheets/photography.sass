@@ -2,13 +2,15 @@
 // layout
 // ------
 .photography-template
+  #main
+    // required for safari (macOS and iOS) to prevent horizontal scrolling
+    overflow: hidden
   figure
     margin: 0
-    // masonry is putting this gap below each image, adjust explicitly here
-    margin-bottom: -7px !important
 
 .my-gallery
-  // avoid small white space on right edge of gallery
+  // avoid small white space on right edge of gallery by forcing some content off
+  // the page and hiding it with overflow: hidden in the parent container
   width: 100.5%
 
 // -------

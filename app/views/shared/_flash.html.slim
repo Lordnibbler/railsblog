@@ -1,2 +1,19 @@
-- flash.each do |name, msg|
-  = content_tag :div, msg, class: "flash flash-#{name}"
+- if flash.count > 0
+  - classes = "container pt-6 md:pt-10"
+  - if controller_name =~ /home/
+    - # position the flash message absolutely at top of page if we're on homepage
+    - classes +=  " absolute top-0 left-0 z-50"
+
+  div[class=classes]
+    .max-w-4xl.mx-auto
+      - flash.each do |name, msg|
+        - if name == "success"
+          - flash_classes = "border-lime-800 p-4 text-lime-900 bg-lime-100 hover:bg-lime-200"
+        - elsif name == "error"
+          - flash_classes = "border-red-800 p-4 text-red-900 bg-red-100 hover:bg-red-200"
+
+        div[class="flash flash-#{name} flex flex-row rounded-md shadow-md cursor-pointer border-2 #{flash_classes}"]
+          div[class="w-5/6"]
+            = msg
+          span[class="flex-auto font-body font-bold text-sm md:text-base text-slate-800 uppercase rounded-full text-right relative left-0 top-0"]
+            = "X"

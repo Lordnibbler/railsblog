@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe PagesController, '#show' do
-  %w[contact-me home].each do |page|
+  %w[contact-me squarecrusher/privacy-policy].each do |page|
     context "on GET to #{page}" do
       before do
         get :show, params: { id: page }
@@ -14,6 +14,10 @@ describe PagesController, '#show' do
 
       it { should render_template(:application) }
       it { should render_template(page) }
+
+      it 'sets body class' do
+        expect(assigns(:body_class)).to eq("static-page-template")
+      end
     end
   end
 end

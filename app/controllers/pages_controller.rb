@@ -7,6 +7,6 @@ class PagesController < ApplicationController
   private
 
   def set_body_class
-    body_class 'home'
+    body_class 'static-page'
   end
 end

@@ -8,7 +8,10 @@ class ContactFormsController < ApplicationController
     else
       flash[:error] = 'Email failed to send'
     end
-    redirect_to page_path('contact-me')
+
+    # redirect to homepage if submitting contact form from homepage
+    redirect_path = params[:request_route] == root_path ? root_path : page_path('contact-me')
+    redirect_to redirect_path
   end
 
   private
