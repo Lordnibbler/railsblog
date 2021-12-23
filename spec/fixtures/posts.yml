@@ -11,3 +11,10 @@ long:
   user: ben
   slug: 'i-hate-bacon'
   published: true
+
+unpublished:
+  title: 'I unpublished the bacon'
+  body: 'Bacon no longer was published.'
+  user: ben
+  slug: 'i-unpublished-the-bacon'
+  published: false
