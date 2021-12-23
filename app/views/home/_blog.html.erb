@@ -7,19 +7,21 @@
     <div
         class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10 pt-12">
         <% @posts.each do |post| %>
-            <a href="<%= blog_posts_permalink_path(post) %>" class="shadow bg-white">
-                <div style="background-image:url(<%= post.featured_image_url %>);"
-                    class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
-                    <span
-                        class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
-                    <span
-                        class="font-body font-bold text-sm md:text-base bg-primary text-white border-2 border-white block px-6 py-2 uppercase rounded-full text-center absolute right-0 bottom-0 mr-4 mb-4">
-                        Read More
-                    </span>
-                </div>
-                <div class="py-6 xl:py-8 px-5">
-                    <span class="font-body font-semibold text-lg text-black block"><%= post.title %></span>
-                    <span class="font-body text-grey-20 pt-2 block"><%= post.description %></span>
+            <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
+                <div class="shadow">
+                    <div style="background-image:url(<%= post.featured_image_url %>);"
+                        class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
+                        <span
+                            class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
+                    </div>
+                    <div class="py-6 xl:py-8 px-5">
+                        <span class="font-body font-semibold text-lg text-black block"><%= post.title %></span>
+                        <span class="font-body text-grey-20 pt-2 block"><%= post.description %></span>
+                        <span
+                            class="font-body font-bold text-sm md:text-base bg-primary text-white border-2 border-white block px-6 py-2 uppercase rounded-full text-center mt-4">
+                            Read More
+                        </span>
+                    </div>
                 </div>
             </a>
         <% end %>
