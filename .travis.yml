@@ -54,7 +54,7 @@ install:
   - bundle install
 
   # webpack
-  - nvm install 14
+  - nvm install 16
   - node -v
   - npm i -g yarn
   - yarn
