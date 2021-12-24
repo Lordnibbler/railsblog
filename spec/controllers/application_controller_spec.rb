@@ -16,7 +16,7 @@ describe ApplicationController do
 
     it 'allows prefixing the template class' do
       controller.send(:set_body_class, 'bg-primary test')
-        expect(controller.instance_variable_get(:@body_class)).to eql('bg-primary test-template')
+      expect(controller.instance_variable_get(:@body_class)).to eql('bg-primary test-template')
     end
   end
 end

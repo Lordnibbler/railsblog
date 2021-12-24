@@ -27,7 +27,7 @@ describe PhotographyController do
 
       get :index, params: { page: 1 }
 
-      expect(assigns(:body_class)).to eq("overflow-x-hidden photography-template")
+      expect(assigns(:body_class)).to eq('overflow-x-hidden photography-template')
     end
   end
 end
