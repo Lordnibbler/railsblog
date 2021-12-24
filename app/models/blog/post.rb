@@ -40,10 +40,10 @@ class Blog::Post < ApplicationRecord
   end
 
   def next
-    Blog::Post.where("id > ? AND user_id = ? AND published = ?", id, user.id, true).first
+    self.user.posts.published.where("id > ? ", id).first
   end
 
   def previous
-    Blog::Post.where("id < ? AND user_id = ? AND published = ?", id, user.id, true).last
+    self.user.posts.published.where("id < ? ", id).first
   end
 end

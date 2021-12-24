@@ -10,5 +10,5 @@ class User < ApplicationRecord
          :trackable,
          :validatable
 
-  has_many :posts, dependent: :destroy
+  has_many :posts, dependent: :destroy, class_name: "Blog::Post"
 end
