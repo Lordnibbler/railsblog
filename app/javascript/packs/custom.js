@@ -9,7 +9,7 @@ $(document).on('turbo:load', function() {
     $(this).slideUp();
   });
 
-  function changeCss () {
+  function desktopNavTransparencyHandler () {
     let notScrolledClass // class when page is scrolled to top
     let scrolledClass // class when page is scrolled past 100px
     if (window.location.pathname == "/") {
@@ -29,5 +29,5 @@ $(document).on('turbo:load', function() {
     }
   }
 
-  window.addEventListener("scroll", changeCss , false)
+  window.addEventListener("scroll", desktopNavTransparencyHandler, false)
 });
