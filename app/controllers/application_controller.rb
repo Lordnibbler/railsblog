@@ -19,10 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
   #
-  # @note override {body_class} to customize the CSS class of the <body> tag
+  # @note invoke set_body_class in subclass to customize the CSS class of the <body> tag
   # sets the body_class ivar to a class based on the {name} attribute; used in CSS
   #
-  def body_class(name)
+  def set_body_class(name)
     @body_class = "#{name}-template"
   end
 
