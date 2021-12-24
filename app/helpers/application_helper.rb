@@ -48,7 +48,7 @@ module ApplicationHelper
       span_1 = if request.path == '/'
                  raw("<a @click=\"triggerNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</a>")
                else
-                 content_tag(:a, href: "#{root_path}#{path}", "data-turbo": 'false',
+                 content_tag(:a, href: "#{root_path}#{path}", 'data-turbo': 'false',
                                  class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',) do
                    raw(name)
                  end
@@ -80,7 +80,7 @@ module ApplicationHelper
       span_1 = if request.path == '/'
                  raw("<a @click=\"triggerMobileNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</a>")
                else
-                 content_tag(:a, href: "#{root_path}#{path}", "data-turbo": 'false',
+                 content_tag(:a, href: "#{root_path}#{path}", 'data-turbo': 'false',
                                  class: 'font-header font-semibold text-white uppercase pt-0.5',) do
                    raw(name)
                  end

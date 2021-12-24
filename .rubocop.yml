@@ -1,4 +1,6 @@
 AllCops:
+  # can opt-in to new cops by default by adding this
+  NewCops: enable
   Include:
     - '**/Gemfile'
     - '**/Rakefile'
