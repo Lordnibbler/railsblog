@@ -1,17 +1,17 @@
 <div x-data="{
     triggerNavItem(id) {
-        $scroll(id)
+        $scroll(id, { offset: 40 })
     },
     triggerMobileNavItem(id) {
         $parent.mobileMenu = false;
         this.triggerNavItem(id)
     }
-}"> 
+}">
     <% # desktop navigation %>
-    <div class="w-full z-50 top-0 py-3 sm:py-5 <%= @navigation_class %> ">
+    <div class="desktop-nav fixed transition ease-in-out duration-300 w-full z-50 top-0 py-3 sm:py-5 <%= @navigation_class %>">
         <div class="container flex justify-between items-center">
             <div>
-                <a href="/" class="uppercase text-white text-2xl sm:text-4xl">
+                <a href="/" class="uppercase text-white text-2xl sm:text-4xl lg:text-2xl xl:text-4xl">
                     <span class="font-black">Radler</span> <span class="font-thin">Designs</span>
                 </a>
             </div>
@@ -38,9 +38,9 @@
     </div>
 
     <% # mobile navigation %>
-    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 min-h-screen lg:hidden transition-opacity opacity-0 pointer-events-none"
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 min-h-full lg:hidden transition-opacity opacity-0 pointer-events-none"
         :class="{ 'opacity-100 pointer-events-auto': $parent.mobileMenu }">
-        <div class="w-2/3 md:w-1/3 bg-primary min-h-screen absolute right-0 shadow py-4 px-8">
+        <div class="w-2/3 md:w-1/3 bg-primary min-h-full absolute right-0 shadow py-4 px-8">
 
             <% # close mobile nav %>
             <button class="absolute top-0 right-0 mt-4 mr-4" @click="$parent.mobileMenu = false">

@@ -7,7 +7,7 @@
   = stylesheet_pack_tag 'photography', 'data-turbo-track': 'reload'
 
 - # thumbnail gallery
-.my-gallery.grid.are-images-unloaded itemscope="" itemtype="http://schema.org/ImageGallery"
+div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20" itemscope="" itemtype="http://schema.org/ImageGallery"]
   .grid-sizer
   - @photos.each do |photo|
     figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"

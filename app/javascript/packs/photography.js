@@ -226,8 +226,20 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
         options.history = false;
 
         // Pass data to PhotoSwipe and initialize it
-        gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
+
+        // event handlers to animate the navigation div on open/close of photoswipe gallery
+        gallery.listen('initialZoomIn', function() {
+            let navElement = document.querySelector(".desktop-nav");
+            navElement.classList.add("animate-hideTop")
+            navElement.classList.remove("animate-showTop")
+        });
+        gallery.listen('close', function() {
+            let navElement = document.querySelector(".desktop-nav");
+            navElement.classList.remove("animate-hideTop")
+            navElement.classList.add("animate-showTop")
+        });
     };
 
     // loop through all gallery elements and bind events

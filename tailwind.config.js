@@ -88,10 +88,32 @@ module.exports = {
                 "204": "51rem"
             },
             zIndex: {
-                "-1": "-1"
+                "-1": "-1",
             },
             inset: {
                 '2/5': '40%'
+            },
+            keyframes: {
+                wiggle: {
+                    '0%, 100%': {
+                        transform: 'rotate(-3deg)'
+                    },
+                    '50%': {
+                        transform: 'rotate(3deg)'
+                    },
+                },
+                hideTop: {
+                    from: { top: '0px' },
+                    to: { top: '-100px' }
+                },
+                showTop: {
+                    from: { top: '-100px' },
+                    to: { top: '0px' }
+                }
+            },
+            animation: {
+                hideTop: 'hideTop 0.5s ease-in-out forwards',
+                showTop: 'showTop 0.5s ease-in-out forwards'
             }
         }
     },

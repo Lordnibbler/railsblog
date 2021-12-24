@@ -1,6 +1,12 @@
 // ------
 // layout
 // ------
+.pswp
+    // set z-index of photoswipe container smaller than the z-index of
+    // site's fixed header navigation. then add/remove z-index class from header via
+    // javascript in custom.js for smoother transition/from gallery
+    z-index: 25
+
 .photography-template
   #main
     // required for safari (macOS and iOS) to prevent horizontal scrolling

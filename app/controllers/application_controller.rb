@@ -27,10 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   #
-  # home page requires `absolute` container class 
-  # all other pages require bg-primary
+  # home page nav should be fully transparent until scrolling
+  # all other pages require opaque bg
   #
   def set_navigation_class
-    @navigation_class = request.path == "/" ? "absolute" : "bg-primary"
+    @navigation_class = request.path == "/" ? "bg-primary/0" : "bg-primary"
   end
 end
