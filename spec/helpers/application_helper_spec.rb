@@ -64,7 +64,7 @@ describe ApplicationHelper do
       it 'returns a desktop navigation link HTML for the homepage' do
         link = helper.scrolling_desktop_navigation_link(name: "Videos", path: "#videos")
 
-        expect(link).to eq("<li class=\"group pl-6\"><span @click=\"triggerNavItem('#videos')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</span><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
+        expect(link).to eq("<li class=\"group pl-6\"><a @click=\"triggerNavItem('#videos')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
       end
     end
 
@@ -72,7 +72,7 @@ describe ApplicationHelper do
       it 'returns a desktop navigation link HTML for pages other than homepage' do
         link = helper.scrolling_desktop_navigation_link(name: "Videos", path: "#videos")
 
-        expect(link).to eq("<li class=\"group pl-6\"><a href=\"/#videos\" data-turbo-action=\"replace\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
+        expect(link).to eq("<li class=\"group pl-6\"><a href=\"/#videos\" data-turbo=\"false\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
       end
     end
   end
@@ -93,7 +93,7 @@ describe ApplicationHelper do
       it 'returns a mobile navigation link HTML for the homepage' do
         link = helper.scrolling_mobile_navigation_link(name: "Videos", path: "#videos")
 
-        expect(link).to eq("<li class=\"py-2\"><span @click=\"triggerMobileNavItem('#videos')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</span><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
+        expect(link).to eq("<li class=\"py-2\"><a @click=\"triggerMobileNavItem('#videos')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
       end
     end
 
@@ -101,7 +101,7 @@ describe ApplicationHelper do
       it 'returns a mobile navigation link HTML for pages other than homepage' do
         link = helper.scrolling_mobile_navigation_link(name: "Videos", path: "#videos")
 
-        expect(link).to eq("<li class=\"py-2\"><a href=\"/#videos\" class=\"font-header font-semibold text-white uppercase pt-0.5\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
+        expect(link).to eq("<li class=\"py-2\"><a href=\"/#videos\" data-turbo=\"false\" class=\"font-header font-semibold text-white uppercase pt-0.5\">Videos</a><span class=\"block w-full h-0.5 bg-transparent group-hover:bg-yellow\"></span></li>")
       end
     end
   end
