@@ -40,7 +40,7 @@ class Blog::Post < ApplicationRecord
   end
 
   def next
-    self.user.posts.published.where("id > ? ", id).first
+    self.user.posts.published.where("id > ? ", id).last
   end
 
   def previous
