@@ -104,10 +104,10 @@ module.exports = {
                 },
                 hideTop: {
                     from: { top: '0px' },
-                    to: { top: '-120px' }
+                    to: { top: '-100px' }
                 },
                 showTop: {
-                    from: { top: '-120px' },
+                    from: { top: '-100px' },
                     to: { top: '0px' }
                 }
             },
