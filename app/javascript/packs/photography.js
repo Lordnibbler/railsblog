@@ -168,7 +168,6 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
     };
 
     var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
-        console.log("openPhotoSwipe")
         var pswpElement = document.querySelectorAll('.pswp')[0],
             gallery,
             options,
