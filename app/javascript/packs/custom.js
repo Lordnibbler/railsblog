@@ -10,20 +10,24 @@ $(document).on('turbo:load', function() {
   });
 
   function changeCss () {
-
-    var bodyElement = document.querySelector("body");
-    var navElement = document.querySelector(".desktop-nav");
-    if (this.scrollY > 500) {
-      console.log("changeCss - going NOT transparent")
-      navElement.classList.remove("bg-primary/0")
-      navElement.classList.add("bg-primary/90")
+    let notScrolledClass // class when page is scrolled to top
+    let scrolledClass // class when page is scrolled past 100px
+    if (window.location.pathname == "/") {
+      notScrolledClass = "bg-primary/0"
+      scrolledClass = "bg-primary/90"
     } else {
-      console.log("changeCss - going transparent")
-      navElement.classList.remove("bg-primary/90")
-      navElement.classList.add("bg-primary/0")
+      notScrolledClass = "bg-primary"
+      scrolledClass = "bg-primary/90"
     }
-    // this.scrollY > 500 ? navElement.style.opacity = 0.0 : navElement.style.opacity = 1;
+
+    // event listener logic, when page scrolls past 100px y-axis, switch CSS background
+    let navElement = document.querySelector(".desktop-nav");
+    if (this.scrollY > 100) {
+      navElement.classList.replace(notScrolledClass, scrolledClass)
+    } else {
+      navElement.classList.replace(scrolledClass, notScrolledClass)
+    }
   }
 
-  window.addEventListener("scroll", changeCss , false);
+  window.addEventListener("scroll", changeCss , false)
 });
