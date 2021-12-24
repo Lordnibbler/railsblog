@@ -78,9 +78,9 @@ module ApplicationHelper
   def scrolling_mobile_navigation_link(name:, path:)
     content_tag(:li, class: "py-2") do
       span_1 = if request.path == '/'
-        raw("<span @click=\"triggerMobileNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</span>")
+        raw("<a @click=\"triggerMobileNavItem('#{path}')\" class=\"font-header font-semibold text-white uppercase pt-0.5 cursor-pointer\">#{name}</a>")
       else
-        content_tag(:a, href: "#{root_path}#{path}", class: "font-header font-semibold text-white uppercase pt-0.5") do
+        content_tag(:a, href: "#{root_path}#{path}", "data-turbo": "false", class: "font-header font-semibold text-white uppercase pt-0.5") do
           raw(name)
         end
       end
