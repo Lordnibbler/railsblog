@@ -36,7 +36,7 @@ html[lang="en"]
     link[href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"]
     
     - # staging/production require this
-    = stylesheet_pack_tag 'application'
+    = stylesheet_pack_tag 'application', 'data-turbo-track': 'reload'
     
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
