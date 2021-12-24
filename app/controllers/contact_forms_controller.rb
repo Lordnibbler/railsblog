@@ -2,6 +2,10 @@
 # endpoints to submit a contact-me <form> for validation and email delivery
 #
 class ContactFormsController < ApplicationController
+  before_action do
+    set_body_class('contact')
+  end
+
   def create
     if deliver_contact_form!
       flash[:success] = 'Email sent successfully'

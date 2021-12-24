@@ -15,7 +15,7 @@ describe Blog::PostsController do
 
     it 'sets the body class' do
       get :index
-      expect(assigns(:body_class)).to eql('home-template')
+      expect(assigns(:body_class)).to eql('post-template')
     end
   end
 
