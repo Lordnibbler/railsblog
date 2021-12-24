@@ -38,9 +38,9 @@
     </div>
 
     <% # mobile navigation %>
-    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 min-h-screen lg:hidden transition-opacity opacity-0 pointer-events-none"
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 min-h-full lg:hidden transition-opacity opacity-0 pointer-events-none"
         :class="{ 'opacity-100 pointer-events-auto': $parent.mobileMenu }">
-        <div class="w-2/3 md:w-1/3 bg-primary min-h-screen absolute right-0 shadow py-4 px-8">
+        <div class="w-2/3 md:w-1/3 bg-primary min-h-full absolute right-0 shadow py-4 px-8">
 
             <% # close mobile nav %>
             <button class="absolute top-0 right-0 mt-4 mr-4" @click="$parent.mobileMenu = false">
