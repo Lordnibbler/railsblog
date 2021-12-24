@@ -1,7 +1,14 @@
 @tailwind base;
 @tailwind components;
+
 html {
     @apply font-body antialiased;
+
+    /*
+        clicking anchor links from another page to home page must scroll the content 40px
+        so it doesn't appear under the fixed navigation
+    */
+    scroll-padding-top: 40px;
 }
 
 @tailwind utilities;
