@@ -1,6 +1,6 @@
 <div x-data="{
     triggerNavItem(id) {
-        $scroll(id)
+        $scroll(id, { offset: 40 })
     },
     triggerMobileNavItem(id) {
         $parent.mobileMenu = false;
