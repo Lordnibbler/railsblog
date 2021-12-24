@@ -229,20 +229,17 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
         // Pass data to PhotoSwipe and initialize it
         gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
         gallery.init();
-        gallery.listen('initialZoomInEnd', function() {
-            console.log("initialZoomInEnd")
+
+        // event handlers to animate the navigation div on open/close of photoswipe gallery
+        gallery.listen('initialZoomIn', function() {
             let navElement = document.querySelector(".desktop-nav");
-            navElement.classList.add("z-0")
+            navElement.classList.add("animate-hideTop")
+            navElement.classList.remove("animate-showTop")
         });
-        // gallery.listen('initialZoomOutEnd', function() {
-        //     console.log("initialZoomOutEnd")
-        //     let navElement = document.querySelector(".desktop-nav");
-        //     navElement.classList.remove("z-0")
-        // });
         gallery.listen('close', function() {
-            console.log("close")
             let navElement = document.querySelector(".desktop-nav");
-            navElement.classList.remove("z-0")
+            navElement.classList.remove("animate-hideTop")
+            navElement.classList.add("animate-showTop")
         });
     };
 
