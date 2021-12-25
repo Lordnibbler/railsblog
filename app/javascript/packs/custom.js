@@ -9,14 +9,14 @@ $(document).on('turbo:load', function() {
     $(this).slideUp();
   });
 
-  function desktopNavTransparencyHandler () {
+  function navTransparencyHandler() {
     //
     // when page is scrolled down >=100px, make the navigation 95% transparent
     // when page is scrolled up <100px, make the navigation 100% transparent (home) or opaque (all other pages)
     //
     let notScrolledClass // class when page is scrolled to top
     let scrolledClass // class when page is scrolled past 100px
-    if (window.location.pathname == "/") {
+    if (window.location.pathname === "/") {
       notScrolledClass = "bg-primary/0"
       scrolledClass = "bg-primary/95"
     } else {
@@ -26,12 +26,19 @@ $(document).on('turbo:load', function() {
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background
     let navElement = document.querySelector(".desktop-nav");
-    if (this.scrollY > 100) {
+    if (this.scrollY > 100 || this.scrollY === undefined) {
       navElement.classList.replace(notScrolledClass, scrolledClass)
     } else {
       navElement.classList.replace(scrolledClass, notScrolledClass)
     }
   }
 
-  window.addEventListener("scroll", desktopNavTransparencyHandler, false)
+  // run once on homepage load to ensure classes are set appropriately,
+  // in case of linking straight to homepage on an anchor (hash)
+  if (window.location.pathname === "/" && window.location.hash) {
+    navTransparencyHandler.bind(this)()
+  }
+
+  // when page scrolls, update nav transparency as needed
+  window.addEventListener("scroll", navTransparencyHandler, false)
 });
