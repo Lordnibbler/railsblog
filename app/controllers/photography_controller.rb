@@ -6,7 +6,7 @@ class PhotographyController < ApplicationController
     # masonry/photoswipe force some small gap on the right edge of the page
     # use overflow-x-hidden to hide it
     #
-    set_body_class 'overflow-x-hidden photography'
+    body_class 'overflow-x-hidden photography'
   end
 
   def index
