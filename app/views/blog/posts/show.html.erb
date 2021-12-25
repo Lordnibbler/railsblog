@@ -45,7 +45,7 @@
             <% # author information %>
             <div
                 class="border-t border-lila py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
-                <div class="w-3/4 sm:w-2/5 lg:w-1/4 xl:w-1/5">
+                <div class="w-1/4 lg:w-1/12 xl:w-1/5 flex justify-center">
                     <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow" %>
                 </div>
                 <div class="ml-0 md:ml-10 md:w-5/6 text-center md:text-left">
@@ -56,22 +56,13 @@
                         class="font-body text-secondary text-lg md:text-xl leading-8 sm:leading-9 md:leading-9 lg:leading-9 xl:leading-9 pt-5">
                         <%= @post.user.biography %>
                     </p>
-                    <div class="flex items-center justify-center md:justify-start pt-5">
-                        <a href="/">
-                            <i class='bx bxl-facebook-square text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-twitter text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-dribbble text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-linkedin text-primary hover:text-yellow text-2xl'></i>
-                        </a>
-                        <a href="/" class="pl-4">
-                            <i class='bx bxl-instagram text-primary hover:text-yellow text-2xl'></i>
-                        </a>
+                    <div class="flex justify-center md:justify-start items-center mt-0 sm:mt-4">
+                        <p class="font-body font-semibold text-grey-20 text-lg uppercase hidden sm:block">
+                            Connect with me</p>
+                        <div class="hidden sm:block">
+                            <i class='bx bx-chevron-right text-primary text-2xl'></i>
+                        </div>
+                        <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary hover:text-yellow" } %>
                     </div>
                 </div>
             </div>
@@ -79,5 +70,4 @@
             <%= render 'shared/disqus_thread' %>
         </div>
     </div>
-
 </div>
