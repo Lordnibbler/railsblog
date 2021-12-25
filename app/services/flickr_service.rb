@@ -1,6 +1,6 @@
 # interface for fetching and caching photos from flickr API
 class FlickrService
-  PHOTOGRAPHY_CACHE_WARMED_KEY = "photography_cache_warmed".freeze
+  PHOTOGRAPHY_CACHE_WARMED_KEY = 'photography_cache_warmed'.freeze
 
   class << self
     FlickRaw.api_key       = ENV['FLICKR_API_KEY']

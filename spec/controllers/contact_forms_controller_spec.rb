@@ -29,8 +29,8 @@ describe ContactFormsController do
       context 'when contact form is submitted from homepage' do
         it 'redirects to homepage' do
           contact_form[:request_route] = root_path
-        
-          expect(post :create, params: contact_form).to redirect_to(root_path)  
+
+          expect(post(:create, params: contact_form)).to redirect_to(root_path)
         end
       end
     end

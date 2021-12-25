@@ -19,10 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
   #
-  # @note invoke set_body_class in subclass to customize the CSS class of the <body> tag
+  # @note invoke body_class in subclass to customize the CSS class of the <body> tag
   # sets the body_class ivar to a class based on the {name} attribute; used in CSS
   #
-  def set_body_class(name)
+  def body_class(name)
     @body_class = "#{name}-template"
   end
 
@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   # all other pages require opaque bg
   #
   def set_navigation_class
-    @navigation_class = request.path == "/" ? "bg-primary/0" : "bg-primary"
+    @navigation_class = request.path == '/' ? 'bg-primary/0' : 'bg-primary'
   end
 end

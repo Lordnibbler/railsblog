@@ -3,7 +3,7 @@
 #
 class ContactFormsController < ApplicationController
   before_action do
-    set_body_class('contact')
+    body_class('contact')
   end
 
   def create

@@ -3,7 +3,7 @@
 #
 class Blog::PostsController < ApplicationController
   before_action do
-    set_body_class('post')
+    body_class('post')
   end
 
   def index

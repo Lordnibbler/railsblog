@@ -16,7 +16,7 @@ describe PagesController, '#show' do
       it { should render_template(page) }
 
       it 'sets body class' do
-        expect(assigns(:body_class)).to eq("static-page-template")
+        expect(assigns(:body_class)).to eq('static-page-template')
       end
     end
   end
