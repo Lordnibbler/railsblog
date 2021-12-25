@@ -18,7 +18,7 @@ namespace :cache_warmer do
       FlickrService.warm_cache_shuffled
 
       Rails.logger.info('--->  Cache Warmer: Marking cache as warmed')
-      Rails.cache.write(FlickrService::PHOTOGRAPHY_CACHE_WARMED_KEY, true)
+      Rails.cache.write(FlickrService::PHOTOGRAPHY_CACHE_WARMED_KEY, true, expires_in: 1.day)
 
       Rails.logger.info('--->  Cache Warmer: completed warming cache')
     end
