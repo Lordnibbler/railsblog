@@ -13,17 +13,32 @@ html[lang="en"]
     meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
 
     - # open graph link previews
+    meta[property="og:site_name" content="Radler Designs - benradler.com"]
     meta[property="og:title" content="Radler Designs - benradler.com"]
     meta[property="og:locale" content="en_US"]
-    meta[property="og:url" content="//"]
-    meta[property="og:site_name" content="Radler Designs - benradler.com"]
+    meta[property="og:url" content="#{root_url}"]
+    meta[property="og:type" content="website"]
+    meta[property="og:description" content="Radler Designs - Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
     meta[property="og:image" content="#{asset_pack_url("media/images/layout/social.jpg")}"]
     meta[property="og:image:type" content="image/jpeg"]
-    meta[property="og:type" content="website"]
+    meta[property="og:image:width" content="1200"]
+    meta[property="og:image:height" content="627"]
+
+    - # generic meta tags
+    meta[itemprop="name" content="Radler Designs - benradler.com"]
+    meta[itemprop="url" content="#{root_url}"]
+    meta[itemprop="description" content="Radler Designs - Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
+    meta[itemprop="thumbnailUrl" content="#{asset_pack_url("media/images/layout/social.jpg")}"]
+    meta[itemprop="image" content="#{asset_pack_url("media/images/layout/social.jpg")}"]
+    link[rel="image_src" href="#{asset_pack_url("media/images/layout/social.jpg")}"]
 
     - # twitter
-    meta[name="twitter:card" content="summary_large_image"]
     meta[name="twitter:site" content="@benradler"]
+    meta[name="twitter:title" content="Ben Radler"]
+    meta[name="twitter:image" content="#{asset_pack_url("media/images/layout/social.jpg")}"]
+    meta[name="twitter:url" content="#{root_url}"]
+    meta[name="twitter:description" content="qwerty"]
+    meta[name="twitter:card" content="summary_large_image"]
 
     link[rel="canonical" href="//"]
     link[rel="icon" type="image/png" href="#{asset_pack_url("media/images/layout/favicon.png")}"]
