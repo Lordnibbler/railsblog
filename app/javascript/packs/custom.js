@@ -38,9 +38,7 @@ $(document).on('turbo:load', function() {
 
   // run once on page load to ensure classes are set appropriately, in case of
   // linking straight to homepage on an anchor
-  // const boundFn = desktopNavTransparencyHandler.bind(this)
-  // setTimeout(boundFn, 250)
-  // boundFn()
+  desktopNavTransparencyHandler.bind(this)()
 
   window.addEventListener("scroll", desktopNavTransparencyHandler, false)
 });
