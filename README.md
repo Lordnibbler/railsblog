@@ -22,4 +22,5 @@ $ yarn
 # start the app
 $ rails s
 $ ./bin/webpack-dev-server
+$ guard
 ```
