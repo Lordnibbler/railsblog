@@ -17,7 +17,7 @@ $(document).on('turbo:load', function() {
     //
     let notScrolledClass // class when page is scrolled to top
     let scrolledClass // class when page is scrolled past 100px
-    if (window.location.pathname == "/") {
+    if (window.location.pathname === "/") {
       notScrolledClass = "bg-primary/0"
       scrolledClass = "bg-primary/95"
     } else {
@@ -36,9 +36,11 @@ $(document).on('turbo:load', function() {
     }
   }
 
-  // run once on page load to ensure classes are set appropriately, in case of
-  // linking straight to homepage on an anchor
-  desktopNavTransparencyHandler.bind(this)()
+  // run once on homepage load to ensure classes are set appropriately,
+  // in case of linking straight to homepage on an anchor (hash)
+  if (window.location.pathname === "/" && window.location.hash) {
+    desktopNavTransparencyHandler.bind(this)()
+  }
 
   window.addEventListener("scroll", desktopNavTransparencyHandler, false)
 });
