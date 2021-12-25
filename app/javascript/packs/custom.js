@@ -11,17 +11,17 @@ $(document).on('turbo:load', function() {
 
   function desktopNavTransparencyHandler () {
     //
-    // when page is scrolled down >=100px, make the navigation 90% transparent
+    // when page is scrolled down >=100px, make the navigation 95% transparent
     // when page is scrolled up <100px, make the navigation 100% transparent (home) or opaque (all other pages)
     //
     let notScrolledClass // class when page is scrolled to top
     let scrolledClass // class when page is scrolled past 100px
     if (window.location.pathname == "/") {
       notScrolledClass = "bg-primary/0"
-      scrolledClass = "bg-primary/90"
+      scrolledClass = "bg-primary/95"
     } else {
       notScrolledClass = "bg-primary"
-      scrolledClass = "bg-primary/90"
+      scrolledClass = "bg-primary/95"
     }
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background
