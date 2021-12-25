@@ -7,24 +7,24 @@ html[lang="en"]
     - # rss
     = auto_discovery_link_tag :rss, blog_posts_path(format: :rss)
     = auto_discovery_link_tag :atom, blog_posts_path(format: :atom)
-    
+
     - # content and device information
     meta[charset="utf-8"]
     meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
 
-    - # facebook open graph
-    meta[property="og:title" content="Homepage - benradler.com"]
+    - # open graph link previews
+    meta[property="og:title" content="Radler Designs - benradler.com"]
     meta[property="og:locale" content="en_US"]
     meta[property="og:url" content="//"]
-    meta[property="og:site_name" content="benradler.com"]
-    meta[property="og:image" content="#{asset_pack_path("media/images/layout/social.jpg")}"]
+    meta[property="og:site_name" content="Radler Designs - benradler.com"]
+    meta[property="og:image" content="#{asset_pack_url("media/images/layout/social.jpg")}"]
 
     - # twitter
     meta[name="twitter:card" content="summary_large_image"]
     meta[name="twitter:site" content="@benradler"]
 
     link[rel="canonical" href="//"]
-    link[rel="icon" type="image/png" href="#{asset_pack_path("media/images/layout/favicon.png")}"]
+    link[rel="icon" type="image/png" href="#{asset_pack_url("media/images/layout/favicon.png")}"]
 
     - # for browsers/devices which customize UI based on theme
     meta[name="theme-color" content="#5540af"]
@@ -34,14 +34,14 @@ html[lang="en"]
     link[as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="preload"]
     link[href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet"]
     link[href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet"]
-    
+
     - # staging/production require this
     = stylesheet_pack_tag 'application', 'data-turbo-track': 'reload'
-    
+
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
-    
-    = yield :head 
+
+    = yield :head
     = csrf_meta_tags
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
     #main
@@ -49,7 +49,7 @@ html[lang="en"]
       = render 'shared/flash'
       - if controller_name =~ /pages|errors/
         = render 'shared/page'
-      - else 
+      - else
         = yield
       = render 'shared/footer'
     = render 'shared/analytics' if Rails.env.production?
