@@ -1,3 +1,4 @@
+# rubocop:disable Layout/LineLength
 FactoryBot.define do
   factory :post, class: Blog::Post do
     user
@@ -21,3 +22,4 @@ FactoryBot.define do
     end
   end
 end
+# rubocop:enable Layout/LineLength
