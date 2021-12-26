@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe NewsletterSignupsController do
-  fixtures :newsletter_signups
-
-  let(:signup) { newsletter_signups(:signup) }
+  let(:signup) { build(:newsletter_signup) }
 
   describe 'create' do
     it 'given valid email it signs up and flashes a success' do
