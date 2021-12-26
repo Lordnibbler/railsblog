@@ -1,16 +1,14 @@
 require 'features_helper'
 
 describe '/' do
-  before { visit root_path }
+  let!(:post) { create(:post) }
+  let!(:long_post) { create(:long_post, user: post.user) }
+  let!(:unpublished_post) { create(:unpublished_post, user: post.user) }
 
   context 'latest blog posts' do
-    fixtures :posts
-
-    let!(:post) { posts(:short) }
-    let!(:long_post) { posts(:long) }
-    let!(:unpublished_post) { posts(:unpublished) }
-
     it 'shows all published posts' do
+      visit root_path
+
       within '#latest' do
         expect(page).to have_selector('a.bg-white', count: 2)
       end
@@ -18,18 +16,22 @@ describe '/' do
 
     context 'when clicking Continue Reading' do
       it 'shows full post' do
+        visit root_path
+
         within '#latest' do
           page.first(:css, 'a.bg-white').click
         end
 
         expect(page).to have_content 'Bacon ipsum dolor amet shankle beef'
-        expect(page).to have_content /Next Post/i
+        expect(page).to have_content /Previous Post/i
         expect(page).to_not have_content /Read More/i
       end
     end
   end
 
   context 'contact form' do
+    before { visit root_path }
+
     context 'with invalid data' do
       it 'shows inline validations' do
         within '#new_contact_form' do
@@ -62,6 +64,8 @@ describe '/' do
   end
 
   context 'newsletter signup' do
+    before { visit root_path }
+
     context 'with invalid data' do
       it 'shows flash error' do
         within '#new_newsletter_signup' do

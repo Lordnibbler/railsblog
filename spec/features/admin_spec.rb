@@ -1,8 +1,7 @@
 require 'features_helper'
 
 describe '/admin' do
-  fixtures :users
-  let(:user) { users(:ben) }
+  let(:user) { create(:user) }
 
   describe '/login' do
     context 'with valid credentials' do
@@ -13,6 +12,7 @@ describe '/admin' do
           fill_in 'user_password', with: 'password'
         end
         click_button 'Login'
+
         expect(page).to have_content 'Dashboard'
       end
     end
@@ -25,6 +25,7 @@ describe '/admin' do
           fill_in 'user_password', with: 'invalid'
         end
         click_button 'Login'
+
         expect(page).to have_content 'Invalid Email or password'
       end
     end

@@ -1,17 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Blog::Post, type: :model do
-  fixtures :users, :posts
-
-  let(:post)      { posts(:short) }
-  let(:long_post) { posts(:long) }
+  let(:post) { create(:post) }
 
   describe 'author' do
-    let(:user) { users(:ben) }
-
     context 'when no name' do
-      before { user.update_attribute(:name, '') }
-      it 'returns a thing' do
+      before { post.user.name = '' }
+      it 'returns empty string' do
         expect(post.author).to eql('')
       end
     end
@@ -31,6 +26,8 @@ RSpec.describe Blog::Post, type: :model do
     end
 
     context 'when EXCERPT_TAG' do
+      let(:long_post) { create(:long_post) }
+
       it 'returns only the body content before the EXCERPT_TAG' do
         expect(long_post.excerpt).to_not eql(long_post.body)
         expect(long_post.excerpt).to_not include('<!--more-->')
@@ -46,6 +43,8 @@ RSpec.describe Blog::Post, type: :model do
     end
 
     context 'when EXCERPT_TAG' do
+      let(:long_post) { create(:long_post) }
+
       it 'returns true' do
         expect(long_post.more_text?).to be true
       end
@@ -53,6 +52,8 @@ RSpec.describe Blog::Post, type: :model do
   end
 
   describe 'next' do
+    let!(:long_post) { create(:long_post, user: post.user) }
+
     it 'returns the next post' do
       expect(post.next).to eq(long_post)
     end
@@ -63,6 +64,8 @@ RSpec.describe Blog::Post, type: :model do
   end
 
   describe 'previous' do
+    let(:long_post) { create(:long_post, user: post.user) }
+
     it 'returns the previous post' do
       expect(long_post.previous).to eq(post)
     end

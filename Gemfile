@@ -55,6 +55,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'factory_bot_rails'
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'vcr'

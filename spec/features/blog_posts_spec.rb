@@ -1,10 +1,8 @@
 require 'features_helper'
 
 describe '/blog' do
-  fixtures :users, :posts
-
-  let!(:post) { posts(:short) }
-  let!(:long_post) { posts(:long) }
+  let!(:post) { create(:post) }
+  let!(:long_post) { create(:long_post, user: post.user) }
 
   before { visit blog_posts_path }
 

@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 describe HomeController do
-  fixtures :posts
+  let!(:post) { create(:post) }
+  let!(:long_post) { create(:long_post, user: post.user) }
+  let!(:unpublished_post) { create(:unpublished_post, user: post.user) }
 
-  let!(:post) { posts(:short) }
-  let!(:long_post) { posts(:long) }
+  describe 'get #index' do
+    subject(:get_index) { get 'index' }
 
-  describe 'get #show' do
-    subject(:get_show) { get 'show' }
+    before { get_index }
 
-    before { get_show }
-
-    pending 'fetches blog posts' do
-      get '/'
-      expect(assigns(:posts)).to eq([post, long_post])
+    it 'fetches published blog posts' do
+      expect(assigns(:posts).count).to eql(2)
+      expect(assigns(:posts)).to include(post)
+      expect(assigns(:posts)).to include(long_post)
     end
   end
 end

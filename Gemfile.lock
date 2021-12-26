@@ -99,7 +99,7 @@ GEM
       activesupport (>= 3.0.0, < 6.2)
       ruby2_keywords (>= 0.0.2, < 1.0)
     ast (2.4.2)
-    awesome_print (1.8.0)
+    awesome_print (1.9.2)
     better_errors (2.9.1)
       coderay (>= 1.0.0)
       erubi (>= 1.0.0)
@@ -143,6 +143,11 @@ GEM
     erubi (1.10.0)
     excon (0.78.1)
     execjs (2.7.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.4)
     flickraw (0.9.10)
     fog-aws (3.7.0)
@@ -449,6 +454,7 @@ DEPENDENCIES
   client_side_validations
   devise (>= 4.4.0)
   dotenv-rails
+  factory_bot_rails
   flickraw
   fog-aws
   friendly_id
