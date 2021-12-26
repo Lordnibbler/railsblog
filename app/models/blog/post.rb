@@ -40,7 +40,6 @@ class Blog::Post < ApplicationRecord
   end
 
   def next
-    # binding.pry
     self.user.posts.published.where('id > ? ', id).last
   end
 
