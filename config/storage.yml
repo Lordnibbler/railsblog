@@ -10,5 +10,5 @@ amazon:
   service: S3
   access_key_id: ""
   secret_access_key: ""
-  bucket: ""
-  region: "" # e.g. 'us-east-1'
+  bucket: "benradler"
+  region: "us-west-1" # e.g. 'us-east-1'
