@@ -6,7 +6,6 @@ class Blog::Post < ApplicationRecord
   friendly_id :title, use: %i[slugged finders]
 
   belongs_to :user
-  validates :user_id, presence: true
   validates :title,   presence: true, uniqueness: true
   validates :body,    presence: true
 
