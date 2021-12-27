@@ -3,7 +3,6 @@ ruby '3.0.3'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
-gem 'bcrypt'
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
@@ -43,7 +42,6 @@ end
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
-  gem 'byebug'
   gem 'dotenv-rails'
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'

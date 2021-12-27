@@ -425,11 +425,9 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   awesome_print
-  bcrypt
   better_errors
   binding_of_caller
   brakeman
-  byebug
   capybara
   client_side_validations
   devise (>= 4.4.0)
