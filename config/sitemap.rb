@@ -43,7 +43,7 @@ SitemapGenerator::Sitemap.create do
   add blog_posts_path, priority: 0.7, changefreq: 'daily'
 
   # /blog/:year/:month/:day/:id
-  Blog::Post.find_each do |post|
+  Blog::Post.published.find_each do |post|
     add blog_posts_permalink_path(post), lastmod: post.updated_at
   end
 
@@ -51,5 +51,5 @@ SitemapGenerator::Sitemap.create do
   add page_path 'contact-me', changefreq: 'monthly'
 
   # /photography
-  add photography_path 'photography', changefreq: 'monthly'
+  add photography_path, changefreq: 'monthly'
 end
