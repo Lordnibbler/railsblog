@@ -8,7 +8,7 @@ class ContactFormsController < ApplicationController
 
   def create
     if deliver_contact_form!
-      flash[:success] = 'Email sent successfully'
+      flash[:success] = 'Contact form successfully sent. I will reach back out as soon as I can!'
     else
       flash[:error] = 'Email failed to send'
     end

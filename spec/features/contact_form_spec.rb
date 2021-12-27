@@ -26,7 +26,7 @@ describe '/contact-me', js: true do
       click_on 'Send'
 
       within '.flash-success' do
-        expect(page).to have_content 'Email sent successfully'
+        expect(page).to have_content 'Contact form successfully sent. I will reach back out as soon as I can!'
       end
     end
   end

@@ -19,7 +19,9 @@ describe ContactFormsController do
       end
 
       it 'flashes success' do
-        expect(controller.flash['success']).to match(/email sent successfully/i)
+        expect(controller.flash['success']).to match(
+          /Contact form successfully sent. I will reach back out as soon as I can!/i,
+        )
       end
 
       it 'redirects to contact-me' do
