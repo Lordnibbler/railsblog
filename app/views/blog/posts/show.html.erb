@@ -9,7 +9,7 @@
 
             <% # post %>
             <div class="pt-8 prose max-w-full" itemprop="articleBody">
-                <%= image_tag @post.featured_image if @post.featured_image.present? %>
+                <%= image_tag cdn_image_url(@post.featured_image) if @post.featured_image.attached? %>
                 <%= markdown @post.body %>
             </div>
 

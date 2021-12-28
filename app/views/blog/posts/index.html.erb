@@ -8,7 +8,7 @@
           <%= render partial: 'meta', locals: { post: post } %>
 
           <div class="pt-8 prose max-w-full" itemprop="articleBody">
-            <%= image_tag post.featured_image, class: ".post-thumbnail" if post.featured_image.present? %>
+            <%= image_tag cdn_image_url(post.featured_image), class: ".post-thumbnail" if post.featured_image.present? %>
             <%= markdown post.excerpt %>
             <% if post.more_text? %>
               <a href="<%= blog_posts_permalink_path(post) %>" class="flex items-center no-underline">
