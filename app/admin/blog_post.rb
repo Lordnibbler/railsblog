@@ -38,6 +38,9 @@ ActiveAdmin.register Blog::Post do
             span do
               link_to(image_tag(url_for(img), width: 200), url_for(img))
             end
+            span do
+              a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?"
+            end
           end
         end
       end
@@ -48,5 +51,11 @@ ActiveAdmin.register Blog::Post do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
+  end
+
+  member_action :delete_image, method: :delete do
+    @pic = ActiveStorage::Attachment.find(params[:id])
+    @pic.purge_later
+    redirect_back(fallback_location: edit_admin_blog_post_path)
   end
 end
