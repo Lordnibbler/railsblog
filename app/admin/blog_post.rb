@@ -29,14 +29,14 @@ ActiveAdmin.register Blog::Post do
       row :featured_image_url
       row :featured_image do |post|
         if post.featured_image.attached?
-          image_tag url_for(post.featured_image), size: "200x200"
+          link_to(image_tag(url_for(post.featured_image)), url_for(post.featured_image))
         end
       end
       row :images do |post|
         div do
           post.images.each do |img|
-            div do
-              image_tag url_for(img), size: "200x200"
+            span do
+              link_to(image_tag(url_for(img), size: "200x200"), url_for(img))
             end
           end
         end
