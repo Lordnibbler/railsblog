@@ -8,7 +8,9 @@
     - f.input :created_at
     - f.input :updated_at
     - f.input :featured_image, as: :file
-    - f.inputs do
-      - f.input :images, as: :file, input_html: { multiple: true }
+    - f.input :images, as: :file, input_html: { multiple: true }
+    - f.object.images.each do |image|
+      - span link_to(image_tag(image, width: 200), url_for(image))
+
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions
