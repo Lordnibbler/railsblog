@@ -50,7 +50,7 @@ ActiveAdmin.register Blog::Post do
               span do
                 a "Full Size Link", href: cdn_image_url(img), class: "default-button"
               end
-              span class: "action_item" do
+              span do
                 a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button"
               end
             end

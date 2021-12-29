@@ -21,27 +21,25 @@
 //   .status_tag { background: #6090DB; }
 
 // custom styles for post#show image container
-.attributes_table.blog_post {
+.attributes_table.blog_post,
+.formtastic.blog_post {
   a.default-button {
     @include default-button;
   }
-  td {
-    width: auto;
-    .columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      div.image_container {
-        text-align: center;
-        flex: 0 0 calc(20%);
-        padding: 10px;
-        border: 1px solid #999;
-        border-radius: 5px;
-        box-shadow: 0 0 2px 2px #eee;
-      }
-      img {
-        padding: 5px;
-      }
+  td, .columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    div.image_container {
+      text-align: center;
+      flex: 0 0 calc(20%);
+      padding: 10px;
+      border: 1px solid #999;
+      border-radius: 5px;
+      box-shadow: 0 0 2px 2px #eee;
+    }
+    img {
+      padding: 5px;
     }
   }
 }

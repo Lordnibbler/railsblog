@@ -9,8 +9,13 @@
     - f.input :updated_at
     - f.input :featured_image, as: :file
     - f.input :images, as: :file, input_html: { multiple: true }
-    - f.object.images.each do |image|
-      - span link_to(image_tag(image, width: 200), url_for(image))
-
+    - div class: 'columns' do
+      - f.object.images.each do |img|
+        - div class: 'image_container' do
+          - div link_to(image_tag(img, width: 200), url_for(img))
+          - span do
+            - a "Full Size Link", href: cdn_image_url(img), class: "default-button"
+          - span do
+            - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button"
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions
