@@ -29,37 +29,31 @@ ActiveAdmin.register Blog::Post do
       row :featured_image_url
       row :featured_image do |post|
         if post.featured_image.attached?
-          # full size original
-          # link_to(image_tag(url_for(post.featured_image), width: 300), url_for(post.featured_image))
-
-          # resized to 300 width max
-          link_to(image_tag(url_for(post.featured_image.representation(resize_to_limit: [300, nil]).processed)), url_for(post))
+          div do
+            link_to(image_tag(url_for(post.featured_image.representation(resize_to_limit: [300, nil]).processed)), cdn_image_url(post.featured_image))
+          end
+          div do
+            a "Full Size Link", href: cdn_image_url(post.featured_image), class: "default-button"
+          end
         end
       end
-      row :images, class: "post_images" do |post|
+      row :images, class: 'post_images' do |post|
         columns do
           post.images.each do |img|
-            column max_width: '300px', min_width: '50px' do
-              # full size original
-              # link_to(image_tag(url_for(img), width: 200), url_for(img))
-
-              span do
-                a "Full Size Link", href: cdn_image_url(img)
-              end
-              span do
-                " / "
-              end
-              span class: "action_item" do
-                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?"
-              end
-              span do
+            div class: 'image_container' do
+              div do
                 # resized to 300 width max
                 processed_img = img.representation(resize_to_fit: [300, nil]).processed
-                img_tag = image_tag(url_for(processed_img), width: 200)
+                img_tag = image_tag(url_for(processed_img))
                 link_to(img_tag, url_for(img))
               end
+              span do
+                a "Full Size Link", href: cdn_image_url(img), class: "default-button"
+              end
+              span class: "action_item" do
+                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button"
+              end
             end
-
           end
         end
       end
