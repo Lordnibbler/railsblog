@@ -37,7 +37,7 @@ ActiveAdmin.register Blog::Post do
           end
         end
       end
-      row :images, class: 'post_images container' do |post|
+      row :images do |post|
         post.images.each do |img|
           div class: 'image' do
             div do
