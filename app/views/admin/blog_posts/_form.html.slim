@@ -14,8 +14,17 @@
         - div class: 'image_container' do
           - div link_to(image_tag(img, width: 200), url_for(img))
           - span do
-            - a "Full Size Link", href: cdn_image_url(img), class: "default-button"
+            - processed = img.representation(resize_to_fit: [300, nil]).processed
+            - a "300", href: cdn_image_url(processed), class: "default-button"
           - span do
-            - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button"
+            - processed = img.representation(resize_to_fit: [640, nil]).processed
+            - a "640", href: cdn_image_url(processed), class: "default-button"
+          - span do
+            - processed = img.representation(resize_to_fit: [1024, nil]).processed
+            - a "1024", href: cdn_image_url(processed), class: "default-button"
+          - span do
+            - a "Original", href: cdn_image_url(img), class: "default-button"
+          - span do
+            - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions
