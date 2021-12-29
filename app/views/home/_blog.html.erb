@@ -10,7 +10,7 @@
             <div>
                 <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
                     <div class="shadow">
-                        <div style="background-image:url(<%= post.featured_image_url %>);"
+                        <div style="background-image:url(<%= cdn_image_url(post.featured_image) if post.featured_image.attached? %>);"
                             class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                             <span
                                 class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
