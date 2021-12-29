@@ -33,7 +33,7 @@ ActiveAdmin.register Blog::Post do
             link_to(image_tag(url_for(post.featured_image.representation(resize_to_limit: [300, nil]).processed)), cdn_image_url(post.featured_image))
           end
           div do
-            a "Full Size Link", href: cdn_image_url(post.featured_image), class: "default-button"
+            a "Original", href: cdn_image_url(post.featured_image), class: "default-button"
           end
         end
       end
@@ -42,16 +42,28 @@ ActiveAdmin.register Blog::Post do
           post.images.each do |img|
             div class: 'image_container' do
               div do
-                # resized to 300 width max
-                processed_img = img.representation(resize_to_fit: [300, nil]).processed
+                processed_img = img.representation(resize_to_limit: [300, nil]).processed
                 img_tag = image_tag(url_for(processed_img))
                 link_to(img_tag, url_for(img))
               end
               span do
-                a "Full Size Link", href: cdn_image_url(img), class: "default-button"
+                processed = img.representation(resize_to_limit: [300, nil]).processed
+                a "300", href: cdn_image_url(processed), class: "default-button"
               end
               span do
-                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button"
+                processed = img.representation(resize_to_limit: [640, nil]).processed
+                a "640", href: cdn_image_url(processed), class: "default-button"
+              end
+              span do
+                processed = img.representation(resize_to_limit: [1024, nil]).processed
+                a "1024", href: cdn_image_url(processed), class: "default-button"
+              end
+              span do
+                a "Original", href: cdn_image_url(img), class: "default-button"
+              end
+
+              span do
+                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
               end
             end
           end
