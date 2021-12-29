@@ -9,29 +9,30 @@
     - f.input :updated_at
     - f.input :featured_image
     - if f.object.featured_image.attached?
-      - li do
+      - li class: "images" do
         - label "Featured Image (attached)"
         - span do
           - link_to(image_tag(url_for(f.object.featured_image.representation(resize_to_limit: [300, nil]).processed)), cdn_image_url(f.object.featured_image))
         - span do
           - a "Original", href: cdn_image_url(f.object.featured_image), class: "default-button"
     - f.input :images, as: :file, input_html: { multiple: true }
-    - div class: 'columns' do
-      - f.object.images.each do |img|
-        - div class: 'image_container' do
-          - div link_to(image_tag(img, width: 200), url_for(img))
-          - span do
-            - processed = img.representation(resize_to_limit: [300, nil]).processed
-            - a "300", href: cdn_image_url(processed), class: "default-button"
-          - span do
-            - processed = img.representation(resize_to_limit: [640, nil]).processed
-            - a "640", href: cdn_image_url(processed), class: "default-button"
-          - span do
-            - processed = img.representation(resize_to_limit: [1024, nil]).processed
-            - a "1024", href: cdn_image_url(processed), class: "default-button"
-          - span do
-            - a "Original", href: cdn_image_url(img), class: "default-button"
-          - span do
-            - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
+    - li class: "images" do
+      - label "Images (attached)"
+      - div class: "container" do
+        - f.object.images.each do |img|
+          - div link_to(image_tag(img, width: 200), url_for(img)), class: "image"
+            - span do
+              - processed = img.representation(resize_to_limit: [300, nil]).processed
+              - a "300", href: cdn_image_url(processed), class: "default-button"
+            - span do
+              - processed = img.representation(resize_to_limit: [640, nil]).processed
+              - a "640", href: cdn_image_url(processed), class: "default-button"
+            - span do
+              - processed = img.representation(resize_to_limit: [1024, nil]).processed
+              - a "1024", href: cdn_image_url(processed), class: "default-button"
+            - span do
+              - a "Original", href: cdn_image_url(img), class: "default-button"
+            - span do
+              - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions

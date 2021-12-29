@@ -37,34 +37,32 @@ ActiveAdmin.register Blog::Post do
           end
         end
       end
-      row :images, class: 'post_images' do |post|
-        columns do
-          post.images.each do |img|
-            div class: 'image_container' do
-              div do
-                processed_img = img.representation(resize_to_limit: [300, nil]).processed
-                img_tag = image_tag(url_for(processed_img))
-                link_to(img_tag, url_for(img))
-              end
-              span do
-                processed = img.representation(resize_to_limit: [300, nil]).processed
-                a "300", href: cdn_image_url(processed), class: "default-button"
-              end
-              span do
-                processed = img.representation(resize_to_limit: [640, nil]).processed
-                a "640", href: cdn_image_url(processed), class: "default-button"
-              end
-              span do
-                processed = img.representation(resize_to_limit: [1024, nil]).processed
-                a "1024", href: cdn_image_url(processed), class: "default-button"
-              end
-              span do
-                a "Original", href: cdn_image_url(img), class: "default-button"
-              end
+      row :images, class: 'post_images container' do |post|
+        post.images.each do |img|
+          div class: 'image' do
+            div do
+              processed_img = img.representation(resize_to_limit: [300, nil]).processed
+              img_tag = image_tag(url_for(processed_img))
+              link_to(img_tag, url_for(img))
+            end
+            span do
+              processed = img.representation(resize_to_limit: [300, nil]).processed
+              a "300", href: cdn_image_url(processed), class: "default-button"
+            end
+            span do
+              processed = img.representation(resize_to_limit: [640, nil]).processed
+              a "640", href: cdn_image_url(processed), class: "default-button"
+            end
+            span do
+              processed = img.representation(resize_to_limit: [1024, nil]).processed
+              a "1024", href: cdn_image_url(processed), class: "default-button"
+            end
+            span do
+              a "Original", href: cdn_image_url(img), class: "default-button"
+            end
 
-              span do
-                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
-              end
+            span do
+              a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
             end
           end
         end
