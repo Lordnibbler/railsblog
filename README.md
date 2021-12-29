@@ -19,8 +19,12 @@ $ rails db:setup
 $ bundle
 $ yarn
 
-# start the app
+# start the rails web server
 $ rails s
+
+# start the webpack dev server
 $ ./bin/webpack-dev-server
+
+# start the guard watcher for tests and code formatting
 $ guard
 ```
