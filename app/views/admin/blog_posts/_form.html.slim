@@ -7,7 +7,7 @@
     - f.input :user_id, as: :select, collection: User.all.map { |u| [u.name, u.id] }
     - f.input :created_at
     - f.input :updated_at
-    - f.input :featured_image
+    - f.input :featured_image, as: :file
     - if f.object.featured_image.attached?
       - li class: "images" do
         - label "Featured Image (attached)"
