@@ -1,3 +1,4 @@
+# do not fetch all available flickr methods during unit tests (causes non-determinism)
 require 'flickraw-cached' if Rails.env.test?
 
 # interface for fetching and caching photos from flickr API
