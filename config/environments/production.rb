@@ -86,4 +86,7 @@ Rails.application.configure do
 
   # Store files on Amazon S3.
   config.active_storage.service = :amazon
+
+  # Update the activestorage default route from "/rails/active_storage" to something without the framework in it
+  config.active_storage.routes_prefix = "/files"
 end
