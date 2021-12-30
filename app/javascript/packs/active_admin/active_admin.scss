@@ -41,8 +41,7 @@
       display: block;
     }
   }
-  .container,
-  td {
+  .container {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -52,7 +51,6 @@
     flex: 0 0 calc(20%);
     padding: 10px;
     border: 1px solid #999;
-    border-radius: 5px;
     box-shadow: 0 0 2px 2px #eee;
   }
   img {
