@@ -45,6 +45,7 @@ group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'dotenv-rails'
+  gem 'flickraw-cached' # for deterministic unit tests in random order, cache available flickr methods
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false
@@ -56,7 +57,6 @@ end
 group :test do
   gem 'capybara' # frontend testing framework
   gem 'factory_bot_rails' # factories
-  gem 'flickraw-cached' # for deterministic unit tests in random order, cache available flickr methods
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'vcr' # record http requests and play them back in tests
