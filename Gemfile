@@ -54,11 +54,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara'
-  gem 'factory_bot_rails'
+  gem 'capybara' # frontend testing framework
+  gem 'factory_bot_rails' # factories
+  gem 'flickraw-cached' # for deterministic unit tests in random order, cache available flickr methods
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
-  gem 'vcr'
+  gem 'vcr' # record http requests and play them back in tests
   gem 'webdrivers'
   gem 'webmock'
 end
