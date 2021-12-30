@@ -3,7 +3,7 @@ ruby '3.0.3'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
-gem "aws-sdk-s3", require: false # aws uploads for ActiveStorage production
+gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API

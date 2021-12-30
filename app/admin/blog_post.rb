@@ -1,7 +1,8 @@
 ActiveAdmin.register Blog::Post do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id, :featured_image_url, :featured_image, images: []
+  permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id, :featured_image_url,
+                :featured_image, images: []
 
   # custom edit view
   # uses _form.html.slim for editing Blog::Post records in activeadmin
@@ -35,10 +36,16 @@ ActiveAdmin.register Blog::Post do
       row :featured_image do |post|
         if post.featured_image.attached?
           div do
-            link_to(image_tag(url_for(post.featured_image.representation(resize_to_limit: [300, nil]).processed)), cdn_image_url(post.featured_image))
+            link_to(
+              image_tag(
+                url_for(
+                  post.featured_image.representation(resize_to_limit: [300, nil]).processed,
+                ),
+              ), cdn_image_url(post.featured_image),
+            )
           end
           div do
-            a "Original", href: cdn_image_url(post.featured_image), class: "default-button"
+            a 'Original', href: cdn_image_url(post.featured_image), class: 'default-button'
           end
         end
       end
@@ -53,22 +60,23 @@ ActiveAdmin.register Blog::Post do
               end
               span do
                 processed = img.representation(resize_to_limit: [300, nil]).processed
-                a "300", href: cdn_image_url(processed), class: "default-button"
+                a '300', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
                 processed = img.representation(resize_to_limit: [640, nil]).processed
-                a "640", href: cdn_image_url(processed), class: "default-button"
+                a '640', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
                 processed = img.representation(resize_to_limit: [1024, nil]).processed
-                a "1024", href: cdn_image_url(processed), class: "default-button"
+                a '1024', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
-                a "Original", href: cdn_image_url(img), class: "default-button"
+                a 'Original', href: cdn_image_url(img), class: 'default-button'
               end
 
               span do
-                a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
+                a 'Delete', href: delete_image_admin_blog_post_path(img.id), 'data-method': :delete,
+                            'data-confirm': 'Are you sure?', class: 'default-button danger-button'
               end
             end
           end
