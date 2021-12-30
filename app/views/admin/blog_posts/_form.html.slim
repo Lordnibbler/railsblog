@@ -15,6 +15,8 @@
           - link_to(image_tag(url_for(f.object.featured_image.representation(resize_to_limit: [300, nil]).processed)), cdn_image_url(f.object.featured_image))
         - span do
           - a "Original", href: cdn_image_url(f.object.featured_image), class: "default-button"
+        - span do
+          - a "Delete", href: delete_image_admin_blog_post_path(f.object.featured_image.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
     - f.input :images, as: :file, input_html: { multiple: true }
     - li class: "images" do
       - label "Images (attached)"

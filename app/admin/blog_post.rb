@@ -44,8 +44,12 @@ ActiveAdmin.register Blog::Post do
               ), cdn_image_url(post.featured_image),
             )
           end
-          div do
+          span do
             a 'Original', href: cdn_image_url(post.featured_image), class: 'default-button'
+          end
+          span do
+            a 'Delete', href: delete_image_admin_blog_post_path(post.featured_image.id), 'data-method': :delete,
+                        'data-confirm': 'Are you sure?', class: 'default-button danger-button'
           end
         end
       end
@@ -58,6 +62,7 @@ ActiveAdmin.register Blog::Post do
                 img_tag = image_tag(url_for(processed_img))
                 link_to(img_tag, url_for(img))
               end
+
               span do
                 processed = img.representation(resize_to_limit: [300, nil]).processed
                 a '300', href: cdn_image_url(processed), class: 'default-button'

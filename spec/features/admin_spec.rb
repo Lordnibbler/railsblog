@@ -13,6 +13,7 @@ describe '/admin' do
         end
         click_button 'Login'
 
+        expect(page).to have_current_path(admin_root_path)
         expect(page).to have_content 'Dashboard'
       end
     end
@@ -52,6 +53,33 @@ describe '/admin' do
         expect(page).to have_content 'New Post'
         expect(page).to have_content 'Some body'
         expect(page).to have_content user.name
+      end
+    end
+
+    describe 'show' do
+      let!(:post) { create(:post, user: user) }
+
+      it 'shows and allows deleting of images' do
+        visit '/admin/blog_posts'
+        within "#blog_post_#{post.id}" do
+          click_on 'View'
+          expect(page).to have_current_path(admin_blog_post_path(post))
+        end
+
+        within ".row-featured_image" do
+          expect(page).to have_selector("img[src*='test.jpg']")
+          expect(page).to have_selector("a.default-button", text: "Original")
+          expect(page).to have_selector("a.danger-button", text: "Delete")
+          click_on "Delete"
+        end
+
+        page.accept_alert
+
+        within ".row-featured_image" do
+          expect(page).to_not have_selector("img[src*='test.jpg']")
+          expect(page).to_not have_selector("a.default-button", text: "Original")
+          expect(page).to_not have_selector("a.danger-button", text: "Delete")
+        end
       end
     end
   end
