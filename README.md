@@ -1,7 +1,7 @@
 # benradler.com
 This is a Ruby on Rails 6.1 app. It does the following:
 * displays a portfolio homepage with personal information and work history - [link](https://benradler.com)
-* offers a contact form [link](https://benradler.com/#contact)
+* offers a contact form - [link](https://benradler.com/#contact)
 * offers a newsletter signup form
 * renders Markdown-formatted blog posts as HTML - [link](https://benradler.com/blog)
 * fetches a Flickr.com feed of my photos and renders them using photoswipe.js - [link](https://benradler.com/photography)
@@ -88,6 +88,8 @@ The technologies used are:
   * for presentation of the site
 * [alpine.js](https://alpinejs.dev/) and [alpine-magic-helpers](https://github.com/alpine-collective/alpine-magic-helpers)
   * for mobile navigation menu
+* [boxicons](https://boxicons.com/)
+  * for scalable vector graphic icons
 * [marked.js](https://marked.js.org/)
   * for markdown to HTML rendering
 * [photoswipe.js](https://photoswipe.com/)
@@ -96,6 +98,17 @@ The technologies used are:
   * for keeping photos aligned in a clean grid in the photography page
 * [infinite scroll](https://infinite-scroll.com/)
   * for loading batches of photos when scrolling in the photography page
+
+### Testing
+* [rspsec](https://rspec.info/) is used for [unit testing](spec/)
+* [factorybot](https://github.com/thoughtbot/factory_bot) is used to make reusable [test objects](spec/factories)
+* [VCR](https://github.com/vcr/vcr) is used for recording/playing back HTTP requests and responses in lieu of mocking
+* [capybara](https://github.com/teamcapybara/capybara) + headless chrome ([webdrivers](https://github.com/titusfortner/webdrivers)) is used for [feature testing](spec/features)
+
+### Static Code Analysis
+* [guard](https://github.com/guard/guard) is used to automatically run unit tests and static code analysis tools during development
+* [rubocop](https://github.com/rubocop/rubocop) is used to [enforce code style](.rubocop.yml)
+* [brakeman](https://brakemanscanner.org/) is used to check for common security vulnerabilities
 
 ### Observability
 
