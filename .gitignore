@@ -39,3 +39,6 @@ yarn-debug.log*
 
 # thanks microsoft
 .vscode
+
+# ActiveStorage local storage files
+storage

@@ -3,6 +3,7 @@ ruby '3.0.3'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
+gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickraw' # interact with flickr's API
@@ -11,6 +12,7 @@ gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
+gem 'image_processing' # process representations of ActiveSupport images
 gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)

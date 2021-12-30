@@ -43,4 +43,7 @@ Rails.application.configure do
 
   # use in-memory caching for development, instead of redis
   config.cache_store = :memory_store, { size: 64.megabytes }
+
+  # Store files locally.
+  config.active_storage.service = :local
 end

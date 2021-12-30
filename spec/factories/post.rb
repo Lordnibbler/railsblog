@@ -1,4 +1,3 @@
-# rubocop:disable Layout/LineLength
 FactoryBot.define do
   factory :post, class: Blog::Post do
     user
@@ -8,9 +7,22 @@ FactoryBot.define do
     slug { 'i-love-bacon' }
     published { true }
 
+    after :build do |post|
+      post.featured_image.attach(
+        io: File.open(Rails.root.join('spec/factories/fixture_files/test.jpg')),
+        filename: 'test.jpg',
+        content_type: 'image/jpeg',
+      )
+    end
+
     factory :long_post do
       title { 'I hate bacon' }
-      body { 'Bacon ipsum dolor amet shankle beef ribs bresaola chicken. <!--more--> Shoulder boudin pork, capicola venison doner landjaeger prosciutto biltong filet mignon porchetta chicken pork belly tenderloin pancetta.' }
+      body do
+        'Spicy jalapeno bacon ipsum dolor amet ullamco nisi deserunt, labore sed velit excepteur.' \
+          '<!--more--> ' \
+          'Deserunt venison ball tip chislic, est veniam enim do. Velit pork chop filet mignon buffalo. ' \
+          'Meatball tri-tip dolore corned beef quis shankle, do culpa nulla biltong.'
+      end
       slug { 'i-hate-bacon' }
     end
 
@@ -22,4 +34,3 @@ FactoryBot.define do
     end
   end
 end
-# rubocop:enable Layout/LineLength

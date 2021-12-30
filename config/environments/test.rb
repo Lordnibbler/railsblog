@@ -46,4 +46,7 @@ Rails.application.configure do
 
   # disable Rails.cache in test env
   config.cache_store = :null_store
+
+  # Store uploaded files on the local file system in a temporary directory.
+  config.active_storage.service = :test
 end

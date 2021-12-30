@@ -68,6 +68,33 @@ Rails.application.routes.draw do
   #
   get 'sitemap.xml.gz' => redirect('https://benradler.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
 
+
+  # CDN routes for ActiveStorage
+  # https://edgeguides.rubyonrails.org/active_storage_overview.html#putting-a-cdn-in-front-of-active-storage
+  direct :cdn_image do |model, options|
+    if model.respond_to?(:signed_id)
+      route_for(
+        :rails_service_blob_proxy,
+        model.signed_id,
+        model.filename,
+        options.merge(host: ENV['ASSET_HOST'])
+      )
+    else
+      signed_blob_id = model.blob.signed_id
+      variation_key  = model.variation.key
+      filename       = model.blob.filename
+
+      route_for(
+        :rails_blob_representation_proxy,
+        signed_blob_id,
+        variation_key,
+        filename,
+        options.merge(host: ENV['ASSET_HOST'])
+      )
+    end
+  end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

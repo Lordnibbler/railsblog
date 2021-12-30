@@ -14,6 +14,9 @@ class Blog::Post < ApplicationRecord
 
   paginates_per 5
 
+  has_one_attached :featured_image
+  has_many_attached :images
+
   EXCERPT_TAG = '<!--more-->'.freeze
 
   #

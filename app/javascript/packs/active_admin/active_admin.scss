@@ -19,3 +19,41 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+// custom styles for post#show image container
+.attributes_table.blog_post,
+.formtastic.blog_post {
+  a.default-button {
+    @include default-button;
+    margin: 5px;
+    &.danger-button {
+      background-image: linear-gradient(180deg, #f22, #f55);
+      color: white;
+      text-shadow: none;
+      border: 1px solid #f00;
+      &:hover {
+        background-image: linear-gradient(180deg, #f33, #f99);
+      }
+    }
+  }
+  li.images {
+    > label {
+      display: block;
+    }
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  div.image {
+    text-align: center;
+    flex: 0 0 calc(20%);
+    padding: 10px;
+    border: 1px solid #999;
+    box-shadow: 0 0 2px 2px #eee;
+  }
+  img {
+    padding: 5px;
+  }
+}

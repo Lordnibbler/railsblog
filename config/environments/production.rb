@@ -83,4 +83,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Store files on Amazon S3.
+  config.active_storage.service = :amazon
+
+  # Update the activestorage default route from "/rails/active_storage" to something without the framework in it
+  config.active_storage.routes_prefix = "/files"
 end
