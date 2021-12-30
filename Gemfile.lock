@@ -144,6 +144,8 @@ GEM
       railties (>= 5.0.0)
     ffi (1.15.4)
     flickraw (0.9.10)
+    flickraw-cached (20120701)
+      flickraw (>= 0.9)
     fog-aws (3.12.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -458,6 +460,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   flickraw
+  flickraw-cached
   fog-aws
   friendly_id
   guard
