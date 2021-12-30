@@ -22,7 +22,7 @@ describe '/' do
           page.first(:css, 'a.bg-white').click
         end
 
-        expect(page).to have_content 'Bacon ipsum dolor amet shankle beef'
+        expect(page).to have_content 'Spicy jalapeno bacon'
         expect(page).to have_content /Previous Post/i
         expect(page).to_not have_content /Read More/i
       end
