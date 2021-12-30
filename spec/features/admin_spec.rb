@@ -66,25 +66,25 @@ describe '/admin' do
           expect(page).to have_current_path(admin_blog_post_path(post))
         end
 
-        within ".row-featured_image" do
+        within '.row-featured_image' do
           expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector("a.default-button", text: "Original")
-          expect(page).to have_selector("a.danger-button", text: "Delete")
-          click_on "Delete"
+          expect(page).to have_selector('a.default-button', text: 'Original')
+          expect(page).to have_selector('a.danger-button', text: 'Delete')
+          click_on 'Delete'
         end
 
         page.accept_alert
 
-        within ".row-featured_image" do
+        within '.row-featured_image' do
           expect(page).to_not have_selector("img[src*='test.jpg']")
-          expect(page).to_not have_selector("a.default-button", text: "Original")
-          expect(page).to_not have_selector("a.danger-button", text: "Delete")
+          expect(page).to_not have_selector('a.default-button', text: 'Original')
+          expect(page).to_not have_selector('a.danger-button', text: 'Delete')
         end
 
         visit edit_admin_blog_post_path(post)
 
-        within "#blog_post_featured_image_input" do
-          attach_file("Featured image", "#{Rails.root}/spec/factories/fixture_files/test.jpg")
+        within '#blog_post_featured_image_input' do
+          attach_file('Featured image', Rails.root.join('spec/factories/fixture_files/test.jpg'))
         end
 
         within '#blog_post_submit_action' do
@@ -93,10 +93,10 @@ describe '/admin' do
 
         expect(page).to have_current_path(admin_blog_post_path(post))
 
-        within ".row-featured_image" do
+        within '.row-featured_image' do
           expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector("a.default-button", text: "Original")
-          expect(page).to have_selector("a.danger-button", text: "Delete")
+          expect(page).to have_selector('a.default-button', text: 'Original')
+          expect(page).to have_selector('a.danger-button', text: 'Delete')
         end
       end
     end
@@ -107,8 +107,8 @@ describe '/admin' do
       it 'allows uploading and deleting of images' do
         visit edit_admin_blog_post_path(post)
 
-        within "#blog_post_images_input" do
-          attach_file("Images", "#{Rails.root}/spec/factories/fixture_files/test.jpg")
+        within '#blog_post_images_input' do
+          attach_file('Images', Rails.root.join('spec/factories/fixture_files/test.jpg'))
         end
 
         within '#blog_post_submit_action' do
@@ -117,25 +117,25 @@ describe '/admin' do
 
         expect(page).to have_current_path(admin_blog_post_path(post))
 
-        within ".row-images" do
+        within '.row-images' do
           expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector("a.default-button", text: "Original")
-          expect(page).to have_selector("a.default-button", text: "300")
-          expect(page).to have_selector("a.default-button", text: "640")
-          expect(page).to have_selector("a.default-button", text: "1024")
-          expect(page).to have_selector("a.danger-button", text: "Delete")
-          click_on "Delete"
+          expect(page).to have_selector('a.default-button', text: 'Original')
+          expect(page).to have_selector('a.default-button', text: '300')
+          expect(page).to have_selector('a.default-button', text: '640')
+          expect(page).to have_selector('a.default-button', text: '1024')
+          expect(page).to have_selector('a.danger-button', text: 'Delete')
+          click_on 'Delete'
         end
 
         page.accept_alert
 
-        within ".row-images" do
+        within '.row-images' do
           expect(page).to_not have_selector("img[src*='test.jpg']")
-          expect(page).to_not have_selector("a.default-button", text: "Original")
-          expect(page).to_not have_selector("a.default-button", text: "300")
-          expect(page).to_not have_selector("a.default-button", text: "640")
-          expect(page).to_not have_selector("a.default-button", text: "1024")
-          expect(page).to_not have_selector("a.danger-button", text: "Delete")
+          expect(page).to_not have_selector('a.default-button', text: 'Original')
+          expect(page).to_not have_selector('a.default-button', text: '300')
+          expect(page).to_not have_selector('a.default-button', text: '640')
+          expect(page).to_not have_selector('a.default-button', text: '1024')
+          expect(page).to_not have_selector('a.danger-button', text: 'Delete')
         end
       end
     end
