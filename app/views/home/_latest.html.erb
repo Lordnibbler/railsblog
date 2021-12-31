@@ -1,31 +1,33 @@
-<div class="container py-16 md:py-20" id="latest">
-    <h2
-        class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
-        Latest Blog Posts</h2>
-    <h4 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6 text-center">
-        Read Stories From My Life and Technical Tutorials</h4>
-    <div
-        class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10 pt-12">
-        <% @posts.each do |post| %>
-            <div>
-                <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
-                    <div class="shadow">
-                        <div style="background-image:url(<%= cdn_image_url(post.featured_image) if post.featured_image.attached? %>);"
-                            class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
-                            <span
-                                class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
+<div class="dark:bg-grey-dark-20" id="latest">
+    <div class="container py-16 md:py-20">
+        <h2
+            class="font-header font-semibold text-primary dark:text-primary-dark text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
+            Latest Blog Posts</h2>
+        <h4 class="font-header font-medium text-black dark:text-white text-xl sm:text-2xl lg:text-3xl pt-6 text-center">
+            Read Stories From My Life and Technical Tutorials</h4>
+        <div
+            class="w-full sm:w-3/4 lg:w-full mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 xl:gap-10 pt-12">
+            <% @posts.each do |post| %>
+                <div>
+                    <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
+                        <div class="shadow dark:bg-grey-dark-70">
+                            <div style="background-image:url(<%= cdn_image_url(post.featured_image) if post.featured_image.attached? %>);"
+                                class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
+                                <span
+                                    class="bg-cover bg-no-repeat bg-center absolute inset-0 opacity-10 transition-opacity group-hover:opacity-50 block bg-gradient-to-b from-blog-gradient-from to-blog-gradient-to"></span>
+                            </div>
+                            <div class="py-6 xl:py-8 px-5">
+                                <span class="font-body font-semibold text-lg text-black dark:text-gray-100 block"><%= post.title %></span>
+                                <span class="font-body text-grey-20 dark:text-gray-300 pt-2 block"><%= post.description %></span>
+                                <span
+                                    class="bg-primary hover:bg-grey-dark-60 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-5 rounded items-center uppercase">
+                                    Read More
+                                </span>
+                            </div>
                         </div>
-                        <div class="py-6 xl:py-8 px-5">
-                            <span class="font-body font-semibold text-lg text-black block"><%= post.title %></span>
-                            <span class="font-body text-grey-20 pt-2 block"><%= post.description %></span>
-                            <span
-                                class="font-body font-bold text-sm md:text-base bg-primary text-white border-2 border-white block px-6 py-2 uppercase rounded-full text-center mt-4">
-                                Read More
-                            </span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        <% end %>
+                    </a>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
