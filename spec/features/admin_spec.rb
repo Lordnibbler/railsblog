@@ -120,9 +120,9 @@ describe '/admin' do
         within '.row-images' do
           expect(page).to have_selector("img[src*='test.jpg']")
           expect(page).to have_selector('a.default-button', text: 'Original')
-          expect(page).to have_selector('a.default-button', text: '300')
+          expect(page).to have_selector('a.default-button', text: '320')
           expect(page).to have_selector('a.default-button', text: '640')
-          expect(page).to have_selector('a.default-button', text: '1024')
+          expect(page).to have_selector('a.default-button', text: '1280')
           expect(page).to have_selector('a.danger-button', text: 'Delete')
           click_on 'Delete'
         end
@@ -132,9 +132,9 @@ describe '/admin' do
         within '.row-images' do
           expect(page).to_not have_selector("img[src*='test.jpg']")
           expect(page).to_not have_selector('a.default-button', text: 'Original')
-          expect(page).to_not have_selector('a.default-button', text: '300')
+          expect(page).to_not have_selector('a.default-button', text: '320')
           expect(page).to_not have_selector('a.default-button', text: '640')
-          expect(page).to_not have_selector('a.default-button', text: '1024')
+          expect(page).to_not have_selector('a.default-button', text: '1280')
           expect(page).to_not have_selector('a.danger-button', text: 'Delete')
         end
       end

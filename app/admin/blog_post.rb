@@ -64,16 +64,16 @@ ActiveAdmin.register Blog::Post do
               end
 
               span do
-                processed = img.representation(resize_to_limit: [300, nil]).processed
-                a '300', href: cdn_image_url(processed), class: 'default-button'
+                processed = img.representation(resize_to_limit: [320, nil]).processed
+                a '320', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
                 processed = img.representation(resize_to_limit: [640, nil]).processed
                 a '640', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
-                processed = img.representation(resize_to_limit: [1024, nil]).processed
-                a '1024', href: cdn_image_url(processed), class: 'default-button'
+                processed = img.representation(resize_to_limit: [1280, nil]).processed
+                a '1280', href: cdn_image_url(processed), class: 'default-button'
               end
               span do
                 a 'Original', href: cdn_image_url(img), class: 'default-button'
