@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   #
   # /sitemap.xml.gz
   #
-  get 'sitemap.xml.gz' => redirect('https://benradler.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
+  get 'sitemap.xml.gz' => redirect('https://benradler-sitemap-production.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
 
 
   # CDN routes for ActiveStorage
