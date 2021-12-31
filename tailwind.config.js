@@ -35,8 +35,11 @@ module.exports = {
                 "grey-50": "#f4f3f8",
                 "grey-60": "#edebf6",
                 "grey-70": "#d8d8d8",
+
                 // dark scheme defined at: https://www.color-hex.com/color/5540af
-                "grey-dark-10": "#080611", // these aren't grey, in fact they are purple
+                // these aren't grey, in fact they are purple
+                // TODO: rename s/grey-dark/primary-dark
+                "grey-dark-10": "#080611",
                 "grey-dark-20": "#110c23",
                 "grey-dark-30": "#191334",
                 "grey-dark-40": "#221946",
@@ -45,10 +48,10 @@ module.exports = {
                 "grey-dark-70": "#3b2c7a",
                 "grey-dark-80": "#44338c",
                 "grey-dark-90": "#4c399d",
-                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",  // primary
-                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",    // #412f90
+                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",       // primary
+                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",         // #412f90
                 "hero-gradient-dark-from": "rgba(42, 32, 87, 0.95)",   // #080611
-                "hero-gradient-dark-to": "rgba(42, 32, 87, 0.70)",   // #2a2057
+                "hero-gradient-dark-to": "rgba(42, 32, 87, 0.70)",     // #2a2057
                 "cta-gradient-to": "rgba(65, 47, 144, 0.85)",
                 "blog-gradient-from": "#8f9098",
                 "blog-gradient-to": "#222222"
