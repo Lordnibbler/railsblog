@@ -57,3 +57,10 @@
     padding: 5px;
   }
 }
+
+// constrain large images in the markdown renderer to not make the page wider than 100%
+div#blog_post_body_marked {
+  img {
+    max-width: 100%;
+  }
+}
