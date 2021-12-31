@@ -22,7 +22,9 @@
       - label "Images (attached)"
       - div class: "container" do
         - f.object.images.each do |img|
-          - div link_to(image_tag(img, width: 200), url_for(img)), class: "image"
+          - div class: "image" do
+            - div do
+              - link_to(image_tag(img, width: 200), url_for(img))
             - span do
               - processed = img.representation(resize_to_limit: [320, nil]).processed
               - a "320", href: cdn_image_url(processed), class: "default-button"
