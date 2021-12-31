@@ -3,7 +3,6 @@
     - f.input :published
     - f.input :title
     - f.input :description
-    - f.input :featured_image_url, as: :string
     - f.input :user_id, as: :select, collection: User.all.map { |u| [u.name, u.id] }
     - f.input :created_at
     - f.input :updated_at

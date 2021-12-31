@@ -1,7 +1,7 @@
 ActiveAdmin.register Blog::Post do
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id, :featured_image_url,
+  permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id,
                 :featured_image, images: []
 
   # custom edit view
@@ -32,7 +32,6 @@ ActiveAdmin.register Blog::Post do
       row :updated_at
       row :user
       row :slug
-      row :featured_image_url
       row :featured_image do |post|
         if post.featured_image.attached?
           div do
