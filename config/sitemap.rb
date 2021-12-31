@@ -10,10 +10,10 @@ SitemapGenerator::Sitemap.public_path = 'tmp/'
 
 # store on S3 using Fog
 SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
-  "#{ENV['FOG_DIRECTORY']}-#{Rails.env}",
+  "#{ENV['FOG_DIRECTORY']}-#{Rails.env}", # benradler-sitemap-production
   aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
   aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
-  aws_region: ENV['FOG_REGION'],
+  aws_region: ENV['FOG_REGION'], # us-west-1
 )
 
 # inform the map cross-linking where to find the other maps
