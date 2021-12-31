@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
   # all other pages require opaque bg
   #
   def set_navigation_class
-    @navigation_class = request.path == '/' ? 'bg-primary/0' : 'bg-primary'
+    @navigation_class = request.path == '/' ? 'bg-primary/0 dark:bg-grey-dark-50/0' : 'bg-primary dark:bg-grey-dark-50'
   end
 end
