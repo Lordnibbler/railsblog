@@ -7,15 +7,15 @@
         <div class="max-w-4xl mx-auto mb-20 border-b pb-5 border-lila" id="post-<%= post.id %>" role="article"  itemscope='' itemtype='http://schema.org/Article'>
           <%= render partial: 'meta', locals: { post: post } %>
 
-          <div class="pt-8 prose max-w-full" itemprop="articleBody">
+          <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">
             <%= image_tag cdn_image_url(post.featured_image), class: ".post-thumbnail" if post.featured_image.attached? %>
             <%= markdown post.excerpt %>
             <% if post.more_text? %>
               <a href="<%= blog_posts_permalink_path(post) %>" class="flex items-center no-underline">
-                  <span class="font-body font-bold text-primary text-lg uppercase block">
+                  <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block">
                       Continue Reading
                   </span>
-                  <i class='bx bx-right-arrow-alt text-2xl text-primary'></i>
+                  <i class='bx bx-right-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
               </a>
             <% end %>
           </div>

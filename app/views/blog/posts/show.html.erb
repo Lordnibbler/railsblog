@@ -1,14 +1,14 @@
 <% set_meta_tags title: meta_title(@post.title),
     description: meta_description_markdown(@post.body) %>
 
-<div>
+<div class="dark:bg-primary-20">
     <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-24 xl:mt-16">
         <div class="max-w-4xl mx-auto">
             <% # meta %>
             <%= render partial: 'meta', locals: { post: @post } %>
 
             <% # post %>
-            <div class="pt-8 prose max-w-full" itemprop="articleBody">
+            <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">
                 <%= image_tag cdn_image_url(@post.featured_image) if @post.featured_image.attached? %>
                 <%= markdown @post.body %>
             </div>
