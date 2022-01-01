@@ -1,7 +1,10 @@
 - set_meta_tags title: '500 - Internal Server Error', description: '500 - Internal Server Error'
 - content_for :page_title, '500 - Internal Server Error'
+- content_for :page_icon, content_tag(:i, nil, class: 'bx bx-bug text-9xl text-primary mr-4')
 
-p[class="font-body text-grey-10 pt-5"]
-    = "Something's wrong! It looks like we've broken something on our system. We've been notified and will work to fix it ASAP. Feel free to "
-    = link_to 'contact me here', page_path('contact-me'), class: "text-primary"
+p[class="flex flex-auto items-center font-body text-grey-10 dark:text-primary-900 pt-5"]
+    i[class='bx bx-sad text-5xl text-primary mr-4']
+    = "Something's wrong! It looks like we've broken something on our system. We've been notified and will work to fix it ASAP."
+p[class="font-body text-grey-10 dark:text-primary-900 pt-5"]
+    = link_to 'Contact me', page_path('contact-me'), class: "text-primary dark:text-primary-300 dark:hover:text-primary-500 hover:underline"
     = " if you need immediate help."

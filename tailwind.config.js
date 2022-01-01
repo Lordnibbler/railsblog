@@ -4,6 +4,7 @@ module.exports = {
     content: [
         './app/**/*.html.erb',
         './app/**/*.html.slim',
+        './app/**/*.slim',
         './app/helpers/**/*.rb',
         './app/javascript/**/*.js',
         './config/initializers/client_side_validations.rb',
