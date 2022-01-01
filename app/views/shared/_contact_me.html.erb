@@ -20,7 +20,7 @@
   <%= f.text_area  :message, placeholder: 'message', class:"w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
 
   <button
-    class="bg-primary hover:bg-primary-60 px-8 py-3 flex justify-center mt-6 rounded items-center">
+    class="bg-primary dark:bg-primary-80 hover:bg-primary-60 dark:hover:bg-primary-100 transition-colors px-8 py-3 flex justify-center mt-6 rounded items-center">
     <%= f.submit("Send", class: 'font-header font-bold text-lg text-white uppercase hover:cursor-pointer') %>
     <i class='bx bx-chevron-right text-3xl relative -right-2 font-header font-bold text-lg text-white'></i>
   </button>
