@@ -12,8 +12,3 @@ html {
 }
 
 @tailwind utilities;
-
-#main {
-    height: 100vh;
-    height: var(--app-height, 100vh);
-}
