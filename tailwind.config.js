@@ -15,6 +15,10 @@ module.exports = {
             ...defaultTheme.screens
         },
         extend: {
+            backgroundImage: {
+                'work-bg-light': "url('~images/home/experience-figure.svg')",
+                'work-bg-dark': "url('~images/home/experience-figure-dark.svg')",
+            },
             fontFamily: {
                 header: ['Raleway', "sans-serif"],
                 body: ['Open Sans', "sans-serif"]

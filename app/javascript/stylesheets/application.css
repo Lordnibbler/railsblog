@@ -12,10 +12,3 @@ html {
 }
 
 @tailwind utilities;
-
-.bg-light {
-    background-image: url(../images/home/experience-figure.svg);
-}
-.bg-dark {
-    background-image: url(../images/home/experience-figure.svg);
-}
