@@ -4,11 +4,18 @@ $(document).on('turbo:load', function() {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS
   // set a css variable `--appHeight` so we can use the window's innerHeight to set the page height
   // link: https://bugs.webkit.org/show_bug.cgi?id=141832
-  // code snippet: https://stackoverflow.com/a/60657968/418864
+  // code snippet: https://stackoverflow.com/a/50683190/418864
   const appHeight = () => {
     document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
   };
-  window.addEventListener('resize', appHeight);
+  // window.addEventListener('resize', appHeight);
+
+
+  let resizeComplete;
+  window.addEventListener('resize', function () {
+    this.clearTimeout(resizeComplete);
+    resizeComplete = this.setTimeout(appHeight, 100);
+  });
   appHeight();
 
   // ensure videos fit width of page
