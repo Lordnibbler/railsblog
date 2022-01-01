@@ -4,7 +4,7 @@
 <div class="dark:bg-primary-20">
     <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-24 xl:mt-16">
       <% @posts.each do |post| %>
-        <div class="max-w-4xl mx-auto mb-20 border-b pb-5 border-lila" id="post-<%= post.id %>" role="article"  itemscope='' itemtype='http://schema.org/Article'>
+        <div class="max-w-4xl mx-auto mb-20 border-b pb-8 border-lila dark:border-primary-70" id="post-<%= post.id %>" role="article"  itemscope='' itemtype='http://schema.org/Article'>
           <%= render partial: 'meta', locals: { post: post } %>
 
           <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">

@@ -7,10 +7,10 @@
             <%= image_tag post.user.avatar_url, alt: "author image", class: "w-20 h-20 rounded-full shadow border-2 border-grey-70" %>
         </div>
         <div class="pl-5">
-            <span class="font-body font-bold text-grey-10 text-xl block">
+            <span class="font-body font-bold text-grey-10 dark:text-primary-300 text-xl block">
                 <%= "By #{post.author}" %>
             </span>
-            <span class="font-body font-bold text-grey-30 text-xl block pt-1">
+            <span class="font-body font-bold text-grey-30 dark:text-primary-500 text-xl block pt-1">
                 <time datetime="<%= post.created_at.to_formatted_s(:iso8601) %>" itemprop='datePublished' />
                 <%= post.created_at.strftime('%B %-d, %Y %l:%M%P') %>
             </span>
