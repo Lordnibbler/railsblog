@@ -36,8 +36,6 @@ module.exports = {
                 "grey-70": "#d8d8d8",
 
                 // dark scheme defined at: https://www.color-hex.com/color/5540af
-                // these aren't grey, in fact they are purple
-                // TODO: rename s/grey-dark/primary-dark
                 "primary-10": "#080611", // closer to black
                 "primary-20": "#110c23",
                 "primary-30": "#191334",
