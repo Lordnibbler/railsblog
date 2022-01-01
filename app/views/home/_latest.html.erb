@@ -1,7 +1,7 @@
-<div class="dark:bg-grey-dark-20" id="latest">
+<div class="dark:bg-primary-20" id="latest">
     <div class="container py-16 md:py-20">
         <h2
-            class="font-header font-semibold text-primary dark:text-primary-dark text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
+            class="font-header font-semibold text-primary dark:text-primary-500 text-4xl sm:text-5xl lg:text-6xl uppercase text-center">
             Latest Blog Posts</h2>
         <h4 class="font-header font-medium text-black dark:text-white text-xl sm:text-2xl lg:text-3xl pt-6 text-center">
             Read Stories From My Life and Technical Tutorials</h4>
@@ -10,7 +10,7 @@
             <% @posts.each do |post| %>
                 <div>
                     <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
-                        <div class="shadow dark:bg-grey-dark-70">
+                        <div class="shadow dark:bg-primary-70">
                             <div style="background-image:url(<%= cdn_image_url(post.featured_image) if post.featured_image.attached? %>);"
                                 class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                                 <span
@@ -20,7 +20,7 @@
                                 <span class="font-body font-semibold text-lg text-black dark:text-gray-100 block"><%= post.title %></span>
                                 <span class="font-body text-grey-20 dark:text-gray-300 pt-2 block"><%= post.description %></span>
                                 <span
-                                    class="bg-primary hover:bg-grey-dark-60 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-5 rounded items-center uppercase">
+                                    class="bg-primary hover:bg-primary-60 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-5 rounded items-center uppercase">
                                     Read More
                                 </span>
                             </div>

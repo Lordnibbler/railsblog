@@ -15,11 +15,11 @@ $(document).on('turbo:load', function() {
     // when page is scrolled up <100px, make the navigation 100% transparent (home) or opaque (all other pages)
     //
     let notScrolledClasses // class when page is scrolled to top
-    let scrolledClasses = ["bg-primary/95", "dark:bg-grey-dark-50/95"] // class when page is scrolled past 100px
+    let scrolledClasses = ["bg-primary/95", "dark:bg-primary-50/95"] // class when page is scrolled past 100px
     if (window.location.pathname === "/") {
-      notScrolledClasses = ["bg-primary/0", "dark:bg-grey-dark-50/0"]
+      notScrolledClasses = ["bg-primary/0", "dark:bg-primary-50/0"]
     } else {
-      notScrolledClasses = ["bg-primary", "dark:bg-grey-dark-50"]
+      notScrolledClasses = ["bg-primary", "dark:bg-primary-50"]
     }
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background

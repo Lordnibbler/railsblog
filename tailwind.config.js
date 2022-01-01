@@ -22,9 +22,8 @@ module.exports = {
             colors: {
                 transparent: "transparent",
                 primary: "#5540af",
-                "primary-dark": "#7666bf",
                 secondary: "#252426",
-                white: '#ffffff',
+                white: '#fafafa',
                 black: "#000000",
                 yellow: "#f9e71c",
                 lila: "#e6e5ec",
@@ -39,15 +38,25 @@ module.exports = {
                 // dark scheme defined at: https://www.color-hex.com/color/5540af
                 // these aren't grey, in fact they are purple
                 // TODO: rename s/grey-dark/primary-dark
-                "grey-dark-10": "#080611",
-                "grey-dark-20": "#110c23",
-                "grey-dark-30": "#191334",
-                "grey-dark-40": "#221946",
-                "grey-dark-50": "#2a2057",
-                "grey-dark-60": "#332669",
-                "grey-dark-70": "#3b2c7a",
-                "grey-dark-80": "#44338c",
-                "grey-dark-90": "#4c399d",
+                "primary-10": "#080611", // closer to black
+                "primary-20": "#110c23",
+                "primary-30": "#191334",
+                "primary-40": "#221946",
+                "primary-50": "#2a2057",
+                "primary-60": "#332669",
+                "primary-70": "#3b2c7a",
+                "primary-80": "#44338c",
+                "primary-90": "#4c399d", // closer to primary
+                "primary-100": "#5540af",
+                "primary-200": "#6653b7",
+                "primary-300": "#7666bf",
+                "primary-400": "#8879c7",
+                "primary-500": "#998ccf",
+                "primary-600": "#aa9fd7",
+                "primary-700": "#bbb2df",
+                "primary-800": "#ccc5e7",
+                "primary-900": "#ddd8ef",
+                "primary-1000": "#eeebf7", // closer to white
                 "hero-gradient-from": "rgba(85, 64, 174, 0.95)",       // primary
                 "hero-gradient-to": "rgba(65, 47, 144, 0.70)",         // #412f90
                 "hero-gradient-dark-from": "rgba(42, 32, 87, 0.95)",   // #080611
