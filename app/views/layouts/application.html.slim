@@ -61,7 +61,7 @@ html[lang="en"]
     = yield :head
     = csrf_meta_tags
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
-    #main
+    div[id="main" class="flex flex-col min-h-screen"]
       = render 'shared/header'
       = render 'shared/flash'
       - if controller_name =~ /pages|errors/
