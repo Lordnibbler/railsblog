@@ -1,14 +1,14 @@
 <% set_meta_tags title: meta_title(@post.title),
     description: meta_description_markdown(@post.body) %>
 
-<div>
-    <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-24 xl:mt-16">
+<div class="dark:bg-primary-20">
+    <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-18 xl:mt-16">
         <div class="max-w-4xl mx-auto">
             <% # meta %>
             <%= render partial: 'meta', locals: { post: @post } %>
 
             <% # post %>
-            <div class="pt-8 prose max-w-full" itemprop="articleBody">
+            <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">
                 <%= image_tag cdn_image_url(@post.featured_image) if @post.featured_image.attached? %>
                 <%= markdown @post.body %>
             </div>
@@ -23,46 +23,46 @@
             </div>
 
             <% # pagination %>
-            <div class="flex justify-between border-t border-lila py-12 mt-10">
+            <div class="flex justify-between border-t border-lila dark:border-primary-70 py-12 mt-10">
                 <% if @post.previous.present? %>
                     <a href="<%= blog_posts_permalink_path(@post.previous) %>" class="flex items-center">
-                        <i class='bx bx-left-arrow-alt text-2xl text-primary'></i>
-                        <span class="font-body font-bold text-primary text-lg uppercase block pl-2 md:pl-5">
+                        <i class='bx bx-left-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
+                        <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block pl-2 md:pl-5">
                             Previous Post
                         </span>
                     </a>
                 <% end %>
                 <% if @post.next.present? %>
                     <a href="<%= blog_posts_permalink_path(@post.next) %>" class="flex items-center">
-                        <span class="font-body font-bold text-primary text-lg uppercase block pr-2 md:pr-5">
+                        <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block pr-2 md:pr-5">
                             Next Post
                         </span>
-                        <i class='bx bx-right-arrow-alt text-2xl text-primary'></i>
+                        <i class='bx bx-right-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
                     </a>
                 <% end %>
             </div>
 
             <% # author information %>
             <div
-                class="border-t border-lila py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
+                class="border-t border-lila dark:border-primary-70 py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
                 <div class="w-1/4 lg:w-1/12 xl:w-1/5 flex justify-center">
                     <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow" %>
                 </div>
                 <div class="ml-0 md:ml-10 md:w-5/6 text-center md:text-left">
-                    <h3 class="font-body font-bold text-secondary text-2xl pt-10 md:pt-0">
+                    <h3 class="font-body font-bold text-secondary dark:text-primary-300 text-2xl pt-10 md:pt-0">
                         <%= @post.author %>
                     </h3>
                     <p
-                        class="font-body text-secondary text-lg md:text-xl leading-8 sm:leading-9 md:leading-9 lg:leading-9 xl:leading-9 pt-5">
+                        class="font-body text-secondary dark:text-primary-500 text-lg md:text-xl leading-8 sm:leading-9 md:leading-9 lg:leading-9 xl:leading-9 pt-5">
                         <%= @post.user.biography %>
                     </p>
                     <div class="flex justify-center md:justify-start items-center mt-0 sm:mt-4">
-                        <p class="font-body font-semibold text-grey-20 text-lg uppercase hidden sm:block">
+                        <p class="font-body font-semibold text-grey-20 dark:text-primary-900 text-lg uppercase hidden sm:block">
                             Connect with me</p>
                         <div class="hidden sm:block">
                             <i class='bx bx-chevron-right text-primary text-2xl'></i>
                         </div>
-                        <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary hover:text-yellow" } %>
+                        <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary dark:text-primary-500 hover:text-yellow" } %>
                     </div>
                 </div>
             </div>

@@ -9,8 +9,9 @@ describe MarkdownService do
       end
 
       let(:html) do
-        "<h1>This is a header!</h1>\n\n<p>this is some markdown</p>\n\n<ul>\n<li>this is a list"   \
-          "</li>\n<li>and so is this\n\n<ul>\n<li>and a sub list item</li>\n<li>and another</li>"  \
+        "<h1 class=\"dark:text-primary-1000\">This is a header!</h1>\n<p>this is some markdown</p>" \
+          "\n\n<ul>\n<li>this is a list" \
+          "</li>\n<li>and so is this\n\n<ul>\n<li>and a sub list item</li>\n<li>and another</li>" \
           "\n</ul></li>\n</ul>\n"
       end
 

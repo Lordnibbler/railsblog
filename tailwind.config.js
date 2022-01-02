@@ -4,6 +4,7 @@ module.exports = {
     content: [
         './app/**/*.html.erb',
         './app/**/*.html.slim',
+        './app/**/*.slim',
         './app/helpers/**/*.rb',
         './app/javascript/**/*.js',
         './config/initializers/client_side_validations.rb',
@@ -15,6 +16,10 @@ module.exports = {
             ...defaultTheme.screens
         },
         extend: {
+            backgroundImage: {
+                'work-bg-light': "url('~images/home/experience-figure.svg')",
+                'work-bg-dark': "url('~images/home/experience-figure-dark.svg')",
+            },
             fontFamily: {
                 header: ['Raleway', "sans-serif"],
                 body: ['Open Sans', "sans-serif"]
@@ -23,7 +28,7 @@ module.exports = {
                 transparent: "transparent",
                 primary: "#5540af",
                 secondary: "#252426",
-                white: '#ffffff',
+                white: '#fafafa',
                 black: "#000000",
                 yellow: "#f9e71c",
                 lila: "#e6e5ec",
@@ -34,8 +39,31 @@ module.exports = {
                 "grey-50": "#f4f3f8",
                 "grey-60": "#edebf6",
                 "grey-70": "#d8d8d8",
-                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",
-                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",
+
+                // dark scheme defined at: https://www.color-hex.com/color/5540af
+                "primary-10": "#080611", // closer to black
+                "primary-20": "#110c23",
+                "primary-30": "#191334",
+                "primary-40": "#221946",
+                "primary-50": "#2a2057",
+                "primary-60": "#332669",
+                "primary-70": "#3b2c7a",
+                "primary-80": "#44338c",
+                "primary-90": "#4c399d", // closer to primary
+                "primary-100": "#5540af",
+                "primary-200": "#6653b7",
+                "primary-300": "#7666bf",
+                "primary-400": "#8879c7",
+                "primary-500": "#998ccf",
+                "primary-600": "#aa9fd7",
+                "primary-700": "#bbb2df",
+                "primary-800": "#ccc5e7",
+                "primary-900": "#ddd8ef",
+                "primary-1000": "#eeebf7", // closer to white
+                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",       // primary
+                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",         // #412f90
+                "hero-gradient-dark-from": "rgba(42, 32, 87, 0.95)",   // #080611
+                "hero-gradient-dark-to": "rgba(42, 32, 87, 0.70)",     // #2a2057
                 "cta-gradient-to": "rgba(65, 47, 144, 0.85)",
                 "blog-gradient-from": "#8f9098",
                 "blog-gradient-to": "#222222"

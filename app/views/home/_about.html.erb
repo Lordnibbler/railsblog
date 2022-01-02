@@ -1,19 +1,19 @@
-<div class="bg-grey-50" id="about">
+<div class="bg-grey-50 dark:bg-primary-40" id="about">
     <div class="container py-16 md:py-20 flex flex-col lg:flex-row items-center">
         <div class="w-full sm:w-3/4 lg:w-3/5 text-center lg:text-left">
-            <h2 class="font-header font-semibold text-primary text-4xl sm:text-5xl lg:text-6xl uppercase">
+            <h2 class="font-header font-semibold text-primary dark:text-primary-1000 text-4xl sm:text-5xl lg:text-6xl uppercase">
                 Not your average developer</h2>
-            <h4 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6">
+            <h4 class="font-header font-medium text-black dark:text-primary-400 text-xl sm:text-2xl lg:text-3xl pt-6">
                 Technical and Creative</h4>
-            <p class="font-body text-grey-20 pt-6 leading-relaxed">
+            <p class="font-body text-grey-20 dark:text-primary-900 pt-6 leading-relaxed">
                 I have <%= (Time.now.year - 2011).humanize %> years of professional experience as a <span class="font-black">Software Engineer</span> at industry-leading companies in the San Francisco Bay Area.
             </p>
-            <p class="font-body text-grey-20 pt-6 leading-relaxed">
-                At <span class="font-black">Lyft</span>, my team built a Simulation System which allows the business to handle thousands of rides per minute during our busiest moments.
+            <p class="font-body text-grey-20 dark:text-primary-900 pt-6 leading-relaxed">
+                At <span class="font-black">Lyft</span>, my team built a Simulation Platform which allows the business to handle thousands of rides per minute during our busiest moments.
                 At <span class="font-black">Teespring</span>, I led a team that created the online store platform which enables merchandise sales on YouTube.
                 At <span class="font-black">Onelogin</span>, I built an identity provider which enables mobile app single sign on.
             </p>
-            <p class="font-body text-grey-20 pt-6 leading-relaxed">
+            <p class="font-body text-grey-20 dark:text-primary-900 pt-6 leading-relaxed">
                 Unlike many developers who focus solely on technical ability,
                 I am a <span class="font-black">deeply creative person</span>
                 with a passion for good design and captivating storytelling.
@@ -22,25 +22,25 @@
             </p>
             <div class="flex flex-col sm:flex-row justify-center lg:justify-start pt-6">
                 <div class="flex justify-center sm:justify-start items-center">
-                    <p class="font-body font-semibold text-grey-20 text-lg uppercase">
+                    <p class="font-body font-semibold text-grey-20 dark:text-primary-900 text-lg uppercase">
                         Connect with me</p>
                     <div class="hidden sm:block">
-                        <i class='bx bx-chevron-right text-primary text-2xl'></i>
+                        <i class='bx bx-chevron-right text-primary dark:text-primary-500 text-2xl'></i>
                     </div>
                 </div>
-                <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary hover:text-yellow" } %>
+                <%= render partial: 'shared/social_icons', locals: { icon_classes: "text-primary dark:text-primary-500 hover:text-yellow dark:hover:text-yellow" } %>
             </div>
         </div>
 
         <div class="w-full sm:w-3/4 lg:w-2/5 pl-0 lg:pl-12 pt-10 lg:pt-0">
-            <h4 class="font-header font-medium text-black text-xl sm:text-2xl lg:text-3xl pt-6 text-center lg:text-left">
+            <h4 class="font-header font-medium text-black dark:text-primary-1000 text-xl sm:text-2xl lg:text-3xl pt-6 text-center lg:text-left">
                 My Toolkit</h4>
             <div class="my-5">
                 <div class="flex items-center justify-center lg:justify-start">
-                    <i class="bx bxl-javascript text-5xl text-primary mr-5"></i>
-                    <h4 class="font-header font-normal text-black uppercase">
+                    <i class="bx bxl-javascript text-5xl text-primary dark:text-primary-500 mr-5"></i>
+                    <h4 class="font-header font-normal text-black dark:text-primary-1000 uppercase">
                         <%= "Frontend / " %>
-                        <span class="text-primary font-black">
+                        <span class="text-primary dark:text-primary-500 font-black">
                             Typescript & React
                         </span>
                     </h4>
@@ -48,10 +48,10 @@
             </div>
             <div class="my-5">
                 <div class="flex items-center justify-center lg:justify-start">
-                    <i class="bx bxl-python text-5xl text-primary mr-5 p0"></i>
-                    <h4 class="font-header font-normal text-black uppercase">
+                    <i class="bx bxl-python text-5xl text-primary dark:text-primary-500 mr-5 p0"></i>
+                    <h4 class="font-header font-normal text-black dark:text-primary-1000 uppercase">
                         <%= "Backend / " %>
-                        <span class="text-primary font-black">
+                        <span class="text-primary dark:text-primary-500 font-black">
                             Ruby & Python
                         </span>
                     </h4>
@@ -59,10 +59,10 @@
             </div>
             <div class="my-5">
                 <div class="flex items-center justify-center lg:justify-start">
-                    <i class="bx bx-mobile text-5xl text-primary mr-5 p0"></i>
-                    <h4 class="font-header font-normal text-black uppercase">
+                    <i class="bx bx-mobile text-5xl text-primary dark:text-primary-500 mr-5 p0"></i>
+                    <h4 class="font-header font-normal text-black dark:text-primary-1000 uppercase">
                         <span class="normal-case"><%= "iOS / " %></span>
-                        <span class="text-primary font-black">
+                        <span class="text-primary dark:text-primary-500 font-black">
                             Swift & Spritekit
                         </span>
                     </h4>
@@ -70,10 +70,10 @@
             </div>
             <div class="my-5">
                 <div class="flex items-center justify-center lg:justify-start">
-                    <i class="bx bx-camera text-5xl text-primary mr-5 p0"></i>
-                    <h4 class="font-header font-normal text-black uppercase">
+                    <i class="bx bx-camera text-5xl text-primary dark:text-primary-500 mr-5 p0"></i>
+                    <h4 class="font-header font-normal text-black dark:text-primary-1000 uppercase">
                         <%= "Film / " %>
-                        <span class="text-primary font-black">
+                        <span class="text-primary dark:text-primary-500 font-black">
                             Sony A7siii
                         </span>
                     </h4>

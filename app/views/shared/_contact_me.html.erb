@@ -20,43 +20,43 @@
   <%= f.text_area  :message, placeholder: 'message', class:"w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
 
   <button
-    class="bg-primary hover:bg-grey-20 font-header font-bold text-lg text-white px-8 py-3 flex justify-center mt-6 rounded items-center uppercase">
-    <%= f.submit("Send") %>
-    <i class='bx bx-chevron-right text-3xl relative -right-2'></i>
+    class="bg-primary dark:bg-primary-80 hover:bg-primary-60 dark:hover:bg-primary-100 transition-colors px-8 py-3 flex justify-center mt-6 rounded items-center">
+    <%= f.submit("Send", class: 'font-header font-bold text-lg text-white uppercase hover:cursor-pointer') %>
+    <i class='bx bx-chevron-right text-3xl relative -right-2 font-header font-bold text-lg text-white'></i>
   </button>
 
 <% end %>
 
 <div class="flex flex-col lg:flex-row pt-16">
-  <div class="w-full lg:w-1/3 border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8">
+  <div class="w-full lg:w-1/3 border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
     <div class="flex items-center">
-      <i class='bx bxl-linkedin text-grey-40 text-2xl'></i>
-      <p class="font-body font-bold text-grey-40 lg:text-lg uppercase pl-2">
+      <i class='bx bxl-linkedin text-grey-40 dark:text-primary-1000 text-2xl'></i>
+      <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         LinkedIn</p>
     </div>
-    <p class="font-body font-bold text-primary lg:text-lg pt-2 text-left">
+    <p class="font-body font-bold text-primary dark:text-primary-500 lg:text-lg pt-2 text-left">
         <a href="https://www.linkedin.com/in/benradler/">linkedin.com/benradler</a>
     </p>
   </div>
   <div
-    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8">
+    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
     <div class="flex items-center">
-      <i class='bx bx-envelope text-grey-40 text-2xl'></i>
-      <p class="font-body font-bold text-grey-40 lg:text-lg uppercase pl-2">
+      <i class='bx bx-envelope text-grey-40 dark:text-primary-1000 text-2xl'></i>
+      <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         Email</p>
     </div>
-    <p class="font-body font-bold text-primary lg:text-lg pt-2 text-left">
+    <p class="font-body font-bold text-primary dark:text-primary-500 lg:text-lg pt-2 text-left">
       <a href="mailto:info@benradler.com">info@benradler.com</a>
     </p>
   </div>
   <div
-    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8">
+    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
     <div class="flex items-center">
-      <i class='bx bx-map text-grey-40 text-2xl'></i>
-      <p class="font-body font-bold text-grey-40 lg:text-lg uppercase pl-2">
+      <i class='bx bx-map text-grey-40 dark:text-primary-1000 text-2xl'></i>
+      <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         Location</p>
     </div>
-    <p class="font-body font-bold text-primary lg:text-lg pt-2 text-left">
+    <p class="font-body font-bold text-primary dark:text-primary-500 lg:text-lg pt-2 text-left">
         San Francisco Based, Remote Friendly
     </p>
   </div>
