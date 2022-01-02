@@ -61,7 +61,9 @@ html[lang="en"]
     = yield :head
     = csrf_meta_tags
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
-    #main
+    - # photography page has dynamically determined height by infinite-scroll, dont use --app-height js
+    - main_styles = current_page?(photography_path) ? "" : "height: 100vh; height: var(--app-height, 100vh);"
+    div[id="main" class="flex flex-col" style=main_styles]
       = render 'shared/header'
       = render 'shared/flash'
       - if controller_name =~ /pages|errors/
