@@ -1,5 +1,7 @@
-<% set_meta_tags title: meta_title(@post.title),
-    description: meta_description_markdown(@post.body) %>
+<% set_meta_tags(
+    title: meta_title(@post.title),
+    description: meta_description_markdown(@post.body)
+) %>
 
 <div class="dark:bg-primary-20">
     <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-18 xl:mt-16">
