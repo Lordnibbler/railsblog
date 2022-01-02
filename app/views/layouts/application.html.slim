@@ -23,7 +23,8 @@ html[lang="en"]
     link[rel="icon" type="image/png" href="#{asset_pack_url("media/images/layout/favicon.png")}"]
 
     - # for browsers/devices which customize UI based on theme
-    meta[name="theme-color" content="#5540af"]
+    meta[name="theme-color" content="#5540af" media="(prefers-color-scheme: light)"]
+    meta[name="theme-color" content="#2a2057" media="(prefers-color-scheme: dark)"]
 
     - # fonts and icons
     link[crossorigin="crossorigin" href="https://fonts.gstatic.com" rel="preconnect"]
