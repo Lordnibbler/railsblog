@@ -36,7 +36,7 @@ module ApplicationHelper
   # so dont use --app-height js on photography_path
   #
   def main_styles
-    current_page?(photography_path) ? "" : "height: 100vh; height: var(--app-height, 100vh);"
+    current_page?(photography_path) ? '' : 'height: 100vh; height: var(--app-height, 100vh);'
   end
 
   #
