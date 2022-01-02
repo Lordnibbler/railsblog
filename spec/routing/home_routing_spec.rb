@@ -12,7 +12,7 @@ describe HomeController do
     expect(response).to render_template('home/_work')
     expect(response).to render_template('home/_games')
     expect(response).to render_template('home/_videos')
-    expect(response).to render_template('home/_blog')
+    expect(response).to render_template('home/_latest')
     expect(response).to render_template('home/_contact')
     expect(response).to render_template('home/_newsletter')
   end
