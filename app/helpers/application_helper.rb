@@ -26,6 +26,28 @@ module ApplicationHelper
   end
 
   #
+  # sets main_styles ivar such that footer is stuck to bottom of page,
+  # based on --app-height variable set on resize in custom.js
+  #
+  # this solves for iOS bug where navigation bar covers some of the page
+  # and creates unnecessary scrollable area when there is minimal content on page.
+  #
+  # photography page has dynamically determined height by infinite-scroll,
+  # so dont use --app-height js on photography_path
+  #
+  def main_styles
+    current_page?(photography_path) ? "" : "height: 100vh; height: var(--app-height, 100vh);"
+  end
+
+  #
+  # home page nav should be fully transparent until scrolling
+  # all other pages require opaque bg
+  #
+  def navigation_class
+    current_page?(root_path) ? 'bg-primary/0 dark:bg-primary-50/0' : 'bg-primary dark:bg-primary-50'
+  end
+
+  #
   # @return [String] desktop navigation link for links that dont scroll the homepage when clicked
   #
   def desktop_navigation_link(name:, path:)
