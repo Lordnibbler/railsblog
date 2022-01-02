@@ -1,6 +1,4 @@
-import fitvids from 'fitvids';
-
-$(document).on('turbo:load', function() {
+const setupAppHeightHandler = () => {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS
   // set a css variable `--appHeight` so we can use the window's innerHeight to set the page height
   // link: https://bugs.webkit.org/show_bug.cgi?id=141832
@@ -14,16 +12,11 @@ $(document).on('turbo:load', function() {
     this.clearTimeout(resizeComplete);
     resizeComplete = this.setTimeout(appHeight, 100);
   });
+
   appHeight();
+}
 
-  // ensure videos fit width of page
-  fitvids('#main');
-
-  // flash auto-hiding
-  $('.flash').on('click', function(event) {
-    $(this).slideUp();
-  });
-
+const setupNavigationTransparencyHandler = () => {
   function navTransparencyHandler() {
     //
     // when page is scrolled down >=100px, make the navigation 95% transparent
@@ -38,7 +31,7 @@ $(document).on('turbo:load', function() {
     }
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background
-    let navElement = document.querySelector(".desktop-nav");
+    const navElement = document.querySelector(".desktop-nav");
     if (this.scrollY > 100 || this.scrollY === undefined) {
       navElement.classList.add(...scrolledClasses)
       navElement.classList.remove(...notScrolledClasses)
@@ -51,9 +44,23 @@ $(document).on('turbo:load', function() {
   // run once on homepage load to ensure classes are set appropriately,
   // in case of linking straight to homepage on an anchor (hash)
   if (window.location.pathname === "/" && window.location.hash) {
-    navTransparencyHandler.bind(this)()
+    navTransparencyHandler()
   }
 
   // when page scrolls, update nav transparency as needed
   window.addEventListener("scroll", navTransparencyHandler, false)
+}
+
+$(document).on('turbo:load', function() {
+  // resize page height according to window.innerHeight to avoid navigation bar
+  // on iOS causing extra scrollable area when page has very little content
+  setupAppHeightHandler()
+
+  // make navigation transparent when scrolling past 100px
+  setupNavigationTransparencyHandler()
+
+  // flash auto-hiding
+  $('.flash').on('click', function(event) {
+    $(this).slideUp();
+  });
 });
