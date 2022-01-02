@@ -1,5 +1,5 @@
 div[class='bg-primary dark:bg-primary-50']
-  div[class="container py-6 flex flex-col sm:flex-row justify-between"]
+  div[class="container py-4 md:py-6 flex flex-col sm:flex-row justify-between align-center items-center"]
     p[class="font-body text-white text-center md:text-left"]
       | © #{Time.now.year} #{link_to 'benradler.com', root_path}. I love you.
     = render partial: 'shared/social_icons', locals: { icon_classes: 'text-white hover:text-yellow' }
