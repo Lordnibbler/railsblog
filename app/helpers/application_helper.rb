@@ -65,14 +65,21 @@ module ApplicationHelper
   # @return [String] desktop navigation link for links that scroll the homepage when clicked,
   # or link visitor pre-scrolled to the section
   #
-  # rubocop:disable Layout/LineLength
   def scrolling_desktop_navigation_link(name:, path:)
     content_tag(:li, class: 'group pl-6') do
       span1 = if request.path == '/'
-                content_tag(:a, name, '@click': "triggerNavItem('#{path}')", class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer')
+                content_tag(
+                  :a,
+                  name,
+                  '@click': "triggerNavItem('#{path}')",
+                  class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',
+                )
               else
-                content_tag(:a, href: "#{root_path}#{path}", 'data-turbo': 'false',
-                                class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',) do
+                content_tag(
+                  :a,
+                  href: "#{root_path}#{path}", 'data-turbo': 'false',
+                  class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',
+                ) do
                   name
                 end
               end
@@ -82,7 +89,6 @@ module ApplicationHelper
       span1 + span2
     end
   end
-  # rubocop:enable Layout/LineLength
 
   #
   # @return [String] mobile navigation link for links that dont scroll the homepage when clicked
@@ -99,14 +105,22 @@ module ApplicationHelper
   # @return [String] mobile navigation link for links that scroll the homepage when clicked,
   # or link visitor pre-scrolled to the section
   #
-  # rubocop:disable Layout/LineLength
   def scrolling_mobile_navigation_link(name:, path:)
     content_tag(:li, class: 'py-2') do
       span1 = if request.path == '/'
-                content_tag(:a, name, '@click': "triggerMobileNavItem('#{path}')", class: 'font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer')
+                content_tag(
+                  :a,
+                  name,
+                  '@click': "triggerMobileNavItem('#{path}')",
+                  class: 'font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer',
+                )
               else
-                content_tag(:a, href: "#{root_path}#{path}", 'data-turbo': 'false',
-                                class: 'font-header font-semibold text-2xl text-white uppercase pt-1',) do
+                content_tag(
+                  :a,
+                  href: "#{root_path}#{path}",
+                  'data-turbo': 'false',
+                  class: 'font-header font-semibold text-2xl text-white uppercase pt-1',
+                ) do
                   name
                 end
               end
@@ -116,5 +130,4 @@ module ApplicationHelper
       span1 + span2
     end
   end
-  # rubocop:enable Layout/LineLength
 end

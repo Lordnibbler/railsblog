@@ -48,6 +48,34 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'main_styles' do
+    it 'returns empty string for photography_path' do
+      allow(helper).to receive(:current_page?).and_return(true)
+
+      expect(helper.main_styles).to eql('')
+    end
+
+    it 'returns appropriate styles for non-photography_path' do
+      allow(helper).to receive(:current_page?).and_return(false)
+
+      expect(helper.main_styles).to eql('height: 100vh; height: var(--app-height, 100vh);')
+    end
+  end
+
+  describe 'navigation_class' do
+    it 'returns appropriate styles for root_path' do
+      allow(helper).to receive(:current_page?).and_return(true)
+
+      expect(helper.navigation_class).to eql('bg-primary/0 dark:bg-primary-50/0')
+    end
+
+    it 'returns appropriate styles for non-root_path' do
+      allow(helper).to receive(:current_page?).and_return(false)
+
+      expect(helper.navigation_class).to eql('bg-primary dark:bg-primary-50')
+    end
+  end
+
   describe 'desktop_navigation_link' do
     it 'returns a desktop navigation link HTML' do
       link = helper.desktop_navigation_link(name: 'Home', path: root_path)
