@@ -10,7 +10,7 @@
             <% @posts.each do |post| %>
                 <div>
                     <a href="<%= blog_posts_permalink_path(post) %>" class="bg-white">
-                        <div class="shadow dark:bg-primary-70">
+                        <div class="shadow dark:bg-primary-70 rounded">
                             <div style="background-image:url(<%= cdn_image_url(post.featured_image) if post.featured_image.attached? %>);"
                                 class="bg-center bg-cover bg-no-repeat h-72 sm:h-84 lg:h-64 xl:h-72 relative group">
                                 <span
