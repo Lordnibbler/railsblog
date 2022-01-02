@@ -1,5 +1,3 @@
-import fitvids from 'fitvids';
-
 const setupAppHeightHandler = () => {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS
   // set a css variable `--appHeight` so we can use the window's innerHeight to set the page height
@@ -59,9 +57,6 @@ $(document).on('turbo:load', function() {
 
   // make navigation transparent when scrolling past 100px
   setupNavigationTransparencyHandler()
-
-  // ensure videos fit width of page
-  fitvids('#main');
 
   // flash auto-hiding
   $('.flash').on('click', function(event) {
