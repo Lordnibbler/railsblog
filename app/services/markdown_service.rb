@@ -16,10 +16,13 @@ class MarkdownService
       %(<a href="#{link}" title="#{title}" class="dark:text-primary-500">#{content}</a>)
     end
 
+    def autolink(link, link_type)
+      %(<a href="#{link}" class="dark:text-primary-500">#{link}</a>)
+    end
+
     def header(text, header_level)
       %(<h#{header_level} class="dark:text-primary-1000">#{text}</h#{header_level}>)
     end
-
 
     def block_quote(quote)
       %(<blockquote class="dark:text-primary-1000">#{quote}</blockquote>)
