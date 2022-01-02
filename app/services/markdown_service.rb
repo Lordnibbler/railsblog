@@ -16,7 +16,7 @@ class MarkdownService
       %(<a href="#{link}" title="#{title}" class="dark:text-primary-500">#{content}</a>)
     end
 
-    def autolink(link, link_type)
+    def autolink(link, _link_type)
       %(<a href="#{link}" class="dark:text-primary-500">#{link}</a>)
     end
 
