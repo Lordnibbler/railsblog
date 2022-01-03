@@ -19,20 +19,20 @@ const fontPath = (name) => fonts(name, true)
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import "stylesheets/application.css"
-import "stylesheets/_pygment_monokai.sass"
-import * as Turbo from "@hotwired/turbo-rails"
+import 'stylesheets/application.css'
+import 'stylesheets/_pygment_monokai.sass'
+import '@hotwired/turbo-rails'
 
 // import alpinejs and its necessary rails adaptation
 import 'alpine-turbo-drive-adapter'
 import 'alpine-magic-helpers'
 import 'alpinejs'
 
-
-// If you are using Turbolinks 5.2, use the require syntax and make sure that
-// @client-side-validations/client-side-validations is required afterTurbolinks.start(),
-// so ClientSideValidations can properly attach its event handlers.
+// If you are using Turbo, use the import syntax and make sure that
+// @client-side-validations/client-side-validations/src is imported
+// after @hotwired/turbo-rails, so ClientSideValidations can properly
+// detect window.Turbo and attach its event handlers.
 import '@client-side-validations/client-side-validations/src'
 
 // custom javascripts used throughout the frontend of the site
-import './custom';
+import './custom'
