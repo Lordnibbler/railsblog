@@ -81,9 +81,6 @@ Cloudflare provides HTTPS via Let's Encrypt. The Rails application layer is [con
 The frontend of the site is built using Webpacker.
 
 The technologies used are:
-* [turbo](https://turbo.hotwired.dev/)
-  * for only loading portions of the page that change when browsing around the site
-  * **NOTE** this is disabled for anchor links on the homepage as it causes breaking behavior. [more info here](https://github.com/Lordnibbler/railsblog/pull/130)
 * [tailwindcss](https://tailwindcss.com)
   * for presentation of the site
 * [alpine.js](https://alpinejs.dev/) and [alpine-magic-helpers](https://github.com/alpine-collective/alpine-magic-helpers)

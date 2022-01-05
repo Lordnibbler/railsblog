@@ -77,7 +77,7 @@ module ApplicationHelper
               else
                 content_tag(
                   :a,
-                  href: "#{root_path}#{path}", 'data-turbo': 'false',
+                  href: "#{root_path}#{path}",
                   class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',
                 ) do
                   name
@@ -118,7 +118,6 @@ module ApplicationHelper
                 content_tag(
                   :a,
                   href: "#{root_path}#{path}",
-                  'data-turbo': 'false',
                   class: 'font-header font-semibold text-2xl text-white uppercase pt-1',
                 ) do
                   name

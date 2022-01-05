@@ -21,10 +21,8 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import 'stylesheets/application.css'
 import 'stylesheets/_pygment_monokai.sass'
-import '@hotwired/turbo-rails'
 
 // import alpinejs and its necessary rails adaptation
-import 'alpine-turbo-drive-adapter'
 import 'alpine-magic-helpers'
 import 'alpinejs'
 

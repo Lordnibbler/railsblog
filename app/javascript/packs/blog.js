@@ -1,6 +1,6 @@
 import fitvids from 'fitvids';
 
-$(document).on('turbo:load', () => {
+addEventListener('load', function() {
   // ensure videos fit full width of page
   fitvids('#main');
-});
+})

@@ -257,8 +257,8 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
     }
 };
 
-// logic to fire on (turbolinks) page load
-$(document).on('turbo:load', function() {
+// logic to fire on page load
+addEventListener('load', function() {
     const elem = document.querySelector('.my-gallery.grid');
     let msnry = createMasonry(elem)
 

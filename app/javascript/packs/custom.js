@@ -50,7 +50,7 @@ const setupNavigationTransparencyHandler = () => {
   window.addEventListener("scroll", navTransparencyHandler, false)
 }
 
-addEventListener('turbo:load', function() {
+addEventListener('load', function() {
   // resize page height according to window.innerHeight to avoid navigation bar
   // on iOS causing extra scrollable area when page has very little content
   setupAppHeightHandler()
