@@ -50,7 +50,7 @@ const setupNavigationTransparencyHandler = () => {
   window.addEventListener("scroll", navTransparencyHandler, false)
 }
 
-$(document).on('turbo:load', function() {
+addEventListener('turbo:load', function() {
   // resize page height according to window.innerHeight to avoid navigation bar
   // on iOS causing extra scrollable area when page has very little content
   setupAppHeightHandler()
@@ -62,4 +62,4 @@ $(document).on('turbo:load', function() {
   $('.flash').on('click', function(event) {
     $(this).slideUp();
   });
-});
+})
