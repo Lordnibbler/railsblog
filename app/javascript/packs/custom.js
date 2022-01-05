@@ -63,3 +63,19 @@ addEventListener('turbo:load', function() {
     $(this).slideUp();
   });
 })
+
+// addEventListener("turbo:click", ({ target }) => {
+//   if (target.hasAttribute("data-turbo-preserve-scroll")) {
+//     scrollTop = document.scrollingElement.scrollTop
+//   }
+// })
+
+addEventListener("turbo:load", () => {
+    document.scrollingElement.scrollTo(0, 0)
+    console.log(`turbo_load scrolling to 0`)
+})
+
+window.addEventListener('load', function() {
+  document.scrollingElement.scrollTo(0, 0)
+  console.log(`turbo_load scrolling to 0`)
+})
