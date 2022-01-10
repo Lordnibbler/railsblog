@@ -25,7 +25,7 @@ class FlickrService
         cache_key = self.generate_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
-          page: page,
+          page:,
         )
         self.get_photos({ page: index + 1 }, cache_key, true)
       end
@@ -58,14 +58,14 @@ class FlickrService
         # the final page of results (response.pages)
         return nil if response.page > response.pages
 
-        normalize(response: response, shuffle: shuffle)
+        normalize(response:, shuffle:)
       end
     end
 
     # @return [Hash]
     def get_photo(photo_id)
       Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.month do
-        client.photos.getInfo(photo_id: photo_id)
+        client.photos.getInfo(photo_id:)
       end
     end
 

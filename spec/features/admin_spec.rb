@@ -57,7 +57,7 @@ describe '/admin' do
     end
 
     context 'featured image' do
-      let!(:post) { create(:post, user: user) }
+      let!(:post) { create(:post, user:) }
 
       it 'shows and allows uploading and deleting of featured_image' do
         visit '/admin/blog_posts'
@@ -102,7 +102,7 @@ describe '/admin' do
     end
 
     context 'images' do
-      let!(:post) { create(:post, user: user) }
+      let!(:post) { create(:post, user:) }
 
       it 'allows uploading and deleting of images' do
         visit edit_admin_blog_post_path(post)
