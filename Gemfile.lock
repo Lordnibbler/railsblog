@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/vcr/vcr.git
+  revision: 8ced6c96e01737a418cd270e0382a8c2c6d85f7f
+  specs:
+    vcr (6.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -130,6 +136,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
+    digest (3.1.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -208,6 +215,7 @@ GEM
       has_scope (~> 0.6)
       railties (>= 5.2, < 6.2)
       responders (>= 2, < 4)
+    io-wait (0.2.1)
     ipaddress (0.8.3)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -261,6 +269,13 @@ GEM
     minitest (5.15.0)
     multi_json (1.15.0)
     nenv (0.3.0)
+    net-protocol (0.1.2)
+      io-wait
+      timeout
+    net-smtp (0.3.1)
+      digest
+      net-protocol
+      timeout
     newrelic_rpm (8.2.0)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -413,12 +428,12 @@ GEM
     temple (0.8.2)
     thor (1.1.0)
     tilt (2.0.10)
+    timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (2.1.0)
-    vcr (6.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webdrivers (5.0.0)
@@ -476,6 +491,7 @@ DEPENDENCIES
   launchy
   mail_form
   meta-tags
+  net-smtp
   newrelic_rpm
   pg
   pry-byebug
@@ -497,7 +513,7 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   uglifier
-  vcr
+  vcr!
   webdrivers
   webmock
   webpacker
