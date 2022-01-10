@@ -23,6 +23,9 @@ import "stylesheets/application.css"
 import "stylesheets/_pygment_monokai.sass"
 import * as Turbo from "@hotwired/turbo"
 
+// temporarily disable turbo until we can resolve page scrolling bug on iPadOS
+Turbo.session.drive = false
+
 // import alpinejs and its necessary rails adaptation
 import 'alpine-turbo-drive-adapter'
 import 'alpine-magic-helpers'
