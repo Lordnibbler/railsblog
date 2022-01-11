@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.0.3'
+ruby '3.1.0'
 gem 'rails', '~> 6.1'
 
 gem 'activeadmin' # admin UI scaffolding
@@ -17,6 +17,7 @@ gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
+gem 'net-smtp', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
 gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
@@ -59,7 +60,9 @@ group :test do
   gem 'factory_bot_rails' # factories
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
-  gem 'vcr' # record http requests and play them back in tests
+  # rubocop:disable Layout/LineLength
+  gem 'vcr', github: 'vcr/vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
+  # rubocop:enable Layout/LineLength
   gem 'webdrivers'
   gem 'webmock'
 end

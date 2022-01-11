@@ -25,6 +25,6 @@ class ContactFormsController < ApplicationController
   end
 
   def contact_form
-    @contact_form ||= ContactForm.new(params[:contact_form].merge(request: request))
+    @contact_form ||= ContactForm.new(params[:contact_form].merge(request:))
   end
 end

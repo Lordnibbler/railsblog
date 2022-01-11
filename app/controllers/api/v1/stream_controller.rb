@@ -31,7 +31,7 @@ class Api::V1::StreamController < ApiController
 
     render json: {
       source: 'flickr',
-      page: page, # provide to this API endpoint again for next page
+      page:, # provide to this API endpoint again for next page
       posts: FlickrService.get_photos(page: params[:page]),
     }
   end
