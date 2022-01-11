@@ -19,6 +19,7 @@ gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'net-smtp', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
 gem 'net-pop', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
+gem 'net-imap', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
 gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
