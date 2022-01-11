@@ -16,6 +16,7 @@ jobs:
       # - node/install-packages:
       #     pkg-manager: yarn
       #     cache-key: "yarn.lock"
+
   install-node:
     docker:
       - image: 'cimg/base:stable'
@@ -25,6 +26,7 @@ jobs:
           install-yarn: true
           node-version: '16.13'
       - run: node --version
+
   test:
     parallelism: 3
     docker:
@@ -67,3 +69,4 @@ workflows:
       - test:
           requires:
             - build
+            - install-node
