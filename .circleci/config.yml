@@ -29,11 +29,12 @@ jobs:
     parallelism: 3
     docker:
       - image: cimg/ruby:3.1.0-node
-      - image: circleci/postgres:14.1-alpine
+      - image: circleci/postgres:13.5
         environment:
           POSTGRES_USER: circleci-demo-ruby
-          POSTGRES_DB: rails_blog_test
+          POSTGRES_DB: benradler-test
           POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
@@ -52,7 +53,7 @@ jobs:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
           name: Database setup
-          command: bundle exec rails db:schema:load --trace
+          command: cp config/database.yml.test config/database.yml && bundle exec rails db:schema:load --trace
       # Run rspec in parallel
       - ruby/rspec-test
       - ruby/rubocop-check
