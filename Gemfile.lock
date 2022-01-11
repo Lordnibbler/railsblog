@@ -269,6 +269,10 @@ GEM
     minitest (5.15.0)
     multi_json (1.15.0)
     nenv (0.3.0)
+    net-pop (0.1.1)
+      digest
+      net-protocol
+      timeout
     net-protocol (0.1.2)
       io-wait
       timeout
@@ -491,6 +495,7 @@ DEPENDENCIES
   launchy
   mail_form
   meta-tags
+  net-pop
   net-smtp
   newrelic_rpm
   pg
