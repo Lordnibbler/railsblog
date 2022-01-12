@@ -62,6 +62,7 @@ group :test do
   gem 'factory_bot_rails' # factories
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
+  gem 'rspec_junit_formatter' # formatting for circleci
   # rubocop:disable Layout/LineLength
   gem 'vcr', github: 'vcr/vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
   # rubocop:enable Layout/LineLength

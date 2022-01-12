@@ -385,6 +385,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.3)
+    rspec_junit_formatter (0.5.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.24.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -516,6 +518,7 @@ DEPENDENCIES
   regexp_parser
   rouge
   rspec-rails
+  rspec_junit_formatter
   rubocop
   rubocop-rails
   sendgrid-ruby
