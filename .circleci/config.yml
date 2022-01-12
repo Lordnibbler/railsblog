@@ -66,6 +66,7 @@ jobs:
       - run:
           name: Database setup
           command: cp config/database.yml.test config/database.yml && bundle exec rails db:schema:load --trace
+      - run: ./bin/webpack
       # Run rspec in parallel
       - ruby/rspec-test
       - ruby/rubocop-check
