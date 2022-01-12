@@ -45,6 +45,8 @@ jobs:
       PGUSER: circleci-demo-ruby
       PGPASSWORD: ""
       RAILS_ENV: test
+      NODE_ENV: test
+      RAILS_HOST: 'http://localhost'
     steps:
       - checkout
       - ruby/install-deps
