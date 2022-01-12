@@ -17,6 +17,7 @@ AllCops:
     - 'spec/features_helper.rb'
     - 'spec/rails_helper.rb'
     - Guardfile
+    - Gemfile
 
 require: rubocop-rails
 
