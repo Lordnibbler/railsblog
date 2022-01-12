@@ -1,3 +1,9 @@
+#
+# [orb Search](https://circleci.com/developer/orbs?query=postgres&page=1&pageSize=15)
+# [cimg search](https://circleci.com/developer/images)
+# [Example config (with yarn caching, webpacker)](https://discuss.circleci.com/t/webpacker-compile-freezes-on-compile/33055)
+# [Circleci provided example](https://github.com/CircleCI-Public/circleci-demo-ruby-rails/blob/master/.circleci/config.yml)
+#
 version: 2.1
 
 orbs:
@@ -27,9 +33,9 @@ jobs:
     docker:
       - image: cimg/ruby:3.1.0-node
       - image: cimg/node:16.13-browsers
-      - image: circleci/postgres:13.5
+      - image: cimg/postgres:14.1
         environment:
-          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_USER: benradler
           POSTGRES_DB: benradler-test
           POSTGRES_PASSWORD: ""
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -37,7 +43,7 @@ jobs:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: circleci-demo-ruby
+      PGUSER: benradler
       PGPASSWORD: ""
       RAILS_ENV: test
       NODE_ENV: test
@@ -50,20 +56,24 @@ jobs:
           node-version: '16.13'
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
-      - run: cp .env.example .env
       - run:
           command: |
             google-chrome --version
             chromedriver --version
-          name: Check install
+          name: Check browsertools install
+
       - run:
-          name: Wait for DB
+          name: Setup dotenv
+          command: cp .env.example .env
+
+      - run:
+          name: Wait for postgres to start
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
-          name: Database setup
+          name: postgres setup
           command: cp config/database.yml.test config/database.yml && bundle exec rails db:schema:load --trace
 
-      # restore yarn cache
+      # restore yarn cache if available
       - restore_cache:
           keys:
             - yarn-{{ checksum "yarn.lock" }}
@@ -79,7 +89,7 @@ jobs:
           paths:
             - ~/.cache/yarn
 
-      # restore webpack cache
+      # restore webpack cache if available
       - restore_cache:
           keys:
             - webpack-{{ .Revision }}
@@ -95,6 +105,8 @@ jobs:
 
       # Run rspec in parallel
       - ruby/rspec-test
+
+      # run rubocop
       - ruby/rubocop-check
 
 workflows:
