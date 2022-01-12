@@ -55,6 +55,7 @@ jobs:
       #     cache-key: "yarn.lock"
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
+      - run: cp .env.example .env
       - run:
           command: |
             google-chrome --version
