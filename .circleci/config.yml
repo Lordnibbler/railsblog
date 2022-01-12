@@ -20,7 +20,6 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
-          cache-path: "yarn.lock"
       - run: node --version
 
   test:
@@ -49,7 +48,6 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.13'
-          cache-path: "yarn.lock"
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run: cp .env.example .env
@@ -64,8 +62,36 @@ jobs:
       - run:
           name: Database setup
           command: cp config/database.yml.test config/database.yml && bundle exec rails db:schema:load --trace
-      - run: yarn install
+
+      # restore yarn cache
+      - restore_cache:
+          keys:
+            - yarn-{{ checksum "yarn.lock" }}
+
+      # install node deps with yarn
+      - run:
+          name: Yarn install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # save yarn cache
+      - save_cache:
+          key: yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      # restore webpack cache
+      - restore_cache:
+          keys:
+            - webpack-{{ .Revision }}
+
+      # webpacker compilation
       - run: bin/rails webpacker:compile
+
+      # save webpacker cache
+      - save_cache:
+          key: webpack-{{ .Revision }}
+          paths:
+            - /home/circleci/project/public/packs-test/
 
       # Run rspec in parallel
       - ruby/rspec-test
