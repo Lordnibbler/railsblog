@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/kjvarga/sitemap_generator.git
+  revision: fce9c0caa38bd1b29badb1cd6ab80f707924a7df
+  specs:
+    sitemap_generator (6.1.2)
+      builder (~> 3.0)
+
+GIT
   remote: https://github.com/vcr/vcr.git
   revision: 8ced6c96e01737a418cd270e0382a8c2c6d85f7f
   specs:
@@ -417,8 +424,6 @@ GEM
       ruby_http_client (~> 3.4)
     set (1.0.2)
     shellany (0.0.1)
-    sitemap_generator (6.1.2)
-      builder (~> 3.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -522,7 +527,7 @@ DEPENDENCIES
   rubocop
   rubocop-rails
   sendgrid-ruby
-  sitemap_generator
+  sitemap_generator!
   slim
   spring
   spring-commands-rspec

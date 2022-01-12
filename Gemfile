@@ -28,7 +28,7 @@ gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
 gem 'sendgrid-ruby' # Sending emails
-gem 'sitemap_generator' # generate sitemaps for submitting to search engines
+gem 'sitemap_generator', github: 'kjvarga/sitemap_generator' # remove once 6.2.0 is released # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
@@ -63,9 +63,7 @@ group :test do
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter' # formatting for circleci
-  # rubocop:disable Layout/LineLength
   gem 'vcr', github: 'vcr/vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
-  # rubocop:enable Layout/LineLength
   gem 'webdrivers'
   gem 'webmock'
 end
