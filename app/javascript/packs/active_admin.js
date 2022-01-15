@@ -4,7 +4,7 @@ import "./active_admin/active_admin.scss";
 
 import "@activeadmin/activeadmin";
 
-const marked = require('marked');
+import { marked } from 'marked'
 
 // event listener which renders the <textarea> for the post body
 // from markdown on the left pane to HTML on the right pane
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateRenderedMarkdown(){
-    const markdownValue = marked(blogPostBodyElement.value);
+    const markdownValue = marked.parse(blogPostBodyElement.value);
     const blogPostBodyMarkedElement = document.querySelector('#blog_post_body_marked');
     blogPostBodyMarkedElement.innerHTML = markdownValue;
   }
