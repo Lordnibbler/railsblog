@@ -60,7 +60,7 @@ html[lang="en"]
 
     = yield :head
     = csrf_meta_tags
-  body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }"]
+  body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }" @resize.window="if (window.innerWidth >= 1024) mobileMenu = false"]
     div[id="main" class="flex flex-col" style="#{main_styles}"]
       = render 'shared/header'
       = render 'shared/flash'
