@@ -52,9 +52,7 @@ module ApplicationHelper
   #
   def desktop_navigation_link(name:, path:)
     content_tag(:li, class: 'group pl-6') do
-      content_tag(:span, class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300') do
-        link_to name, path
-      end
+      link_to name, path, class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300'
     end
   end
 
@@ -69,13 +67,13 @@ module ApplicationHelper
           :a,
           name,
           '@click': "triggerNavItem('#{path}')",
-          class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
+          class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
         )
       else
         content_tag(
           :a,
           href: "#{root_path}#{path}", 'data-turbo': 'false',
-          class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
+          class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
         ) do
           name
         end
