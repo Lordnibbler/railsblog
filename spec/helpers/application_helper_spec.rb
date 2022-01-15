@@ -81,7 +81,7 @@ describe ApplicationHelper do
       link = helper.desktop_navigation_link(name: 'Home', path: root_path)
 
       # rubocop:disable Layout/LineLength
-      expect(link).to eq('<li class="group pl-6"><span class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer"><a href="/">Home</a></span><span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span></li>')
+      expect(link).to eq('<li class="group pl-6"><a class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow" href="/">Home</a></li>')
       # rubocop:enable Layout/LineLength
     end
   end
@@ -95,7 +95,7 @@ describe ApplicationHelper do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="group pl-6"><a @click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Videos</a><span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span></li>')
+        expect(link).to eq('<li class="group pl-6"><a @click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end
@@ -105,7 +105,7 @@ describe ApplicationHelper do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="group pl-6"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-white uppercase pt-0.5 cursor-pointer">Videos</a><span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span></li>')
+        expect(link).to eq('<li class="group pl-6"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end
@@ -116,7 +116,7 @@ describe ApplicationHelper do
       link = helper.mobile_navigation_link(name: 'Home', path: root_path)
 
       # rubocop:disable Layout/LineLength
-      expect(link).to eq('<li class="py-2"><span class="font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer"><a href="/">Home</a></span></li>')
+      expect(link).to eq('<li class="pb-4"><a class="font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow" href="/">Home</a></li>')
       # rubocop:enable Layout/LineLength
     end
   end
@@ -130,7 +130,7 @@ describe ApplicationHelper do
         link = helper.scrolling_mobile_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="py-2"><a @click="triggerMobileNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer">Videos</a><span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span></li>')
+        expect(link).to eq('<li class="pb-4"><a @click="triggerMobileNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end
@@ -140,7 +140,7 @@ describe ApplicationHelper do
         link = helper.scrolling_mobile_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="py-2"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-2xl text-white uppercase pt-1">Videos</a><span class="block w-full h-0.5 bg-transparent group-hover:bg-yellow"></span></li>')
+        expect(link).to eq('<li class="pb-4"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-2xl text-white uppercase py-2 hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end

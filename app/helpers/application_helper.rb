@@ -52,7 +52,11 @@ module ApplicationHelper
   #
   def desktop_navigation_link(name:, path:)
     content_tag(:li, class: 'group pl-6') do
-      link_to name, path, class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow'
+      link_to(
+        name,
+        path,
+        class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+      )
     end
   end
 
@@ -86,7 +90,11 @@ module ApplicationHelper
   #
   def mobile_navigation_link(name:, path:)
     content_tag(:li, class: 'pb-4') do
-      link_to name, path, class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow'
+      link_to(
+        name,
+        path,
+        class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+      )
     end
   end
 
