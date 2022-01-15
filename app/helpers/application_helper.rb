@@ -52,12 +52,9 @@ module ApplicationHelper
   #
   def desktop_navigation_link(name:, path:)
     content_tag(:li, class: 'group pl-6') do
-      span1 = content_tag(:span, class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer') do
+      content_tag(:span, class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300') do
         link_to name, path
       end
-      span2 = content_tag(:span, '', class: 'block w-full h-0.5 bg-transparent group-hover:bg-yellow')
-
-      span1 + span2
     end
   end
 
@@ -67,26 +64,22 @@ module ApplicationHelper
   #
   def scrolling_desktop_navigation_link(name:, path:)
     content_tag(:li, class: 'group pl-6') do
-      span1 = if request.path == '/'
-                content_tag(
-                  :a,
-                  name,
-                  '@click': "triggerNavItem('#{path}')",
-                  class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',
-                )
-              else
-                content_tag(
-                  :a,
-                  href: "#{root_path}#{path}", 'data-turbo': 'false',
-                  class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer',
-                ) do
-                  name
-                end
-              end
-
-      span2 = content_tag(:span, '', class: 'block w-full h-0.5 bg-transparent group-hover:bg-yellow')
-
-      span1 + span2
+      if request.path == '/'
+        content_tag(
+          :a,
+          name,
+          '@click': "triggerNavItem('#{path}')",
+          class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
+        )
+      else
+        content_tag(
+          :a,
+          href: "#{root_path}#{path}", 'data-turbo': 'false',
+          class: 'font-header font-semibold text-white uppercase pt-0.5 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-primary-300',
+        ) do
+          name
+        end
+      end
     end
   end
 
