@@ -85,10 +85,8 @@ module ApplicationHelper
   # @return [String] mobile navigation link for links that dont scroll the homepage when clicked
   #
   def mobile_navigation_link(name:, path:)
-    content_tag(:li, class: 'py-2') do
-      content_tag(:span, class: 'font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer') do
-        link_to name, path
-      end
+    content_tag(:li, class: 'pb-4') do
+      link_to name, path, class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow'
     end
   end
 
@@ -97,28 +95,24 @@ module ApplicationHelper
   # or link visitor pre-scrolled to the section
   #
   def scrolling_mobile_navigation_link(name:, path:)
-    content_tag(:li, class: 'py-2') do
-      span1 = if request.path == '/'
-                content_tag(
-                  :a,
-                  name,
-                  '@click': "triggerMobileNavItem('#{path}')",
-                  class: 'font-header font-semibold text-2xl text-white uppercase pt-1 cursor-pointer',
-                )
-              else
-                content_tag(
-                  :a,
-                  href: "#{root_path}#{path}",
-                  'data-turbo': 'false',
-                  class: 'font-header font-semibold text-2xl text-white uppercase pt-1',
-                ) do
-                  name
-                end
-              end
-
-      span2 = content_tag(:span, '', class: 'block w-full h-0.5 bg-transparent group-hover:bg-yellow')
-
-      span1 + span2
+    content_tag(:li, class: 'pb-4') do
+      if request.path == '/'
+        content_tag(
+          :a,
+          name,
+          '@click': "triggerMobileNavItem('#{path}')",
+          class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+        )
+      else
+        content_tag(
+          :a,
+          href: "#{root_path}#{path}",
+          'data-turbo': 'false',
+          class: 'font-header font-semibold text-2xl text-white uppercase py-2 hover:underline underline-offset-8 decoration-2 decoration-yellow',
+        ) do
+          name
+        end
+      end
     end
   end
 end
