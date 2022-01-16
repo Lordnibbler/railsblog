@@ -32,7 +32,6 @@ gem 'rouge' # syntax highlighting
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator', github: 'kjvarga/sitemap_generator' # remove once 6.2.0 is released # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-# gem 'sprockets-rails' # because heroku runs rake assets:precompile
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
 gem 'webrick' # web server for capybara and local dev
