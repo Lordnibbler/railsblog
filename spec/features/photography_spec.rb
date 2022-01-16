@@ -1,6 +1,6 @@
 require 'features_helper'
 
-describe '/photography' do
+describe '/photography', :js do
   let(:photo) do
     {
       source: 'flickr',

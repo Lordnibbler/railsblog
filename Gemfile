@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 ruby '3.1.0'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7'
 
-gem 'activeadmin' # admin UI scaffolding
+gem 'activeadmin', github: 'tagliala/activeadmin', branch: 'feature/railties-7' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235) # admin UI scaffolding
+gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235)
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
@@ -13,6 +14,7 @@ gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
+gem 'inherited_resources', github: 'activeadmin/inherited_resources' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235)
 gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)

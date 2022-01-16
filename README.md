@@ -1,5 +1,5 @@
 # benradler.com
-This is a Ruby on Rails 6.1 app. It does the following:
+This is a Ruby on Rails 7 app. It does the following:
 * displays a portfolio homepage with personal information and work history - [link](https://benradler.com)
 * offers a contact form - [link](https://benradler.com/#contact)
 * offers a newsletter signup form

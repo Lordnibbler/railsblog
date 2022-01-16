@@ -32,7 +32,7 @@ describe '/admin' do
     end
   end
 
-  describe 'blog_posts' do
+  describe 'blog_posts', :js do
     before { login_as(user, scope: :user) }
 
     describe '/admin/blog_posts/new' do
