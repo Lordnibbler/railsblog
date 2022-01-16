@@ -29,7 +29,6 @@ gem 'redcarpet' # Markdown parsing
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
-gem 'sassc-rails', '~> 2.1' # required by rails app:update
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator', github: 'kjvarga/sitemap_generator' # remove once 6.2.0 is released # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
