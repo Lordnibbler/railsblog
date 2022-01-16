@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Brog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 7.0
 
     # Configuration for the application, engines, and railties goes here
     #
@@ -33,5 +33,8 @@ module Brog
 
     # set redis as the default cache storage
     config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
+
+    # Change the variant processor for Active Storage.
+    config.active_storage.variant_processor = :mini_magick
   end
 end
