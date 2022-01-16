@@ -30,7 +30,7 @@ Rails.application.configure do
 
   # TODO: remove?
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # TODO: remove?
