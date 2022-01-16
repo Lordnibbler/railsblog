@@ -31,9 +31,6 @@ module Brog
     # custom error pages defined by errors_controller.rb
     config.exceptions_app = self.routes
 
-    # set redis as the default cache storage
-    config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
-
     # Change the variant processor for Active Storage.
     config.active_storage.variant_processor = :mini_magick
   end

@@ -50,8 +50,8 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new "app-name")
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  # set redis as the production cache storage
+  config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.asset_host = ENV['ASSET_HOST']
