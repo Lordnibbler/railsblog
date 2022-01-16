@@ -29,7 +29,7 @@ describe '/' do
     end
   end
 
-  context 'contact form' do
+  context 'contact form', :js do
     before { visit root_path }
 
     context 'with invalid data' do

@@ -1,6 +1,6 @@
 require 'features_helper'
 
-describe '/contact-me', js: true do
+describe '/contact-me', :js do
   before { visit '/contact-me' }
 
   context 'with invalid data' do
