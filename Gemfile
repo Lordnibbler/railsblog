@@ -30,7 +30,7 @@ gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
 gem 'sendgrid-ruby' # Sending emails
-gem 'sitemap_generator', github: 'kjvarga/sitemap_generator' # remove once 6.2.0 is released # generate sitemaps for submitting to search engines
+gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
 gem 'webpacker' # webpack integration with rails
