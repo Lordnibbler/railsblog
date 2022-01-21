@@ -24,6 +24,7 @@ return element.loader == 'sass-loader'
 const options = sassLoaderConfig.options
 options.implementation = require('sass')
 
+// https://github.com/rails/webpacker/issues/2784#issuecomment-733888270
 function hotfixPostcssLoaderConfig (subloader) {
   const subloaderName = subloader.loader
   if (subloaderName === 'postcss-loader') {
