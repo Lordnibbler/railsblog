@@ -12,7 +12,7 @@ div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20"
   - @photos.each do |photo|
     figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
       a data-size="#{photo[:photo_large][:width]}x#{photo[:photo_large][:height]}" href="#{photo[:photo_large][:url]}" itemprop="contentUrl"
-        img alt="#{photo[:description]}" itemprop="thumbnail" src="#{photo[:photo_medium][:url]}"
+        img alt="#{photo[:description]}" itemprop="thumbnail" src="#{photo[:photo_large][:url]}"
       figcaption itemprop="caption description"
         = photo[:description]
 
