@@ -42,6 +42,7 @@ module WebpackTestBuild
   end
 
   def self.run_webpack_if_necessary
+    return if ENV['CIRCLECI'] # webpack is compiled automatically in the build step
     return if self.already_built
 
     run_webpack if timestamp_outdated?
