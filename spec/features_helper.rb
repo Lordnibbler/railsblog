@@ -34,6 +34,8 @@ module WebpackTestBuild
 
   def self.run_webpack
     puts "running webpack-test"
+    puts `which node`
+    puts `node --version`
     `RAILS_ENV=test bin/webpack`
     self.already_built = true
     File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
@@ -42,9 +44,7 @@ module WebpackTestBuild
   def self.run_webpack_if_necessary
     return if self.already_built
 
-    if timestamp_outdated?
-      run_webpack
-    end
+    run_webpack if timestamp_outdated?
   end
 
   def self.timestamp_outdated?

@@ -39,7 +39,7 @@ describe '/photography', :js do
 
     expect(page).to have_selector('figure.image.grid-item', count: 1)
     expect(page).to have_css("a[href*='#{photo[:photo_large][:url]}']")
-    expect(page).to have_css("img[src*='#{photo[:photo_medium][:url]}']")
+    expect(page).to have_css("img[src*='#{photo[:photo_large][:url]}']")
     expect(page).to have_css('figcaption', text: 'A super sweet test photo', visible: :hidden)
   end
 end
