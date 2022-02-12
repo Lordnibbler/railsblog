@@ -1,24 +1,24 @@
 GIT
   remote: https://github.com/activeadmin/arbre.git
-  revision: e4970e683c81c99432b73f0ceb5dff7d3fe50413
+  revision: 99142b515acc9f33a9e5d01187af2fb8776a493b
   specs:
-    arbre (1.4.0)
+    arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
       ruby2_keywords (>= 0.0.2, < 1.0)
 
 GIT
   remote: https://github.com/activeadmin/inherited_resources.git
-  revision: a0a350245a2ec76c040f8751707c1d98792534dd
+  revision: 95ed2eaea0448bff2b999c079434d7122543d919
   specs:
-    inherited_resources (1.13.0)
-      actionpack (>= 5.2, < 7.1)
+    inherited_resources (1.13.1)
+      actionpack (>= 6.0, < 7.1)
       has_scope (~> 0.6)
-      railties (>= 5.2, < 7.1)
+      railties (>= 6.0, < 7.1)
       responders (>= 2, < 4)
 
 GIT
   remote: https://github.com/tagliala/activeadmin.git
-  revision: 12ef798e1a02084565fa2ea698e26334dbc56e42
+  revision: 1515a40a1d407dafd34b104fabd8401e84baca94
   branch: feature/railties-7
   specs:
     activeadmin (2.9.0)
@@ -28,7 +28,7 @@ GIT
       inherited_resources (~> 1.7)
       jquery-rails (~> 4.2)
       kaminari (~> 1.0, >= 1.2.1)
-      railties (>= 5.2, < 7.1)
+      railties (>= 6.0, < 7.1)
       ransack (~> 2.1, >= 2.1.1)
 
 GIT
@@ -232,7 +232,7 @@ GEM
       railties (>= 5.0)
     high_voltage (3.1.2)
     humanize (2.5.1)
-    i18n (1.8.11)
+    i18n (1.9.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -268,7 +268,7 @@ GEM
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
-    loofah (2.13.0)
+    loofah (2.14.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.2.8)
@@ -328,7 +328,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (5.5.2)
+    puma (5.6.2)
       nio4r (~> 2.0)
     pygments.rb (2.3.0)
     racc (1.6.0)
@@ -483,7 +483,7 @@ GEM
       nokogiri (~> 1.8)
     yard (0.9.27)
       webrick (~> 1.7.0)
-    zeitwerk (2.5.3)
+    zeitwerk (2.5.4)
 
 PLATFORMS
   ruby
