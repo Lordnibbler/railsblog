@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeadmin/arbre.git
-  revision: 99142b515acc9f33a9e5d01187af2fb8776a493b
+  revision: 6a853ed3c24fe1e72c0c2ced6a3721ddf59712b8
   specs:
     arbre (1.5.0)
       activesupport (>= 3.0.0, < 7.1)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/activeadmin/inherited_resources.git
-  revision: 95ed2eaea0448bff2b999c079434d7122543d919
+  revision: f5ceafb10f0ba371e97f9164bc4cff1b887d310b
   specs:
     inherited_resources (1.13.1)
       actionpack (>= 6.0, < 7.1)
@@ -18,10 +18,10 @@ GIT
 
 GIT
   remote: https://github.com/tagliala/activeadmin.git
-  revision: 1515a40a1d407dafd34b104fabd8401e84baca94
+  revision: a8ce826de172e3604b152d53c41aa68e2015ab80
   branch: feature/railties-7
   specs:
-    activeadmin (2.9.0)
+    activeadmin (2.10.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (>= 3.1, < 5.0)
       formtastic_i18n (~> 0.4)
@@ -232,7 +232,7 @@ GEM
       railties (>= 5.0)
     high_voltage (3.1.2)
     humanize (2.5.1)
-    i18n (1.9.1)
+    i18n (1.10.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
