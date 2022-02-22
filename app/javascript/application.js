@@ -1,3 +1,4 @@
+// Entry point for the build script in your package.json
 /* eslint no-console:0 */
 // This file is automatically compiled by Webpack, along with any other files
 // present in this directory. You're encouraged to place your actual application logic in
@@ -17,10 +18,10 @@ const imagePath = (name) => images(name, true)
 const fonts = require.context('../fonts', true)
 const fontPath = (name) => fonts(name, true)
 
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
-import "stylesheets/application.css"
-import "stylesheets/_pygment_monokai.sass"
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
+import "./stylesheets/application.css"
+// import "./stylesheets/_pygment_monokai.sass"
 import * as Turbo from "@hotwired/turbo"
 
 // temporarily disable turbo until we can resolve page scrolling bug on iPadOS
@@ -35,7 +36,7 @@ import 'alpinejs'
 // If you are using Turbolinks 5.2, use the require syntax and make sure that
 // @client-side-validations/client-side-validations is required afterTurbolinks.start(),
 // so ClientSideValidations can properly attach its event handlers.
-require('@client-side-validations/client-side-validations')
+import '@client-side-validations/client-side-validations/src'
 
 // custom javascripts used throughout the frontend of the site
-import './custom';
+import './packs/custom';
