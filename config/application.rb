@@ -33,5 +33,8 @@ module Brog
 
     # Change the variant processor for Active Storage.
     config.active_storage.variant_processor = :mini_magick
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'builds')
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end

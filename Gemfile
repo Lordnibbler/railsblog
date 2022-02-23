@@ -37,6 +37,7 @@ gem 'uglifier'
 gem 'webrick' # web server for capybara and local dev
 
 gem 'jsbundling-rails'
+gem 'sprockets-rails', require: 'sprockets/railtie'
 
 group :development do
   gem 'better_errors' # improved error pages
