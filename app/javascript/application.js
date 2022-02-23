@@ -13,10 +13,10 @@
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
 //
-const images = require.context('../images', true)
-const imagePath = (name) => images(name, true)
-const fonts = require.context('../fonts', true)
-const fontPath = (name) => fonts(name, true)
+// const images = require.context('../images', true)
+// const imagePath = (name) => images(name, true)
+// const fonts = require.context('../fonts', true)
+// const fontPath = (name) => fonts(name, true)
 
 // import 'core-js/stable'
 // import 'regenerator-runtime/runtime'
@@ -32,6 +32,9 @@ import 'alpine-turbo-drive-adapter'
 import 'alpine-magic-helpers'
 import 'alpinejs'
 
+import jquery from "jquery"
+window.jQuery = jquery
+window.$ = jquery
 
 // If you are using Turbolinks 5.2, use the require syntax and make sure that
 // @client-side-validations/client-side-validations is required afterTurbolinks.start(),
