@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '3.1.0'
 gem 'rails', '~> 7'
 
-gem 'activeadmin', github: 'tagliala/activeadmin', branch: 'feature/railties-7' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235) # admin UI scaffolding
+gem 'activeadmin', github: 'activeadmin/activeadmin' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235) # admin UI scaffolding
 gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235)
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
