@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-
+#
+# bin/dev uses foreman to run multiple start up scripts, via Procfile.dev
+#
 if ! gem list --silent --installed foreman
 then
   echo "Installing foreman..."
