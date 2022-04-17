@@ -29,11 +29,12 @@ require("esbuild").build({
   resolveExtensions: [".tsx", ".ts", ".jsx", ".js", ".css", ".json"],
 
   // custom plugins will be inserted in this array
+  // TODO: not sure if this can be read from postcss.config.js instead?
   plugins: [
-    sassPlugin.sassPlugin(),
     postCssPlugin({
       plugins: [
         require('postcss-import'),
+        require('postcss-url'),
         require('autoprefixer'),
         require("tailwindcss"),
         require('postcss-flexbugs-fixes'),
@@ -45,6 +46,7 @@ require("esbuild").build({
         }),
       ],
     }),
+    sassPlugin.sassPlugin(),
   ],
 })
 .then(() => console.log("⚡ esbuild done"))
