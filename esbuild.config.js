@@ -11,7 +11,11 @@ const watch = process.argv.includes("--watch") && {
 };
 
 require("esbuild").build({
-  entryPoints: ["application.js", "packs/contact-me.js"],
+  entryPoints: [
+    "app/javascript/application.js",
+    "app/javascript/packs/contact-me.js",
+    "app/javascript/packs/blog.js",
+    "app/javascript/packs/photography.js"],
   bundle: true,
   outdir: path.join(process.cwd(), "app/assets/builds"),
   absWorkingDir: path.join(process.cwd(), "app/javascript"),
