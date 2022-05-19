@@ -7,7 +7,7 @@ gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove (https://github.com/act
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
-gem 'flickraw' # interact with flickr's API
+gem 'flickr', github: 'Lordnibbler/flickr' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
 gem 'health_check' # health check endpoint for NewRelic
@@ -50,7 +50,6 @@ group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'dotenv-rails'
-  gem 'flickraw-cached' # for deterministic unit tests in random order, cache available flickr methods
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false

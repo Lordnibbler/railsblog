@@ -1,14 +1,11 @@
-# do not fetch all available flickr methods during unit tests (causes non-determinism)
-require 'flickraw-cached' if Rails.env.test?
+require 'flickr'
 
 # interface for fetching and caching photos from flickr API
 class FlickrService
   PHOTOGRAPHY_CACHE_WARMED_KEY = 'photography_cache_warmed'.freeze
 
   class << self
-    FlickRaw.api_key       = ENV['FLICKR_API_KEY']
-    FlickRaw.shared_secret = ENV['FLICKR_SECRET']
-    FLICKR_USER_ID         = '33668819@N03'.freeze
+    FLICKR_USER_ID = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
     # fetches `pages` worth of photos from flickr and caches them
@@ -52,7 +49,7 @@ class FlickrService
       Rails.cache.fetch cache_key, expires_in: 3.days do
         response = client.people.getPhotos(args)
 
-        # flickraw is dumb and returns the final page of
+        # Flickr is dumb and returns the final page of
         # results for any page after the final page. to
         # circumvent this we return nil if we've exceeded
         # the final page of results (response.pages)
@@ -81,7 +78,7 @@ class FlickrService
       response.pages
     end
 
-    # @param response [FlickRaw::Response]
+    # @param response [Flickr::Response]
     # @param shuffle [Boolean] should images be shuffled in the array before being returned
     # @return [Array<Hash>] normalize Flickr API response data into a useful array of hashes
     def normalize(response:, shuffle:)
@@ -119,7 +116,7 @@ class FlickrService
               height: large_size.height,
             },
             created_at: get_photo_response.dateuploaded,
-            url: FlickRaw.url_photopage(photo),
+            url: Flickr.url_photopage(photo),
             description: get_photo_response.description,
             title: get_photo_response.title,
           }
@@ -128,7 +125,7 @@ class FlickrService
     end
 
     def client
-      @client ||= FlickRaw::Flickr.new
+      @client ||= Flickr.new(ENV['FLICKR_API_KEY'], ENV['FLICKR_SECRET'])
     end
 
     def generate_cache_key(user_id:, per_page:, page:)
