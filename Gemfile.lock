@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/Lordnibbler/flickr.git
+  revision: 5322c618c32b293b15fcdc69d4f76a8df84f779d
+  specs:
+    flickr (2.0.2)
+
+GIT
   remote: https://github.com/activeadmin/arbre.git
   revision: 09f340c1c9c465770772f28818347b8545b90bbe
   specs:
@@ -493,7 +499,7 @@ DEPENDENCIES
   devise (>= 4.4.0)
   dotenv-rails
   factory_bot_rails
-  flickraw
+  flickr!
   flickraw-cached
   fog-aws
   friendly_id
