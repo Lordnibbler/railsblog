@@ -14,8 +14,8 @@ http_interactions:
       User-Agent:
       - Flickr/2.0.2 (+https://github.com/cyclotron3k/flickr)
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="NArsoRRnxJ0f%2FCxWWSqjfYBUEz41diYwwzV7IvkKHYA%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1652927251", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -68,8 +68,8 @@ http_interactions:
       User-Agent:
       - Flickr/2.0.2 (+https://github.com/cyclotron3k/flickr)
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="iPTfsJY1fVfw7l0E49d%2FKQIOP2XaR7jbdeRwmo3CsYc%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>%26",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1652927251", oauth_token="",
         oauth_version="1.0"
       Content-Type:

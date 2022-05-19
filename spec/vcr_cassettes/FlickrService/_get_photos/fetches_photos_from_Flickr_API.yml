@@ -14,8 +14,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="mnbl2qY%2FUU95aTmdw2qTjw%2BygwB7YhkjbU9cl336Sps%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843263", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -71,8 +71,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="XiUo0Ow6tiTB1sg2xHhYTUGK0AuDzeVpGYAGCY5oNNw%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843263", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -128,8 +128,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="USZuxMKQUBI2%2BiWPxFsH82cwdvZNIYsAzookj0ySOC4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843264", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -191,8 +191,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="O3cWSjGvcdFDUorkvWbeML%2BZ1CO0Vj8p%2FjXSQMjnJZU%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843264", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -248,8 +248,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="WvcTGYHXc2rhkWRDE8EqMGsdUDbEEOvF8P2s8UdHfco%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843264", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -311,8 +311,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="6olPRgQA5%2FSQcEeYUwqn8PjlW8KNYcr5vqQyAR3HTZU%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843265", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -368,8 +368,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="hcPC1P6qWRRRJc0DytlnCbIpSmYuYK7GZ2XMGiemaXU%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843265", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -431,8 +431,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="3ET1uScp7HSquqNCGNHwaJ1pUomieetObCx%2Bi0yku%2B4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843265", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -490,8 +490,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="EPPTAAi8UlHF%2BPIm77d%2FL657IbpIPkaagSOmg3xhJHQ%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843265", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -553,8 +553,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="VkFBfsznjypp2rIlKOclPU8y29xz%2F8Ni6XxKBRHSZC8%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843266", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -610,8 +610,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="2YGaA%2BnwuYwsnKFN120JKTbLVoi9cu7mCfHIF%2FoEO78%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843267", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -673,8 +673,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="sj24Wbh%2BYiuLetaTVSbmIJcfil8oZ6Xv3jbFF6Npnu4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843267", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -730,8 +730,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="AS36XsWxltedsFyNP7b4ArALStEFcdSa23u6V8ZxUps%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843267", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -793,8 +793,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="VYOgB40WUkC2BwfM4bk4Awifev6FrHlurEYixpRgTTw%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843268", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -849,8 +849,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="0ZjAycx3z1ywVqNsBKiHt2vl6NEn5f8UHGCxNnH2FDk%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843268", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -912,8 +912,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="hSYUSRKkEvtpFPdvPZ4VKdepdjsinl0aK%2BTffL%2FyP1c%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843268", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -969,8 +969,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="wuircouD33yYPbznSVtw12MxBWb5hrZW2F05Et7cXJ8%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843269", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1032,8 +1032,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="z6Iuw%2FJXfWr51S6ymO4LvAFirZiS51%2B%2Ba%2BFcuWvnrfw%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843269", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1089,8 +1089,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="E6uIYxSpTOuF1fOjOhzO3WDGVuYxPkwpz%2BfHHwOLB%2F4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843269", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1152,8 +1152,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="u7whKlm%2B7s26i6MQavOxGfxHd1psYSOrNgBXNNbhcos%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843269", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1208,8 +1208,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="%2Fr2%2F5V6wwsfzL2Ygx2ympx9fhfKdTCICOZ4pHp454ek%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843270", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1271,8 +1271,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="1%2FkCkcukaB4WLp1pmzEfn9cJYKk4jt%2Fqj8ujxUi6rHg%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843270", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1331,8 +1331,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="BIj2P2bM8U8IkTcJ2YAzQLiQQMm8CqaWVQ1duxVJCpM%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843270", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1394,8 +1394,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="rHJoDZwwmE%2BVRZqubqU%2BcL1rGNFsEKDZbCzBc1M83S4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843270", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1451,8 +1451,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="4nIsKyv1uETFwyfnFqBbw0Ow9oD%2FFk2m5EELQqTiPhE%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843271", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1514,8 +1514,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="ur%2Bhv54nelPrflN9VzKVqJlC3JL0vGZ5EIHYBfzI9L0%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843271", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1571,8 +1571,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="vhesDnhwmF27G%2FW9CwDYqrZA9GGbrKDxBql1mnT%2FbOQ%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843272", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1634,8 +1634,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="EvSbDHXF7v5%2BIbhvsqenaPf5y9%2BOH6XYxNdtmyXuBG0%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843272", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1694,8 +1694,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="y90SGdoqKITdht6m6GWEi6O%2FZL85qXWj9V9P8DWi2ig%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843272", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1757,8 +1757,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="gIL3DrHz64NYry7cJQQRbmeXjnDNRrzlfmhcsqp%2B9sg%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843273", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1819,8 +1819,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="eYElAJk4kytN8dvjX3jxls5fiHNZXzH1z006bDaQzjI%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843273", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1882,8 +1882,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="sFXgDRvbFfku5JNEu9u1GGp9f0DzbeuVkpQYTx0TLTY%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843273", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -1941,8 +1941,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="niv4FIC9Er8v3dIfuFIS%2Fa8SER3F6%2Ff83oyki4sH%2F3I%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843274", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2004,8 +2004,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="bZ814LGqkibhOcwdD0WvhB3DuCRFgiAa%2Bx0sbo25V20%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843274", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2063,8 +2063,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="4YVlDMfCaAtL0upLeYFy70JwhPqCFMVwkR12K8NHxoA%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843274", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2126,8 +2126,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="rc83%2BjEHlQEb%2FHo%2FhCklvUNmQ5Ez0reunuGb7aYnF7Y%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843275", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2186,8 +2186,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="Omr0bZXUCUDKHEsPMF9qWz%2BlXLulq1dXuaRsaaietz4%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843275", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2249,8 +2249,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="x%2BMlp7cDoLQrhN%2BxIup8rt5qeQYwgpIpfoOb%2BqrTqts%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843275", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2306,8 +2306,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="5FDD2MrEFP2xKyBbpjTyFEEGdIWz%2B105UKR8s%2BeWB2g%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843276", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2369,8 +2369,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="IhheCqMEXIf%2FO%2FPXzZC2YkhV%2FFnjl0jvdljs%2B3mGaXk%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843276", oauth_token="",
         oauth_version="1.0"
       Content-Type:
@@ -2426,8 +2426,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="6TeiB2XOr7tpu%2FIoNKvQU01d9mU12VYTU6hDaHLYvYY%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843276", oauth_token="",
         oauth_version="1.0"
       Content-Type:
