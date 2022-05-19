@@ -50,7 +50,6 @@ group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'dotenv-rails'
-  gem 'flickraw-cached' # for deterministic unit tests in random order, cache available flickr methods
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop', require: false
