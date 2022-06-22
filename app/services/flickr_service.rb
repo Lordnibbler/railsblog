@@ -125,6 +125,11 @@ class FlickrService
     end
 
     def client
+      # https://github.com/cyclotron3k/flickr#caching
+      # load cache of methods available in flickr's api for test determinism
+      # since api endpoints can be added/removed at random by flickr
+      Flickr.cache = 'spec/factories/fixture_files/flickr-api.yml' if Rails.env.test?
+
       @client ||= Flickr.new(ENV['FLICKR_API_KEY'], ENV['FLICKR_SECRET'])
     end
 
