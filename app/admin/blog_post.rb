@@ -95,9 +95,9 @@ ActiveAdmin.register Blog::Post do
       scoped_collection.friendly.find(params[:id])
     end
 
-    def update(options={}, &block)
+    def update(options = {}, &block)
       # find the blog post
-      blog_post = find_resource()
+      blog_post = find_resource
 
       # merge in any existing images with new ones in the params
       blog_post.images.attach(params[:blog_post][:images]) if params.dig(:blog_post, :images).present?
@@ -107,7 +107,7 @@ ActiveAdmin.register Blog::Post do
 
       # run the superclass update method from activeadmin internals
       super do |success, failure|
-        block.call(success, failure) if block
+        block&.call(success, failure)
         failure.html { render :edit }
       end
     end
