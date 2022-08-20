@@ -94,6 +94,23 @@ ActiveAdmin.register Blog::Post do
     def find_resource
       scoped_collection.friendly.find(params[:id])
     end
+
+    def update(options={}, &block)
+      # find the blog post
+      blog_post = find_resource()
+
+      # merge in any existing images with new ones in the params
+      blog_post.images.attach(params[:blog_post][:images]) if params.dig(:blog_post, :images).present?
+
+      # don't allow super() call to blow away existing images entirely with the params
+      params[:blog_post].delete(:images)
+
+      # run the superclass update method from activeadmin internals
+      super do |success, failure|
+        block.call(success, failure) if block
+        failure.html { render :edit }
+      end
+    end
   end
 
   # custom route to allow deleting individual images
