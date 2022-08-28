@@ -20,8 +20,10 @@ module.exports = {
         },
         extend: {
             backgroundImage: {
-                'work-bg-light': "url('~images/home/experience-figure.svg')",
-                'work-bg-dark': "url('~images/home/experience-figure-dark.svg')",
+                // 'work-bg-light': "url('~images/home/experience-figure.svg')",
+                // 'work-bg-dark': "url('~images/home/experience-figure-dark.svg')",
+                'work-bg-light': "",
+                'work-bg-dark': "",
             },
             fontFamily: {
                 header: ['Raleway', "sans-serif"],
