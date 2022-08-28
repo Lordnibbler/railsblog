@@ -70,7 +70,7 @@ module ApplicationHelper
         content_tag(
           :a,
           name,
-          '@click': "triggerNavItem('#{path}')",
+          'x-on:click': "triggerNavItem('#{path}')",
           class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
         )
       else
@@ -108,7 +108,7 @@ module ApplicationHelper
         content_tag(
           :a,
           name,
-          '@click': "triggerMobileNavItem('#{path}')",
+          'x-on:click': "triggerMobileNavItem('#{path}')",
           class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
         )
       else

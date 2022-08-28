@@ -95,7 +95,7 @@ describe ApplicationHelper do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="group pl-6"><a @click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
+        expect(link).to eq('<li class="group pl-6"><a x-on:click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end
@@ -130,7 +130,7 @@ describe ApplicationHelper do
         link = helper.scrolling_mobile_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="pb-4"><a @click="triggerMobileNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
+        expect(link).to eq('<li class="pb-4"><a x-on:click="triggerMobileNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end

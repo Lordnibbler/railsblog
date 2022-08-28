@@ -1,0 +1,60 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=33668819%40N03&per_page=20&page=1&method=flickr.people.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="9IBmDbL4z7wagz%2Fpq1IHdtdG8Ge26iz2l1%2BQJ76bc4k%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1655863770", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 22 Jun 2022 02:09:31 GMT
+      Server:
+      - Apache/2.4.53 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Afalse%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Jul-2022 02:09:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 3d81a5fb6988905cee1d06dfcada57dc.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LHR3-C2
+      X-Amz-Cf-Id:
+      - zYfAYIpF-2QUVhhUwFayfwra5d0wieHSPK3TWb7SfysOsQJ4Ucfmfg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photos":{"page":1,"pages":6,"perpage":20,"total":120,"photo":[{"id":"49823443921","owner":"33668819@N03","secret":"1edf677c80","server":"65535","farm":66,"title":"DSC00092
+        (1)","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823443776","owner":"33668819@N03","secret":"fab747ca5c","server":"65535","farm":66,"title":"DSC00234","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823764472","owner":"33668819@N03","secret":"30d9b9638c","server":"65535","farm":66,"title":"DSC00292","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823443521","owner":"33668819@N03","secret":"99374f9df5","server":"65535","farm":66,"title":"DSC00391","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822923338","owner":"33668819@N03","secret":"a1c3d28c36","server":"65535","farm":66,"title":"A7300540","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774267","owner":"33668819@N03","secret":"1d4b17d822","server":"65535","farm":66,"title":"A7300572","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774222","owner":"33668819@N03","secret":"e755182efc","server":"65535","farm":66,"title":"A7300629","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823774062","owner":"33668819@N03","secret":"72c55d0438","server":"65535","farm":66,"title":"A7301115","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822923008","owner":"33668819@N03","secret":"35ffbc50d1","server":"65535","farm":66,"title":"A7301228","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823773812","owner":"33668819@N03","secret":"4cf33c20e6","server":"65535","farm":66,"title":"A7301360","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822922273","owner":"33668819@N03","secret":"b34cf6d495","server":"65535","farm":66,"title":"A7302913","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822922093","owner":"33668819@N03","secret":"d43e1ccd15","server":"65535","farm":66,"title":"A7303027","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823452271","owner":"33668819@N03","secret":"608209e364","server":"65535","farm":66,"title":"A7303110","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823451786","owner":"33668819@N03","secret":"270b3ddc86","server":"65535","farm":66,"title":"A7303529","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823772132","owner":"33668819@N03","secret":"c870a9c844","server":"65535","farm":66,"title":"A7303832","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823771347","owner":"33668819@N03","secret":"28a73c2097","server":"65535","farm":66,"title":"A7304432","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823770887","owner":"33668819@N03","secret":"7d23e8183a","server":"65535","farm":66,"title":"A7304748","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49823770772","owner":"33668819@N03","secret":"452ff87b18","server":"65535","farm":66,"title":"A7304944","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822919438","owner":"33668819@N03","secret":"7e59d57fa1","server":"65535","farm":66,"title":"A7305160","ispublic":1,"isfriend":0,"isfamily":0},{"id":"49822918883","owner":"33668819@N03","secret":"707ec3a094","server":"65535","farm":66,"title":"A7305697","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
+  recorded_at: Wed, 22 Jun 2022 02:09:31 GMT
+recorded_with: VCR 6.0.0

@@ -14,8 +14,8 @@ http_interactions:
       User-Agent:
       - FlickRaw/0.9.10
       Authorization:
-      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
-        oauth_nonce="w9alw1Xc%2BePYpOSStE8RXhoewzt6K1Z7V6q2J%2ByRotc%3D", oauth_signature="d0030bbe1e6652e2%26",
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="<HIDDEN>",
+        oauth_nonce="<HIDDEN>", oauth_signature="<HIDDEN>%26",
         oauth_signature_method="PLAINTEXT", oauth_timestamp="1640843278", oauth_token="",
         oauth_version="1.0"
       Content-Type:
