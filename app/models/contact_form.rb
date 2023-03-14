@@ -12,8 +12,9 @@ class ContactForm < MailForm::Base
   def headers
     {
       subject: "Contact Form from #{name} at benradler.com",
-      to: 'benradler@me.com',
-      from: %("#{name}" <#{email}>),
+      to: 'ben@benradler.com',
+      from: 'ben@benradler.com',
+      reply_to: %("#{name}" <#{email}>),
     }
   end
 end
