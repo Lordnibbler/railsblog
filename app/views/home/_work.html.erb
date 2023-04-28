@@ -12,6 +12,41 @@
                 <div class="md:w-2/5">
                     <div class="flex justify-center md:justify-start">
                         <span class="flex-shrink-0">
+                            <%= image_pack_tag "home/logo-cruise.svg", class: "w-48 h-16 relative -top-5", alt: "company logo" %>
+                        </span>
+                        <div class="relative w-full ml-6 hidden md:block">
+                            <span class="h-0.5 bg-grey-70 absolute inset-x-0 top-3 transform -translate-y-1/2"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-3/5">
+                    <div class="flex md:pl-18 relative">
+                        <span
+                            class="border-2 border-grey-40 rounded-full w-4 h-4 absolute left-8 top-1 bg-white hidden md:block"></span>
+
+                        <div class="mt-1 flex">
+                            <i class='bx bxs-right-arrow text-primary dark:text-primary-500 hidden md:block'></i>
+                            <div class="md:pl-8 md:-mt-1">
+                                <span class="font-body font-bold text-grey-40 dark:text-primary-300 block">
+                                    Mar 2023 - <%= Time.now.strftime("%b %Y") %></span>
+                                <span class="font-header font-bold text-xl text-primary dark:text-primary-500 uppercase block pt-2">
+                                    Software Engineer</span>
+                                <div class="pt-2">
+                                    <span class="font-body text-black dark:text-primary-1000 block">
+                                        Software Engineer on the Dispatch team. Responsible for matching rides and deliveries with autonomous vehicles.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col md:flex-row text-center md:text-left mt-8">
+                <div class="md:w-2/5">
+                    <div class="flex justify-center md:justify-start">
+                        <span class="flex-shrink-0">
                             <%= image_pack_tag "home/logo-lyft.svg", class: "w-48 h-16 relative -top-5", alt: "company logo" %>
                         </span>
                         <div class="relative w-full ml-6 hidden md:block">
@@ -28,7 +63,7 @@
                             <i class='bx bxs-right-arrow text-primary dark:text-primary-500 hidden md:block'></i>
                             <div class="md:pl-8 md:-mt-1">
                                 <span class="font-body font-bold text-grey-40 dark:text-primary-300 block">
-                                    Apr 2017 - <%= Time.now.strftime("%b %Y") %></span>
+                                    Apr 2017 - Nov 2023</span>
                                 <span class="font-header font-bold text-xl text-primary dark:text-primary-500 uppercase block pt-2">
                                     Software Engineer</span>
                                 <div class="pt-2">
