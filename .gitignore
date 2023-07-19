@@ -42,3 +42,6 @@ yarn-debug.log*
 
 # ActiveStorage local storage files
 storage
+
+/config/master.key
+config/credentials.yml.enc
