@@ -56,7 +56,7 @@ html[lang="en"]
     = stylesheet_pack_tag 'application', 'photography', 'contact-me', 'data-turbo-track': 'reload'
 
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
-    = javascript_pack_tag 'application', 'photography', 'contact-me', 'data-turbo-track': 'reload'
+    = javascript_pack_tag 'application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
 
     = yield :head
     = csrf_meta_tags
