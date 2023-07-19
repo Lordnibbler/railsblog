@@ -21,8 +21,26 @@ const customConfig = {
           }
         }]
       },
+
+      // {
+      //   test:/.scss$/,
+      //   use: [
+      //     "style-loader",
+      //     "css-loader",
+      //     "sass-loader"
+      //   ],
+      // },
+      // {
+      //   test: /\.css$/,
+      //   use: [
+      //     "style-loader",
+      //     "css-loader"
+      //   ]
+      // }
+
+
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.module\.s(a|c)ss$/i,
         use: [
           "style-loader",
           "css-loader",
@@ -36,21 +54,6 @@ const customConfig = {
           },
         ],
       },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [
-      //       "style-loader",
-      //       "css-loader",
-      //       "postcss-loader",
-      //     {
-      //       loader: 'sass-loader',
-      //       options: {
-      //         // Prefer `dart-sass`
-      //         implementation: require("sass"),
-      //       },
-      //     },
-      //   ],
-      // },
     ]
   }
 };
