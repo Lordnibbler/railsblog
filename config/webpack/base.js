@@ -13,7 +13,7 @@ const customConfig = {
         }
       },
       {
-        test: /\.(webm|mp4|png|jpe?g|gif|svg)$/i,
+        test: /\.(|png|jpe?g|gif|svg)$/i,
         use: [{
           loader: 'file-loader',
           options: {
@@ -21,23 +21,16 @@ const customConfig = {
           }
         }]
       },
-
-      // {
-      //   test:/.scss$/,
-      //   use: [
-      //     "style-loader",
-      //     "css-loader",
-      //     "sass-loader"
-      //   ],
-      // },
-      // {
-      //   test: /\.css$/,
-      //   use: [
-      //     "style-loader",
-      //     "css-loader"
-      //   ]
-      // }
-
+      {
+        test: /\.mp4$/,
+        use: [{
+          loader: "file-loader",
+          options: {
+            name: "[name].[ext]",
+            outputPath: "video"
+          }
+        }]
+      },
 
       {
         test: /\.module\.s(a|c)ss$/i,
