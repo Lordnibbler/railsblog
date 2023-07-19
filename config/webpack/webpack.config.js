@@ -1,5 +1,6 @@
-const { webpackConfig, merge } = require('@rails/webpacker');
-const customConfig = {
+const { generateWebpackConfig, merge } = require('shakapacker');
+const baseWebpackConfig = generateWebpackConfig()
+const options = {
   // resolve: {
   //   extensions: ['.mjs', '.js', '.sass', '.scss', '.css', '.module.sass', '.module.scss', '.module.css', '.png', '.svg', '.gif', '.jpeg', '.jpg', '.json'],
   // },
@@ -31,7 +32,6 @@ const customConfig = {
           }
         }]
       },
-
       {
         test: /\.module\.s(a|c)ss$/i,
         use: [
@@ -51,22 +51,4 @@ const customConfig = {
   }
 };
 
-module.exports = merge(webpackConfig, customConfig);
-
-
-
-// old environment.js config below:
-//
-
-// TODO: set these up
-// Get the actual sass-loader config
-// const sassLoader = environment.loaders.get('sass')
-// const sassLoaderConfig = sassLoader.use.find(function (element) {
-// return element.loader == 'sass-loader'
-// })
-
-// // Use Dart-implementation of Sass (default is node-sass)
-// const options = sassLoaderConfig.options
-// options.implementation = require('sass')
-
-// module.exports = environment
+module.exports = merge({}, baseWebpackConfig, options)

@@ -1,8 +1,3 @@
-<% content_for :head do %>
-  <%= javascript_pack_tag 'contact-me', 'data-turbo-track': 'reload' %>
-  <%= stylesheet_pack_tag 'contact-me', 'data-turbo-track': 'reload' %>
-<% end %>
-
 <% form_classes ||= "" %>
 <% request_route ||= "" %>
 <%= form_for ContactForm.new, url: contact_forms_path(request_route: request_route), validate: true, html: { class: "w-full sm:w-3/4 pt-10 #{form_classes}" } do |f| %>
