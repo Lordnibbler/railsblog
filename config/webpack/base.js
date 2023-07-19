@@ -12,15 +12,15 @@ const customConfig = {
           exposes: ['$', 'jQuery']
         }
       },
-      {
-        test: /\.(|png|jpe?g|gif|svg)$/i,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[path][name]-[hash].[ext]',
-          }
-        }]
-      },
+      // {
+      //   test: /\.(|png|jpe?g|gif|svg)$/i,
+      //   use: [{
+      //     loader: 'file-loader',
+      //     options: {
+      //       name: '[path][name]-[hash].[ext]',
+      //     }
+      //   }]
+      // },
       {
         test: /\.mp4$/,
         use: [{
