@@ -260,34 +260,36 @@ const initPhotoSwipeFromDOM = function(gallerySelector) {
 // logic to fire on (turbolinks) page load
 $(document).on('turbo:load', function() {
     const elem = document.querySelector('.my-gallery.grid');
-    let msnry = createMasonry(elem)
+    if (elem) {
+        let msnry = createMasonry(elem)
 
-    // Unloaded images can throw off Masonry layouts and cause item elements to overlap.
-    // imagesLoaded resolves this issue.
-    // note: this seems to work and only is important for first page load
-    imagesLoaded( elem, () => {
-        elem.classList.remove('are-images-unloaded');
-        msnry.options.itemSelector = 'figure.image.grid-item';
-        msnry.layout()
-    });
+        // Unloaded images can throw off Masonry layouts and cause item elements to overlap.
+        // imagesLoaded resolves this issue.
+        // note: this seems to work and only is important for first page load
+        imagesLoaded( elem, () => {
+            elem.classList.remove('are-images-unloaded');
+            msnry.options.itemSelector = 'figure.image.grid-item';
+            msnry.layout()
+        });
 
-    // make imagesLoaded available for InfiniteScroll
-    InfiniteScroll.imagesLoaded = imagesLoaded;
+        // make imagesLoaded available for InfiniteScroll
+        InfiniteScroll.imagesLoaded = imagesLoaded;
 
-    // instantiate infinite scroll with the gallery and masonry
-    let infiniteScroll = createInfiniteScroll(elem, msnry);
+        // instantiate infinite scroll with the gallery and masonry
+        let infiniteScroll = createInfiniteScroll(elem, msnry);
 
-    // 250ms after a resize finishes, re-run masonry.layout(),
-    // and rebuild a new infinite scroll with the new masonry layout
-    let resizeComplete;
-    window.addEventListener('resize', function () {
-        this.clearTimeout(resizeComplete);
-        resizeComplete = this.setTimeout(() => {
-            msnry.layout();
-            createInfiniteScroll(elem, msnry);
-        }, 250);
-    });
+        // 250ms after a resize finishes, re-run masonry.layout(),
+        // and rebuild a new infinite scroll with the new masonry layout
+        let resizeComplete;
+        window.addEventListener('resize', function () {
+            this.clearTimeout(resizeComplete);
+            resizeComplete = this.setTimeout(() => {
+                msnry.layout();
+                createInfiniteScroll(elem, msnry);
+            }, 250);
+        });
 
-    // start up Photoswipe
-    initPhotoSwipeFromDOM('.my-gallery');
+        // start up Photoswipe
+        initPhotoSwipeFromDOM('.my-gallery');
+    }
 });
