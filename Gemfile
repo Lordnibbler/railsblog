@@ -33,7 +33,7 @@ gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'shakapacker', '6.5.6'
+gem 'shakapacker', '7.0.2'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do
