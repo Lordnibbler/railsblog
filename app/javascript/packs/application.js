@@ -19,8 +19,8 @@ const fontPath = (name) => fonts(name, true)
 
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import "stylesheets/application.css"
-import "stylesheets/_pygment_monokai.sass"
+import "application.css"
+import "_pygment_monokai.sass"
 import * as Turbo from "@hotwired/turbo"
 
 // temporarily disable turbo until we can resolve page scrolling bug on iPadOS

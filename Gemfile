@@ -33,7 +33,7 @@ gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'webpacker' # webpack integration with rails
+gem 'webpacker', '6.0.0.rc.6'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do

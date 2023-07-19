@@ -5,7 +5,7 @@ import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default';
 import InfiniteScroll from 'infinite-scroll';
 import Masonry from 'masonry-layout';
 import imagesLoaded from 'imagesloaded';
-import '../stylesheets/photography.sass';
+import './photography.sass';
 
 // build and return a new Masonry object
 const createMasonry = (elem) => {
