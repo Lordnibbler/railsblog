@@ -97,7 +97,7 @@ jobs:
             - webpack-{{ .Revision }}
 
       # webpacker compilation
-      - run: bin/rails webpacker:compile
+      - run: bin/rails shakapacker:compile
 
       # save webpacker cache
       - save_cache:
