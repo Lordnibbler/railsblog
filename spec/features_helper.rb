@@ -12,7 +12,7 @@ end
 
 Capybara.register_driver :headless_chrome do |app|
   options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu])
-  Capybara::Selenium::Driver.new(app, browser: :chrome, capabilities: [options])
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
 # set to :chrome to see real browser open up
@@ -36,7 +36,7 @@ module WebpackTestBuild
     puts "running webpack-test"
     puts `which node`
     puts `node --version`
-    `RAILS_ENV=test bin/webpack`
+    `RAILS_ENV=test bin/shakapacker`
     self.already_built = true
     File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
   end
