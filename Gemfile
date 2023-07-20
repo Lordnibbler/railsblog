@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 ruby '3.1.2'
 gem 'rails', '~> 7'
 
-gem 'activeadmin' # admin UI scaffolding
-gem 'arbre', github: 'activeadmin/arbre' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235)
+gem 'activeadmin', '~> 2' # admin UI scaffolding
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
@@ -14,14 +13,10 @@ gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
-gem 'inherited_resources', github: 'activeadmin/inherited_resources' # FIXME: remove (https://github.com/activeadmin/activeadmin/pull/7235)
 gem 'jbuilder' # .builder templating
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
-gem 'net-imap', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
-gem 'net-pop', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
-gem 'net-smtp', require: false # remove once upgrading to Rails 7.0.1 or newer (https://stackoverflow.com/questions/70500220/rails-7-ruby-3-1-loaderror-cannot-load-such-file-net-smtp)
 gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'pygments.rb' # Syntax highlighting in markdown
@@ -33,7 +28,7 @@ gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'webpacker' # webpack integration with rails
+gem 'shakapacker', '7.0.2'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do
@@ -64,7 +59,7 @@ group :test do
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter' # formatting for circleci
-  gem 'vcr', github: 'vcr/vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
+  gem 'vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
   gem 'webdrivers'
   gem 'webmock'
 end
