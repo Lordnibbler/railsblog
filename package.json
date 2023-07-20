@@ -1,6 +1,11 @@
 {
   "name": "app",
   "private": true,
+  "engines": {
+    "npm": ">=8.0.0 <9",
+    "node": ">=16.0.0 <17",
+    "yarn": ">= 1.22.0 <2"
+  },
   "dependencies": {
     "@activeadmin/activeadmin": "2.13.0",
     "@babel/core": "^7.22.9",
