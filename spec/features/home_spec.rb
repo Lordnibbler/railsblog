@@ -23,8 +23,8 @@ describe '/' do
         end
 
         expect(page).to have_content 'Spicy jalapeno bacon'
-        expect(page).to have_content /Previous Post/i
-        expect(page).to_not have_content /Read More/i
+        expect(page).to have_content(/Previous Post/i)
+        expect(page).to_not have_content(/Read More/i)
       end
     end
   end

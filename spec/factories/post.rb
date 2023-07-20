@@ -9,7 +9,7 @@ FactoryBot.define do
 
     after :build do |post|
       post.featured_image.attach(
-        io: File.open(Rails.root.join('spec/factories/fixture_files/test.jpg')),
+        io: Rails.root.join('spec/factories/fixture_files/test.jpg').open,
         filename: 'test.jpg',
         content_type: 'image/jpeg',
       )

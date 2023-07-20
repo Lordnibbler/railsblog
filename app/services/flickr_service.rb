@@ -130,7 +130,7 @@ class FlickrService
       # since api endpoints can be added/removed at random by flickr
       Flickr.cache = 'spec/factories/fixture_files/flickr-api.yml' if Rails.env.test?
 
-      @client ||= Flickr.new(ENV['FLICKR_API_KEY'], ENV['FLICKR_SECRET'])
+      @client ||= Flickr.new(ENV.fetch('FLICKR_API_KEY', nil), ENV.fetch('FLICKR_SECRET', nil))
     end
 
     def generate_cache_key(user_id:, per_page:, page:)

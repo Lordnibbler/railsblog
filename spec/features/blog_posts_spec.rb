@@ -37,7 +37,7 @@ describe '/blog' do
       end
 
       expect(page).to have_content 'Spicy jalapeno bacon'
-      expect(page).to have_content /Previous Post/i
+      expect(page).to have_content(/Previous Post/i)
       expect(page).to_not have_content 'Continue Reading'
       expect(page).to have_selector("img[src*='test.jpg']")
     end
