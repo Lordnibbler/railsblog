@@ -55,7 +55,7 @@ jobs:
       - ruby/install-deps
       - node/install:
           install-yarn: true
-          node-version: '16.13'
+          node-version: '18.17'
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:

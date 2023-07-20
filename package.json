@@ -2,8 +2,8 @@
   "name": "app",
   "private": true,
   "engines": {
-    "npm": ">=8.0.0 <9",
-    "node": ">=16.0.0 <17",
+    "npm": ">=9",
+    "node": ">=18.0.0 <19",
     "yarn": ">= 1.22.0 <2"
   },
   "dependencies": {
