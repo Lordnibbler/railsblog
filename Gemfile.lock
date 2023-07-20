@@ -490,9 +490,6 @@ DEPENDENCIES
   launchy
   mail_form
   meta-tags
-  net-imap
-  net-pop
-  net-smtp
   newrelic_rpm
   pg
   pry-byebug
