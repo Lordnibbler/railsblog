@@ -5,7 +5,7 @@ describe '/' do
   let!(:long_post) { create(:long_post, user: post.user) }
   let!(:unpublished_post) { create(:unpublished_post, user: post.user) }
 
-  context 'latest blog posts' do
+  context 'when blog posts exist' do
     it 'shows all published posts' do
       visit root_path
 
@@ -24,12 +24,12 @@ describe '/' do
 
         expect(page).to have_content 'Spicy jalapeno bacon'
         expect(page).to have_content(/Previous Post/i)
-        expect(page).to_not have_content(/Read More/i)
+        expect(page).not_to have_content(/Read More/i)
       end
     end
   end
 
-  context 'contact form', :js do
+  context 'when using contact form', :js do
     before { visit root_path }
 
     context 'with invalid data' do
@@ -63,7 +63,7 @@ describe '/' do
     end
   end
 
-  context 'newsletter signup' do
+  context 'when using newsletter signup' do
     before { visit root_path }
 
     context 'with invalid data' do

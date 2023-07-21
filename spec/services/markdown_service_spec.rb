@@ -16,7 +16,7 @@ describe MarkdownService do
       end
 
       it 'turns markdown into HTML' do
-        expect(MarkdownService.call(markdown)).to eql(html)
+        expect(described_class.call(markdown)).to eql(html)
       end
     end
 
@@ -35,7 +35,7 @@ describe MarkdownService do
       end
 
       it 'returns formatted <code>' do
-        expect(MarkdownService.call(fenced_markdown)).to eql(fenced_html)
+        expect(described_class.call(fenced_markdown)).to eql(fenced_html)
       end
     end
   end

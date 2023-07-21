@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe NewsletterSignup, type: :model do
+RSpec.describe NewsletterSignup do
   it 'does not allow invalid emails' do
-    model = NewsletterSignup.new(email: 'foo')
+    model = described_class.new(email: 'foo')
 
     model.validate
 
@@ -11,7 +11,7 @@ RSpec.describe NewsletterSignup, type: :model do
 
   it 'allows valid emails' do
     # TODO: get rid of fixtures
-    model = NewsletterSignup.new(email: 'foo@baz.com')
+    model = described_class.new(email: 'foo@baz.com')
 
     model.validate
 

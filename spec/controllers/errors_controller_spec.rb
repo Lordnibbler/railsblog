@@ -1,24 +1,24 @@
 require 'rails_helper'
 
 describe ErrorsController do
-  context 'file_not_found' do
+  context 'when file_not_found' do
     it 'returns 404' do
       get :file_not_found
-      expect(response.code).to eql('404')
+      expect(response).to have_http_status(:not_found)
     end
   end
 
-  context 'unprocessable_entity' do
+  context 'when unprocessable_entity' do
     it 'returns 404' do
       get :unprocessable_entity
-      expect(response.code).to eql('422')
+      expect(response).to have_http_status(:unprocessable_entity)
     end
   end
 
-  context 'internal_server_error' do
+  context 'when internal_server_error' do
     it 'returns 404' do
       get :internal_server_error
-      expect(response.code).to eql('500')
+      expect(response).to have_http_status(:internal_server_error)
     end
   end
 end

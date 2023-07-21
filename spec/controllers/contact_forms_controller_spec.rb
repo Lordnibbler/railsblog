@@ -25,7 +25,7 @@ describe ContactFormsController do
       end
 
       it 'redirects to contact-me' do
-        expect(subject).to redirect_to page_path('contact-me')
+        expect(post_create).to redirect_to page_path('contact-me')
       end
 
       context 'when contact form is submitted from homepage' do
@@ -52,7 +52,7 @@ describe ContactFormsController do
       end
 
       it 'redirects to contact-me' do
-        expect(subject).to redirect_to page_path('contact-me')
+        expect(post_create).to redirect_to page_path('contact-me')
       end
     end
   end

@@ -20,7 +20,11 @@ AllCops:
     - Gemfile
     - app/helpers/application_helper.rb
 
-require: rubocop-rails
+require:
+  - rubocop-capybara
+  - rubocop-factory_bot
+  - rubocop-rails
+  - rubocop-rspec
 
 Layout/LineLength:
   Max: 120
@@ -83,4 +87,19 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Rails/I18nLocaleTexts:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/LetSetup:
+  Enabled: false
+
+RSpec/MessageSpies:
   Enabled: false
