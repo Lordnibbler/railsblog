@@ -13,13 +13,13 @@ describe ApplicationHelper do
 
   describe 'meta_description_markdown' do
     let(:description) do
-      '# Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle' \
-        ' shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner pork chop'
+      '# Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle ' \
+        'shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner pork chop'
     end
 
     let(:short_description) do
-      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle' \
-        ' shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner'
+      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle ' \
+        'shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner'
     end
 
     it 'returns a truncated meta description without markdown' do
@@ -32,13 +32,13 @@ describe ApplicationHelper do
 
   describe 'meta_description' do
     let(:description) do
-      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle' \
-        ' shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner pork chop'
+      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle ' \
+        'shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner pork chop'
     end
 
     let(:short_description) do
-      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle' \
-        ' shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner'
+      'Bacon ipsum dolor amet meatball ball tip jowl biltong brisket andouille picanha shankle ' \
+        'shoulder landjaeger frankfurter tri-tip ribeye. Drumstick ham hock doner'
     end
 
     it 'returns a truncated meta description' do
