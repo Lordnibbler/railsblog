@@ -53,10 +53,17 @@ html[lang="en"]
     meta[name="twitter:card" content="summary_large_image"]
 
     - # staging/production require this
-    = stylesheet_pack_tag 'application', 'photography', 'contact-me', 'data-turbo-track': 'reload'
+    = # stylesheet_pack_tag 'application', 'photography', 'contact-me', 'data-turbo-track': 'reload'
 
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
-    = javascript_pack_tag 'application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
+    = # javascript_pack_tag 'application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
+
+    - # For jsbundling-rails
+    = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
+
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+
+    stylesheet_link_tag
 
     = yield :head
     = csrf_meta_tags

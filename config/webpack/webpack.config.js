@@ -1,11 +1,47 @@
-const { generateWebpackConfig, merge } = require('shakapacker');
-const baseWebpackConfig = generateWebpackConfig()
-const options = {
-  // resolve: {
-  //   extensions: ['.mjs', '.js', '.sass', '.scss', '.css', '.module.sass', '.module.scss', '.module.css', '.png', '.svg', '.gif', '.jpeg', '.jpg', '.json'],
-  // },
-  module: {
+const path    = require("path")
+const webpack = require("webpack")
+
+// Extracts CSS into .css file
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// Removes exported JavaScript files from CSS-only entries
+// in this example, entry.custom will create a corresponding empty custom.js file
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+
+const mode = process.env.NODE_ENV === 'development' ? 'development' : 'production';
+
+module.exports = {
+  mode,
+  optimization: {
+    moduleIds: 'deterministic',
+  },
+  entry: {
+    // add your css or sass entries
+    application: [
+      './app/javascript/packs/application.js',
+      './app/javascript/packs/application.css',
+    ],
+    // TODO: multiple packs are back lol
+    // custom: './app/assets/stylesheets/custom.scss',
+  },
+  output: {
+    filename: "[name].js",
+    sourceMapFilename: "[file].map",
+    path: path.resolve(__dirname, '..', '..', 'app/assets/builds')
+  },
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 1
+    }),
+    new RemoveEmptyScriptsPlugin(),
+    new MiniCssExtractPlugin(),
+  ],
+  module : {
     rules: [
+      {
+        test: /\.(js)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
       {
         test: require.resolve('jquery'),
         loader: 'expose-loader',
@@ -24,11 +60,32 @@ const options = {
         }]
       },
       {
-        test: /\.module\.s(a|c)ss$/i,
+        test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg)$/i,
+        use: 'file-loader',
+      },
+      // {
+      //   test: /\.module\.s(a|c)ss$/i,
+      //   use: [
+      //     "style-loader",
+      //     "css-loader",
+      //     "postcss-loader",
+      //     {
+      //       loader: "sass-loader",
+      //       options: {
+      //         // Prefer `dart-sass`
+      //         implementation: require("sass"),
+      //       },
+      //     },
+      //   ],
+      // },
+      // TODO; do we need this?
+      // Add CSS/SASS/SCSS rule with loaders
+      {
+        test: /\.(?:sa|sc|c)ss$/i,
         use: [
+          MiniCssExtractPlugin.loader,
           "style-loader",
-          "css-loader",
-          "postcss-loader",
+          'css-loader',
           {
             loader: "sass-loader",
             options: {
@@ -36,11 +93,9 @@ const options = {
               implementation: require("sass"),
             },
           },
+
         ],
       },
     ]
   }
 };
-
-module.exports = merge({}, baseWebpackConfig, options)
-

@@ -14,6 +14,7 @@ gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
 gem 'jbuilder' # .builder templating
+gem 'jsbundling-rails'
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
@@ -28,7 +29,6 @@ gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'shakapacker', '7.0.2'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do
