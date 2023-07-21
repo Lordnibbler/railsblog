@@ -47,7 +47,7 @@ describe '/admin' do
             select user.name, from: 'blog_post_user_id'
             click_on 'Create Post'
           end
-        end.to change { Blog::Post.count }.by(1)
+        end.to change(Blog::Post, :count).by(1)
 
         expect(page).to have_content 'Post was successfully created'
         expect(page).to have_content 'New Post'
@@ -56,7 +56,7 @@ describe '/admin' do
       end
     end
 
-    context 'featured image' do
+    context 'with featured image' do
       let!(:post) { create(:post, user:) }
 
       it 'shows and allows uploading and deleting of featured_image' do
@@ -76,9 +76,9 @@ describe '/admin' do
         page.accept_alert
 
         within '.row-featured_image' do
-          expect(page).to_not have_selector("img[src*='test.jpg']")
-          expect(page).to_not have_selector('a.default-button', text: 'Original')
-          expect(page).to_not have_selector('a.danger-button', text: 'Delete')
+          expect(page).not_to have_selector("img[src*='test.jpg']")
+          expect(page).not_to have_selector('a.default-button', text: 'Original')
+          expect(page).not_to have_selector('a.danger-button', text: 'Delete')
         end
 
         visit edit_admin_blog_post_path(post)
@@ -101,7 +101,7 @@ describe '/admin' do
       end
     end
 
-    context 'images' do
+    context 'with images' do
       let!(:post) { create(:post, user:) }
 
       it 'allows uploading and deleting of images' do
@@ -130,12 +130,12 @@ describe '/admin' do
         page.accept_alert
 
         within '.row-images' do
-          expect(page).to_not have_selector("img[src*='test.jpg']")
-          expect(page).to_not have_selector('a.default-button', text: 'Original')
-          expect(page).to_not have_selector('a.default-button', text: '320')
-          expect(page).to_not have_selector('a.default-button', text: '640')
-          expect(page).to_not have_selector('a.default-button', text: '1280')
-          expect(page).to_not have_selector('a.danger-button', text: 'Delete')
+          expect(page).not_to have_selector("img[src*='test.jpg']")
+          expect(page).not_to have_selector('a.default-button', text: 'Original')
+          expect(page).not_to have_selector('a.default-button', text: '320')
+          expect(page).not_to have_selector('a.default-button', text: '640')
+          expect(page).not_to have_selector('a.default-button', text: '1280')
+          expect(page).not_to have_selector('a.danger-button', text: 'Delete')
         end
       end
     end

@@ -11,7 +11,7 @@ describe HomeController do
     before { get_index }
 
     it 'fetches published blog posts' do
-      expect(assigns(:posts).count).to eql(2)
+      expect(assigns(:posts).count).to be(2)
       expect(assigns(:posts)).to include(post)
       expect(assigns(:posts)).to include(long_post)
     end

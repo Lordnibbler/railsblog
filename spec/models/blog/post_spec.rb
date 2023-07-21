@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe Blog::Post, type: :model do
+RSpec.describe Blog::Post do
   let(:post) { create(:post) }
 
   describe 'author' do
     context 'when no name' do
       before { post.user.name = '' }
+
       it 'returns empty string' do
         expect(post.author).to eql('')
       end
@@ -29,8 +30,8 @@ RSpec.describe Blog::Post, type: :model do
       let(:long_post) { create(:long_post) }
 
       it 'returns only the body content before the EXCERPT_TAG' do
-        expect(long_post.excerpt).to_not eql(long_post.body)
-        expect(long_post.excerpt).to_not include('<!--more-->')
+        expect(long_post.excerpt).not_to eql(long_post.body)
+        expect(long_post.excerpt).not_to include('<!--more-->')
       end
     end
   end

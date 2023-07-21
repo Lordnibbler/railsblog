@@ -6,7 +6,7 @@ describe '/blog' do
 
   before { visit blog_posts_path }
 
-  context 'index' do
+  describe '#index' do
     it 'shows title, excerpt, and featured image for posts' do
       expect(page).to have_content post.title
       expect(page).to have_content post.excerpt
@@ -25,7 +25,7 @@ describe '/blog' do
         visit blog_posts_path
 
         expect(page).to have_selector('[role="article"]', count: original_published_count - 1)
-        expect(page).to_not have_selector("post-#{post.id}")
+        expect(page).not_to have_selector("post-#{post.id}")
       end
     end
   end
@@ -38,7 +38,7 @@ describe '/blog' do
 
       expect(page).to have_content 'Spicy jalapeno bacon'
       expect(page).to have_content(/Previous Post/i)
-      expect(page).to_not have_content 'Continue Reading'
+      expect(page).not_to have_content 'Continue Reading'
       expect(page).to have_selector("img[src*='test.jpg']")
     end
   end

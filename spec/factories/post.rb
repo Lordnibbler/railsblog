@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :post, class: Blog::Post do
+  factory :post, class: 'Blog::Post' do
     user
 
     title { 'I love bacon' }

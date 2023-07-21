@@ -4,10 +4,11 @@ describe ApplicationHelper do
   describe 'meta_title' do
     let(:title) { 'Bacon ipsum dolor amet sirloin shank leberkas, andouille short ribs bacon' }
     let(:short_title) { 'Bacon ipsum dolor amet sirloin shank leberkas,' }
+
     it 'returns a truncated title' do
-      expect(helper.meta_title(title).length).to_not eql(title.length)
+      expect(helper.meta_title(title).length).not_to eql(title.length)
       expect(helper.meta_title(title)).to eql(short_title)
-      expect(helper.meta_title(title).length).to_not be > 70
+      expect(helper.meta_title(title).length).not_to be > 70
     end
   end
 
@@ -23,10 +24,10 @@ describe ApplicationHelper do
     end
 
     it 'returns a truncated meta description without markdown' do
-      expect(helper.meta_description_markdown(description)).to_not eql(description)
+      expect(helper.meta_description_markdown(description)).not_to eql(description)
       expect(helper.meta_description_markdown(description)).to eql(short_description)
-      expect(helper.meta_description_markdown(description).size).to_not be > 160
-      expect(helper.meta_description_markdown(description)).to_not include('#', '*', '>')
+      expect(helper.meta_description_markdown(description).size).not_to be > 160
+      expect(helper.meta_description_markdown(description)).not_to include('#', '*', '>')
     end
   end
 
@@ -42,9 +43,9 @@ describe ApplicationHelper do
     end
 
     it 'returns a truncated meta description' do
-      expect(helper.meta_description_markdown(description)).to_not eql(description)
+      expect(helper.meta_description_markdown(description)).not_to eql(description)
       expect(helper.meta_description_markdown(description)).to eql(short_description)
-      expect(helper.meta_description_markdown(description).size).to_not be > 160
+      expect(helper.meta_description_markdown(description).size).not_to be > 160
     end
   end
 
@@ -88,8 +89,7 @@ describe ApplicationHelper do
 
   describe 'scrolling_desktop_navigation_link' do
     context 'when request_path is "/"' do
-      let(:request) { double('request', path: '/') }
-      before { allow(helper).to receive(:request).and_return(request) }
+      before { helper.request.path = '/' }
 
       it 'returns a desktop navigation link HTML for the homepage' do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
@@ -123,8 +123,7 @@ describe ApplicationHelper do
 
   describe 'scrolling_mobile_navigation_link' do
     context 'when request_path is "/"' do
-      let(:request) { double('request', path: '/') }
-      before { allow(helper).to receive(:request).and_return(request) }
+      before { helper.request.path = '/' }
 
       it 'returns a mobile navigation link HTML for the homepage' do
         link = helper.scrolling_mobile_navigation_link(name: 'Videos', path: '#videos')
