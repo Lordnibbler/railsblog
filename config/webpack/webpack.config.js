@@ -50,19 +50,39 @@ module.exports = {
         }
       },
       {
-        test: /\.mp4$/,
+        test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg|mp4)$/i,
         use: [{
           loader: "file-loader",
           options: {
-            name: "[name].[ext]",
-            outputPath: "video"
+            name(resourcePath, resourceQuery) {
+              // `resourcePath` - `/absolute/path/to/file.js`
+              // `resourceQuery` - `?foo=bar`
+              // TODO: this might be wrong/unnecessary; without this the default is `[contenthash].[ext] and
+              // we can't reference asset like image_tag("foo.jpg")
+              if (process.env.NODE_ENV === 'development') {
+                return '[name].[ext]';
+              }
+
+              return '[contenthash].[ext]';
+            },
           }
         }]
       },
-      {
-        test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg)$/i,
-        use: 'file-loader',
-      },
+
+      // {
+      //   test: /\.mp4$/,
+      //   use: [{
+      //     loader: "file-loader",
+      //     options: {
+      //       name: "[name].[ext]",
+      //       outputPath: "video"
+      //     }
+      //   }]
+      // },
+      // {
+      //   test: /\.(png|jpe?g|gif|eot|woff2|woff|ttf|svg)$/i,
+      //   use: 'file-loader',
+      // },
       // {
       //   test: /\.module\.s(a|c)ss$/i,
       //   use: [
@@ -96,6 +116,10 @@ module.exports = {
 
         ],
       },
+      // {
+      //   test: /\.(woff|woff2|eot|ttf|otf)$/i,
+      //   type: 'asset/resource',
+      // },
     ]
   }
 };

@@ -28,7 +28,7 @@ gem 'rouge' # syntax highlighting
 gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-gem 'sprockets', '~> 4.0'
+gem "sprockets-rails" # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'uglifier'
 gem 'webrick' # web server for capybara and local dev
 
@@ -71,3 +71,5 @@ end
 group :production do
   gem 'puma'
 end
+
+gem "cssbundling-rails", "~> 1.2"
