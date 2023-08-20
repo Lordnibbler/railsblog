@@ -18,17 +18,15 @@ class FlickrService
       Rails.logger.info("--->  Cache Warmer: total pages #{pages}")
 
       # we first fetch all photos in parallel using Concurrent::Future.
-      # NOTE: we set shuffle to false in the get_photos method call,
-      # because we want to shuffle all photos together, not just the photos on each page.
       futures = (1..pages).map do |page|
         Concurrent::Future.execute do
           Rails.logger.info("--->  Cache Warmer: fetching page #{page}")
           cache_key = self.generate_cache_key(
             user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
             per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
-            page: page,
+            page:,
           )
-          self.get_photos({ page: page }, cache_key, false)
+          self.get_photos({ page: }, cache_key)
         end
       end
 
@@ -52,7 +50,7 @@ class FlickrService
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
     # @param cache_key [String] a specific cache key to write the response from Flickr to
-    def get_photos(args = {}, cache_key = nil, shuffle = false)
+    def get_photos(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?
         cache_key = self.generate_cache_key(
@@ -73,7 +71,7 @@ class FlickrService
         # the final page of results (response.pages)
         return nil if response.page > response.pages
 
-        normalize(response:, shuffle:)
+        normalize(response:)
       end
     end
 
@@ -97,9 +95,8 @@ class FlickrService
     end
 
     # @param response [Flickr::Response]
-    # @param shuffle [Boolean] should images be shuffled in the array before being returned
     # @return [Array<Hash>] normalize Flickr API response data into a useful array of hashes
-    def normalize(response:, shuffle:)
+    def normalize(response:)
       [].tap do |array|
         response.each do |photo|
           get_photo_response = get_photo(photo.id)
@@ -139,7 +136,7 @@ class FlickrService
             title: get_photo_response.title,
           }
         end
-      end.tap { |array| shuffle ? array.shuffle! : array }
+      end
     end
 
     def client
