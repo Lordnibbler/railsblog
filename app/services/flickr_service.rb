@@ -16,15 +16,33 @@ class FlickrService
     def warm_cache_shuffled(pages: nil)
       pages ||= total_pages
       Rails.logger.info("--->  Cache Warmer: total pages #{pages}")
-      pages_shuffled = (1..pages).to_a.shuffle
-      pages_shuffled.each_with_index do |page, index|
-        Rails.logger.info("--->  Cache Warmer: fetching page #{page} and writing to index #{index}")
+
+      # we first fetch all photos in parallel using Concurrent::Future.
+      # NOTE: we set shuffle to false in the get_photos method call,
+      # because we want to shuffle all photos together, not just the photos on each page.
+      futures = (1..pages).map do |page|
+        Concurrent::Future.execute do
+          Rails.logger.info("--->  Cache Warmer: fetching page #{page}")
+          cache_key = self.generate_cache_key(
+            user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
+            per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
+            page: page,
+          )
+          self.get_photos({ page: page }, cache_key, false)
+        end
+      end
+
+      # We then shuffle the photos
+      photos = futures.map(&:value).flatten.shuffle
+
+      # We then cache the photos.
+      photos.each_with_index do |photo, index|
         cache_key = self.generate_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
-          page:,
+          page: index + 1,
         )
-        self.get_photos({ page: index + 1 }, cache_key, true)
+        Rails.cache.write(cache_key, photo, expires_in: 3.days)
       end
     end
 

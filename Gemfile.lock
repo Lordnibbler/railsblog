@@ -480,6 +480,7 @@ DEPENDENCIES
   brakeman
   capybara
   client_side_validations
+  concurrent-ruby
   devise (>= 4.4.0)
   dotenv-rails
   factory_bot_rails
