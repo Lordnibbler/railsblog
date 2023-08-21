@@ -21,7 +21,7 @@ class FlickrService
       futures = (1..pages).map do |page|
         Concurrent::Future.execute do
           Rails.logger.info("--->  Cache Warmer: fetching page #{page}")
-          cache_key = self.generate_cache_key(
+          cache_key = self.generate_page_cache_key(
             user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
             per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
             page:,
@@ -35,7 +35,7 @@ class FlickrService
 
       # We then cache the photos.
       photos.each_with_index do |photo, index|
-        cache_key = self.generate_cache_key(
+        cache_key = self.generate_page_cache_key(
           user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
           per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
           page: index + 1,
@@ -53,7 +53,7 @@ class FlickrService
     def get_photos(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?
-        cache_key = self.generate_cache_key(
+        cache_key = self.generate_page_cache_key(
           user_id: args[:user_id],
           per_page: args[:per_page],
           page: args[:page],
@@ -77,7 +77,7 @@ class FlickrService
 
     # @return [Hash]
     def get_photo(photo_id)
-      Rails.cache.fetch "flickr_photo_#{photo_id}", expires_in: 1.month do
+      Rails.cache.fetch self.generate_photo_cache_key(photo_id:), expires_in: 1.month do
         client.photos.getInfo(photo_id:)
       end
     end
@@ -148,8 +148,14 @@ class FlickrService
       @client ||= Flickr.new(ENV.fetch('FLICKR_API_KEY', nil), ENV.fetch('FLICKR_SECRET', nil))
     end
 
-    def generate_cache_key(user_id:, per_page:, page:)
-      "flickr_photos_#{user_id}_#{per_page}_#{page}"
+    # generate a cache key for each cached page of photos
+    def generate_page_cache_key(user_id:, per_page:, page:)
+      "flickr_photos/#{user_id}_#{per_page}_#{page}"
+    end
+
+    # generate a cache key for an individual photo
+    def generate_photo_cache_key(photo_id:)
+      "flickr_photo/#{photo_id}"
     end
   end
 end

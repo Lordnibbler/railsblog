@@ -32,7 +32,7 @@ describe FlickrService do
 
     it 'uses the cache to fetch' do
       expect(Rails.cache).to receive(:fetch).with(
-        'flickr_photos_33668819@N03_20_1',
+        'flickr_photos/33668819@N03_20_1',
         expires_in: 3.days,
       )
 
@@ -47,12 +47,12 @@ describe FlickrService do
   describe 'warm_cache_shuffled' do
     it 'fetches photos and caches them in a shuffled order' do
       allow(described_class).to receive(:get_photos)
-      allow(described_class).to receive(:generate_cache_key).and_return('flickr_photos_user_10_1')
+      allow(described_class).to receive(:generate_page_cache_key).and_return('flickr_photos/user_10_1')
 
       described_class.warm_cache_shuffled(pages: 10)
 
       expect(described_class).to have_received(:get_photos).exactly(10).times
-      expect(described_class).to have_received(:generate_cache_key).exactly(10).times
+      expect(described_class).to have_received(:generate_page_cache_key).exactly(10).times
     end
   end
 
