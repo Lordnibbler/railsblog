@@ -26,12 +26,7 @@ class FlickrService
       futures = (0..pages).map do |page|
         Concurrent::Future.execute do
           Rails.logger.info("--->  Cache Warmer: fetching page #{page} from flickr")
-          # cache_key = self.generate_page_cache_key(
-          #   user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
-          #   per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
-          #   page:,
-          # )
-          self.get_photos(page:)
+          self.get_photos_from_flickr(page:)
         end
       end
 
@@ -43,7 +38,6 @@ class FlickrService
       # binding.pry
       Rails.logger.info("--->  Cache Warmer: Writing #{photos.count} photos to cache, example cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
       photos.each do |photo|
-        binding.pry if photo.nil?
         cache_key = self.generate_photo_cache_key(photo_id: photo[:key])
         Rails.cache.write(cache_key, photo, expires_in: 3.days)
       end
@@ -60,17 +54,6 @@ class FlickrService
         Rails.logger.info("--->  Cache Warmer: Writing #{photo_batch.count} photos to cache key #{cache_key}")
         Rails.cache.write(cache_key, photo_batch, expires_in: 3.days)
       end
-
-      # (1..pages).each do |page|
-      #   cache_key = self.generate_page_cache_key(
-      #     user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
-      #     per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page],
-      #     page:,
-      #   )
-
-      #   photos_to_cache = []
-      #   # Rails.cache.write(cache_key, )
-      # end
     end
 
     # @return [Array<Hash>, nil]
@@ -79,20 +62,10 @@ class FlickrService
     # @option args [Fixnum] :page
     # @option args [Fixnum] :user_id
     # @param cache_key [String] a specific cache key to write the response from Flickr to
-    def get_photos(args = {})
+    #    get_photos_from_flickr (what we call get_photos today)
+    def get_photos_from_flickr(args = {})
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
-      # if cache_key.nil?
-      #   cache_key = self.generate_page_cache_key(
-      #     user_id: args[:user_id],
-      #     per_page: args[:per_page],
-      #     page: args[:page],
-      #   )
-      # end
 
-      # cache warmer runs daily in heroku scheduler, but we keep the cache
-      # around for 3 days in case it does not run for some reason.
-      # block is executed if cache miss
-      # Rails.cache.fetch cache_key, expires_in: 3.days do
       response = client.people.getPhotos(args)
 
       # Flickr is dumb and returns the final page of
@@ -101,13 +74,34 @@ class FlickrService
       # the final page of results (response.pages)
       return nil if response.page > response.pages
 
+      # normalize the shape of the raw response from flickr API to something useful in our UI
       normalize(response:)
-      # end
+    end
+
+    # controller will call get_photos_from_cache. if returns nil, then call get_photos_from_flickr. otherwise return result from cache.
+    # get_photos_from_cache can pass get_photos_from_flickr as the cache miss block; then warm_cache_shuffled can also call get_photos_from_flickr.
+    def get_photos_from_cache(args = {}, cache_key = nil)
+      args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
+      if cache_key.nil?
+        cache_key = self.generate_page_cache_key(
+          user_id: args[:user_id],
+          per_page: args[:per_page],
+          page: args[:page],
+        )
+      end
+
+      # cache warmer runs daily in heroku scheduler, but we keep the cache
+      # around for 3 days in case it does not run for some reason.
+      # block is executed if cache miss
+      Rails.cache.fetch(cache_key, expires_in: 3.days) do
+        get_photos_from_flickr(args)
+      end
     end
 
     # @return [Hash]
+    # the raw photo object from flickr's api
     def get_photo(photo_id)
-      Rails.cache.fetch self.generate_photo_cache_key(photo_id:), expires_in: 1.month do
+      Rails.cache.fetch(self.generate_photo_cache_key(photo_id:), expires_in: 1.month) do
         client.photos.getInfo(photo_id:)
       end
     end
