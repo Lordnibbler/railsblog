@@ -8,41 +8,52 @@ class FlickrService
     FLICKR_USER_ID = '33668819@N03'.freeze
     GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
-    # fetches `pages` worth of photos from flickr and caches them
-    # in a shuffled order since flickr does not allow sorting
-    # in their API
+    # fetches `pages` (or total_pages) worth of photos from flickr, store in array in memory
+    # fetch and cache each photo details in Rails.cache
+    # cache pages of photos in batches of per_page
     #
     # @param pages [Fixnum] the number of pages to fetch from flickr
     def warm_cache_shuffled(pages: nil)
-      # fetch all photos (concurrently), store in array in memory
-      # cache each photo
-      # cache pages of photos
-
 
       pages ||= total_pages
       Rails.logger.info("--->  Cache Warmer: total pages #{pages}")
 
-      # we first fetch all photos in parallel using Concurrent::Future.
-      futures = (0..pages).map do |page|
+      # 1. Create futures to fetch all pages of photos in parallel
+      # using Concurrent::Future with retry logic
+      futures = (1..pages).map do |page|
         Concurrent::Future.execute do
           Rails.logger.info("--->  Cache Warmer: fetching page #{page} from flickr")
-          self.get_photos_from_flickr(page:)
+          begin
+            attempts = 0
+            self.get_photos_from_flickr(page:)
+          rescue Errno::ECONNRESET => e
+            # NOTE: we may need to retry because flickr API is trash and randomly has connection failures
+            Rails.logger.warn("--->  Cache Warmer: future for page #{page} got error '#{e}' with #{attempts} retries so far")
+            if attempts < 5
+              attempts += 1
+              Rails.logger.info("---> Cache Warmer: future for page #{page} retrying")
+              retry
+            end
+            Rails.logger.error("---> Cache Warmer: future for page #{page} failed after #{attempts} retries")
+            raise e
+          end
         end
       end
 
-      # Fetch all photos and randomize their order
+      # 2. Execute all futures concurrently, fetching all photos and randomizing their order
       photos = futures.map(&:value).flatten.compact.shuffle
       Rails.logger.info("--->  Cache Warmer: randomizing order of #{photos.count} photos")
 
-      # We then cache the photos.
-      # binding.pry
+      # 3. Cache the individual photos
+      # example cache key: flickr_photo/49822914933
       Rails.logger.info("--->  Cache Warmer: Writing #{photos.count} photos to cache, example cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
       photos.each do |photo|
         cache_key = self.generate_photo_cache_key(photo_id: photo[:key])
         Rails.cache.write(cache_key, photo, expires_in: 3.days)
       end
 
-      # finally cache photos in pages
+      # 4. Cache photos in batches of `per_page` size
+      # example cache key: flickr_photos/33668819@N03_20_1
       Rails.logger.info("--->  Cache Warmer: Writing #{pages} pages of photos to cache")
       photos_in_batches = photos.each_slice(GET_PHOTOS_DEFAULT_OPTIONS[:per_page]).to_a
       photos_in_batches.each_with_index do |photo_batch, index|
@@ -54,6 +65,8 @@ class FlickrService
         Rails.logger.info("--->  Cache Warmer: Writing #{photo_batch.count} photos to cache key #{cache_key}")
         Rails.cache.write(cache_key, photo_batch, expires_in: 3.days)
       end
+
+      Rails.logger.info('--->  Cache Warmer: Done')
     end
 
     # @return [Array<Hash>, nil]
