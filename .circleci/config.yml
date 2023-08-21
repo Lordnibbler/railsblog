@@ -56,8 +56,7 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '18.17'
-      - browser-tools/install-chrome:
-          chrome-version: '116.0.5845.96'
+      - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
           command: |
