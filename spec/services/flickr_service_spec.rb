@@ -13,17 +13,17 @@ describe FlickrService do
       expect(photo).to include(source: a_string_matching('flickr'))
       expect(photo).to include(:key)
       expect(photo[:photo_thumbnail]).to include(url: a_string_matching('https://live.staticflickr.com'))
-      expect(photo[:photo_thumbnail][:width]).to be(100)
-      expect(photo[:photo_thumbnail][:height]).to be(67)
+      expect(photo[:photo_thumbnail][:width]).to be(67)
+      expect(photo[:photo_thumbnail][:height]).to be(100)
       expect(photo[:photo_small]).to include(url: a_string_matching('https://live.staticflickr.com'))
-      expect(photo[:photo_small][:width]).to be(400)
-      expect(photo[:photo_small][:height]).to be(267)
+      expect(photo[:photo_small][:width]).to be(267)
+      expect(photo[:photo_small][:height]).to be(400)
       expect(photo[:photo_medium]).to include(url: a_string_matching('https://live.staticflickr.com'))
-      expect(photo[:photo_medium][:width]).to be(800)
-      expect(photo[:photo_medium][:height]).to be(533)
+      expect(photo[:photo_medium][:width]).to be(533)
+      expect(photo[:photo_medium][:height]).to be(800)
       expect(photo[:photo_large]).to include(url: a_string_matching('https://live.staticflickr.com/'))
-      expect(photo[:photo_large][:width]).to be(1600)
-      expect(photo[:photo_large][:height]).to be(1067)
+      expect(photo[:photo_large][:width]).to be(1067)
+      expect(photo[:photo_large][:height]).to be(1600)
       expect(photo).to include(:created_at)
       expect(photo).to include(url: a_string_matching('https://www.flickr.com'))
       expect(photo).to include(:description)
@@ -31,7 +31,7 @@ describe FlickrService do
     end
 
     it 'returns nil instead of repeating the last page', :vcr do
-      expect(described_class.get_photos_from_flickr(page: 8)).to be_nil
+      expect(described_class.get_photos_from_flickr(page: 10)).to be_nil
     end
   end
 
