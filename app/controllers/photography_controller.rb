@@ -10,7 +10,7 @@ class PhotographyController < ApplicationController
   end
 
   def index
-    @photos = FlickrService.get_photos(page: index_params[:page] || 1) || []
+    @photos = FlickrService.get_photos_from_cache(page: index_params[:page] || 1) || []
   end
 
   private

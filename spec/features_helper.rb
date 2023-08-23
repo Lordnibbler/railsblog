@@ -6,7 +6,7 @@ require 'capybara/rails'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-Webdrivers::Chromedriver.required_version = "114.0.5735.90"
+Webdrivers::Chromedriver.required_version = "116.0.5845.96"
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
@@ -44,7 +44,7 @@ module WebpackTestBuild
   end
 
   def self.run_webpack_if_necessary
-    return if ENV['CIRCLECI'] # webpack is compiled automatically in the build step
+    return if ENV['CIRCLECI'] # webpack is explicitly compiled in the build step of circleci
     return if self.already_built
 
     run_webpack if timestamp_outdated?

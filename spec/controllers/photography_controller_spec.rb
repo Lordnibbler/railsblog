@@ -7,7 +7,7 @@ describe PhotographyController do
 
   describe 'index' do
     it 'fetches photos for the passed page param' do
-      allow(FlickrService).to receive(:get_photos).and_return([photo])
+      allow(FlickrService).to receive(:get_photos_from_cache).and_return([photo])
 
       get :index, params: { page: 1 }
 
@@ -15,7 +15,7 @@ describe PhotographyController do
     end
 
     it 'returns empty list when get_photos returns nil' do
-      allow(FlickrService).to receive(:get_photos).and_return(nil)
+      allow(FlickrService).to receive(:get_photos_from_cache).and_return(nil)
 
       get :index, params: { page: 100 }
 
@@ -23,7 +23,7 @@ describe PhotographyController do
     end
 
     it 'sets body class' do
-      allow(FlickrService).to receive(:get_photos).and_return(nil)
+      allow(FlickrService).to receive(:get_photos_from_cache).and_return(nil)
 
       get :index, params: { page: 1 }
 

@@ -33,7 +33,7 @@ describe '/photography', :js do
   end
 
   it 'renders the photo properly' do
-    allow(FlickrService).to receive(:get_photos).and_return([photo])
+    allow(FlickrService).to receive(:get_photos_from_cache).and_return([photo])
 
     visit photography_path
 
