@@ -14,7 +14,6 @@ class FlickrService
     #
     # @param pages [Fixnum] the number of pages to fetch from flickr
     def warm_cache_shuffled(pages: nil)
-
       pages ||= total_pages
       Rails.logger.info("--->  Cache Warmer: total pages #{pages}")
 
@@ -28,7 +27,9 @@ class FlickrService
             self.get_photos_from_flickr(page:)
           rescue Errno::ECONNRESET => e
             # NOTE: we may need to retry because flickr API is trash and randomly has connection failures
-            Rails.logger.warn("--->  Cache Warmer: future for page #{page} got error '#{e}' with #{attempts} retries so far")
+            Rails.logger.warn(
+              "--->  Cache Warmer: future for page #{page} got error '#{e}' with #{attempts} retries so far",
+            )
             if attempts < 5
               attempts += 1
               Rails.logger.info("---> Cache Warmer: future for page #{page} retrying")
@@ -46,7 +47,12 @@ class FlickrService
 
       # 3. Cache the individual photos
       # example cache key: flickr_photo/49822914933
-      Rails.logger.info("--->  Cache Warmer: Writing #{photos.count} photos to cache, example cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
+      Rails.logger.info(
+        %(
+          --->  Cache Warmer: Writing #{photos.count} photos to cache, example cache key:
+          #{self.generate_photo_cache_key(photo_id: photos[0][:key])}"
+        ),
+      )
       photos.each do |photo|
         cache_key = self.generate_photo_cache_key(photo_id: photo[:key])
         Rails.cache.write(cache_key, photo, expires_in: 3.days)
@@ -91,8 +97,11 @@ class FlickrService
       normalize(response:)
     end
 
-    # controller will call get_photos_from_cache. if returns nil, then call get_photos_from_flickr. otherwise return result from cache.
-    # get_photos_from_cache can pass get_photos_from_flickr as the cache miss block; then warm_cache_shuffled can also call get_photos_from_flickr.
+    # controller will call get_photos_from_cache. if returns nil, then call get_photos_from_flickr.
+    # otherwise return result from cache.
+    #
+    # get_photos_from_cache can pass get_photos_from_flickr as the cache miss block; then warm_cache_shuffled can
+    # also call get_photos_from_flickr.
     def get_photos_from_cache(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       if cache_key.nil?

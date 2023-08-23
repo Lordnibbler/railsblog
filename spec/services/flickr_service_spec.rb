@@ -51,24 +51,56 @@ describe FlickrService do
       {
         source: 'flickr',
         key: '49822917268',
-        photo_thumbnail: { url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_t.jpg', width: 67, height: 100 },
-        photo_small: { url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_w.jpg', width: 267, height: 400 },
-        photo_medium: { url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_c.jpg', width: 533, height: 800 },
-        photo_large: { url: 'https://live.staticflickr.com/65535/49822917268_35e4540d60_h.jpg', width: 1067, height: 1600 },
+        photo_thumbnail: {
+          url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_t.jpg',
+          width: 67,
+          height: 100,
+        },
+        photo_small: {
+          url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_w.jpg',
+          width: 267,
+          height: 400,
+        },
+        photo_medium: {
+          url: 'https://live.staticflickr.com/65535/49822917268_4d2cfb20ef_c.jpg',
+          width: 533,
+          height: 800,
+        },
+        photo_large: {
+          url: 'https://live.staticflickr.com/65535/49822917268_35e4540d60_h.jpg',
+          width: 1067,
+          height: 1600,
+        },
         created_at: '1587941279',
         url: 'https://www.flickr.com/photos/33668819@N03/49822917268',
         description: 'Ming\'s Tasty Restaurant',
         title: 'A7306968',
       }
     end
-    let(:photo_2) do
+    let(:photo2) do
       {
         source: 'flickr',
         key: '49822922428',
-        photo_thumbnail: { url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_t.jpg', width: 67, height: 100 },
-        photo_small: { url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_w.jpg', width: 267, height: 400 },
-        photo_medium: { url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_c.jpg', width: 533, height: 800 },
-        photo_large: { url: 'https://live.staticflickr.com/65535/49822922428_7177310e57_h.jpg', width: 1067, height: 1600 },
+        photo_thumbnail: {
+          url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_t.jpg',
+          width: 67,
+          height: 100,
+        },
+        photo_small: {
+          url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_w.jpg',
+          width: 267,
+          height: 400,
+        },
+        photo_medium: {
+          url: 'https://live.staticflickr.com/65535/49822922428_2944fd0b3f_c.jpg',
+          width: 533,
+          height: 800,
+        },
+        photo_large: {
+          url: 'https://live.staticflickr.com/65535/49822922428_7177310e57_h.jpg',
+          width: 1067,
+          height: 1600,
+        },
         created_at: '1587941271',
         url: 'https://www.flickr.com/photos/33668819@N03/49822922428',
         description: 'Sí pero perro',
@@ -111,7 +143,8 @@ describe FlickrService do
       expect(Rails.cache).to have_received(:write).exactly(210).times
 
       # 20 photos * 10 pages = 200
-      expect(Rails.cache).to have_received(:write).with('flickr_photo/49822917268', photo, expires_in: 3.days).exactly(200).times
+      expect(Rails.cache).to have_received(:write).with('flickr_photo/49822917268', photo,
+                                                        expires_in: 3.days,).exactly(200).times
 
       # 10 pages (10 batches) to be served by API
       expect(Rails.cache).to have_received(:write).with('flickr_photos/user_10_1', photo_array, expires_in: 3.days)
