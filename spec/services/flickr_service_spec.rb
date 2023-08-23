@@ -161,7 +161,7 @@ describe FlickrService do
     it 'returns the total number of pages on users photostream', :vcr do
       total_pages = described_class.send(:total_pages)
 
-      expect(total_pages).to eq(6)
+      expect(total_pages).to eq(8)
     end
   end
 end
