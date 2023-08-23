@@ -48,7 +48,7 @@ describe FlickrService do
 
   describe 'generate_photo_cache_key' do
     it 'generates a cache key for an individual photo' do
-      expect(described_class.send(:generate_photo_cache_key, **{photo_id: '123'})).to eq('flickr_photo/123')
+      expect(described_class.send(:generate_photo_cache_key, photo_id: '123')).to eq('flickr_photo/123')
     end
   end
 

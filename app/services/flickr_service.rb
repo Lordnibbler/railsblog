@@ -23,6 +23,7 @@ class FlickrService
     def logger
       logger ||= begin
         logger = Logger.new($stdout)
+        logger.level = Logger::WARN if Rails.env.test?
         logger.formatter = proc do |severity, datetime, progname, msg|
           date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
           "---> [#{date_format}] #{severity} (#{progname}): FlickrService: #{msg}\n"
@@ -53,7 +54,8 @@ class FlickrService
 
       logger.info("Wrote #{photos.count} photos to cache")
       logger.info("Example photo cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
-      logger.info("Example batch cache key: #{self.generate_page_cache_key(user_id: FLICKR_USER_ID, page: 1, per_page: 20)}")
+      logger.info("Example batch cache key: #{self.generate_page_cache_key(user_id: FLICKR_USER_ID, page: 1,
+                                                                           per_page: 20,)}")
       logger.info('Done')
     end
 
@@ -150,10 +152,11 @@ class FlickrService
     # @param photos [Array<Hash>] array of photo data to cache
     # @param pages [Integer] number of pages the photos are divided into
     # @return [void]
-    def cache_photos_in_batches(photos, pages)
+    def cache_photos_in_batches(photos, _pages)
       photos_in_batches = photos.each_slice(GET_PHOTOS_DEFAULT_OPTIONS[:per_page]).to_a
       photos_in_batches.each_with_index do |photo_batch, index|
-        cache_key = generate_page_cache_key(user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id], per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page], page: index + 1)
+        cache_key = generate_page_cache_key(user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
+                                            per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page], page: index + 1,)
         Rails.cache.write(cache_key, photo_batch, expires_in: 3.days)
       end
     end
