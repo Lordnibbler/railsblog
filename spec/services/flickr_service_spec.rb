@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FlickrService do
-  describe '.get_photos_from_flickr' do
+  describe 'get_photos_from_flickr' do
     subject(:get_photos_from_flickr) { described_class.get_photos_from_flickr }
 
     let(:photo) { get_photos_from_flickr.first }
@@ -43,6 +43,12 @@ describe FlickrService do
       )
 
       described_class.get_photos_from_cache
+    end
+  end
+
+  describe 'generate_photo_cache_key' do
+    it 'generates a cache key for an individual photo' do
+      expect(described_class.generate_photo_cache_key(photo_id: '123')).to eq('flickr_photo/123')
     end
   end
 
