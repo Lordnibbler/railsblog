@@ -19,6 +19,7 @@ class FlickrService
   GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
   class << self
+    # @return [Logger] logger instance
     def logger
       logger ||= begin
         logger = Logger.new($stdout)
@@ -32,6 +33,9 @@ class FlickrService
       logger
     end
 
+    # Warms up the cache by fetching photos from Flickr and caching them
+    # @param pages [Integer] number of pages to fetch from Flickr
+    # @return [void]
     def warm_cache_shuffled(pages: nil)
       pages ||= total_pages
       logger.info("Concurrently fetching #{pages} total pages of photos from Flickr")
@@ -53,6 +57,9 @@ class FlickrService
       logger.info('Done')
     end
 
+    # Fetches photos from Flickr
+    # @param args [Hash] arguments to pass to the Flickr API
+    # @return [Array<Hash>, nil] array of photo data or nil if the requested page is greater than total pages
     def get_photos_from_flickr(args = {})
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       response = client.people.getPhotos(args)
@@ -61,6 +68,10 @@ class FlickrService
       normalize(response:)
     end
 
+    # Fetches photos from cache or directly from Flickr if not found in cache
+    # @param args [Hash] arguments to pass to the Flickr API
+    # @param cache_key [String] cache key to fetch photos from cache
+    # @return [Array<Hash>] array of photo data
     def get_photos_from_cache(args = {}, cache_key = nil)
       args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
       logger.info(args)
@@ -72,10 +83,15 @@ class FlickrService
       Rails.cache.fetch(cache_key, expires_in: 3.days) { get_photos_from_flickr(args) }
     end
 
+    # Fetches a photo by its ID
+    # @param photo_id [String] ID of the photo to fetch
+    # @return [Hash] photo data
     def get_photo(photo_id)
       Rails.cache.fetch(generate_photo_cache_key(photo_id:), expires_in: 1.month) { client.photos.getInfo(photo_id:) }
     end
 
+    # Checks if the cache is warmed up
+    # @return [Boolean] true if cache is warmed up, false otherwise
     def cache_warmed?
       Rails.cache.fetch(PHOTOGRAPHY_CACHE_WARMED_KEY)
     end
@@ -87,6 +103,9 @@ class FlickrService
       response.pages
     end
 
+    # Fetches and randomizes photos
+    # @param pages [Integer] number of pages to fetch from Flickr
+    # @return [Array<Hash>] array of randomized photo data
     def fetch_and_randomize_photos(pages)
       futures = (1..pages).map { |page| fetch_photos_future(page) }
       futures.map(&:value).flatten.compact.shuffle
@@ -96,6 +115,10 @@ class FlickrService
       Concurrent::Future.execute { fetch_photos_with_retry(page) }
     end
 
+    # Fetches photos with retry logic in case of connection failures
+    # @param page [Integer] page number to fetch from Flickr
+    # @param attempts [Integer] number of attempts made to fetch photos
+    # @return [Array<Hash>, nil] array of photo data or nil if an error occurs
     def fetch_photos_with_retry(page, attempts = 0)
       logger.info("fetching page #{page} from flickr on attempt #{attempts}")
       get_photos_from_flickr(page:)
@@ -113,6 +136,9 @@ class FlickrService
       fetch_photos_with_retry(page, attempts + 1)
     end
 
+    # Caches photos in rails cache
+    # @param photos [Array<Hash>] array of photo data to cache
+    # @return [void]
     def cache_photos(photos)
       photos.each do |photo|
         cache_key = generate_photo_cache_key(photo_id: photo[:key])
@@ -120,6 +146,10 @@ class FlickrService
       end
     end
 
+    # Caches photos in batches in rails cache
+    # @param photos [Array<Hash>] array of photo data to cache
+    # @param pages [Integer] number of pages the photos are divided into
+    # @return [void]
     def cache_photos_in_batches(photos, pages)
       photos_in_batches = photos.each_slice(GET_PHOTOS_DEFAULT_OPTIONS[:per_page]).to_a
       photos_in_batches.each_with_index do |photo_batch, index|
@@ -128,10 +158,16 @@ class FlickrService
       end
     end
 
+    # Normalizes the response from Flickr API to a hash usable in the UI
+    # @param response [Array<Hash>] response from Flickr API
+    # @return [Array<Hash>] array of normalized photo data
     def normalize(response:)
       response.map { |photo| normalize_photo(photo) }
     end
 
+    # Normalizes a single photo response from Flickr
+    # @param photo [Hash] photo data to normalize
+    # @return [Hash] normalized photo data
     def normalize_photo(photo)
       get_photo_response = get_photo(photo.id)
       sizes = client.photos.getSizes(photo_id: photo.id)
@@ -149,20 +185,34 @@ class FlickrService
       }
     end
 
+    # Fetches a photo size by its label
+    # @param sizes [Array<Hash>] array of photo sizes
+    # @param label [String] label of the photo size to fetch
+    # @return [Hash] photo size data
     def get_photo_size(sizes, label)
       size = sizes.find { |s| s.label == label }
       { url: size.source, width: size.width, height: size.height }
     end
 
+    # @return [Flickr] Flickr client instance
     def client
       Flickr.cache = 'spec/factories/fixture_files/flickr-api.yml' if Rails.env.test?
       @client ||= Flickr.new(ENV.fetch('FLICKR_API_KEY', nil), ENV.fetch('FLICKR_SECRET', nil))
     end
 
+    # Generates a cache key for a page of photos.
+    # used by PhotographyController to fetch pages of photos to render in the UI
+    # @param user_id [String] user ID
+    # @param per_page [Integer] number of photos per page
+    # @param page [Integer] page number
+    # @return [String] cache key
     def generate_page_cache_key(user_id:, per_page:, page:)
       "flickr_photos/#{user_id}_#{per_page}_#{page}"
     end
 
+    # Generates a cache key for a photo
+    # @param photo_id [String] ID of the photo
+    # @return [String] cache key
     def generate_photo_cache_key(photo_id:)
       "flickr_photo/#{photo_id}"
     end
