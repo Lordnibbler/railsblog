@@ -1,0 +1,2572 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: user_id=33668819%40N03&per_page=20&page=1&method=flickr.people.getPhotos&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="CgTpamcdiuO332aTUYpJ1ZHi7WO75Yl6e99BC8Bwrj4%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760769", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:29 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:29 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:29 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f815d676e23e62be6eba5756491a262c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 1YTbYV79DRH2P0_wT6DwfEs7JrFmWGY7ch1QrocfROUNSCnR2qe_UA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photos":{"page":1,"pages":8,"perpage":20,"total":160,"photo":[{"id":"53092344616","owner":"33668819@N03","secret":"86cfda251c","server":"65535","farm":66,"title":"DSCF4788","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092744445","owner":"33668819@N03","secret":"6ebf611f2c","server":"65535","farm":66,"title":"DSCF1953","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092744520","owner":"33668819@N03","secret":"bddb5c5f99","server":"65535","farm":66,"title":"DSCF1759","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092827953","owner":"33668819@N03","secret":"bed148df65","server":"65535","farm":66,"title":"DSCF1488","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092744835","owner":"33668819@N03","secret":"ba06abde43","server":"65535","farm":66,"title":"DSC03384","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092828973","owner":"33668819@N03","secret":"7bc40c8518","server":"65535","farm":66,"title":"DSC03214","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092828788","owner":"33668819@N03","secret":"56db042800","server":"65535","farm":66,"title":"DSC03016","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092828648","owner":"33668819@N03","secret":"f4d65a416a","server":"65535","farm":66,"title":"DSC02920","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092519774","owner":"33668819@N03","secret":"b69e1407e1","server":"65535","farm":66,"title":"A7309812","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092345121","owner":"33668819@N03","secret":"5da72d9fd0","server":"65535","farm":66,"title":"A7309768","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53091774167","owner":"33668819@N03","secret":"896820f215","server":"65535","farm":66,"title":"A7309759","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53091774337","owner":"33668819@N03","secret":"5ee1b42700","server":"65535","farm":66,"title":"A7309320","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53091774407","owner":"33668819@N03","secret":"a1c84bbf43","server":"65535","farm":66,"title":"A7308321","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092520104","owner":"33668819@N03","secret":"6cb015db18","server":"65535","farm":66,"title":"A7307982","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092745485","owner":"33668819@N03","secret":"1fa8651096","server":"65535","farm":66,"title":"A7307082","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53091774532","owner":"33668819@N03","secret":"301e0d157f","server":"65535","farm":66,"title":"A7307020","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092345681","owner":"33668819@N03","secret":"6845693d6a","server":"65535","farm":66,"title":"A7306410","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092520169","owner":"33668819@N03","secret":"f2ba559385","server":"65535","farm":66,"title":"A7306251","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53091774877","owner":"33668819@N03","secret":"b243afb69e","server":"65535","farm":66,"title":"A7306036","ispublic":1,"isfriend":0,"isfamily":0},{"id":"53092520189","owner":"33668819@N03","secret":"fa95394a38","server":"65535","farm":66,"title":"A7305986","ispublic":1,"isfriend":0,"isfamily":0}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:29 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092344616&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="R2ZCAMRD9qNoiaolAeiKtIWlCX621Vh%2Fdfxhmu9DA40%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760769", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:30 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:29 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:29 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 2cc51fb494f0edce620db9edc4ddada8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 2fqs5x9e0nlcWikmSeAeniOyBe8JRgtCKkGO9b0oBNV-wfsR2jc7rw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092344616","secret":"86cfda251c","server":"65535","farm":66,"dateuploaded":"1691123936","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSCF4788"},"description":{"_content":"Kodachrome"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123936","taken":"2022-03-30
+        23:02:56","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"1","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:30 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092344616&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="%2BK1ldPsW0OBTpqJIW%2BSac2lXPmjrvcM5ub4WNU%2FKdks%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760770", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:30 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 85ad38fe9460fa7a535877f1fbdd29b6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - KdsLcBEZCr6kKBb55fsVesvX6j6RVWtgA85KBx1WwnsFMOcO64b1Fg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_86cfda251c_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_82e7c021eb_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092344616_3038a09fac_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092344616\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:30 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744445&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="onVQ0Scbb7qWZytIY7a1g2fBSnaOPd2Bhp4KV48AunM%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760770", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:30 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 2bc247312196d531ec3918f1b955f3a0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - yW6VV9dPAdEgYDr4D6sEVAN39C0TQdvVme6Al0DLT3i18TbksfL2Hw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092744445","secret":"6ebf611f2c","server":"65535","farm":66,"dateuploaded":"1691123935","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSCF1953"},"description":{"_content":"A
+        long walk"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123935","taken":"2021-04-23
+        11:24:26","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"1","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:30 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744445&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="N2SiNk%2BvbnalZH3rjJ8YLKj0o%2FoT0tH6e%2FWUXI%2BUoD4%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760770", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:30 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:30 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 26a85c7937c20b15e763990333e888f0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - lKQB1j85Ii5Fhvc__tcHWGqqfsb_BifPexNju4P9RkRazD8V4SOC5w==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_6ebf611f2c_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_22d4acc0c5_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092744445_55896c884d_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744445\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:30 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744520&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="G%2Fdzf%2Bcet0pNCL89Zdn8FTTjxoeVgxDMhYngGdkazaA%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760770", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:31 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 56d3604ac04bb426a5e942749eccab1a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - mS8syP4YFMv3PhFmSL0GplC_YGzfiFwrrJ7FTpPvb9_onKauvMeUtw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092744520","secret":"bddb5c5f99","server":"65535","farm":66,"dateuploaded":"1691123934","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSCF1759"},"description":{"_content":"They''re
+        out of gas"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123934","taken":"2021-04-20
+        19:14:33","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:31 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744520&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="nsgSg1peJQgGB60GXeHqvHLEquNgA36%2FZ768lWL6m0I%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760771", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:31 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 2cc51fb494f0edce620db9edc4ddada8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - gdD3Jlvk7Rx9YFamTXXWF9UByDjCYlCSBgwKTCOrhJ1cVrevM2uj9Q==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_bddb5c5f99_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_1db27363b9_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092744520_73fbf07009_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744520\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:31 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092827953&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="HS%2FReN4aEQ9L1TFrM6qMT2LfX7Bd2%2BHoJMhwCPR2tIc%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760771", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:31 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:31 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6ae6eaa800b4bf4925c3c3a4a489ea7a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - HK33EP8-Xd4O7E9lzvKBpyWTwnTC5Kq70ni4ZNyu2YowFfdV3IGanQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092827953","secret":"bed148df65","server":"65535","farm":66,"dateuploaded":"1691123933","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSCF1488"},"description":{"_content":"Ocean
+        View"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123933","taken":"2021-03-27
+        15:39:36","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:31 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092827953&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="uEa5VgfKeagX6JC5k%2FCJWHHou5rbUldovHIlWNCjgjo%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760771", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:32 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:32 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:32 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 1aea9a48d983729a52907e89e4fc6126.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 4X5OfYcc8nrB1KOkm-FUom2gZX3Wv9L4ZjTRMdchdvTe6R-IyjOk2A==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_bed148df65_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_f6556eeb0c_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092827953_eddf750347_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092827953\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:32 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744835&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="Z488xD3jgSSGrwq1ydtgwSWiN5vPm%2Bd4YGw5%2FsnUaWs%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760772", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:32 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:32 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:32 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 211d2bc0b23405deaf02a4b025d65090.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - Ca-Vgql9lk58hBTXQc9u_JvaoJ0tQtr6ZgZ77ylEw7ukE1_xJPr4Mg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092744835","secret":"ba06abde43","server":"65535","farm":66,"dateuploaded":"1691123933","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSC03384"},"description":{"_content":"I''m
+        feeling lightheaded"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123933","taken":"2022-07-07
+        18:09:16","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:32 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092744835&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="yEkkxxdwp3pBaHXlY1QGRp25NyQfc6X6%2FmduN94rmRA%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760772", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:33 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 c9cf34e325f403e993adb63735f5db28.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - oikwt0a9O3grpkva5_Ime7ckbj17I7OvLvYhSRMfVjgd97wChXJROw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_ba06abde43_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_24785af01a_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092744835_4b39e1195b_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092744835\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:33 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828973&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="AV4JfH%2FJyYPC9eagFc%2FLtRQjcjTw6D7AgQiOz%2B3Oxjw%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760773", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:33 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9156964cc46a3c6a5f28edc6e6a06afe.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - oKBTNJzS-Ic4wVRj3tNUdZNQft5mdJEb8lq80l44mSMJZ_3O8zOldQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092828973","secret":"7bc40c8518","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSC03214"},"description":{"_content":"Bourbon
+        Walk"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2022-07-07
+        13:21:27","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:33 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828973&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="XGfDPvWxyCINIvaQS637hZ0zXX5fX9zxE3Vmz%2BMf%2BZ4%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760773", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:33 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:33 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a52dcb1fed052adbd58b868375961d24.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - ziU39EEoVMFeShiZnLiMkoxytnnJph5RySnGRoMVi1juyV6PsDAiUg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_7bc40c8518_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_878ab9c6ed_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092828973_9fd26a7891_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828973\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:33 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828788&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="gcpikYKxv%2Bynv%2BLJL2G17FmWgAKvSW%2BT6g6KCLldTKw%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760773", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:34 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5bef5084e25d6354105adfd675d1921a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - lMMdjNYRt5R8TTp8611bZ8M-JXPiJMAJu98ypS5dbjfW2reUGC9v7w==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092828788","secret":"56db042800","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSC03016"},"description":{"_content":"Looking
+        for a good roof person"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2022-06-30
+        15:00:21","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:34 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828788&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="XQvy569Hxp2%2F5zQzgxUccaQ6R72kHSMZQUG4KzCEyDI%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760774", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '2671'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 23 Aug 2023 03:19:34 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 003eb7b0ca01948f2d4b0ac7d3d70cf0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 5os5bvoeWo26KWPQrarGILfEerNw2ZKPoDsbgCZiGnnn7yIx9KLXVg==
+    body:
+      encoding: UTF-8
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_56db042800_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_3c184be17b_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092828788_e4eb767209_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828788\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:34 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828648&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="XNAy01T2fG%2FKExhMAaGQFv8ihkr3sHGMgXWqGyRJFy8%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760774", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:34 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 df4472d7a475873afbbf257f848df174.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - JeGQqHpOaWlSXlwxYDaBMJL9Vd2pVXPT8xqjhC2FdUBCgTIqX8949w==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092828648","secret":"f4d65a416a","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"DSC02920"},"description":{"_content":"Lekker"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2022-06-29
+        19:33:35","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:34 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092828648&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="vuKHMwf5ZrdBMeIHm3us%2BPUqmlOKD0NDDQfV1zedWmE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760774", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:34 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:34 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 86d3935a589a2b748459108840262e70.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - vlZ6HSDBJuXmFWFQZbWwJiihrKsSSgJQ_gfKPxQo5rs8enr7ByDoFg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_f4d65a416a_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_c86f699fb1_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53092828648_ed91c32aea_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092828648\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:34 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092519774&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="T6iBgxuCf0%2F%2B7ffaoZO81h%2B1M2b6HHGX2zoXmvWIX3Q%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760774", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:35 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 12a5bcdb54ede5fbaec3241f3c798938.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - d5rkk_GM5YJUw9mMQCIkCvfY0F0SKX_KhmMSNVFbgBSDAg9IZDNUYw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092519774","secret":"b69e1407e1","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7309812"},"description":{"_content":"Light
+        reading at the muni stop"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2020-03-02
+        17:21:59","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:35 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092519774&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="LRcKJ9fyDm%2B18%2BWCpIKT3iW6fCMRBzTxCvzzRveEipE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760775", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:35 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 eaf5cf20e530df46eabc6f43f9564604.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - GJZ86RFfpCS6TdjCJlGgEXyIiKM5WDdaU8otfWugTiejBf5-3rJh8g==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_b69e1407e1_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_14c5e3fe06_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092519774_dffbecce78_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092519774\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:35 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092345121&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="sfY0j7J1Zj8270H9XJIhgfgnJxLXw9XYi276f%2F2Hc6o%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760775", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:35 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:35 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 4ae7b0eb7d78fd970f14597219365f98.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - bDoXIV0dKuTYdpNQEx-PCA1UCd2bS2RZHPCSFaoNjR5gIEyxqhy4Jw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092345121","secret":"5da72d9fd0","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7309768"},"description":{"_content":"Urban
+        Warfare"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2020-02-28
+        16:53:39","takengranularity":0,"takenunknown":"0","lastupdate":"1691123937"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:35 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092345121&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="YksAAt79ky5mnRlGOuDhmaP0PCBABww%2BI10UycVRrjc%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760775", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:36 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 f815d676e23e62be6eba5756491a262c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 2mv4IMUjVbEdAJ7D6luijpeGINpMH4OU_9rTtDof_a2MOt3TQSBvqA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_5da72d9fd0_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_1782d8cab5_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53092345121_984e9439c1_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345121\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:36 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774167&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="65ThWCQgga2UtjrLcd0rX8A4AE%2BwsEOfWjuezs9H9Qw%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760776", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:36 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 c1a6a510f3f008881a299e0b31f8558c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - uknboWR1cG8PbNe4MYtFIRfJs4i7PQTx0-DJNWFbGDayBB1CCANNWQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53091774167","secret":"896820f215","server":"65535","farm":66,"dateuploaded":"1691123932","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7309759"},"description":{"_content":"A
+        man of many talents"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123932","taken":"2020-02-28
+        16:49:59","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:36 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774167&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="csWOznLp1WwqOptdiINUcaabF1P6D0wIQE81YqAIlbE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760776", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:36 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5eb217efafd24502afe993e2379ff238.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 9b69SPqQMv0_l7NmOM79qGdeXX3gVxtz5TUwSd0BjxiswHfrmnyz8g==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_896820f215_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_8286147007_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53091774167_4376e0425a_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774167\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:36 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774337&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="GyyOj2MQkKgiUvTvs1VXXuccitKm1zcIqs8sR0hha7o%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760776", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:37 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:36 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 46e204a489342e831ee06d482c0e4bae.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - bRY5GNDgK8sUj9Iur2UessV898HqMOLSPFF5nJveLbqKY-eTPOXBjg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53091774337","secret":"5ee1b42700","server":"65535","farm":66,"dateuploaded":"1691123931","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7309320"},"description":{"_content":"Louis
+        Garbage"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123931","taken":"2020-01-28
+        17:45:30","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"3","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:37 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774337&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="y0kjarADeQ2Q4Q6ooDj9aRMxkRbPTcmS1Jc%2FOzGo8oc%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760777", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:37 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 e471f2247ab9c1a6073482836b02180a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - zctwYAONVW2s2XeAVOvqhK-tMC7eJn3wxDROu6QU61dpeMaDkq25EQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_5ee1b42700_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_fb2b862c0d_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53091774337_52ee6b5663_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774337\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:37 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774407&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="qAWt2xjtkmDMgPcJ0hVZybgITGdwcRF3j1F300Fw2ak%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760777", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:37 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a45555e8d20cb505b62dfda511e6ba6c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - YFdmpwt7BOtLahsWeinZjFCjwcELSsjEZvgq03jD2rrvOTYYt_BOMw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53091774407","secret":"a1c84bbf43","server":"65535","farm":66,"dateuploaded":"1691123930","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7308321"},"description":{"_content":"Above
+        the Clouds"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123930","taken":"2019-11-10
+        16:44:18","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:37 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774407&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="YCnvbzVC11soz%2FFRGN7SW7ID%2FzfQmwKbRVctoX0AzL8%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760777", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:37 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:37 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 507f0bab9a1278d1632051db230c99d4.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - cPv8-yAh0dMPe9x-eixIYFTreq5IaZkY_XGIEssBPHEqPzJmm-fnXw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_a1c84bbf43_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_0dacf43cf5_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53091774407_617622d152_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774407\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:37 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520104&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="Jg1usc9znwixiSmCiD%2BXQjVl1BCW5erw5hDU%2BBNmFnM%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760777", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '1066'
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 23 Aug 2023 03:19:38 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 003eb7b0ca01948f2d4b0ac7d3d70cf0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - H66Twti7meHQ4GeECMZIpMH1zQ1ujfimqY0hus3DaSObyAKDQXRQzQ==
+    body:
+      encoding: UTF-8
+      string: '{"photo":{"id":"53092520104","secret":"6cb015db18","server":"65535","farm":66,"dateuploaded":"1691123929","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7307982"},"description":{"_content":"Gradient
+        Summer Nights"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123929","taken":"2019-10-15
+        17:50:19","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:38 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520104&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="4a8CoMML0diO4d8P1T9Af2Zyyaz%2BW9vIZh2oa%2FIDz2A%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760778", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:38 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 e471f2247ab9c1a6073482836b02180a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - ak_8ynvPGvF-OesiPrtvPnwMd1MC4S7NqjpD29N8bTt9Hv_4QyPRnQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_6cb015db18_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_9153456bad_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092520104_c19163adf9_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520104\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:38 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092745485&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="QQrg%2Bgr2vR24AxDem5euHhvc2ZrM7aP0%2Fp47Uq%2B2GF4%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760778", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:38 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:38 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 85ad38fe9460fa7a535877f1fbdd29b6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - wIR_bz63HFfSbzeVuBCSNgj0bef2QV4ZNEDtikF5Vp9JeA8c7Z_DQw==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092745485","secret":"1fa8651096","server":"65535","farm":66,"dateuploaded":"1691123928","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7307082"},"description":{"_content":"Matchy"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123928","taken":"2019-06-19
+        17:03:28","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:38 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092745485&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="Sq1HBNXn9VdUDFS0D84EN0grgKTkpobaU2Dc99AO67U%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760778", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:39 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 63ef4238eab3afaf082f66efc2f6d428.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - Kvriz6Dez5o-0mQ-uvd4Nihm-TRFCDn4Cdsqm4zGJtiudxJSVceCXQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_1fa8651096_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_800665ecaa_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53092745485_2f66090a23_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092745485\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:39 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774532&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="r7IXTX1DUaAR5hbr3TQEx%2BDwBKc7tWAdO%2BhUFytSNBY%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760779", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:39 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 6ae6eaa800b4bf4925c3c3a4a489ea7a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - M-mHTxxelXYCAav-O19DiPTMoNN_3FLRbyhHHyl903aCwGsD6eQyeg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53091774532","secret":"301e0d157f","server":"65535","farm":66,"dateuploaded":"1691123928","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7307020"},"description":{"_content":"Mickey
+        Mouse''s Cousin"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123928","taken":"2019-10-10
+        16:52:22","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:39 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774532&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="AaD17QdaUpe%2B%2BkwV99wMTHp8dU0QrjuLYouvojOAVzs%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760779", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:39 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:39 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 eaf5cf20e530df46eabc6f43f9564604.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 9cF0MXwCayf6EGxyWCCbotZ3_Aigb0CnyTJOPVyq9XlwEFpRzFxsZQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_301e0d157f_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_4135080bc4_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53091774532_b3d545df29_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774532\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:39 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092345681&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="D8V0Kx11hd6o1tZH8%2Fi4ttIP%2Bf%2BaQ%2B8LWa46IwT1Bvc%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760779", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:40 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 a45555e8d20cb505b62dfda511e6ba6c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - gPZ3ReEmD5keLfPQEVdxThNkvecLAR9nfHLNb047oDBS3L7qt5rBew==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092345681","secret":"6845693d6a","server":"65535","farm":66,"dateuploaded":"1691123927","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7306410"},"description":{"_content":"Hoodworks"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123927","taken":"2021-07-04
+        19:05:42","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:40 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092345681&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="wud9qlPpJckLQc%2FYmaEglz6iPHVXBFzx4iSVoBG0zq0%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760780", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:40 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 9d99e2b9dedf1fed654116378ecfccec.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - rW9ctS1dzoxu0c3Fl5MYItKzUk74YhJZ-NRiDJtH_9rXaKOsutT-mQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_6845693d6a_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_9fe4637296_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092345681_aeb3a26a73_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092345681\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:40 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520169&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="7BBpXn5qPugc4gfR5ZT0uGhF8Sm%2FMpT77Sau1pjxPXQ%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760780", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:40 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 5eb217efafd24502afe993e2379ff238.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - EDaaUErLlkgge7-ZHdyr5T0sKjRzVl4b6d8pOpS_KurigBLTfwI4hg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092520169","secret":"f2ba559385","server":"65535","farm":66,"dateuploaded":"1691123926","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7306251"},"description":{"_content":"Stay
+        Indoors"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123926","taken":"2021-06-30
+        18:23:11","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:40 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520169&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="FVj72GD2suYMZHvfh5QeI45%2FUuETSOiIMo6Fg0oCHpY%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760780", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:41 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:40 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 2a2fa0b54f96e81274810bd8cdd127ac.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - sIQX3V9ffAu1mk84Zc_9Y8JOy9vczCYKGzLEjWZQPTu38ZVseNr5ng==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_f2ba559385_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_7de4c14e4b_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53092520169_bb28677b84_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520169\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:41 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774877&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="7wbCXchECIQfFguOoeUnp7CE22ik7V0bcy8Cg41V7ZU%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760781", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:41 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 003eb7b0ca01948f2d4b0ac7d3d70cf0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - y1_O2aSrzJpSHuK2YLefy6pQsRSE0mt8o4nxlJeDed2PiHGjnynSSg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53091774877","secret":"b243afb69e","server":"65535","farm":66,"dateuploaded":"1691123926","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7306036"},"description":{"_content":"Smashing
+        Blow"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123926","taken":"2019-09-06
+        22:21:31","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:41 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53091774877&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="NGofy14EP8FCqJZY6KOcw2FZgudZFg45Us9WHPHmCNE%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760781", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:41 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 8bea8b04906ba221e865eddf4b64cf2e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - 5f7mzkRBNPTQcOGWhWttdi49ve-nRePqvHQQpJLlI_-8v8jmHIEUYQ==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":100,"height":67,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/t\/","media":"photo"},{"label":"Small","width":240,"height":160,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":320,"height":213,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":400,"height":267,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/w\/","media":"photo"},{"label":"Medium","width":500,"height":333,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":640,"height":427,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":800,"height":533,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/c\/","media":"photo"},{"label":"Large","width":1024,"height":683,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_b243afb69e_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1600,"height":1067,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_8eff42683b_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":2048,"height":1365,"source":"https:\/\/live.staticflickr.com\/65535\/53091774877_ec6e965998_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53091774877\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:41 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520189&method=flickr.photos.getInfo&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="uf0pDQzx7wP9zjnxVGWxwcOTFvZbK3nB4cg0Dg%2Fm4M8%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760781", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:41 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:41 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 46e204a489342e831ee06d482c0e4bae.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - Vs7RgXIYaikhKbvF_80A-kdsYPANetcKpisrrLr36Sl9KlLhWVW3oA==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"photo":{"id":"53092520189","secret":"fa95394a38","server":"65535","farm":66,"dateuploaded":"1691123925","isfavorite":0,"license":"0","safety_level":"0","rotation":0,"owner":{"nsid":"33668819@N03","username":"Ben
+        Radler","realname":"","location":null,"iconserver":"2457","iconfarm":3,"path_alias":"buhdoo","gift":{"gift_eligible":true,"eligible_durations":["year","month","week"],"new_flow":true}},"title":{"_content":"A7305986"},"description":{"_content":"Delicious"},"visibility":{"ispublic":1,"isfriend":0,"isfamily":0},"dates":{"posted":"1691123925","taken":"2021-06-25
+        18:25:24","takengranularity":0,"takenunknown":"0","lastupdate":"1691123938"},"views":"0","editability":{"cancomment":0,"canaddmeta":0},"publiceditability":{"cancomment":0,"canaddmeta":0},"usage":{"candownload":0,"canblog":0,"canprint":0,"canshare":1},"comments":{"_content":"0"},"notes":{"note":[]},"people":{"haspeople":0},"tags":{"tag":[]},"urls":{"url":[{"type":"photopage","_content":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/"}]},"media":"photo"},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:41 GMT
+- request:
+    method: post
+    uri: https://api.flickr.com/services/rest/
+    body:
+      encoding: US-ASCII
+      string: photo_id=53092520189&method=flickr.photos.getSizes&format=json&nojsoncallback=1
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Flickr/2.1.0 (+https://github.com/cyclotron3k/flickr)
+      Authorization:
+      - OAuth realm="https://api.flickr.com/services/rest/", oauth_consumer_key="06d068ffa30bffec9719b29457ee38bd",
+        oauth_nonce="TPzopY3AtV4S48LvsulaLjDGwnvJaZlXxl6n5REWJRs%3D", oauth_signature="d0030bbe1e6652e2%26",
+        oauth_signature_method="PLAINTEXT", oauth_timestamp="1692760781", oauth_token="",
+        oauth_version="1.0"
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Date:
+      - Wed, 23 Aug 2023 03:19:42 GMT
+      Server:
+      - Apache/2.4.57 (Ubuntu)
+      Set-Cookie:
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A0%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:42 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      - ccc=%7B%22needsConsent%22%3Atrue%2C%22managed%22%3A0%2C%22changed%22%3A0%2C%22info%22%3A%7B%22cookieBlock%22%3A%7B%22level%22%3A0%2C%22blockRan%22%3A1%7D%7D%7D;
+        expires=Fri, 22-Sep-2023 03:19:42 GMT; Max-Age=2592000; path=/; domain=.flickr.com
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 56d3604ac04bb426a5e942749eccab1a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - LAX3-C4
+      X-Amz-Cf-Id:
+      - Q3uwQgZxVb7J8SZyldPDatx7AG9mYlgOkz7zWOxDNbwMk-ubuEWr0Q==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"sizes":{"canblog":0,"canprint":0,"candownload":0,"size":[{"label":"Square","width":75,"height":75,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_s.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/sq\/","media":"photo"},{"label":"Large
+        Square","width":150,"height":150,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_q.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/q\/","media":"photo"},{"label":"Thumbnail","width":67,"height":100,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_t.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/t\/","media":"photo"},{"label":"Small","width":160,"height":240,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_m.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/s\/","media":"photo"},{"label":"Small
+        320","width":213,"height":320,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_n.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/n\/","media":"photo"},{"label":"Small
+        400","width":267,"height":400,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_w.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/w\/","media":"photo"},{"label":"Medium","width":333,"height":500,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/m\/","media":"photo"},{"label":"Medium
+        640","width":427,"height":640,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_z.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/z\/","media":"photo"},{"label":"Medium
+        800","width":533,"height":800,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_c.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/c\/","media":"photo"},{"label":"Large","width":683,"height":1024,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_fa95394a38_b.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/l\/","media":"photo"},{"label":"Large
+        1600","width":1067,"height":1600,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_db97a22bbe_h.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/h\/","media":"photo"},{"label":"Large
+        2048","width":1365,"height":2048,"source":"https:\/\/live.staticflickr.com\/65535\/53092520189_3f2db6f05a_k.jpg","url":"https:\/\/www.flickr.com\/photos\/buhdoo\/53092520189\/sizes\/k\/","media":"photo"}]},"stat":"ok"}'
+  recorded_at: Wed, 23 Aug 2023 03:19:42 GMT
+recorded_with: VCR 6.2.0

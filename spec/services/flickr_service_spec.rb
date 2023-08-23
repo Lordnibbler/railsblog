@@ -48,7 +48,7 @@ describe FlickrService do
 
   describe 'generate_photo_cache_key' do
     it 'generates a cache key for an individual photo' do
-      expect(described_class.generate_photo_cache_key(photo_id: '123')).to eq('flickr_photo/123')
+      expect(described_class.send(:generate_photo_cache_key, **{photo_id: '123'})).to eq('flickr_photo/123')
     end
   end
 
@@ -140,8 +140,8 @@ describe FlickrService do
       # cache 10 pages * 20 photos per page + 1 log message
       expect(described_class).to have_received(:generate_photo_cache_key).exactly(201).times
 
-      # cache 10 pages worth of photos
-      expect(described_class).to have_received(:generate_page_cache_key).exactly(10).times
+      # cache 10 pages worth of photos + 1 log message
+      expect(described_class).to have_received(:generate_page_cache_key).exactly(11).times
 
       # 20 photos * 10 pages = 200
       # 10 pages individual keys = 10
