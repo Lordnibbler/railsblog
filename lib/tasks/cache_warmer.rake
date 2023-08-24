@@ -1,7 +1,7 @@
 namespace :cache_warmer do
   # usage: bx rails 'cache_warmer:flickr'
   desc 'Warms cache for flickr API'
-  task :flickr => :environment do |_task, _args|
+  task flickr: :environment do |_task, _args|
     Rails.logger.info('--->  Cache Warmer: starting...')
 
     # return if cache is warm already when deploying, avoiding unnecessary calls to flickr

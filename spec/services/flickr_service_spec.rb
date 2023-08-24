@@ -116,8 +116,8 @@ describe FlickrService do
 
     it 'fetches photos and caches them in a shuffled order' do
       photo_array = Array.new(20, photo)
-      allow(described_class).to receive(:get_photos_from_flickr).and_return(photo_array)
-      allow(described_class).to receive(:generate_photo_cache_key).and_return('flickr_photo/49822917268')
+      allow(described_class).to receive_messages(get_photos_from_flickr: photo_array,
+                                                 generate_photo_cache_key: 'flickr_photo/49822917268',)
       allow(described_class).to receive(:generate_page_cache_key).and_return(
         'flickr_photos/user_10_1',
         'flickr_photos/user_10_2',
