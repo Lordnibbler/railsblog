@@ -6,7 +6,7 @@ require 'capybara/rails'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-Webdrivers::Chromedriver.required_version = "116.0.5845.96"
+Webdrivers::Chromedriver.required_version = "118.0.5993.70"
 
 Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome)
