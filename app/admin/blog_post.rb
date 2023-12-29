@@ -1,4 +1,7 @@
 ActiveAdmin.register Blog::Post do
+  # https://github.com/activeadmin/activeadmin/discussions/8077#discussioncomment-7585251
+  remove_filter :featured_image_attachment, :featured_image_blob, :images_attachments, :images_blobs, :user
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   permit_params :title, :description, :body, :published, :created_at, :updated_at, :user_id,

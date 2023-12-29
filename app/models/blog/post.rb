@@ -19,6 +19,11 @@ class Blog::Post < ApplicationRecord
 
   EXCERPT_TAG = '<!--more-->'.freeze
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["body", "created_at", "description", "id", "published", "slug", "title", "updated_at", "user_id"]
+  end
+
+
   #
   # @return [String] human-readable name of the author
   #
