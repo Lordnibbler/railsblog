@@ -1,8 +1,8 @@
 require 'features_helper'
 
 describe '/blog' do
-  let!(:post) { create(:post) }
-  let!(:long_post) { create(:long_post, user: post.user) }
+  let!(:post) { create(:post_with_attached_image) }
+  let!(:long_post) { create(:long_post_with_attached_image, user: post.user) }
 
   before { visit blog_posts_path }
 
