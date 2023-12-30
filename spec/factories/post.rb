@@ -7,14 +7,6 @@ FactoryBot.define do
     slug { 'i-love-bacon' }
     published { true }
 
-    after :build do |post|
-      post.featured_image.attach(
-        io: Rails.root.join('spec/factories/fixture_files/test.jpg').open,
-        filename: 'test.jpg',
-        content_type: 'image/jpeg',
-      )
-    end
-
     factory :long_post do
       title { 'I hate bacon' }
       body do
@@ -24,6 +16,16 @@ FactoryBot.define do
           'Meatball tri-tip dolore corned beef quis shankle, do culpa nulla biltong.'
       end
       slug { 'i-hate-bacon' }
+
+      factory :long_post_with_attached_image do
+        after :build do |post|
+          post.featured_image.attach(
+            io: Rails.root.join('spec/factories/fixture_files/test.jpg').open,
+            filename: 'test.jpg',
+            content_type: 'image/jpeg',
+          )
+        end
+      end
     end
 
     factory :unpublished_post do
@@ -31,6 +33,16 @@ FactoryBot.define do
       body { 'Bacon no longer was published.' }
       slug { 'i-unpublished-the-bacon' }
       published { false }
+    end
+
+    factory :post_with_attached_image do
+      after :build do |post|
+        post.featured_image.attach(
+          io: Rails.root.join('spec/factories/fixture_files/test.jpg').open,
+          filename: 'test.jpg',
+          content_type: 'image/jpeg',
+        )
+      end
     end
   end
 end

@@ -57,7 +57,7 @@ describe '/admin' do
     end
 
     context 'with featured image' do
-      let!(:post) { create(:post, user:) }
+      let!(:post) { create(:post_with_attached_image, user:) }
 
       it 'shows and allows uploading and deleting of featured_image' do
         visit '/admin/blog_posts'
