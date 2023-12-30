@@ -1,6 +1,7 @@
 # Note: You must restart bin/shakapacker-dev-server for changes to take effect
 
 default: &default
+  server: https
   source_path: app/javascript/packs
   source_entry_path: /
   public_root_path: public
@@ -41,7 +42,7 @@ development:
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
-    https: false
+    server: http
     host: localhost
     port: 3035
     # Hot Module Replacement updates modules while the application is running without a full reload
