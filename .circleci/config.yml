@@ -10,7 +10,7 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@2.1.0
   node: circleci/node@5.1.1
-  browser-tools: circleci/browser-tools@1.4.6
+  browser-tools: circleci/browser-tools@1.4.8
   dscar-brakeman: moneyforward/dscar-brakeman@1.2.0
 
 jobs:
