@@ -12,20 +12,20 @@ describe '/blog' do
       expect(page).to have_content post.excerpt
       expect(page).to have_content long_post.title
       expect(page).to have_content long_post.excerpt
-      expect(page).to have_selector("img[src*='test.jpg']")
+      expect(page).to have_css("img[src*='test.jpg']")
     end
 
     context 'when a Blog::Post is no longer published' do
       it 'removes it from the blog_posts_index_path' do
         original_published_count = Blog::Post.published.count
-        expect(page).to have_selector('[role="article"]', count: original_published_count)
+        expect(page).to have_css('[role="article"]', count: original_published_count)
 
         post.update_column(:published, false)
 
         visit blog_posts_path
 
-        expect(page).to have_selector('[role="article"]', count: original_published_count - 1)
-        expect(page).not_to have_selector("post-#{post.id}")
+        expect(page).to have_css('[role="article"]', count: original_published_count - 1)
+        expect(page).to have_no_css("post-#{post.id}")
       end
     end
   end
@@ -38,8 +38,8 @@ describe '/blog' do
 
       expect(page).to have_content 'Spicy jalapeno bacon'
       expect(page).to have_content(/Previous Post/i)
-      expect(page).not_to have_content 'Continue Reading'
-      expect(page).to have_selector("img[src*='test.jpg']")
+      expect(page).to have_no_content 'Continue Reading'
+      expect(page).to have_css("img[src*='test.jpg']")
     end
   end
 end

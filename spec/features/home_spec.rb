@@ -10,7 +10,7 @@ describe '/' do
       visit root_path
 
       within '#latest' do
-        expect(page).to have_selector('a.bg-white', count: 2)
+        expect(page).to have_css('a.bg-white', count: 2)
       end
     end
 
@@ -24,7 +24,7 @@ describe '/' do
 
         expect(page).to have_content 'Spicy jalapeno bacon'
         expect(page).to have_content(/Previous Post/i)
-        expect(page).not_to have_content(/Read More/i)
+        expect(page).to have_no_content(/Read More/i)
       end
     end
   end
@@ -37,13 +37,13 @@ describe '/' do
         within '#new_contact_form' do
           click_on 'Send'
         end
-        expect(page).to have_selector('label[for=contact_form_name]', text: 'can\'t be blank')
+        expect(page).to have_css('label[for=contact_form_name]', text: 'can\'t be blank')
 
         within '#new_contact_form' do
           fill_in 'contact_form_email', with: 'not an email'
           click_on 'Send'
         end
-        expect(page).to have_selector('label[for=contact_form_email]', text: 'is invalid')
+        expect(page).to have_css('label[for=contact_form_email]', text: 'is invalid')
       end
     end
 
