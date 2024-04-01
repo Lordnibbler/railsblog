@@ -63,7 +63,7 @@ group :test do
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter' # formatting for circleci
-  gem 'vcr' # return to rubygems once newer version than 6.0.0 is released # record http requests and play them back in tests
+  gem 'vcr' # record http requests and play them back in tests
   gem 'webdrivers'
   gem 'webmock'
 end
