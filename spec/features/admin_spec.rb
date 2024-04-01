@@ -11,7 +11,7 @@ describe '/admin' do
           fill_in 'user_email',    with: user.email
           fill_in 'user_password', with: 'password'
         end
-        click_button 'Login'
+        click_link_or_button 'Login'
 
         expect(page).to have_current_path(admin_root_path)
         expect(page).to have_content 'Dashboard'
@@ -25,7 +25,7 @@ describe '/admin' do
           fill_in 'user_email',    with: user.email
           fill_in 'user_password', with: 'invalid'
         end
-        click_button 'Login'
+        click_link_or_button 'Login'
 
         expect(page).to have_content 'Invalid Email or password'
       end
@@ -67,18 +67,18 @@ describe '/admin' do
         end
 
         within '.row-featured_image' do
-          expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector('a.default-button', text: 'Original')
-          expect(page).to have_selector('a.danger-button', text: 'Delete')
+          expect(page).to have_css("img[src*='test.jpg']")
+          expect(page).to have_css('a.default-button', text: 'Original')
+          expect(page).to have_css('a.danger-button', text: 'Delete')
           click_on 'Delete'
         end
 
         page.accept_alert
 
         within '.row-featured_image' do
-          expect(page).not_to have_selector("img[src*='test.jpg']")
-          expect(page).not_to have_selector('a.default-button', text: 'Original')
-          expect(page).not_to have_selector('a.danger-button', text: 'Delete')
+          expect(page).to have_no_css("img[src*='test.jpg']")
+          expect(page).to have_no_css('a.default-button', text: 'Original')
+          expect(page).to have_no_css('a.danger-button', text: 'Delete')
         end
 
         visit edit_admin_blog_post_path(post)
@@ -94,9 +94,9 @@ describe '/admin' do
         expect(page).to have_current_path(admin_blog_post_path(post))
 
         within '.row-featured_image' do
-          expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector('a.default-button', text: 'Original')
-          expect(page).to have_selector('a.danger-button', text: 'Delete')
+          expect(page).to have_css("img[src*='test.jpg']")
+          expect(page).to have_css('a.default-button', text: 'Original')
+          expect(page).to have_css('a.danger-button', text: 'Delete')
         end
       end
     end
@@ -118,24 +118,24 @@ describe '/admin' do
         expect(page).to have_current_path(admin_blog_post_path(post))
 
         within '.row-images' do
-          expect(page).to have_selector("img[src*='test.jpg']")
-          expect(page).to have_selector('a.default-button', text: 'Original')
-          expect(page).to have_selector('a.default-button', text: '320')
-          expect(page).to have_selector('a.default-button', text: '640')
-          expect(page).to have_selector('a.default-button', text: '1280')
-          expect(page).to have_selector('a.danger-button', text: 'Delete')
+          expect(page).to have_css("img[src*='test.jpg']")
+          expect(page).to have_css('a.default-button', text: 'Original')
+          expect(page).to have_css('a.default-button', text: '320')
+          expect(page).to have_css('a.default-button', text: '640')
+          expect(page).to have_css('a.default-button', text: '1280')
+          expect(page).to have_css('a.danger-button', text: 'Delete')
           click_on 'Delete'
         end
 
         page.accept_alert
 
         within '.row-images' do
-          expect(page).not_to have_selector("img[src*='test.jpg']")
-          expect(page).not_to have_selector('a.default-button', text: 'Original')
-          expect(page).not_to have_selector('a.default-button', text: '320')
-          expect(page).not_to have_selector('a.default-button', text: '640')
-          expect(page).not_to have_selector('a.default-button', text: '1280')
-          expect(page).not_to have_selector('a.danger-button', text: 'Delete')
+          expect(page).to have_no_css("img[src*='test.jpg']")
+          expect(page).to have_no_css('a.default-button', text: 'Original')
+          expect(page).to have_no_css('a.default-button', text: '320')
+          expect(page).to have_no_css('a.default-button', text: '640')
+          expect(page).to have_no_css('a.default-button', text: '1280')
+          expect(page).to have_no_css('a.danger-button', text: 'Delete')
         end
       end
     end
