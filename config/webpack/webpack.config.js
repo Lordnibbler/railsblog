@@ -4,15 +4,6 @@ const baseWebpackConfig = generateWebpackConfig();
 const TerserPlugin = require('terser-webpack-plugin');
 
 const options = {
-  // entry: {
-  //   application: './app/javascript/packs/application.js',
-  //   // other entry points...
-  // },
-  // output: {
-  //   path: path.resolve(__dirname, '../../public/packs'),
-  //   filename: '[name].js',
-  //   publicPath: '/packs/', // Ensure the public path is set correctly
-  // },
   module: {
     rules: [
       {
@@ -23,24 +14,15 @@ const options = {
         }
       },
       {
-        test: /\.(png|jpe?g|gif|svg|mp4)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: "[name].[ext]",
-              outputPath: (url, resourcePath, context) => {
-                if (/\.mp4$/.test(resourcePath)) {
-                  return `video/${url}`;
-                }
-                return `images/${url}`;
-              },
-              publicPath: (url, resourcePath, context) => {
-                if (/\.mp4$/.test(resourcePath)) {
-                  return `/packs/video/${url}`;
-                }
-                return `/packs/images/${url}`;
-              },
+              name: "[path][name].[ext]",
+              context: path.resolve(__dirname, '../../app/javascript/images'), // Base directory for images
+              outputPath: 'images/',
+              publicPath: '/packs/images/',
             },
           },
           {
@@ -51,6 +33,20 @@ const options = {
                 quality: 65,
               },
               // other options...
+            },
+          },
+        ],
+      },
+      {
+        test: /\.mp4$/i,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: "[path][name].[ext]",
+              context: path.resolve(__dirname, '../../app/javascript/videos'), // Base directory for videos
+              outputPath: 'videos/',
+              publicPath: '/packs/videos/',
             },
           },
         ],
