@@ -68,16 +68,21 @@ const options = {
     ],
   },
   optimization: {
+    // Tree Shaking: Ensure that your project is set up to remove unused code.
     usedExports: true,
+
+    // Split your code into smaller chunks that can be loaded on demand.
     splitChunks: {
       chunks: 'all',
     },
+
+    // Minify your JavaScript files.
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-  plugins: [
-    // other plugins...
-  ],
+  plugins: [],
+
+  // Use Production Mode: Ensure webpack is running in production mode in prod!
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 };
 
