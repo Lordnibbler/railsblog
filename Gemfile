@@ -29,8 +29,8 @@ gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'shakapacker', '~> 8'
 gem 'webrick' # web server for capybara and local dev
+gem 'jsbundling-rails'
 
 group :development do
   gem 'better_errors' # improved error pages

@@ -1,9 +1,15 @@
 const path = require('path');
-const { generateWebpackConfig, merge } = require('shakapacker');
-const baseWebpackConfig = generateWebpackConfig();
 const TerserPlugin = require('terser-webpack-plugin');
 
-const options = {
+// Use the asset pipeline for images and other static assets.
+// This file configures Webpack to output js, css, images, videos to a directory that the asset pipeline can serve
+// That directory is app/assets/builds
+module.exports = {
+  entry: './app/javascript/packs/application.js',
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, './app/assets/builds'),
+  },
   module: {
     rules: [
       {
@@ -20,7 +26,7 @@ const options = {
             loader: 'file-loader',
             options: {
               name: "[path][name].[ext]",
-              context: path.resolve(__dirname, '../../app/javascript/images'), // Base directory for images
+              context: path.resolve(__dirname, './app/javascript/images'),
               outputPath: 'images/',
               publicPath: '/packs/images/',
             },
@@ -34,7 +40,7 @@ const options = {
             loader: 'file-loader',
             options: {
               name: "[path][name].[ext]",
-              context: path.resolve(__dirname, '../../app/javascript/videos'), // Base directory for videos
+              context: path.resolve(__dirname, './app/javascript/videos'),
               outputPath: 'videos/',
               publicPath: '/packs/videos/',
             },
@@ -55,25 +61,46 @@ const options = {
           },
         ],
       },
+      {
+        test: /\.css$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
+        ],
+      },
     ],
   },
   optimization: {
-    // Tree Shaking: Ensure that your project is set up to remove unused code.
     usedExports: true,
-
-    // Split your code into smaller chunks that can be loaded on demand.
     splitChunks: {
       chunks: 'all',
+      name: false, // Disable the default name generation
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+          filename: 'common.js', // Custom filename for common chunks
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          filename: 'vendors.js', // Custom filename for vendor chunks
+        },
+      },
     },
-
-    // Minify your JavaScript files.
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-  plugins: [],
-
-  // Use Production Mode: Ensure webpack is running in production mode in prod!
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
 };
-
-module.exports = merge({}, baseWebpackConfig, options);

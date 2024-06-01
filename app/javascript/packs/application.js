@@ -9,7 +9,7 @@
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
+// them with the image_tag helper in views (e.g <%= image_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
 //
 const images = require.context('../images', true);
@@ -21,8 +21,8 @@ const videoPath = (name) => videos(name, true);
 
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-import "application.css";
-import "_pygment_monokai.sass";
+import "./application.css";
+import "./_pygment_monokai.sass";
 import * as Turbo from "@hotwired/turbo";
 
 // temporarily disable turbo until we can resolve page scrolling bug on iPadOS
