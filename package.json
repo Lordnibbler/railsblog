@@ -31,7 +31,6 @@
     "expose-loader": "^4.1.0",
     "file-loader": "^6.2.0",
     "fitvids": "1.0.2",
-    "image-webpack-loader": "^8.1.0",
     "imagesloaded": "4.1.4",
     "infinite-scroll": "4.0.0",
     "jquery": "^3.7.0",

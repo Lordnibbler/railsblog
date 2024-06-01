@@ -25,16 +25,6 @@ const options = {
               publicPath: '/packs/images/',
             },
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65,
-              },
-              // other options...
-            },
-          },
         ],
       },
       {
