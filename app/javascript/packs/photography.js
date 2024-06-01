@@ -39,7 +39,6 @@ const createInfiniteScroll = (elem, masonry) => {
 
 // build the Photoswipe gallery from the provided CSS selector
 const initPhotoSwipeFromDOM = function(gallerySelector) {
-
     // parse slide data (url, title, size ...) from DOM elements
     // (children of gallerySelector)
     var parseThumbnailElements = function(el) {
