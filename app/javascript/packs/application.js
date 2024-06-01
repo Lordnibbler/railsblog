@@ -44,3 +44,4 @@ require('@client-side-validations/client-side-validations');
 import './custom';
 import './photography';
 import './contact-me';
+import './blog';
