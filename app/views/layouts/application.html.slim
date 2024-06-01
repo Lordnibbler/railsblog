@@ -58,8 +58,9 @@ html[lang="en"]
 
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
     / = javascript_include_tag 'packs/application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
-    = javascript_include_tag asset_path('packs/main.js'), 'data-turbo-track': 'reload'
+    = javascript_include_tag asset_path('packs/photoswipe.js'), 'data-turbo-track': 'reload'
     = javascript_include_tag asset_path('packs/vendors.js'), 'data-turbo-track': 'reload'
+    = javascript_include_tag asset_path('packs/main.js'), 'data-turbo-track': 'reload'
 
     = yield :head
     = csrf_meta_tags

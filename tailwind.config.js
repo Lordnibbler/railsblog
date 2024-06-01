@@ -20,8 +20,7 @@ module.exports = {
         },
         extend: {
             backgroundImage: {
-                // 'work-bg-light': "url('~../images/home/experience-figure.svg')",
-                // 'work-bg-dark': "url('~../images/home/experience-figure-dark.svg')",
+                // Reference the images before they are processed by Webpack
                 'work-bg-light': "url('/app/javascript/images/home/experience-figure.svg')",
                 'work-bg-dark': "url('/app/javascript/images/home/experience-figure-dark.svg')",
             },
@@ -45,8 +44,7 @@ module.exports = {
                 "grey-60": "#edebf6",
                 "grey-70": "#d8d8d8",
 
-                // dark scheme defined at: https://www.color-hex.com/color/5540af
-                "primary-10": "#080611", // closer to black
+                "primary-10": "#080611",
                 "primary-20": "#110c23",
                 "primary-30": "#191334",
                 "primary-40": "#221946",
@@ -54,7 +52,7 @@ module.exports = {
                 "primary-60": "#332669",
                 "primary-70": "#3b2c7a",
                 "primary-80": "#44338c",
-                "primary-90": "#4c399d", // closer to primary
+                "primary-90": "#4c399d",
                 "primary-100": "#5540af",
                 "primary-200": "#6653b7",
                 "primary-300": "#7666bf",
@@ -64,11 +62,11 @@ module.exports = {
                 "primary-700": "#bbb2df",
                 "primary-800": "#ccc5e7",
                 "primary-900": "#ddd8ef",
-                "primary-1000": "#eeebf7", // closer to white
-                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",       // primary
-                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",         // #412f90
-                "hero-gradient-dark-from": "rgba(42, 32, 87, 0.95)",   // #080611
-                "hero-gradient-dark-to": "rgba(42, 32, 87, 0.70)",     // #2a2057
+                "primary-1000": "#eeebf7",
+                "hero-gradient-from": "rgba(85, 64, 174, 0.95)",
+                "hero-gradient-to": "rgba(65, 47, 144, 0.70)",
+                "hero-gradient-dark-from": "rgba(42, 32, 87, 0.95)",
+                "hero-gradient-dark-to": "rgba(42, 32, 87, 0.70)",
                 "cta-gradient-to": "rgba(65, 47, 144, 0.85)",
                 "blog-gradient-from": "#8f9098",
                 "blog-gradient-to": "#222222"

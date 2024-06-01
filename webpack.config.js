@@ -20,31 +20,17 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp|bmp|tiff)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: "[path][name].[ext]",
-              context: path.resolve(__dirname, './app/javascript/images'),
-              outputPath: 'images/',
-              publicPath: '/packs/images/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name][ext]',
+        },
       },
       {
         test: /\.mp4$/i,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: "[path][name].[ext]",
-              context: path.resolve(__dirname, './app/javascript/videos'),
-              outputPath: 'videos/',
-              publicPath: '/packs/videos/',
-            },
-          },
-        ],
+        type: 'asset/resource',
+        generator: {
+          filename: 'videos/[name][ext]',
+        },
       },
       {
         test: /\.css$/i,
@@ -54,44 +40,10 @@ module.exports = {
           'postcss-loader',
         ],
       },
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     'css-loader',
-      //     'postcss-loader',
-      //     'sass-loader',
-      //   ],
-      // },
-      // {
-      //   test: /\.sass$/,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     {
-      //       loader: 'sass-loader',
-      //       options: {
-      //         sassOptions: {
-      //           indentedSyntax: true, // using indented syntax for .sass files
-      //         },
-      //       },
-      //     },
-      //   ],
-      // },
-
-      // {
-      //   test: /\.s[ac]ss$/i,
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     'sass-loader'
-      //   ],
-      // },
-
       {
         test: /\.s[ac]ss$/i,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -110,23 +62,23 @@ module.exports = {
   },
   optimization: {
     usedExports: true,
-    splitChunks: {
-      chunks: 'all',
-      name: false,
-      cacheGroups: {
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-          filename: 'common.js',
-        },
-        vendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-          filename: 'vendors.js',
-        },
-      },
-    },
+    // splitChunks: {
+    //   chunks: 'all',
+    //   name: false,
+    //   cacheGroups: {
+    //     default: {
+    //       minChunks: 2,
+    //       priority: -20,
+    //       reuseExistingChunk: true,
+    //       filename: 'common.js',
+    //     },
+    //     vendors: {
+    //       test: /[\\/]node_modules[\\/]/,
+    //       priority: -10,
+    //       filename: 'vendors.js',
+    //     },
+    //   },
+    // },
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
@@ -138,7 +90,8 @@ module.exports = {
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   resolve: {
     alias: {
-      images: path.resolve(__dirname, 'public/packs/images'),
+      images: path.resolve(__dirname, 'app/javascript/images'),
+      // images: path.resolve(__dirname, 'public/packs/images'),
     },
   },
 };
