@@ -2,6 +2,7 @@ const path = require('path');
 const { generateWebpackConfig, merge } = require('shakapacker');
 const baseWebpackConfig = generateWebpackConfig();
 const TerserPlugin = require('terser-webpack-plugin');
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
 const options = {
   module: {
@@ -25,16 +26,16 @@ const options = {
               publicPath: '/packs/images/',
             },
           },
-          {
-            loader: 'image-webpack-loader',
-            options: {
-              mozjpeg: {
-                progressive: true,
-                quality: 65,
-              },
-              // other options...
-            },
-          },
+          // {
+          //   loader: 'image-webpack-loader',
+          //   options: {
+          //     mozjpeg: {
+          //       progressive: true,
+          //       quality: 65,
+          //     },
+          //     // other options...
+          //   },
+          // },
         ],
       },
       {
@@ -78,7 +79,48 @@ const options = {
 
     // Minify your JavaScript files.
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin(),
+      new ImageMinimizerPlugin({
+        test: /\.(jpe?g|png|gif|svg)$/i, // Exclude base64-encoded images
+        exclude: /data:image\/.*;base64,/,
+        minimizer: {
+          implementation: ImageMinimizerPlugin.imageminMinify,
+          options: {
+            // Lossless optimization with custom option
+            // Feel free to experiment with options for better result for you
+            plugins: [
+              ["gifsicle", { interlaced: true }],
+              ["jpegtran", { progressive: true }],
+              ["optipng", { optimizationLevel: 5 }],
+              // Svgo configuration here https://github.com/svg/svgo#configuration
+              [
+                "svgo",
+                {
+                  plugins: [
+                    {
+                      name: "preset-default",
+                      params: {
+                        overrides: {
+                          removeViewBox: false,
+                          addAttributesToSVGElement: {
+                            params: {
+                              attributes: [
+                                { xmlns: "http://www.w3.org/2000/svg" },
+                              ],
+                            },
+                          },
+                        },
+                      },
+                    },
+                  ],
+                },
+              ],
+            ],
+          },
+        },
+      }),
+    ],
   },
   plugins: [],
 
