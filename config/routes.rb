@@ -26,22 +26,22 @@ Rails.application.routes.draw do
   # GET /2015/01/31/post-title
   # # => 301 redirect to /blog/2015/01/31/post-title
   #
-  # get '/:year/:month/:day/:id', to: redirect('/blog/%{year}/%{month}/%{day}/%{id}')
-  # namespace :blog do
-  #   #
-  #   # GET /blog
-  #   # GET /blog/:name-of-the-article
-  #   #
-  #   resources :posts, path: '', only: [:index, :show]
+  get '/:year/:month/:day/:id', to: redirect('/blog/%{year}/%{month}/%{day}/%{id}')
+  namespace :blog do
+    #
+    # GET /blog
+    # GET /blog/:name-of-the-article
+    #
+    resources :posts, path: '', only: [:index, :show]
 
-  #   #
-  #   # GET /blog/2015/01/31/post-title
-  #   # @note
-  #   #   this route introduces an issue where you can access a Blog::Post with any year/month/day
-  #   #   params as long as you have the correct :id
-  #   #
-  #   get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
-  # end
+    #
+    # GET /blog/2015/01/31/post-title
+    # @note
+    #   this route introduces an issue where you can access a Blog::Post with any year/month/day
+    #   params as long as you have the correct :id
+    #
+    get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
+  end
 
   #
   # custom controller for HighVoltage static pages

@@ -91,4 +91,6 @@ Rails.application.configure do
 
   # Update the activestorage default route from "/rails/active_storage" to something without the framework in it
   config.active_storage.routes_prefix = "/files"
+
+  config.assets.compile = false
 end

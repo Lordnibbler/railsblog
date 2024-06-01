@@ -16,11 +16,11 @@ html[lang="en"]
     meta[itemprop="name" content="Radler Designs - benradler.com"]
     meta[itemprop="url" content="#{root_url}"]
     meta[itemprop="description" content="Radler Designs - Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
-    meta[itemprop="thumbnailUrl" content="#{image_url("images/layout/social.jpg")}"]
-    meta[itemprop="image" content="#{image_url("images/layout/social.jpg")}"]
-    link[rel="image_src" href="#{image_url("images/layout/social.jpg")}"]
+    meta[itemprop="thumbnailUrl" content="#{asset_url("packs/images/layout/social.jpg")}"]
+    meta[itemprop="image" content="#{asset_url("packs/images/layout/social.jpg")}"]
+    link[rel="image_src" href="#{asset_url("packs/images/layout/social.jpg")}"]
     link[rel="canonical" href="#{root_url}"]
-    link[rel="icon" type="image/png" href="#{image_url("images/layout/favicon.png")}"]
+    link[rel="icon" type="image/png" href="#{asset_url("packs/images/layout/favicon.png")}"]
 
     - # for browsers/devices which customize UI based on theme
     meta[name="theme-color" content="#5540af" media="(prefers-color-scheme: light)"]
@@ -53,10 +53,13 @@ html[lang="en"]
     meta[name="twitter:card" content="summary_large_image"]
 
     - # staging/production require this
-    = stylesheet_link_tag 'application', 'photography', 'contact-me', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag asset_path('packs/main.css'), 'data-turbo-track': 'reload'
+    / = stylesheet_link_tag 'packs/main.css', 'photography', 'contact-me', 'data-turbo-track': 'reload'
 
     - # this is the webpack insertion point, including ALL tailwind CSS imported by application.js...so confusing
-    = javascript_include_tag 'application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
+    / = javascript_include_tag 'packs/application', 'photography', 'contact-me', 'blog', 'data-turbo-track': 'reload'
+    = javascript_include_tag asset_path('packs/main.js'), 'data-turbo-track': 'reload'
+    = javascript_include_tag asset_path('packs/vendors.js'), 'data-turbo-track': 'reload'
 
     = yield :head
     = csrf_meta_tags

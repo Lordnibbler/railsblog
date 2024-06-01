@@ -1,14 +1,13 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-// Use the asset pipeline for images and other static assets.
-// This file configures Webpack to output js, css, images, videos to a directory that the asset pipeline can serve
-// That directory is app/assets/builds
 module.exports = {
   entry: './app/javascript/packs/application.js',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, './app/assets/builds'),
+    path: path.resolve(__dirname, 'public/packs'),
+    publicPath: '/packs/',
   },
   module: {
     rules: [
@@ -20,7 +19,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpe?g|gif|svg|webp|bmp|tiff)$/i,
         use: [
           {
             loader: 'file-loader',
@@ -48,34 +47,63 @@ module.exports = {
         ],
       },
       {
-        test: /\.module\.s(a|c)ss$/i,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          {
-            loader: "sass-loader",
-            options: {
-              implementation: require("sass"),
-            },
-          },
-        ],
-      },
-      {
         test: /\.css$/i,
         use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
         ],
       },
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     MiniCssExtractPlugin.loader,
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'sass-loader',
+      //   ],
+      // },
+      // {
+      //   test: /\.sass$/,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     {
+      //       loader: 'sass-loader',
+      //       options: {
+      //         sassOptions: {
+      //           indentedSyntax: true, // using indented syntax for .sass files
+      //         },
+      //       },
+      //     },
+      //   ],
+      // },
+
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     'sass-loader'
+      //   ],
+      // },
+
       {
         test: /\.s[ac]ss$/i,
         use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "sass-loader",
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require('autoprefixer')
+                ],
+              },
+            },
+          },
+          'sass-loader'
         ],
       },
     ],
@@ -84,23 +112,33 @@ module.exports = {
     usedExports: true,
     splitChunks: {
       chunks: 'all',
-      name: false, // Disable the default name generation
+      name: false,
       cacheGroups: {
         default: {
           minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
-          filename: 'common.js', // Custom filename for common chunks
+          filename: 'common.js',
         },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
-          filename: 'vendors.js', // Custom filename for vendor chunks
+          filename: 'vendors.js',
         },
       },
     },
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
+  ],
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  resolve: {
+    alias: {
+      images: path.resolve(__dirname, 'public/packs/images'),
+    },
+  },
 };
