@@ -23,8 +23,8 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: (pathData) => {
-            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript/images'), pathData.filename);
-            return `images/${relativePath}`;
+            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript'), pathData.filename);
+            return `images/${relativePath.replace(/^images\//, '')}`;
           },
         },
       },
@@ -33,8 +33,8 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: (pathData) => {
-            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript/videos'), pathData.filename);
-            return `videos/${relativePath}`;
+            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript'), pathData.filename);
+            return `videos/${relativePath.replace(/^videos\//, '')}`;
           },
         },
       },
@@ -68,23 +68,6 @@ module.exports = {
   },
   optimization: {
     usedExports: true,
-    // splitChunks: {
-    //   chunks: 'all',
-    //   name: false,
-    //   cacheGroups: {
-    //     default: {
-    //       minChunks: 2,
-    //       priority: -20,
-    //       reuseExistingChunk: true,
-    //       filename: 'common.js',
-    //     },
-    //     vendors: {
-    //       test: /[\\/]node_modules[\\/]/,
-    //       priority: -10,
-    //       filename: 'vendors.js',
-    //     },
-    //   },
-    // },
     minimize: true,
     minimizer: [new TerserPlugin()],
   },

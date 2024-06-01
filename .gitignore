@@ -32,6 +32,7 @@ public/sitemap*
 
 /public/packs
 /public/packs-test
+/public/node_modules
 /node_modules
 /yarn-error.log
 yarn-debug.log*
