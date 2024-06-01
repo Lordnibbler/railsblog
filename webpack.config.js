@@ -22,14 +22,20 @@ module.exports = {
         test: /\.(png|jpe?g|gif|svg|webp|bmp|tiff)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name][ext]',
+          filename: (pathData) => {
+            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript/images'), pathData.filename);
+            return `images/${relativePath}`;
+          },
         },
       },
       {
         test: /\.mp4$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'videos/[name][ext]',
+          filename: (pathData) => {
+            const relativePath = path.relative(path.resolve(__dirname, 'app/javascript/videos'), pathData.filename);
+            return `videos/${relativePath}`;
+          },
         },
       },
       {
@@ -91,7 +97,6 @@ module.exports = {
   resolve: {
     alias: {
       images: path.resolve(__dirname, 'app/javascript/images'),
-      // images: path.resolve(__dirname, 'public/packs/images'),
     },
   },
 };
