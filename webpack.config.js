@@ -1,11 +1,20 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './app/javascript/packs/application.js',
+  entry: {
+    application: './app/javascript/packs/application.js',
+    active_admin: [
+      './app/javascript/packs/active_admin.js',
+      './app/javascript/packs/active_admin.scss'
+    ]
+  },
   output: {
-    filename: '[name].js',
+    filename: (pathData) => {
+      return pathData.chunk.name === 'active_admin' ? '../javascripts/[name].js' : '[name].js';
+    },
     path: path.resolve(__dirname, 'public/packs'),
     publicPath: '/packs/',
   },
@@ -16,6 +25,41 @@ module.exports = {
         loader: 'expose-loader',
         options: {
           exposes: ['$', 'jQuery']
+        }
+      },
+      {
+        test: require.resolve('jquery-ui/ui/widget'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$.widget']
+        }
+      },
+      {
+        test: require.resolve('jquery-ui/ui/widgets/datepicker'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$.ui.datepicker']
+        }
+      },
+      {
+        test: require.resolve('jquery-ui/ui/widgets/dialog'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$.ui.dialog']
+        }
+      },
+      {
+        test: require.resolve('jquery-ui/ui/widgets/sortable'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$.ui.sortable']
+        }
+      },
+      {
+        test: require.resolve('jquery-ui/ui/widgets/tabs'),
+        loader: 'expose-loader',
+        options: {
+          exposes: ['$.ui.tabs']
         }
       },
       {
@@ -51,16 +95,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  require('autoprefixer')
-                ],
-              },
-            },
-          },
+          'postcss-loader',
           'sass-loader'
         ],
       },
@@ -72,8 +107,15 @@ module.exports = {
     minimizer: [new TerserPlugin()],
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery',
+    }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: (pathData) => {
+        return pathData.chunk.name === 'active_admin' ? '../stylesheets/[name].css' : '[name].css';
+      },
     }),
   ],
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',

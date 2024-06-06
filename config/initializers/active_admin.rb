@@ -1,3 +1,13 @@
+# config/initializers/active_admin_assets.rb
+
+# Add a mock assets configuration for ActiveAdmin to not blow up the rails server
+# TODO: remove this if activeadmin ever stops being dumb and supports webpack natively
+# without the need for asset pipeline serving of assets
+Rails.application.config.assets = ActiveSupport::OrderedOptions.new
+Rails.application.config.assets.precompile = []
+Rails.application.config.assets.paths = []
+Rails.application.config.assets.prefix = "/assets"
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
@@ -5,9 +15,6 @@ ActiveAdmin.setup do |config|
   # for each of the active admin pages.
   #
   config.site_title = 'benradler.com'
-
-  # instead of sprockets (rails 6 default)
-  config.use_webpacker = true
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
