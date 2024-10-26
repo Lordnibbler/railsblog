@@ -19,7 +19,7 @@ jobs:
       RAILS_ENV: test
       NODE_ENV: test
     docker:
-      - image: cimg/ruby:3.3.0
+      - image: cimg/ruby:3.3.5
       - image: 'cimg/base:stable'
     steps:
       - checkout
@@ -33,7 +33,7 @@ jobs:
   test:
     parallelism: 3
     docker:
-      - image: cimg/ruby:3.3.0-node
+      - image: cimg/ruby:3.3.5-node
       - image: cimg/node:18.17-browsers
       - image: cimg/postgres:14.1
         environment:
