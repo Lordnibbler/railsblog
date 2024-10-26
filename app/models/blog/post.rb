@@ -50,6 +50,6 @@ class Blog::Post < ApplicationRecord
   end
 
   def previous
-    self.user.posts.published.where('id < ? ', id).last
+    self.user.posts.published.where(id: ...id).last
   end
 end
