@@ -68,6 +68,11 @@ Rails.application.routes.draw do
   #
   get 'sitemap.xml.gz' => redirect('https://benradler-sitemap-production.s3.amazonaws.com/sitemaps/sitemap.xml.gz')
 
+  #
+  # /resume gdoc redirect
+  #
+  get '/resume' => redirect('https://docs.google.com/document/d/1j8uZ5G3rY1xxy1xJERt3SFhwicP7zzDTdofY8hLLmM0')
+  get '/resume-pdf' => redirect('/resume/downloads/radler-resume.pdf')
 
   # CDN routes for ActiveStorage
   # https://edgeguides.rubyonrails.org/active_storage_overview.html#putting-a-cdn-in-front-of-active-storage
