@@ -34,7 +34,7 @@ jobs:
     parallelism: 3
     docker:
       - image: cimg/ruby:3.3.8-node
-      - image: cimg/node:18.17-browsers
+      - image: cimg/node:22.15.0-browsers
       - image: cimg/postgres:14.1
         environment:
           POSTGRES_USER: benradler
@@ -55,7 +55,7 @@ jobs:
       - ruby/install-deps
       - node/install:
           install-yarn: true
-          node-version: '18.17'
+          node-version: '22.15.0'
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
