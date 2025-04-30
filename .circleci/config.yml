@@ -19,7 +19,8 @@ jobs:
       RAILS_ENV: test
       NODE_ENV: test
     docker:
-      - image: cimg/ruby:3.3.5
+      # https://hub.docker.com/r/cimg/ruby/tags
+      - image: cimg/ruby:3.4.3
       - image: 'cimg/base:stable'
     steps:
       - checkout

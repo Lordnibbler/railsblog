@@ -164,6 +164,7 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
+    ffi (1.17.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-arm-linux-gnu)
@@ -610,7 +611,7 @@ DEPENDENCIES
   webrick
 
 RUBY VERSION
-   ruby 3.3.5p100
+   ruby 3.4.3p32
 
 BUNDLED WITH
-   2.5.22
+   2.6.8
