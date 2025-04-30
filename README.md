@@ -1,5 +1,5 @@
 # benradler.com
-This is a Ruby on Rails 7 app. It does the following:
+This is a Ruby on Rails 8 app. It does the following:
 * displays a portfolio homepage with personal information and work history - [link](https://benradler.com)
 * offers a contact form - [link](https://benradler.com/#contact)
 * offers a newsletter signup form
@@ -32,6 +32,9 @@ $ ./bin/shakapacker-dev-server
 
 # start the guard watcher for tests and code formatting
 $ guard
+
+# open the browser
+$ open "http://localhost:3000"
 ```
 
 ## Architecture

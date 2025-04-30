@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '3.3.5'
-gem 'rails', '~> 7.1'
+ruby '3.3.8'
+gem 'rails', '~> 8'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
