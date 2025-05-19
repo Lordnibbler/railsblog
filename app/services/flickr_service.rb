@@ -180,7 +180,7 @@ class FlickrService
         photo_thumbnail: get_photo_size(sizes, 'Thumbnail'),
         photo_small: get_photo_size(sizes, 'Small 400'),
         photo_medium: get_photo_size(sizes, 'Medium 800'),
-        photo_large: get_photo_size(sizes, 'Large 1600'),
+        photo_large: get_photo_size(sizes, 'Large'), # 'Large 1600' is no longer available with free flickr plan
         created_at: get_photo_response.dateuploaded,
         url: Flickr.url_photopage(photo),
         description: get_photo_response.description,
