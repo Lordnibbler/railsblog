@@ -3,7 +3,7 @@ require 'aws-sdk-s3'
 SitemapGenerator::Interpreter.send :include, BlogHelper
 
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = 'https://benradler.com'
+SitemapGenerator::Sitemap.default_host = 'https://benradler.com/'
 
 # pick a place safe to write the files
 SitemapGenerator::Sitemap.public_path = 'tmp/'
