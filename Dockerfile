@@ -36,6 +36,13 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
 COPY package.json yarn.lock ./
 RUN yarn install
 
+# Tell Yarn "no, really install devDependencies" so that webpack & friends exist:
+ENV YARN_PRODUCTION=false
+RUN yarn install --frozen-lockfile
+# (now Yarn will install everything)
+ENV YARN_PRODUCTION=true
+
+
 # 5) Copy the rest of the app
 COPY . .
 
