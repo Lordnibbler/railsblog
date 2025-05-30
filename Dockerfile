@@ -48,5 +48,10 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
 
 EXPOSE 3000
 
-# 9) Launch Puma
-CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+# 9) Copy in the entrypoint script (either run release tasks or run the rails server)
+COPY entrypoint.sh /usr/bin/entrypoint.sh
+RUN chmod +x /usr/bin/entrypoint.sh
+EXPOSE 3000
+
+# 10) run it
+ENTRYPOINT ["entrypoint.sh"]
