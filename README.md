@@ -14,8 +14,11 @@ Follow these instructions to get the app running locally.
 This automatically restores the raw sql dump from `db/init/heroku_dump.sql` onto the database on first start.
 
 ```sh
-# start docker
-$ docker-compose up -d
+# start db container inside docker
+$ docker-compose up -d db
+
+# or if the container is already created
+$ docker-compose start db
 
 # this will stop & remove the container but leave the db data volume intact.
 $ docker-compose down
