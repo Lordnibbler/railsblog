@@ -47,6 +47,8 @@ EXPOSE 3000
 # 9) Copy in the entrypoint script (either run release tasks or run the rails server)
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
+COPY release-tasks.sh /usr/bin/release-tasks.sh
+RUN chmod +x /usr/bin/release-tasks.sh
 EXPOSE 3000
 
 # 10) run it
