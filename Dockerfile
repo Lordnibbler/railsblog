@@ -5,6 +5,7 @@ FROM ruby:${RUBY_VERSION}
 RUN apt-get update -qq \
  && apt-get install -y --no-install-recommends \
       curl gnupg build-essential postgresql-client \
+      chromium chromium-driver \
  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
  && apt-get install -y --no-install-recommends nodejs \
  && rm -rf /var/lib/apt/lists/*
@@ -18,6 +19,11 @@ WORKDIR /app
 #    `--build-arg RAILS_ENV=development` if you want local-dev.
 ARG RAILS_ENV=production
 ENV RAILS_ENV=${RAILS_ENV}
+
+ENV RAILS_SERVE_STATIC_FILES=true
+# tell Webdrivers / Selenium where to find Chromium
+ENV CHROME_BIN=/usr/bin/chromium
+ENV WEB_DRIVER_CHROME_DRIVER=/usr/bin/chromedriver
 
 # 4) Ensure Rails will serve compiled assets
 ENV RAILS_SERVE_STATIC_FILES=true
