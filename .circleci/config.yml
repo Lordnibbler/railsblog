@@ -85,6 +85,14 @@ jobs:
       #     name: Compile Shakapacker
       #     command: docker-compose run --rm webpack bin/shakapacker-dev-server --help
 
+      - run:
+          name: Compile Shakapacker (via Rails task)
+          command: |
+            docker-compose run --rm \
+              -e RAILS_ENV=test \
+              web \
+              bin/rails shakapacker:compile
+
       # run RSpec
       - run:
           name: Run RSpec
