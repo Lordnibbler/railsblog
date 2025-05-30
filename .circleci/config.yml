@@ -76,22 +76,11 @@ jobs:
           command: docker-compose up -d db && sleep 10
 
       # wait for it to be ready
-      # - run:
-      #     name: Wait for Postgres
-      #     command: |
-      #       docker run --rm --network container:$(docker-compose ps -q db) \
-      #         appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
-
-      # setup the test db
-      # - run:
-      #     name: DB setup
-      #     command: |
-      #       docker-compose run --rm web bash -lc "bundle exec rails db:setup"
-
-      # compile JS packs
-      # - run:
-      #     name: Compile Shakapacker
-      #     command: docker-compose run --rm webpack bin/shakapacker-dev-server --help
+      - run:
+          name: Wait for Postgres
+          command: |
+            docker run --rm --network container:$(docker-compose ps -q db) \
+              appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
 
       - run:
           name: Compile Shakapacker (via Rails task)
@@ -111,13 +100,13 @@ jobs:
             web \
             bundle exec rspec
 
-      # # optional: lint, security
-      # - run:
-      #     name: RuboCop
-      #     command: docker-compose run --rm web bundle exec rubocop
-      # - run:
-      #     name: Brakeman
-      #     command: docker-compose run --rm web bundle exec brakeman
+      # optional: lint, security
+      - run:
+          name: RuboCop
+          command: docker-compose run --rm web bundle exec rubocop
+      - run:
+          name: Brakeman
+          command: docker-compose run --rm web bundle exec brakeman
 
       # tear everything down
       - run:
