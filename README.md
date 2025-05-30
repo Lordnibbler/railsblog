@@ -101,6 +101,10 @@ No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docke
 To deploy to Heroku via containers:
 
 ```sh
+# authenticate
+heroku login
+heroku container:login
+
 # creates the container and pushes it to the heroku registry
 heroku container:push web -a benradler
 
@@ -111,7 +115,7 @@ heroku container:push web --arg RAILS_ENV=production -a benradler
 heroku container:release web -a benradler
 
 # or all in one command:
-heroku container:push web -a benradler-staging && heroku container:release web -a benradler-staging
+heroku login && heroku container:login && heroku container:push web -a benradler && heroku container:release web -a benradler
 ```
 
 ### Debugging
