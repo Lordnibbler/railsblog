@@ -7,7 +7,60 @@ This is a Ruby on Rails 8 app. It does the following:
 * fetches a Flickr.com feed of my photos and renders them using photoswipe.js - [link](https://benradler.com/photography)
 
 ## Development
+
 Follow these instructions to get the app running locally.
+
+### Start Everything with docker-compose
+
+```sh
+# start everything
+docker-compose up
+
+# start everything, detached from terminal
+docker-compose up -d
+
+# only build the docker containers
+docker-compose build
+```
+
+### Start Postgres with docker-compose
+
+This automatically restores the raw sql dump from `db/init/heroku_dump.sql` onto the database on first start.
+
+```sh
+# start db container inside docker
+$ docker-compose up -d db
+
+# or if the container is already created
+$ docker-compose start db
+
+# this will stop & remove the container but leave the db data volume intact.
+$ docker-compose down
+
+# this will stop & remove the container AND remove any volumes declared in docker-compose.yml,
+# effectively destroying the db
+$ docker-compose down -v
+```
+
+If you wish to generate an updated heroku sql dump:
+
+```sh
+# get the database url
+$ $DB_URL=`heroku config:get DATABASE_URL --app benradler`
+
+# create a dump file and copy it to pwd
+$ docker run --rm \
+  -v "$(pwd)":/backups \
+  postgres:17.4 \
+  pg_dump \
+    --no-owner \
+    --no-acl \
+    --format=plain \
+    --file=/backups/heroku_dump.sql \
+    "$DB_URL"
+```
+
+### Start rails server and webpack-dev-server without docker
 
 ```sh
 # install dependencies
@@ -16,9 +69,6 @@ brew bundle
 # create a YAML file to stub environment variables
 $ mv config/env.yml.example config/env.yml
 $ vi config/env.yml
-
-# set up database
-$ rails db:setup
 
 # install dependencies
 $ bundle
@@ -35,6 +85,57 @@ $ guard
 
 # open the browser
 $ open "http://localhost:3000"
+```
+
+## Deployment
+
+This app is deployed to heroku via a docker container, using the `container` stack.
+
+No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docker-images-heroku-yml/). Heroku will honor this manifest instead. On each `container:release`, Heroku will run [`entrypoint.sh`](./entrypoint.sh):
+
+1. Pull the web image you just pushed.
+2. Run bundle exec rails db:migrate.
+3. Run bundle exec rails cache_warmer:flickr.
+4. Start web dyno with bundle exec puma -C config/puma.rb.
+
+To deploy to Heroku via containers:
+
+```sh
+# authenticate
+heroku login
+heroku container:login
+
+# creates the container and pushes it to the heroku registry
+heroku container:push web -a benradler
+
+# NOTE: you can override env vars if needed like so:
+heroku container:push web --arg RAILS_ENV=production -a benradler
+
+# releases this particular container onto the server
+heroku container:release web -a benradler
+
+# or all in one command:
+heroku login && heroku container:login && heroku container:push web -a benradler && heroku container:release web -a benradler
+```
+
+### Debugging
+
+List recent release via:
+
+```sh
+heroku releases -a benradler
+```
+
+See any output from some release:
+
+```sh
+heroku releases:output <replace with release version>
+```
+
+Tail release logs:
+
+```sh
+heroku logs --tail --dyno release --app benradler
 ```
 
 ## Architecture
