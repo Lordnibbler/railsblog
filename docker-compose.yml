@@ -21,5 +21,39 @@ services:
     ports:
       - "5432:5432"
 
+  # Rails web server
+  web:
+    build: .
+    command: bash -lc "bundle exec rails s -b 0.0.0.0"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - webpack
+    environment:
+      DATABASE_URL: postgres://postgres:password@db:5432/benradler-development
+      RAILS_ENV: development
+      # so rails knows to bind assets host
+      HOST: 0.0.0.0
+
+      SHAKAPACKER_DEV_SERVER_HOST: webpack
+      SHAKAPACKER_DEV_SERVER_PORT: 3035
+      SHAKAPACKER_DEV_SERVER_PUBLIC: localhost:3035
+
+  # Shakapacker webpack-dev-server
+  webpack:
+    build: .
+    # command: bash -lc "bin/shakapacker-dev-server --host 0.0.0.0"
+    command: bash -lc "bin/shakapacker-dev-server"
+    volumes:
+      - .:/app
+    ports:
+      - "3035:3035"
+    environment:
+      RAILS_ENV: development
+      SHAKAPACKER_DEV_SERVER_HOST: "0.0.0.0"
+      SHAKAPACKER_DEV_SERVER_PORT: "3035"
 volumes:
   db_data:
