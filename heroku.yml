@@ -6,7 +6,7 @@ build:
 release:
   # this will be run after the release image is deployed
   command:
-    - echo '---- Release phase starting ----'
+    - echo '---- Release phase starting via heroku.yml ----'
     - bundle exec rails db:migrate
     - echo 'db:migrate finished'
     - bundle exec rails cache_warmer:flickr
