@@ -17,7 +17,8 @@ services:
     environment:
       POSTGRES_USER:     postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB:       benradler-development
+      # interpolates RAILS_ENV (defaults to "development" if unset)
+      POSTGRES_DB:       benradler-${RAILS_ENV:-development}
     ports:
       - "5432:5432"
 
@@ -26,7 +27,8 @@ services:
     build:
       context: .
       args:
-        RAILS_ENV: development
+        # passed through to your Dockerfile
+        RAILS_ENV: ${RAILS_ENV:-development}
     command: bash -lc "bundle exec rails s -b 0.0.0.0"
     volumes:
       - .:/app
@@ -36,27 +38,30 @@ services:
       - db
       - webpack
     environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/benradler-development
-      RAILS_ENV: development
+      # runtime env
+      RAILS_ENV: ${RAILS_ENV:-development}
+      DATABASE_URL: postgres://postgres:password@db:5432/benradler-${RAILS_ENV:-development}
       # so rails knows to bind assets host
       HOST: 0.0.0.0
+      # Shakapacker host/ports
       SHAKAPACKER_DEV_SERVER_HOST: webpack
       SHAKAPACKER_DEV_SERVER_PORT: 3035
       SHAKAPACKER_DEV_SERVER_PUBLIC: localhost:3035
+
 
   # Shakapacker webpack-dev-server
   webpack:
     build:
       context: .
       args:
-        RAILS_ENV: development
+        RAILS_ENV: ${RAILS_ENV:-development}
     command: bash -lc "bin/shakapacker-dev-server"
     volumes:
       - .:/app
     ports:
       - "3035:3035"
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: ${RAILS_ENV:-development}
       SHAKAPACKER_DEV_SERVER_HOST: "0.0.0.0"
       SHAKAPACKER_DEV_SERVER_PORT: "3035"
 volumes:

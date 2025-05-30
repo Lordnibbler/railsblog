@@ -65,30 +65,35 @@ jobs:
       # bring up Postgres only
       - run:
           name: Start Postgres
-          command: docker-compose up -d db
+          command: docker-compose up -d db && sleep 10
 
       # wait for it to be ready
-      - run:
-          name: Wait for Postgres
-          command: |
-            docker run --rm --network container:$(docker-compose ps -q db) \
-              appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
+      # - run:
+      #     name: Wait for Postgres
+      #     command: |
+      #       docker run --rm --network container:$(docker-compose ps -q db) \
+      #         appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
 
       # setup the test db
-      - run:
-          name: DB setup
-          command: |
-            docker-compose run --rm web bash -lc "bundle exec rails db:setup"
+      # - run:
+      #     name: DB setup
+      #     command: |
+      #       docker-compose run --rm web bash -lc "bundle exec rails db:setup"
 
       # compile JS packs
-      - run:
-          name: Compile Shakapacker
-          command: docker-compose run --rm webpack bin/shakapacker-dev-server --help
+      # - run:
+      #     name: Compile Shakapacker
+      #     command: docker-compose run --rm webpack bin/shakapacker-dev-server --help
 
       # run RSpec
       - run:
           name: Run RSpec
-          command: docker-compose run --rm web bundle exec rspec
+          command: |
+            docker-compose \
+            run --rm \
+            -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+            web \
+            bundle exec rspec
 
       # # optional: lint, security
       # - run:
