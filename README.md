@@ -7,7 +7,21 @@ This is a Ruby on Rails 8 app. It does the following:
 * fetches a Flickr.com feed of my photos and renders them using photoswipe.js - [link](https://benradler.com/photography)
 
 ## Development
+
 Follow these instructions to get the app running locally.
+
+### Start Everything with docker-compose
+
+```sh
+# start everything
+docker-compose up
+
+# start everything, detached from terminal
+docker-compose up -d
+
+# only build the docker containers
+docker-compose build
+```
 
 ### Start Postgres with docker-compose
 
