@@ -1,9 +1,10 @@
 build:
   docker:
     web:     Dockerfile
-    release: Dockerfile
+    release: Dockerfile.release
 
 release:
+  # this will be run after the release image is deployed
   command:
     - echo '---- Release phase starting ----'
     - bundle exec rails db:migrate
