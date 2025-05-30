@@ -1,0 +1,17 @@
+services:
+  # to start:    docker-compose up -d
+  # to see logs: docker-compose logs -f db
+  db:
+    image: postgres:17.4
+    restart: always
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER:     postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB:       benradler-development
+    ports:
+      - "5432:5432"
+
+volumes:
+  db_data:

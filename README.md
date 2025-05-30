@@ -9,6 +9,21 @@ This is a Ruby on Rails 8 app. It does the following:
 ## Development
 Follow these instructions to get the app running locally.
 
+### Start Postgres with docker-compose
+
+```sh
+$ docker-compose up -d
+
+# set up database
+$ rails db:setup
+
+# optionally shut it down later
+# This will stop & remove the container but leave the db data volume intact.
+$ docker-compose down
+```
+
+### Start rails server and webpack-dev-server
+
 ```sh
 # install dependencies
 brew bundle
@@ -17,8 +32,6 @@ brew bundle
 $ mv config/env.yml.example config/env.yml
 $ vi config/env.yml
 
-# set up database
-$ rails db:setup
 
 # install dependencies
 $ bundle
