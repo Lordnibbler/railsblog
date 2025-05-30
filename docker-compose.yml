@@ -1,11 +1,19 @@
 services:
   # to start:    docker-compose up -d
   # to see logs: docker-compose logs -f db
+  #
+  # The Postgres image will:
+	# 1.	On first startup (i.e. when db_data is empty) create your DB, then
+	# 2.	Run anything in /docker-entrypoint-initdb.d (your restore.sh + backup.dump), then
+	# 3.	Exit the init phase and start up normally with your data in place.
   db:
     image: postgres:17.4
     restart: always
     volumes:
+      # your persistent data volume
       - db_data:/var/lib/postgresql/data
+      # init scripts & dump
+      - ./db/init:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_USER:     postgres
       POSTGRES_PASSWORD: password

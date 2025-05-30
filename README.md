@@ -11,15 +11,36 @@ Follow these instructions to get the app running locally.
 
 ### Start Postgres with docker-compose
 
+This automatically restores the raw sql dump from `db/init/heroku_dump.sql` onto the database on first start.
+
 ```sh
+# start docker
 $ docker-compose up -d
 
-# set up database
-$ rails db:setup
-
-# optionally shut it down later
-# This will stop & remove the container but leave the db data volume intact.
+# this will stop & remove the container but leave the db data volume intact.
 $ docker-compose down
+
+# this will stop & remove the container AND remove any volumes declared in docker-compose.yml,
+# effectively destroying the db
+docker-compose down -v
+```
+
+If you wish to generate an updated heroku sql dump:
+
+```sh
+# get the database url
+$ $DB_URL=`heroku config:get DATABASE_URL --app benradler`
+
+# create a dump file and copy it to pwd
+$ docker run --rm \
+  -v "$(pwd)":/backups \
+  postgres:17.4 \
+  pg_dump \
+    --no-owner \
+    --no-acl \
+    --format=plain \
+    --file=/backups/heroku_dump.sql \
+    "$DB_URL"
 ```
 
 ### Start rails server and webpack-dev-server
