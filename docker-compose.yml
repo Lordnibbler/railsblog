@@ -38,6 +38,8 @@ services:
     depends_on:
       - db
       - webpack
+    env_file:
+      - .env
     environment:
       # runtime env
       RAILS_ENV: ${RAILS_ENV:-development}
