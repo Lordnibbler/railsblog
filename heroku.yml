@@ -1,0 +1,16 @@
+build:
+  docker:
+    web:     Dockerfile
+    release: Dockerfile
+
+release:
+  command:
+    - echo '---- Release phase starting ----'
+    - bundle exec rails db:migrate
+    - echo 'db:migrate finished'
+    - bundle exec rails cache_warmer:flickr
+    - echo '---- Release phase complete ----'
+
+run:
+  web:
+    command: bundle exec puma -C config/puma.rb
