@@ -94,6 +94,26 @@ heroku container:push web --arg RAILS_ENV=production -a benradler
 heroku container:release web -a benradler
 ```
 
+### Debugging
+
+List recent release via:
+
+```sh
+heroku releases -a benradler
+```
+
+See any output from some release:
+
+```sh
+heroku releases:output <replace with release version>
+```
+
+Tail release logs:
+
+```sh
+heroku logs --tail --dyno release --app benradler
+```
+
 ## Architecture
 This is a Rails app, deployed on Heroku.
 
