@@ -22,7 +22,7 @@ $ docker-compose down
 
 # this will stop & remove the container AND remove any volumes declared in docker-compose.yml,
 # effectively destroying the db
-docker-compose down -v
+$ docker-compose down -v
 ```
 
 If you wish to generate an updated heroku sql dump:
@@ -43,7 +43,7 @@ $ docker run --rm \
     "$DB_URL"
 ```
 
-### Start rails server and webpack-dev-server
+### Start rails server and webpack-dev-server without docker
 
 ```sh
 # install dependencies
@@ -52,7 +52,6 @@ brew bundle
 # create a YAML file to stub environment variables
 $ mv config/env.yml.example config/env.yml
 $ vi config/env.yml
-
 
 # install dependencies
 $ bundle
@@ -69,6 +68,18 @@ $ guard
 
 # open the browser
 $ open "http://localhost:3000"
+```
+
+## Deployment
+
+This app is deployed to heroku via a docker container, using the `container` stack.
+
+```sh
+# creates the container and pushes it to the heroku registry
+heroku container:push web -a benradler
+
+# releases this particular container onto the server
+heroku container:release web -a benradler
 ```
 
 ## Architecture
