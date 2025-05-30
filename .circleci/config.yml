@@ -49,6 +49,10 @@ jobs:
     machine: true
     environment:
       RAILS_ENV: test
+      # Brakeman causes a stack overflow  inside Bundler’s "friendly errors" ERB renderer,
+      # not in Brakeman itself. Locally you probably have BUNDLE_FRIENDLY_ERRORS off (or a newer Bundler),
+      # but inside your Docker image it’s still on and tripping over your templates.
+      BUNDLE_FRIENDLY_ERRORS: "false"
     steps:
       - attach_workspace:
           at: .
