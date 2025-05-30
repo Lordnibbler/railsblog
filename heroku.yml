@@ -14,4 +14,4 @@ release:
 
 run:
   web:
-    command: bundle exec puma -C config/puma.rb
+    command: ./entrypoint.sh
