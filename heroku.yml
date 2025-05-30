@@ -1,10 +1,14 @@
 build:
   docker:
-    web:     Dockerfile.web
-    release: Dockerfile.release
+    web: Dockerfile
 
 release:
-  # this will be run after the release image is deployed
+  # this is SUPPOSED be run after the web image is released, but it never gets triggered
+  # the release phase starts the web image, which starts puma instead of running the
+  # command below.
+  # To work around it, I moved the same release steps into entrypoint.sh
+  # This `command` stanza is here for posterity but is UNUSED.
+  # Docs: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#release-configure-release-phase
   command:
     - echo '---- Release phase starting via heroku.yml ----'
     - bundle exec rails db:migrate
