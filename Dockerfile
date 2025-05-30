@@ -52,4 +52,6 @@ RUN chmod +x /usr/bin/release-tasks.sh
 EXPOSE 3000
 
 # 10) run it
+# you can even leave CMD empty or set it to ["bundle","exec","puma",...]
 ENTRYPOINT ["entrypoint.sh"]
+CMD []

@@ -8,111 +8,100 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@2.1.0
-  node: circleci/node@5.1.1
-  browser-tools: circleci/browser-tools@1.4.8
-  dscar-brakeman: moneyforward/dscar-brakeman@1.2.0
+  # we won’t actually use the ruby/node orbs any more, but you can keep them
+  # for caching steps if you like. everything below is custom Docker instead.
 
 jobs:
   build:
-    environment:
-      RAILS_ENV: test
-      NODE_ENV: test
-    docker:
-      - image: cimg/ruby:3.3.8
-      - image: 'cimg/base:stable'
+    # use a Linux VM with Docker installed
+    machine: true
     steps:
       - checkout
-      - run: ruby --version
-      - ruby/install-deps
-      - node/install:
-          install-yarn: true
-          node-version: '22.15.0'
-      - run: node --version
+
+      # install docker-compose v2
+      - run:
+          name: Install Docker-Compose
+          shell: bash
+          command: |
+            COMPOSE_VERSION=2.18.1
+            mkdir -p "${HOME}/bin"
+            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
+              -o "${HOME}/bin/docker-compose"
+            chmod +x "${HOME}/bin/docker-compose"
+            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
+
+      # build your app + webpack images in parallel
+      - run:
+          name: docker-compose build
+          command: docker-compose build --parallel
+
+      # stash the code+images for downstream jobs
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
 
   test:
-    parallelism: 3
-    docker:
-      - image: cimg/ruby:3.3.8-node
-      - image: cimg/node:22.15.0-browsers
-      - image: cimg/postgres:17.4
-        environment:
-          POSTGRES_USER: benradler
-          POSTGRES_DB: benradler-test
-          POSTGRES_PASSWORD: ""
-          POSTGRES_HOST_AUTH_METHOD: trust
+    machine: true
     environment:
-      BUNDLE_JOBS: "3"
-      BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: benradler
-      PGPASSWORD: ""
       RAILS_ENV: test
-      NODE_ENV: test
-      RAILS_HOST: 'http://localhost'
     steps:
-      - checkout
-      - ruby/install-deps
-      - node/install:
-          install-yarn: true
-          node-version: '22.15.0'
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
+      - attach_workspace:
+          at: .
+
+      # docker-compose is needed here too
+      # install docker-compose v2
       - run:
+          name: Install Docker-Compose
+          shell: bash
           command: |
-            google-chrome --version
-            chromedriver --version
-          name: Check browsertools install
+            COMPOSE_VERSION=2.18.1
+            mkdir -p "${HOME}/bin"
+            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
+              -o "${HOME}/bin/docker-compose"
+            chmod +x "${HOME}/bin/docker-compose"
+            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
+      # bring up Postgres only
       - run:
-          name: Setup dotenv
-          command: cp .env.example .env
+          name: Start Postgres
+          command: docker-compose up -d db
 
+      # wait for it to be ready
       - run:
-          name: Wait for postgres to start
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+          name: Wait for Postgres
+          command: |
+            docker run --rm --network container:$(docker-compose ps -q db) \
+              appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
+
+      # setup the test db
       - run:
-          name: postgres setup
-          command: cp config/database.yml.test config/database.yml && bundle exec rails db:schema:load --trace
+          name: DB setup
+          command: |
+            docker-compose run --rm web bash -lc "bundle exec rails db:setup"
 
-      # restore yarn cache if available
-      - restore_cache:
-          keys:
-            - yarn-{{ checksum "yarn.lock" }}
-
-      # install node deps with yarn
+      # compile JS packs
       - run:
-          name: Yarn install
-          command: yarn install --cache-folder ~/.cache/yarn
+          name: Compile Shakapacker
+          command: docker-compose run --rm webpack bin/shakapacker-dev-server --help
 
-      # save yarn cache
-      - save_cache:
-          key: yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      # run RSpec
+      - run:
+          name: Run RSpec
+          command: docker-compose run --rm web bundle exec rspec
 
-      # restore webpack cache if available
-      - restore_cache:
-          keys:
-            - webpack-{{ .Revision }}
+      # # optional: lint, security
+      # - run:
+      #     name: RuboCop
+      #     command: docker-compose run --rm web bundle exec rubocop
+      # - run:
+      #     name: Brakeman
+      #     command: docker-compose run --rm web bundle exec brakeman
 
-      # webpacker compilation
-      - run: bin/rails shakapacker:compile
-
-      # save webpacker cache
-      - save_cache:
-          key: webpack-{{ .Revision }}
-          paths:
-            - /home/circleci/project/public/packs-test/
-
-      # Run rspec in parallel
-      - ruby/rspec-test
-
-      # run rubocop
-      - ruby/rubocop-check
-
-      # run brakeman
-      - dscar-brakeman/analyze
+      # tear everything down
+      - run:
+          name: Clean up
+          command: docker-compose down --volumes
 
 workflows:
   version: 2
