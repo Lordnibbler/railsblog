@@ -44,7 +44,7 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
 
 EXPOSE 3000
 
-# 9) Copy in the entrypoint script (either run release tasks or run the rails server)
+# 9) Copy in the entrypoint and release scripts (to migrate db, warm cache, start puma server)
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 COPY release-tasks.sh /usr/bin/release-tasks.sh
