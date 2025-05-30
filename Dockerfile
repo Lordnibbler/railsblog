@@ -25,15 +25,8 @@ ENV RAILS_SERVE_STATIC_FILES=true
 ENV CHROME_BIN=/usr/bin/chromium
 ENV WEB_DRIVER_CHROME_DRIVER=/usr/bin/chromedriver
 
-# disable Bundler’s ERB-based friendly errors globally
-ENV BUNDLE_FRIENDLY_ERRORS=false
-
 # 4) Ensure Rails will serve compiled assets
 ENV RAILS_SERVE_STATIC_FILES=true
-
-# install bundler (if you do so explicitly) and then
-# disable Bundler’s ERB-based friendly errors forever:
-RUN bundle config set disable_friendly_errors true
 
 # 5) Install gems (skip dev/test in prod)
 COPY Gemfile Gemfile.lock ./
