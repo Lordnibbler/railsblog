@@ -74,9 +74,21 @@ $ open "http://localhost:3000"
 
 This app is deployed to heroku via a docker container, using the `container` stack.
 
+No Procfile needed due to `heroku.yml`. Heroku will honor this manifest instead. On each `container:release`, Heroku will:
+
+1. Pulls the web image you just pushed.
+2. Runs bundle exec rails db:migrate.
+3. Runs bundle exec rails cache_warmer:flickr.
+4. Starts your web dyno with bundle exec puma -C config/puma.rb.
+
+To deploy to Heroku via containers:
+
 ```sh
 # creates the container and pushes it to the heroku registry
 heroku container:push web -a benradler
+
+# NOTE: you can override env vars if needed like so:
+heroku container:push web --arg RAILS_ENV=production -a benradler
 
 # releases this particular container onto the server
 heroku container:release web -a benradler

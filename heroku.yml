@@ -1,0 +1,13 @@
+build:
+  docker:
+    web: Dockerfile
+
+release:
+  image: web
+  command:
+    - bundle exec rails db:migrate
+    - bundle exec rails cache_warmer:flickr
+
+run:
+  web:
+    command: bundle exec puma -C config/puma.rb
