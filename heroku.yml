@@ -9,12 +9,7 @@ release:
   # To work around it, I moved the same release steps into entrypoint.sh
   # This `command` stanza is here for posterity but is UNUSED.
   # Docs: https://devcenter.heroku.com/articles/build-docker-images-heroku-yml#release-configure-release-phase
-  command:
-    - echo '---- Release phase starting via heroku.yml ----'
-    - bundle exec rails db:migrate
-    - echo 'db:migrate finished'
-    - bundle exec rails cache_warmer:flickr
-    - echo '---- Release phase complete ----'
+  command: ./deployment-tasks.sh
 
 run:
   web:
