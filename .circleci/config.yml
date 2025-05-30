@@ -110,7 +110,11 @@ jobs:
           command: docker-compose run --rm web bundle exec rubocop
       - run:
           name: Brakeman
-          command: docker-compose run --rm web bundle exec brakeman
+          command: |
+            docker-compose run --rm \
+              -e BUNDLE_FRIENDLY_ERRORS=false \
+              web \
+              bundle exec brakeman
 
       # tear everything down
       - run:
