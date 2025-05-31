@@ -7,22 +7,19 @@
 #
 version: 2.1
 
-orbs:
-  # we won’t actually use the ruby/node orbs any more, but you can keep them
-  # for caching steps if you like. everything below is custom Docker instead.
-
 jobs:
   build:
-    # use a Linux VM with Docker installed
+    # A Linux VM with Docker installed
     machine: true
     steps:
       - checkout
 
+      # (1) Copy .env for local config
       - run:
           name: Setup dotenv
           command: cp .env.example .env
 
-      # install docker-compose v2
+      # (2) Install docker-compose v2
       - run:
           name: Install Docker-Compose
           shell: bash
@@ -34,12 +31,12 @@ jobs:
             chmod +x "${HOME}/bin/docker-compose"
             echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
-      # build your app + webpack images in parallel
+      # (3) Build your app + webpack images in parallel
       - run:
           name: docker-compose build
           command: docker-compose build --parallel
 
-      # stash the code+images for downstream jobs
+      # (4) Persist code + (optional) images for downstream jobs
       - persist_to_workspace:
           root: .
           paths:
@@ -53,12 +50,12 @@ jobs:
       - attach_workspace:
           at: .
 
+      # Copy .env.test if needed
       - run:
           name: Setup dotenv
           command: cp .env.example .env
 
-      # docker-compose is needed here too
-      # install docker-compose v2
+      # Install docker-compose v2 again inside this container
       - run:
           name: Install Docker-Compose
           shell: bash
@@ -70,37 +67,41 @@ jobs:
             chmod +x "${HOME}/bin/docker-compose"
             echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
-      # bring up Postgres only
+      # Start only the Postgres service
       - run:
           name: Start Postgres
-          command: docker-compose up -d db && sleep 10
+          command: |
+            docker-compose up -d db && sleep 10
 
-      # wait for it to be ready
+      # Wait for Postgres to accept connections
       - run:
           name: Wait for Postgres
           command: |
             docker run --rm --network container:$(docker-compose ps -q db) \
               appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
 
+      # Compile your JS packs (in test mode)
       - run:
-          name: Compile Shakapacker (via Rails task)
+          name: Compile Shakapacker (Rails task)
           command: |
             docker-compose run --rm \
               -e RAILS_ENV=test \
+              -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
               web \
               bin/rails shakapacker:compile
 
-      # run RSpec
+      # Run RSpec (with DB setup)
       - run:
           name: Run RSpec
           command: |
             docker-compose \
             run --rm \
             -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+            -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
             web \
             bundle exec rspec
 
-      # lint
+      # Lint
       - run:
           name: RuboCop
           command: docker-compose run --rm web bundle exec rubocop
@@ -110,21 +111,78 @@ jobs:
       # disabling it for now
       # - run:
       #     name: Brakeman
-      #     command: |
-      #       docker-compose run --rm \
-      #         web \
-      #         bundle exec brakeman
+      #     command: docker-compose run --rm web bundle exec brakeman
 
-      # tear everything down
+      # Tear everything down
       - run:
           name: Clean up
           command: docker-compose down --volumes
 
+  deploy:
+    machine: true
+    working_directory: ~/project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+
+      # Only run this job on the master branch (see “filters” below).
+      # Step A: Install Docker CLI & Docker Compose again (needed to push images).
+      - run:
+          name: Install Docker-Compose
+          shell: bash
+          command: |
+            COMPOSE_VERSION=2.18.1
+            mkdir -p "${HOME}/bin"
+            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
+              -o "${HOME}/bin/docker-compose"
+            chmod +x "${HOME}/bin/docker-compose"
+            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
+
+      # Step B: Log into Heroku Container Registry
+      #    We assume you have set the following two environment variables in CircleCI project settings:
+      #      - HEROKU_API_KEY    (your Heroku API Key)
+      #      - HEROKU_APP_NAME   (the short name of your Heroku app, e.g. "my-rails-app-staging")
+      - run:
+          name: Heroku Container Registry Login
+          command: |
+            echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
+
+      # Step C: Build & push the production Docker image to Heroku
+      - run:
+          name: Build & Push Docker Image to Heroku
+          command: |
+            # Make sure RAILS_ENV=production, SECRET_KEY_BASE is set, etc.
+            HEROKU_APP=$HEROKU_APP_NAME
+            docker build \
+              --build-arg RAILS_ENV=production \
+              --build-arg SECRET_KEY_BASE=$(openssl rand -hex 64) \
+              -t registry.heroku.com/$HEROKU_APP/web .
+            docker push registry.heroku.com/$HEROKU_APP/web
+
+      # Step D: Install Heroku CLI (so we can run `heroku container:release`)
+      - run:
+          name: Install Heroku CLI
+          command: |
+            curl https://cli-assets.heroku.com/install.sh | sh
+
+      # Step E: Release the “web” image on Heroku
+      - run:
+          name: Release to Heroku
+          command: |
+            heroku container:release web --app $HEROKU_APP_NAME
+
 workflows:
   version: 2
-  build_and_test:
+  build_test_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: "master"

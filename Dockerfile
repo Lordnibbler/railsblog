@@ -25,6 +25,10 @@ ENV RAILS_SERVE_STATIC_FILES=true
 ENV CHROME_BIN=/usr/bin/chromium
 ENV WEB_DRIVER_CHROME_DRIVER=/usr/bin/chromedriver
 
+# allow setting secret key base
+ARG SECRET_KEY_BASE
+ENV SECRET_KEY_BASE=$SECRET_KEY_BASE
+
 # 4) Ensure Rails will serve compiled assets
 ENV RAILS_SERVE_STATIC_FILES=true
 
