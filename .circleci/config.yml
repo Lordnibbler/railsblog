@@ -190,4 +190,4 @@ workflows:
             - test
           filters:
             branches:
-              only: "auto-deploy"
+              only: "master"
