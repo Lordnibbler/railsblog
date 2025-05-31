@@ -86,6 +86,7 @@ jobs:
           command: |
             docker-compose run --rm \
               -e RAILS_ENV=test \
+              -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
               web \
               bin/rails shakapacker:compile
 
