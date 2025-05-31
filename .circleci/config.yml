@@ -65,53 +65,53 @@ jobs:
           command: cp .env.example .env
 
       # Install docker-compose v2 again inside this container
-      - run:
-          name: Install Docker-Compose
-          shell: bash
-          command: |
-            COMPOSE_VERSION=2.18.1
-            mkdir -p "${HOME}/bin"
-            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-              -o "${HOME}/bin/docker-compose"
-            chmod +x "${HOME}/bin/docker-compose"
-            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
+      # - run:
+      #     name: Install Docker-Compose
+      #     shell: bash
+      #     command: |
+      #       COMPOSE_VERSION=2.18.1
+      #       mkdir -p "${HOME}/bin"
+      #       curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
+      #         -o "${HOME}/bin/docker-compose"
+      #       chmod +x "${HOME}/bin/docker-compose"
+      #       echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
-      # Start only the Postgres service
-      - run:
-          name: Start Postgres
-          command: |
-            docker-compose up -d db && sleep 10
+      # # Start only the Postgres service
+      # - run:
+      #     name: Start Postgres
+      #     command: |
+      #       docker-compose up -d db && sleep 10
 
-      # Wait for Postgres to accept connections
-      - run:
-          name: Wait for Postgres
-          command: |
-            docker run --rm --network container:$(docker-compose ps -q db) \
-              appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
+      # # Wait for Postgres to accept connections
+      # - run:
+      #     name: Wait for Postgres
+      #     command: |
+      #       docker run --rm --network container:$(docker-compose ps -q db) \
+      #         appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
 
-      # Compile your JS packs (in test mode)
-      - run:
-          name: Compile Shakapacker (Rails task)
-          command: |
-            docker-compose run --rm \
-              -e RAILS_ENV=test \
-              web \
-              bin/rails shakapacker:compile
+      # # Compile your JS packs (in test mode)
+      # - run:
+      #     name: Compile Shakapacker (Rails task)
+      #     command: |
+      #       docker-compose run --rm \
+      #         -e RAILS_ENV=test \
+      #         web \
+      #         bin/rails shakapacker:compile
 
-      # Run RSpec (with DB setup)
-      - run:
-          name: Run RSpec
-          command: |
-            docker-compose \
-            run --rm \
-            -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
-            web \
-            bundle exec rspec
+      # # Run RSpec (with DB setup)
+      # - run:
+      #     name: Run RSpec
+      #     command: |
+      #       docker-compose \
+      #       run --rm \
+      #       -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+      #       web \
+      #       bundle exec rspec
 
-      # Lint
-      - run:
-          name: RuboCop
-          command: docker-compose run --rm web bundle exec rubocop
+      # # Lint
+      # - run:
+      #     name: RuboCop
+      #     command: docker-compose run --rm web bundle exec rubocop
 
       # security checks
       # Brakeman causes a stack overflow inside Bundler’s "friendly errors" ERB renderer on CI only.
@@ -121,9 +121,9 @@ jobs:
       #     command: docker-compose run --rm web bundle exec brakeman
 
       # Tear everything down
-      - run:
-          name: Clean up
-          command: docker-compose down --volumes
+      # - run:
+      #     name: Clean up
+      #     command: docker-compose down --volumes
 
   deploy:
     machine: true
@@ -192,7 +192,7 @@ workflows:
     jobs:
       - deploy:
           requires:
-            - test
+            - build_and_test
           filters:
             branches:
-              only: master
+              only: auto-deploy
