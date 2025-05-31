@@ -97,6 +97,7 @@ jobs:
             docker-compose \
             run --rm \
             -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
+            -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
             web \
             bundle exec rspec
 
