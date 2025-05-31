@@ -109,9 +109,9 @@ jobs:
       # security checks
       # Brakeman causes a stack overflow inside Bundler’s "friendly errors" ERB renderer on CI only.
       # disabling it for now
-      - run:
-          name: Brakeman
-          command: docker-compose run --rm web bundle exec brakeman
+      # - run:
+      #     name: Brakeman
+      #     command: docker-compose run --rm web bundle exec brakeman
 
       # Tear everything down
       - run:
