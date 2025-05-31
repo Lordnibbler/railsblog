@@ -7,13 +7,6 @@
 #
 version: 2.1
 
-orbs:
-  # (You can keep these or drop them if you’re not using orb-provided caching, etc.)
-  # ruby: circleci/ruby@2.1.0
-  # node: circleci/node@5.1.1
-  # browser-tools: circleci/browser-tools@1.4.8
-  # dscar-brakeman: moneyforward/dscar-brakeman@1.2.0
-
 jobs:
   build:
     # A Linux VM with Docker installed
@@ -111,14 +104,14 @@ jobs:
           name: RuboCop
           command: docker-compose run --rm web bundle exec rubocop
 
-      security checks
-      Brakeman causes a stack overflow inside Bundler’s "friendly errors" ERB renderer on CI only.
-      disabling it for now
+      # security checks
+      # Brakeman causes a stack overflow inside Bundler’s "friendly errors" ERB renderer on CI only.
+      # disabling it for now
       - run:
           name: Brakeman
           command: docker-compose run --rm web bundle exec brakeman
 
-      Tear everything down
+      # Tear everything down
       - run:
           name: Clean up
           command: docker-compose down --volumes
