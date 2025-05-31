@@ -98,7 +98,19 @@ No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docke
 3. Run bundle exec rails cache_warmer:flickr.
 4. Start web dyno with bundle exec puma -C config/puma.rb.
 
-To deploy to Heroku via containers:
+### Automatic Deployments
+
+Automatic deployments are configured in CircleCI. If the `build` and `test` steps are green, and the branch is `master`, the `deploy` step begins. It uses the same heroku container registry deployment approach, but the docker container is built via docker directly and pushed to Heroku registry explicitly.
+
+The authentication is handled via a 1 year long lived token which was generated via
+
+```sh
+heroku authorizations:create
+```
+
+and set at <https://app.circleci.com/settings/project/github/Lordnibbler/railsblog/environment-variables>.
+
+### Manual Deployments to Heroku via containers
 
 ```sh
 # authenticate
