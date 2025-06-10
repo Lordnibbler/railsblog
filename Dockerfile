@@ -49,11 +49,14 @@ COPY . .
 
 # 8) Compile your JS/CSS packs (only runs if RAILS_ENV=production)
 RUN if [ "$RAILS_ENV" = "production" ]; then \
-      bundle exec rake assets:precompile; \
+      # if no build-arg was passed, generate a one-off secret for this build
+      if [ -z "$SECRET_KEY_BASE" ]; then \
+        echo ">>> Generating temporary SECRET_KEY_BASE for assets precompile" && \
+        export SECRET_KEY_BASE="$(bundle exec rails secret)"; \
+      fi && \
+      # now that ENV is set, compile assets
+      bundle exec rails assets:precompile; \
     fi
-
-EXPOSE 3000
-
 # 9) Copy in the entrypoint and release scripts (to migrate db, warm cache, start puma server)
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
