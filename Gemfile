@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.3.8'
+ruby '3.4.4'
 gem 'rails', '~> 8'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding

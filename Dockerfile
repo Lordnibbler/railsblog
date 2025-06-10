@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.3.8
+ARG RUBY_VERSION=3.4.4
 FROM ruby:${RUBY_VERSION}
 
 # 1) System deps + Node.js 22.x via NodeSource
