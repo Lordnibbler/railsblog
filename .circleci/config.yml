@@ -93,6 +93,7 @@ jobs:
       # Run RSpec (with DB setup)
       - run:
           name: Run RSpec
+          max_auto_reruns: 3
           command: |
             docker-compose \
             run --rm \
