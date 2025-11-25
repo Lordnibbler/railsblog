@@ -40,16 +40,19 @@ describe '/admin' do
         visit '/admin/blog_posts'
         click_on 'New Blog Post'
         expect(page).to have_content 'New Blog Post'
-        expect do
-          within '#new_blog_post' do
-            fill_in 'blog_post_title', with: 'New Post'
-            fill_in 'blog_post_body',  with: 'Some body'
-            select user.name, from: 'blog_post_user_id'
-            click_on 'Create Post'
-          end
-        end.to change(Blog::Post, :count).by(1)
 
+        initial_count = Blog::Post.count
+        within '#new_blog_post' do
+          fill_in 'blog_post_title', with: 'New Post'
+          fill_in 'blog_post_body',  with: 'Some body'
+          select user.name, from: 'blog_post_user_id'
+          click_on 'Create Post'
+        end
+
+        # Wait for the form submission to complete before checking count
         expect(page).to have_content 'Post was successfully created'
+        expect(Blog::Post.count).to eq(initial_count + 1)
+
         expect(page).to have_content 'New Post'
         expect(page).to have_content 'Some body'
         expect(page).to have_content user.name
