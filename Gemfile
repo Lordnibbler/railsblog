@@ -25,7 +25,6 @@ gem 'redcarpet' # Markdown parsing
 gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
-gem 'sendgrid-ruby' # Sending emails
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'

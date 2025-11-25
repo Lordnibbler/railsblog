@@ -188,7 +188,7 @@ Images are stored on AWS S3 by way of ActiveStorage in Rails. There are [custom 
 
 
 ### Email
-Sendgrid is used to send emails from the contact forms.
+Mailgun is used to send emails from the contact forms.
 
 ### HTTPS
 Cloudflare provides HTTPS via Let's Encrypt. The Rails application layer is [configured to force an SSL connection](https://github.com/Lordnibbler/railsblog/blob/51c77571d72969f41760d5d00d511e4cc9de27c6/config/environments/production.rb#L52).
