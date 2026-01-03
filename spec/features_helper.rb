@@ -37,7 +37,9 @@ module AssetsTestBuild
     puts "running asset build for tests"
     puts `which node`
     puts `node --version`
-    `RAILS_ENV=test yarn build`
+    shell = ENV.fetch("SHELL", "/bin/bash")
+    success = system({ "RAILS_ENV" => "test" }, shell, "-ic", "yarn build")
+    raise "asset build failed" unless success
     self.already_built = true
     File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
   end

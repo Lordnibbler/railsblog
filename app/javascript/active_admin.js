@@ -1,3 +1,11 @@
+import $ from 'jquery';
+import Rails from "@rails/ujs";
+
+window.$ = $;
+window.jQuery = $;
+window.Rails = Rails;
+Rails.start();
+
 import "@activeadmin/activeadmin";
 
 import { marked } from 'marked'
