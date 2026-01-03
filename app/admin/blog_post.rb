@@ -120,6 +120,6 @@ ActiveAdmin.register Blog::Post do
   member_action :delete_image, method: :delete do
     @pic = ActiveStorage::Attachment.find(params[:id])
     @pic.purge_later
-    redirect_back(fallback_location: edit_admin_blog_post_path)
+    redirect_back_or_to(edit_admin_blog_post_path)
   end
 end

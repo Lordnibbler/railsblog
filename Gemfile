@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
-ruby '3.4.4'
+ruby '3.4.8'
 gem 'rails', '~> 8'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'concurrent-ruby' # concurrency, used in FlickrService
+gem 'connection_pool', '< 3' # Rails 8.1 calls ConnectionPool with positional args
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickr' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
@@ -28,7 +29,7 @@ gem 'rouge' # syntax highlighting
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'shakapacker', '8.0.2'
+gem 'shakapacker', '9.4.0'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do

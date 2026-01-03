@@ -28,6 +28,7 @@ services:
       context: .
       args:
         # passed through to your Dockerfile
+        RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
     command: bash -lc "bundle exec rails s -b 0.0.0.0"
     volumes:
@@ -57,6 +58,7 @@ services:
     build:
       context: .
       args:
+        RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
     command: bash -lc "bin/shakapacker-dev-server"
     volumes:

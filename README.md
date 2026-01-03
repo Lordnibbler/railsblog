@@ -12,7 +12,7 @@ Follow these instructions to get the app running locally.
 
 ### Start Everything with docker-compose
 
-```sh
+```shell
 # start everything
 docker-compose up
 
@@ -27,7 +27,7 @@ docker-compose build
 
 This automatically restores the raw sql dump from `db/init/heroku_dump.sql` onto the database on first start.
 
-```sh
+```shell
 # start db container inside docker
 $ docker-compose up -d db
 
@@ -44,7 +44,7 @@ $ docker-compose down -v
 
 If you wish to generate an updated heroku sql dump:
 
-```sh
+```shell
 # get the database url
 $ $DB_URL=`heroku config:get DATABASE_URL --app benradler`
 
@@ -60,9 +60,19 @@ $ docker run --rm \
     "$DB_URL"
 ```
 
+### Run commands inside docker containers
+
+```shell
+# run the rails console
+docker-compose exec web rails c
+
+# run unit tests (this won't work since docker runs in production env, so test gem group is missing)
+docker-compose exec web rspec
+```
+
 ### Start rails server and webpack-dev-server without docker
 
-```sh
+```shell
 # install dependencies
 brew bundle
 
@@ -104,7 +114,7 @@ Automatic deployments are configured in CircleCI. If the `build` and `test` step
 
 The authentication is handled via a 1 year long lived token which was generated via
 
-```sh
+```shell
 heroku authorizations:create
 ```
 
@@ -112,7 +122,7 @@ and set at <https://app.circleci.com/settings/project/github/Lordnibbler/railsbl
 
 ### Manual Deployments to Heroku via containers
 
-```sh
+```shell
 # authenticate
 heroku login
 heroku container:login
@@ -134,19 +144,19 @@ heroku login && heroku container:login && heroku container:push web -a benradler
 
 List recent release via:
 
-```sh
+```shell
 heroku releases -a benradler
 ```
 
 See any output from some release:
 
-```sh
+```shell
 heroku releases:output <replace with release version>
 ```
 
 Tail release logs:
 
-```sh
+```shell
 heroku logs --tail --dyno release --app benradler
 ```
 
