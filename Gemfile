@@ -16,11 +16,13 @@ gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
 gem 'jbuilder' # .builder templating
+gem 'jsbundling-rails'
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
 gem 'pg' # ye olde database
+gem 'propshaft'
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # Markdown parsing
 gem 'redis'
@@ -29,17 +31,15 @@ gem 'rouge' # syntax highlighting
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'jsbundling-rails'
-gem 'propshaft'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do
   gem 'better_errors' # improved error pages
   gem 'binding_of_caller' # interact with ruby in the browser via better errors
-  gem 'guard'
   gem 'guard-rspec'
   gem 'guard-rubocop'
   gem 'guard-yard', require: false
+  gem 'guard'
   gem 'pry-rails'
 end
 
@@ -49,13 +49,13 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
-  gem 'rubocop', require: false
-  gem 'rubocop-rails', require: false
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'spring' # speed up dev env
+  gem 'rubocop', require: false
   gem 'spring-commands-rspec' # faster rspec loading
+  gem 'spring' # speed up dev env
 end
 
 group :test do
