@@ -84,6 +84,15 @@ $ vi config/env.yml
 $ bundle
 $ yarn
 
+#
+# ONE SHOT COMMAND
+#
+$ ./bin/dev
+
+#
+# START EVERYTHING INDIVIDUALLY
+#
+
 # start the rails web server
 $ rails s
 
