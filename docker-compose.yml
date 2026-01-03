@@ -30,7 +30,7 @@ services:
         # passed through to your Dockerfile
         RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
-    command: bash -lc "bundle exec rails s -b 0.0.0.0"
+    command: bash -lc "bundle install && bundle exec rails s -b 0.0.0.0"
     volumes:
       - .:/app:cached
       - node_modules:/app/node_modules
@@ -54,7 +54,7 @@ services:
       args:
         RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
-    command: bash -lc "yarn build:js:watch & yarn build:css:watch"
+    command: bash -lc "yarn install --frozen-lockfile && yarn build:js:watch & yarn build:css:watch"
     volumes:
       - .:/app
       - node_modules:/app/node_modules
