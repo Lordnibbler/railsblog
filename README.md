@@ -216,7 +216,7 @@ Mailgun is used to send emails from the contact forms.
 Cloudflare provides HTTPS via Let's Encrypt. The Rails application layer is [configured to force an SSL connection](https://github.com/Lordnibbler/railsblog/blob/51c77571d72969f41760d5d00d511e4cc9de27c6/config/environments/production.rb#L52).
 
 ### Frontend
-The frontend of the site is built using Webpacker.
+The frontend of the site is built using esbuild (via jsbundling-rails and propshaft).
 
 The technologies used are:
 * [turbo](https://turbo.hotwired.dev/)

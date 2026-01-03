@@ -31,7 +31,7 @@ jobs:
             chmod +x "${HOME}/bin/docker-compose"
             echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
-      # (3) Build your app + webpack images in parallel
+      # (3) Build your app images in parallel
       - run:
           name: docker-compose build
           command: docker-compose build --parallel
