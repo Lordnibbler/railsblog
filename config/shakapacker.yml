@@ -11,6 +11,9 @@ default: &default
   nested_entries: false
   ensure_consistent_versioning: true
 
+  # TODO: recommend upgrading to swc
+  javascript_transpiler: "babel"
+
   # Additional paths webpack should look up modules
   # ['app/assets', 'engine/foo/app/assets']
   additional_paths: []
