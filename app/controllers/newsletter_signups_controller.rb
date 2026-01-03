@@ -17,6 +17,6 @@ class NewsletterSignupsController < ApplicationController
   private
 
   def newsletter_signup_params
-    params.require(:newsletter_signup).permit(:email)
+    params.expect(newsletter_signup: [:email])
   end
 end

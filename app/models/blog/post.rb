@@ -3,6 +3,7 @@
 #
 class Blog::Post < ApplicationRecord
   extend FriendlyId
+
   friendly_id :title, use: %i[slugged finders]
 
   belongs_to :user
@@ -10,7 +11,7 @@ class Blog::Post < ApplicationRecord
   validates :body,    presence: true
 
   scope :published, -> { where(published: true) }
-  scope :newest,    -> { order('created_at DESC') }
+  scope :newest,    -> { order(created_at: :desc) }
 
   paginates_per 5
 
