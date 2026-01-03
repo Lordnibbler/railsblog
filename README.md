@@ -66,47 +66,53 @@ $ docker run --rm \
 # run the rails console
 docker-compose exec web rails c
 
-# run unit tests (this won't work since docker runs in production env, so test gem group is missing)
-docker-compose exec web rspec
+# run unit tests (set RAILS_ENV=test)
+docker-compose exec -e RAILS_ENV=test web bundle exec rspec
 ```
 
 ### Start rails server and asset bundlers without docker
+
+Setup (one time)
 
 ```shell
 # install dependencies
 brew bundle
 
 # create a YAML file to stub environment variables
-$ mv config/env.yml.example config/env.yml
-$ vi config/env.yml
+mv config/env.yml.example config/env.yml
+vi config/env.yml
 
 # install dependencies
-$ bundle
-$ yarn
+bundle
+yarn
+```
 
-#
-# ONE SHOT COMMAND
-#
-$ ./bin/dev
+One-shot command to start everything
 
-#
-# START EVERYTHING INDIVIDUALLY
-#
+```shell
+./bin/dev
+```
 
+Start everything individually
+
+```shell
 # start the rails web server
-$ rails s
+rails s
 
 # watch JS bundles with esbuild
-$ yarn build:js:watch
+yarn build:js:watch
 
 # watch CSS bundles
-$ yarn build:css:watch
+yarn build:css:watch
 
 # start the guard watcher for tests and code formatting
-$ guard
+guard
+```
 
-# open the browser
-$ open "http://localhost:3000"
+Open the browser
+
+```shell
+open "http://localhost:3000"
 ```
 
 ## Deployment
