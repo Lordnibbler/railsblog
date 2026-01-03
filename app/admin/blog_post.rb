@@ -50,7 +50,8 @@ ActiveAdmin.register Blog::Post do
             a 'Original', href: cdn_image_url(post.featured_image), class: 'default-button'
           end
           span do
-            a 'Delete', href: delete_image_admin_blog_post_path(post.featured_image.id), 'data-method': :delete,
+            a 'Delete', href: delete_image_admin_blog_post_path(post, attachment_id: post.featured_image.id),
+                        'data-method': :delete,
                         'data-confirm': 'Are you sure?', class: 'default-button danger-button'
           end
         end
@@ -82,7 +83,8 @@ ActiveAdmin.register Blog::Post do
               end
 
               span do
-                a 'Delete', href: delete_image_admin_blog_post_path(img.id), 'data-method': :delete,
+                a 'Delete', href: delete_image_admin_blog_post_path(post, attachment_id: img.id),
+                            'data-method': :delete,
                             'data-confirm': 'Are you sure?', class: 'default-button danger-button'
               end
             end
@@ -118,8 +120,8 @@ ActiveAdmin.register Blog::Post do
 
   # custom route to allow deleting individual images
   member_action :delete_image, method: :delete do
-    @pic = ActiveStorage::Attachment.find(params[:id])
-    @pic.purge_later
-    redirect_back_or_to(edit_admin_blog_post_path)
+    pic = ActiveStorage::Attachment.find(params[:attachment_id])
+    pic.purge_later
+    redirect_back_or_to(edit_admin_blog_post_path(resource))
   end
 end

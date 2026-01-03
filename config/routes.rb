@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   # GET /2015/01/31/post-title
   # # => 301 redirect to /blog/2015/01/31/post-title
   #
-  get '/:year/:month/:day/:id', to: redirect('/blog/%{year}/%{month}/%{day}/%{id}')
+  get '/:year/:month/:day/:id',
+      to: redirect('/blog/%{year}/%{month}/%{day}/%{id}'),
+      constraints: { year: /\d{4}/, month: /\d{2}/, day: /\d{2}/ }
   namespace :blog do
     #
     # GET /blog
@@ -40,7 +42,9 @@ Rails.application.routes.draw do
     #   this route introduces an issue where you can access a Blog::Post with any year/month/day
     #   params as long as you have the correct :id
     #
-    get '/:year/:month/:day/:id' => 'posts#show', as: 'permalink'
+    get '/:year/:month/:day/:id' => 'posts#show',
+        as: 'permalink',
+        constraints: { year: /\d{4}/, month: /\d{2}/, day: /\d{2}/ }
   end
 
   #

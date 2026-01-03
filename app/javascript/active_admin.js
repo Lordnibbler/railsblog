@@ -1,12 +1,21 @@
-import $ from 'jquery';
-import Rails from "@rails/ujs";
-
+const $ = require('jquery');
 window.$ = $;
 window.jQuery = $;
-window.Rails = Rails;
-Rails.start();
 
-import "@activeadmin/activeadmin";
+require('jquery-ujs');
+require('jquery-ui/ui/version');
+require('jquery-ui/ui/widget');
+require('jquery-ui/ui/plugin');
+require('jquery-ui/ui/position');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/draggable');
+require('jquery-ui/ui/widgets/resizable');
+require('jquery-ui/ui/widgets/button');
+require('jquery-ui/ui/widgets/datepicker');
+require('jquery-ui/ui/widgets/dialog');
+require('jquery-ui/ui/widgets/sortable');
+require('jquery-ui/ui/widgets/tabs');
+require('@activeadmin/activeadmin');
 
 import { marked } from 'marked'
 
