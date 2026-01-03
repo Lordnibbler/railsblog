@@ -1,3 +1,5 @@
+// ActiveAdmin's JS expects global jQuery/UJS/UI modules (previously provided by Sprockets).
+// With esbuild we must wire those globals and load order explicitly.
 const $ = require('jquery');
 window.$ = $;
 window.jQuery = $;
