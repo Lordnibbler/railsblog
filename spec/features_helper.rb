@@ -26,28 +26,27 @@ Capybara.javascript_driver = :headless_chrome
 Capybara.server = :webrick
 
 
-# webpacker not automatically compiling before tests run, workaround from:
-# https://github.com/rails/webpacker/issues/59#issuecomment-295273400
-module WebpackTestBuild
-  TS_FILE = Rails.root.join("tmp", "webpack-spec-timestamp")
+# asset bundles not automatically compiling before tests run
+module AssetsTestBuild
+  TS_FILE = Rails.root.join("tmp", "assets-spec-timestamp")
   class << self
     attr_accessor :already_built
   end
 
-  def self.run_webpack
-    puts "running webpack-test"
+  def self.run_assets
+    puts "running asset build for tests"
     puts `which node`
     puts `node --version`
-    `RAILS_ENV=test bin/shakapacker`
+    `RAILS_ENV=test yarn build`
     self.already_built = true
     File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
   end
 
-  def self.run_webpack_if_necessary
-    return if ENV['CIRCLECI'] # webpack is explicitly compiled in the build step of circleci
+  def self.run_assets_if_necessary
+    return if ENV['CIRCLECI'] # assets are explicitly compiled in the build step of circleci
     return if self.already_built
 
-    run_webpack if timestamp_outdated?
+    run_assets if timestamp_outdated?
   end
 
   def self.timestamp_outdated?
@@ -73,6 +72,6 @@ end
 
 RSpec.configure do |config|
   config.before(:each, :js) do
-    WebpackTestBuild.run_webpack_if_necessary
+    AssetsTestBuild.run_assets_if_necessary
   end
 end

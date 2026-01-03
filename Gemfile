@@ -29,7 +29,8 @@ gem 'rouge' # syntax highlighting
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
 gem 'uglifier'
-gem 'shakapacker', '9.4.0'
+gem 'jsbundling-rails'
+gem 'propshaft'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do

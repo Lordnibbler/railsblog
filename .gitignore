@@ -27,8 +27,7 @@ public/sitemap*
 # dotenv
 .env
 
-/public/packs
-/public/packs-test
+/public/assets
 /node_modules
 /yarn-error.log
 yarn-debug.log*
@@ -42,3 +41,6 @@ storage
 
 /config/master.key
 config/credentials.yml.enc
+# js/css build output
+/app/assets/builds/*
+!/app/assets/builds/.keep

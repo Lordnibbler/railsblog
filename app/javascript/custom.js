@@ -1,3 +1,5 @@
+import $ from 'jquery';
+
 const setupAppHeightHandler = () => {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS
   // set a css variable `--appHeight` so we can use the window's innerHeight to set the page height

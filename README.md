@@ -70,7 +70,7 @@ docker-compose exec web rails c
 docker-compose exec web rspec
 ```
 
-### Start rails server and webpack-dev-server without docker
+### Start rails server and asset bundlers without docker
 
 ```shell
 # install dependencies
@@ -87,8 +87,11 @@ $ yarn
 # start the rails web server
 $ rails s
 
-# start the webpack dev server
-$ ./bin/shakapacker-dev-server
+# watch JS bundles with esbuild
+$ yarn build:js:watch
+
+# watch CSS bundles
+$ yarn build:css:watch
 
 # start the guard watcher for tests and code formatting
 $ guard
