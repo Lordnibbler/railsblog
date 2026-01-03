@@ -41,6 +41,7 @@ module AssetsTestBuild
     success = system({ "RAILS_ENV" => "test" }, shell, "-ic", "yarn build")
     raise "asset build failed" unless success
     self.already_built = true
+    FileUtils.mkdir_p(Rails.root.join("tmp"))
     File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
   end
 
