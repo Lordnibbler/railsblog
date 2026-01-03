@@ -6,6 +6,7 @@ gem 'activeadmin', '~> 3' # admin UI scaffolding
 gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'concurrent-ruby' # concurrency, used in FlickrService
+gem 'connection_pool', '< 3' # Rails 8.1 calls ConnectionPool with positional args
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickr' # interact with flickr's API
 gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
