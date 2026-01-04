@@ -69,8 +69,7 @@ docker-compose exec web rails c
 # run unit tests (set RAILS_ENV=test)
 docker-compose exec -e RAILS_ENV=test web bundle exec rspec
 
-# if you run JS feature specs locally, precompile assets once first
-bin/rails assets:precompile
+# JS feature specs will precompile assets once automatically
 ```
 
 ### Start rails server and asset bundlers without docker
