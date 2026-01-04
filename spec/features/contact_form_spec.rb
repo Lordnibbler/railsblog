@@ -1,9 +1,9 @@
 require 'features_helper'
 
-describe '/contact-me', :js do
-  before { visit '/contact-me' }
+describe '/contact-me' do
+  context 'with invalid data', :js do
+    before { visit '/contact-me' }
 
-  context 'with invalid data' do
     it 'shows inline validations' do
       click_on 'Send'
       expect(page).to have_css('label[for=contact_form_name]', text: 'can\'t be blank')
@@ -17,6 +17,8 @@ describe '/contact-me', :js do
   end
 
   context 'with valid data' do
+    before { visit '/contact-me' }
+
     it 'submits' do
       within '#new_contact_form' do
         fill_in 'contact_form_name', with: 'Ben Radler'

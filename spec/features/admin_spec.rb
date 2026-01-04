@@ -32,7 +32,7 @@ describe '/admin' do
     end
   end
 
-  describe 'blog_posts', :js do
+  describe 'blog_posts' do
     before { login_as(user, scope: :user) }
 
     describe '/admin/blog_posts/new' do
@@ -59,7 +59,7 @@ describe '/admin' do
       end
     end
 
-    context 'with featured image' do
+    context 'with featured image', :js do
       let!(:post) { create(:post_with_attached_image, user:) }
 
       it 'shows and allows uploading and deleting of featured_image' do
@@ -104,7 +104,7 @@ describe '/admin' do
       end
     end
 
-    context 'with images' do
+    context 'with images', :js do
       let!(:post) { create(:post, user:) }
 
       it 'allows uploading and deleting of images' do

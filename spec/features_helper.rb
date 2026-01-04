@@ -17,11 +17,13 @@ Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-# set to :chrome to see real browser open up
-# Capybara.default_driver = :chrome
-# Capybara.javascript_driver = :chrome
-Capybara.default_driver = :headless_chrome
-Capybara.javascript_driver = :headless_chrome
+# set CAPYBARA_DRIVER=chrome for a visible browser when debugging
+Capybara.default_driver = ENV.fetch('CAPYBARA_DRIVER', 'rack_test').to_sym
+Capybara.javascript_driver = ENV.fetch('CAPYBARA_JS_DRIVER', 'headless_chrome').to_sym
+
+if %i[chrome headless_chrome].include?(Capybara.default_driver)
+  Capybara.javascript_driver = Capybara.default_driver
+end
 
 Capybara.server = :webrick
 
@@ -44,9 +46,15 @@ module AssetsTestBuild
 
   def self.run_assets_if_necessary
     return if ENV['CIRCLECI'] # assets are explicitly compiled in the build step of circleci
+    return unless js_examples_present?
     return if self.already_built
 
     run_assets
+  end
+
+  def self.js_examples_present?
+    examples = RSpec.world.filtered_examples.values.flatten
+    examples.any? { |example| example.metadata[:js] }
   end
 end
 

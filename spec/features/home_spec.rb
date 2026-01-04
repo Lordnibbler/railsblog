@@ -29,10 +29,10 @@ describe '/' do
     end
   end
 
-  context 'when using contact form', :js do
-    before { visit root_path }
+  context 'when using contact form' do
+    context 'with invalid data', :js do
+      before { visit root_path }
 
-    context 'with invalid data' do
       it 'shows inline validations' do
         within '#new_contact_form' do
           click_on 'Send'
@@ -48,6 +48,8 @@ describe '/' do
     end
 
     context 'with valid data' do
+      before { visit root_path }
+
       it 'submits' do
         within '#new_contact_form' do
           fill_in 'contact_form_name', with: 'Ben Radler'
