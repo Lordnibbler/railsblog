@@ -30,6 +30,15 @@ describe '/admin' do
         expect(page).to have_content 'Invalid Email or password'
       end
     end
+
+    context 'when logged out' do
+      it 'rejects access to admin pages' do
+        visit '/admin/blog_posts'
+
+        expect(page).to have_current_path(new_user_session_path)
+        expect(page).to have_content 'Login'
+      end
+    end
   end
 
   describe 'blog_posts' do
@@ -56,6 +65,40 @@ describe '/admin' do
         expect(page).to have_content 'New Post'
         expect(page).to have_content 'Some body'
         expect(page).to have_content user.name
+      end
+    end
+
+    describe '/admin/blog_posts/:id/edit' do
+      let!(:post) { create(:post, user:) }
+
+      it 'updates the post' do
+        visit edit_admin_blog_post_path(post)
+
+        within "form#edit_blog_post_#{post.id}" do
+          fill_in 'blog_post_title', with: 'Updated Title'
+          click_on 'Update Post'
+        end
+
+        expect(page).to have_current_path(admin_blog_post_path(post))
+        expect(page).to have_content 'Post was successfully updated'
+        expect(page).to have_content 'Updated Title'
+      end
+    end
+
+    describe '/admin/blog_posts filters' do
+      let!(:published_post) { create(:post, user:, published: true, title: 'Published Post') }
+      let!(:unpublished_post) { create(:post, user:, published: false, title: 'Draft Post', slug: 'draft-post') }
+
+      it 'filters by published status' do
+        visit '/admin/blog_posts'
+
+        within '.filter_form' do
+          select 'Yes', from: 'q_published'
+          click_on 'Filter'
+        end
+
+        expect(page).to have_content 'Published Post'
+        expect(page).to have_no_content 'Draft Post'
       end
     end
 

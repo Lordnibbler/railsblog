@@ -14,4 +14,13 @@ describe '/photography', :js do
     expect(page).to have_css('a[href*="flickr"]') # Flickr photo URLs
     expect(page).to have_css('img[src*="flickr"]') # Flickr image sources
   end
+
+  it 'opens PhotoSwipe when a photo is clicked', :vcr do
+    visit photography_path
+
+    expect(page).to have_css('figure.image.grid-item a', minimum: 1, wait: 30)
+    first('figure.image.grid-item a').click
+
+    expect(page).to have_css('.pswp.pswp--open', wait: 10)
+  end
 end
