@@ -66,35 +66,53 @@ $ docker run --rm \
 # run the rails console
 docker-compose exec web rails c
 
-# run unit tests (this won't work since docker runs in production env, so test gem group is missing)
-docker-compose exec web rspec
+# run unit tests (set RAILS_ENV=test)
+docker-compose exec -e RAILS_ENV=test web bundle exec rspec
 ```
 
-### Start rails server and webpack-dev-server without docker
+### Start rails server and asset bundlers without docker
+
+Setup (one time)
 
 ```shell
 # install dependencies
 brew bundle
 
 # create a YAML file to stub environment variables
-$ mv config/env.yml.example config/env.yml
-$ vi config/env.yml
+mv config/env.yml.example config/env.yml
+vi config/env.yml
 
 # install dependencies
-$ bundle
-$ yarn
+bundle
+yarn
+```
 
+One-shot command to start everything
+
+```shell
+./bin/dev
+```
+
+Start everything individually
+
+```shell
 # start the rails web server
-$ rails s
+rails s
 
-# start the webpack dev server
-$ ./bin/shakapacker-dev-server
+# watch JS bundles with esbuild
+yarn build:js:watch
+
+# watch CSS bundles
+yarn build:css:watch
 
 # start the guard watcher for tests and code formatting
-$ guard
+guard
+```
 
-# open the browser
-$ open "http://localhost:3000"
+Open the browser
+
+```shell
+open "http://localhost:3000"
 ```
 
 ## Deployment
@@ -204,7 +222,7 @@ Mailgun is used to send emails from the contact forms.
 Cloudflare provides HTTPS via Let's Encrypt. The Rails application layer is [configured to force an SSL connection](https://github.com/Lordnibbler/railsblog/blob/51c77571d72969f41760d5d00d511e4cc9de27c6/config/environments/production.rb#L52).
 
 ### Frontend
-The frontend of the site is built using Webpacker.
+The frontend of the site is built using esbuild (via jsbundling-rails and propshaft).
 
 The technologies used are:
 * [turbo](https://turbo.hotwired.dev/)

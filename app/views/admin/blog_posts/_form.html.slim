@@ -15,7 +15,7 @@
         - span do
           - a "Original", href: cdn_image_url(f.object.featured_image), class: "default-button"
         - span do
-          - a "Delete", href: delete_image_admin_blog_post_path(f.object.featured_image.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
+          - a "Delete", href: delete_image_admin_blog_post_path(f.object, attachment_id: f.object.featured_image.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
     - f.input :images, as: :file, input_html: { multiple: true }
     - li class: "images" do
       - label "Images (attached)"
@@ -36,6 +36,6 @@
             - span do
               - a "Original", href: cdn_image_url(img), class: "default-button"
             - span do
-              - a "Delete", href: delete_image_admin_blog_post_path(img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
+              - a "Delete", href: delete_image_admin_blog_post_path(f.object, attachment_id: img.id), "data-method": :delete, "data-confirm": "Are you sure?", class: "default-button danger-button"
   - render 'admin/blog_posts/markdown_editor',  f: f
   - actions

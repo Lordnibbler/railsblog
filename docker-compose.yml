@@ -30,7 +30,7 @@ services:
         # passed through to your Dockerfile
         RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
-    command: bash -lc "bundle exec rails s -b 0.0.0.0"
+    command: bash -lc "bundle install && bundle exec rails s -b 0.0.0.0"
     volumes:
       - .:/app:cached
       - node_modules:/app/node_modules
@@ -38,7 +38,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      - webpack
+      - assets
     env_file:
       - .env
     environment:
@@ -47,28 +47,19 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/benradler-${RAILS_ENV:-development}
       # so rails knows to bind assets host
       HOST: 0.0.0.0
-      # Shakapacker host/ports
-      SHAKAPACKER_DEV_SERVER_HOST: webpack
-      SHAKAPACKER_DEV_SERVER_PORT: 3035
-      SHAKAPACKER_DEV_SERVER_PUBLIC: localhost:3035
-
-
-  # Shakapacker webpack-dev-server
-  webpack:
+  # JS/CSS watchers
+  assets:
     build:
       context: .
       args:
         RUBY_VERSION: 3.4.8
         RAILS_ENV: ${RAILS_ENV:-development}
-    command: bash -lc "bin/shakapacker-dev-server"
+    command: bash -lc "yarn install --frozen-lockfile && yarn build:js:watch & yarn build:css:watch"
     volumes:
       - .:/app
-    ports:
-      - "3035:3035"
+      - node_modules:/app/node_modules
     environment:
       RAILS_ENV: ${RAILS_ENV:-development}
-      SHAKAPACKER_DEV_SERVER_HOST: "0.0.0.0"
-      SHAKAPACKER_DEV_SERVER_PORT: "3035"
 volumes:
   db_data:
   node_modules:

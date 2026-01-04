@@ -6,8 +6,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = 'benradler.com'
 
-  # instead of sprockets (rails 6 default)
-  config.use_webpacker = true
+  # use Propshaft + jsbundling-rails instead of Webpacker
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -116,6 +115,10 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   # config.root_to = 'dashboard#index'
+
+  config.register_stylesheet 'active_admin.css'
+  config.register_stylesheet 'print.css', media: :print
+  config.register_javascript 'active_admin.js'
 
   # == Admin Comments
   #

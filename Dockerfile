@@ -39,7 +39,7 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
     fi \
  && bundle install --jobs=4
 
-# 6) Install JS dependencies (including devDeps for webpack)
+# 6) Install JS dependencies (including build tools for esbuild/css)
 COPY package.json yarn.lock ./
 ENV YARN_PRODUCTION=false
 RUN yarn install --frozen-lockfile

@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import fitvids from 'fitvids';
 
 $(document).on('turbo:load', () => {

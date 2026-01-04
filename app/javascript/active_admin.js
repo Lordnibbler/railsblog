@@ -1,8 +1,23 @@
-// Load Active Admin's styles into Webpacker,
-// see `active_admin.scss` for customization.
-import "./active_admin.scss";
+// ActiveAdmin's JS expects global jQuery/UJS/UI modules (previously provided by Sprockets).
+// With esbuild we must wire those globals and load order explicitly.
+const $ = require('jquery');
+window.$ = $;
+window.jQuery = $;
 
-import "@activeadmin/activeadmin";
+require('jquery-ujs');
+require('jquery-ui/ui/version');
+require('jquery-ui/ui/widget');
+require('jquery-ui/ui/plugin');
+require('jquery-ui/ui/position');
+require('jquery-ui/ui/widgets/mouse');
+require('jquery-ui/ui/widgets/draggable');
+require('jquery-ui/ui/widgets/resizable');
+require('jquery-ui/ui/widgets/button');
+require('jquery-ui/ui/widgets/datepicker');
+require('jquery-ui/ui/widgets/dialog');
+require('jquery-ui/ui/widgets/sortable');
+require('jquery-ui/ui/widgets/tabs');
+require('@activeadmin/activeadmin');
 
 import { marked } from 'marked'
 

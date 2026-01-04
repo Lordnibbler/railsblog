@@ -8,10 +8,7 @@
   "packageManager": "yarn@1.22.19",
   "dependencies": {
     "@activeadmin/activeadmin": "2.13.0",
-    "@babel/core": "^7.22.9",
-    "@babel/plugin-transform-runtime": "^7.22.9",
-    "@babel/preset-env": "^7.22.9",
-    "@babel/runtime": "^7.26.10",
+    "@rails/ujs": "^7.1.3",
     "@client-side-validations/client-side-validations": "^0.3.0",
     "@hotwired/turbo": "^7.3.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -22,49 +19,35 @@
     "alpine-turbo-drive-adapter": "1.1.0",
     "alpinejs": "2.8.2",
     "autoprefixer": "^10.4.14",
-    "babel-loader": "^9.1.3",
-    "compression-webpack-plugin": "^10.0.0",
     "core-js": "3.20.1",
-    "css-loader": "^6.8.1",
-    "css-minimizer-webpack-plugin": "^5.0.1",
-    "expose-loader": "^4.1.0",
-    "file-loader": "^6.2.0",
+    "esbuild": "^0.25.4",
     "fitvids": "1.0.2",
     "imagesloaded": "4.1.4",
     "infinite-scroll": "4.0.0",
     "jquery": "^3.7.0",
+    "jquery-ui": "^1.13.2",
+    "jquery-ujs": "^1.2.3",
     "marked": "4.0.10",
     "masonry-layout": "4.2.2",
-    "mini-css-extract-plugin": "^2.7.6",
     "photoswipe": "4.1.3",
     "postcss": "^8.4.31",
+    "postcss-cli": "^11.0.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-import": "^15.1.0",
-    "postcss-loader": "^7.3.3",
     "postcss-preset-env": "^9.0.0",
+    "regenerator-runtime": "^0.14.1",
     "sass": "^1.63.6",
-    "sass-loader": "^13.3.2",
-    "shakapacker": "9.4.0",
-    "style-loader": "^3.3.3",
-    "tailwindcss": "^3.3.3",
-    "terser-webpack-plugin": "^5.3.9",
-    "webpack": "^5.94.0",
-    "webpack-assets-manifest": "^5.1.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.9.0",
-    "webpack-sources": "^3.2.3"
+    "tailwindcss": "^3.3.3"
+  },
+  "scripts": {
+    "build": "yarn build:js && yarn build:css",
+    "build:js": "esbuild app/javascript/application.js app/javascript/blog.js app/javascript/photography.js app/javascript/active_admin.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:js:watch": "yarn build:js --watch",
+    "build:css": "postcss app/assets/stylesheets/application.css app/assets/stylesheets/contact-me.css --dir app/assets/builds && sass --load-path=node_modules app/assets/stylesheets/photography.sass:app/assets/builds/photography.css app/assets/stylesheets/active_admin.scss:app/assets/builds/active_admin.css app/assets/stylesheets/print.scss:app/assets/builds/print.css app/assets/stylesheets/pygment.sass:app/assets/builds/pygment.css",
+    "build:css:watch": "postcss app/assets/stylesheets/application.css app/assets/stylesheets/contact-me.css --dir app/assets/builds --watch & sass --watch --load-path=node_modules app/assets/stylesheets/photography.sass:app/assets/builds/photography.css app/assets/stylesheets/active_admin.scss:app/assets/builds/active_admin.css app/assets/stylesheets/print.scss:app/assets/builds/print.css app/assets/stylesheets/pygment.sass:app/assets/builds/pygment.css"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js"
-    ]
-  },
   "browserslist": [
     "defaults"
-  ],
-  "devDependencies": {
-    "@webpack-cli/serve": "^2.0.5",
-    "webpack-dev-server": "^5.2.0"
-  }
+  ]
 }

@@ -31,7 +31,7 @@ jobs:
             chmod +x "${HOME}/bin/docker-compose"
             echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
-      # (3) Build your app + webpack images in parallel
+      # (3) Build your app images in parallel
       - run:
           name: docker-compose build
           command: docker-compose build --parallel
@@ -80,15 +80,15 @@ jobs:
             docker run --rm --network container:$(docker-compose ps -q db) \
               appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
 
-      # Compile your JS packs (in test mode)
+      # Compile assets (jsbundling-rails + propshaft)
       - run:
-          name: Compile Shakapacker (Rails task)
+          name: Compile Assets (Rails task)
           command: |
             docker-compose run --rm \
               -e RAILS_ENV=test \
               -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
               web \
-              bin/rails shakapacker:compile
+              bin/rails assets:precompile
 
       # Run RSpec (with DB setup)
       - run:
