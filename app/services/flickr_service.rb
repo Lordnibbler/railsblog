@@ -85,6 +85,11 @@ class FlickrService
       Rails.cache.fetch(cache_key, expires_in: 3.days) { get_photos_from_flickr(args) }
     end
 
+    # Convenience wrapper used by controllers and API endpoints.
+    def get_photos(args = {})
+      get_photos_from_cache(args)
+    end
+
     # Fetches a photo by its ID
     # @param photo_id [String] ID of the photo to fetch
     # @return [Hash] photo data
