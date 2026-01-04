@@ -7,7 +7,7 @@ RSpec.describe ContactForm do
         name: 'Ben',
         email: 'ben@benradler.com',
         message: 'Hello!',
-        nickname: ''
+        nickname: '',
       )
 
       expect(form).to be_valid
@@ -18,7 +18,7 @@ RSpec.describe ContactForm do
         name: 'Ben',
         email: 'not-an-email',
         message: 'Hello!',
-        nickname: ''
+        nickname: '',
       )
 
       expect(form).not_to be_valid
@@ -30,7 +30,7 @@ RSpec.describe ContactForm do
         name: 'Ben',
         email: 'ben@benradler.com',
         message: 'Hello!',
-        nickname: 'spammy'
+        nickname: 'spammy',
       )
 
       expect(form).not_to be_valid
@@ -43,7 +43,7 @@ RSpec.describe ContactForm do
         name: 'Ben',
         email: 'ben@benradler.com',
         message: 'Hello!',
-        nickname: ''
+        nickname: '',
       )
 
       headers = form.headers

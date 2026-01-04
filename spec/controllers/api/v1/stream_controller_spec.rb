@@ -9,7 +9,7 @@ RSpec.describe Api::V1::StreamController do
       get :index
 
       expect(response.media_type).to eq('application/json')
-      expect(JSON.parse(response.body)).to eq(photos)
+      expect(response.parsed_body).to eq(photos)
     end
 
     it 'passes the page param through to FlickrService' do
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::StreamController do
 
       get :flickr, params: { page: '4' }
 
-      body = JSON.parse(response.body)
+      body = response.parsed_body
       expect(body['source']).to eq('flickr')
       expect(body['page']).to eq(5)
       expect(body['posts']).to eq(photos)
@@ -40,7 +40,7 @@ RSpec.describe Api::V1::StreamController do
 
       get :flickr
 
-      body = JSON.parse(response.body)
+      body = response.parsed_body
       expect(body['page']).to eq(2)
       expect(FlickrService).to have_received(:get_photos).with(page: nil)
     end
