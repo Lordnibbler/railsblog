@@ -17,18 +17,19 @@ Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-# set to :chrome to see real browser open up
-# Capybara.default_driver = :chrome
-# Capybara.javascript_driver = :chrome
-Capybara.default_driver = :headless_chrome
-Capybara.javascript_driver = :headless_chrome
+# set CAPYBARA_DRIVER=chrome for a visible browser when debugging
+Capybara.default_driver = ENV.fetch('CAPYBARA_DRIVER', 'rack_test').to_sym
+Capybara.javascript_driver = ENV.fetch('CAPYBARA_JS_DRIVER', 'headless_chrome').to_sym
+
+if %i[chrome headless_chrome].include?(Capybara.default_driver)
+  Capybara.javascript_driver = Capybara.default_driver
+end
 
 Capybara.server = :webrick
 
 
-# asset bundles not automatically compiling before tests run
+# asset bundles are not automatically compiled before tests run
 module AssetsTestBuild
-  TS_FILE = Rails.root.join("tmp", "assets-spec-timestamp")
   class << self
     attr_accessor :already_built
   end
@@ -38,43 +39,28 @@ module AssetsTestBuild
     puts `which node`
     puts `node --version`
     shell = ENV.fetch("SHELL", "/bin/bash")
-    success = system({ "RAILS_ENV" => "test" }, shell, "-ic", "yarn build")
+    success = system({ "RAILS_ENV" => "test" }, shell, "-ic", "bin/rails assets:precompile")
     raise "asset build failed" unless success
     self.already_built = true
-    FileUtils.mkdir_p(Rails.root.join("tmp"))
-    File.open(TS_FILE, "w") { |f| f.write(Time.now.utc.to_i) }
   end
 
   def self.run_assets_if_necessary
     return if ENV['CIRCLECI'] # assets are explicitly compiled in the build step of circleci
+    return unless js_examples_present?
     return if self.already_built
 
-    run_assets if timestamp_outdated?
+    run_assets
   end
 
-  def self.timestamp_outdated?
-    return true if !File.exist?(TS_FILE)
-
-    current = current_bundle_timestamp(TS_FILE)
-
-    return true if !current
-
-    expected = Dir[Rails.root.join("app", "javascript", "**", "*")].map do |f|
-      File.mtime(f).utc.to_i
-    end.max
-
-    return current < expected
-  end
-
-  def self.current_bundle_timestamp(file)
-    return File.read(file).to_i
-  rescue StandardError
-    nil
+  def self.js_examples_present?
+    examples = RSpec.world.filtered_examples.values.flatten
+    examples.any? { |example| example.metadata[:js] }
   end
 end
 
 RSpec.configure do |config|
-  config.before(:each, :js) do
+  config.before(:suite) do
     AssetsTestBuild.run_assets_if_necessary
   end
+
 end

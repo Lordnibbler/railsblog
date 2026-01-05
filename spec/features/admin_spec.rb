@@ -30,9 +30,22 @@ describe '/admin' do
         expect(page).to have_content 'Invalid Email or password'
       end
     end
+
+    context 'when logged out' do
+      it 'rejects access to admin pages' do
+        visit '/admin/blog_posts'
+
+        expect(page).to have_current_path(new_user_session_path)
+        expect(page).to have_content 'Login'
+        expect(page).to have_css('#session_new')
+        expect(page).to have_field('user_email')
+        expect(page).to have_field('user_password')
+        expect(page).to have_content('You need to sign in or sign up before continuing')
+      end
+    end
   end
 
-  describe 'blog_posts', :js do
+  describe 'blog_posts' do
     before { login_as(user, scope: :user) }
 
     describe '/admin/blog_posts/new' do
@@ -59,7 +72,41 @@ describe '/admin' do
       end
     end
 
-    context 'with featured image' do
+    describe '/admin/blog_posts/:id/edit' do
+      let!(:post) { create(:post, user:) }
+
+      it 'updates the post' do
+        visit edit_admin_blog_post_path(post)
+
+        within "form#edit_blog_post_#{post.id}" do
+          fill_in 'blog_post_title', with: 'Updated Title'
+          click_on 'Update Post'
+        end
+
+        expect(page).to have_current_path(admin_blog_post_path(post))
+        expect(page).to have_content 'Post was successfully updated'
+        expect(page).to have_content 'Updated Title'
+      end
+    end
+
+    describe '/admin/blog_posts filters' do
+      let!(:published_post) { create(:post, user:, published: true, title: 'Published Post') }
+      let!(:unpublished_post) { create(:post, user:, published: false, title: 'Draft Post', slug: 'draft-post') }
+
+      it 'filters by published status' do
+        visit '/admin/blog_posts'
+
+        within '.filter_form' do
+          select 'Yes', from: 'q_published'
+          click_on 'Filter'
+        end
+
+        expect(page).to have_content 'Published Post'
+        expect(page).to have_no_content 'Draft Post'
+      end
+    end
+
+    context 'with featured image', :js do
       let!(:post) { create(:post_with_attached_image, user:) }
 
       it 'shows and allows uploading and deleting of featured_image' do
@@ -104,7 +151,7 @@ describe '/admin' do
       end
     end
 
-    context 'with images' do
+    context 'with images', :js do
       let!(:post) { create(:post, user:) }
 
       it 'allows uploading and deleting of images' do

@@ -1,6 +1,8 @@
 require 'features_helper'
 
 describe '/blog' do
+  include BlogHelper
+
   let!(:post) { create(:post_with_attached_image) }
   let!(:long_post) { create(:long_post_with_attached_image, user: post.user) }
 
@@ -33,9 +35,11 @@ describe '/blog' do
   context 'when clicking Continue Reading' do
     it 'shows full post with featured image' do
       within "#post-#{long_post.id}" do
+        expect(page).to have_link('Continue Reading', href: blog_posts_permalink_path(long_post))
         click_on 'Continue Reading', exact: false
       end
 
+      expect(page).to have_current_path(blog_posts_permalink_path(long_post))
       expect(page).to have_content 'Spicy jalapeno bacon'
       expect(page).to have_content(/Previous Post/i)
       expect(page).to have_no_content 'Continue Reading'
