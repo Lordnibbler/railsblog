@@ -8,7 +8,7 @@ class ContactForm < MailForm::Base
   attribute :nickname, captcha: true
   append :remote_ip, :user_agent, :session
 
-  validates :nickname, absence: true
+  validates :nickname, absence: true # honeypot field should stay blank
 
   # Declare the e-mail headers. It accepts anything the mail method in ActionMailer accepts.
   def headers

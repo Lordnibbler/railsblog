@@ -37,6 +37,10 @@ describe '/admin' do
 
         expect(page).to have_current_path(new_user_session_path)
         expect(page).to have_content 'Login'
+        expect(page).to have_css('#session_new')
+        expect(page).to have_field('user_email')
+        expect(page).to have_field('user_password')
+        expect(page).to have_content('You need to sign in or sign up before continuing')
       end
     end
   end

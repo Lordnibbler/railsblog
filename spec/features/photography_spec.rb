@@ -22,5 +22,11 @@ describe '/photography', :js do
     first('figure.image.grid-item a').click
 
     expect(page).to have_css('.pswp.pswp--open', wait: 10)
+    expect(page).to have_css('.pswp__button--close')
+    expect(page).to have_css('.pswp__counter')
+
+    expect(page).to have_css('.pswp__button--arrow--right')
+    expect(page).to have_css('.pswp__img', wait: 10)
+    expect(page).to have_css('.pswp__counter', text: %r{\d+\s*/\s*\d+})
   end
 end

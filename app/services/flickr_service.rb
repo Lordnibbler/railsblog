@@ -85,7 +85,7 @@ class FlickrService
       Rails.cache.fetch(cache_key, expires_in: 3.days) { get_photos_from_flickr(args) }
     end
 
-    # Convenience wrapper used by controllers and API endpoints.
+    # Convenience wrapper used by controllers and API endpoints (cache-first).
     def get_photos(args = {})
       get_photos_from_cache(args)
     end
