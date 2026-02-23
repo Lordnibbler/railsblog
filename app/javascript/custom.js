@@ -62,6 +62,13 @@ addEventListener('turbo:load', function() {
 
   // flash auto-hiding
   $('.flash').on('click', function(event) {
-    $(this).slideUp();
+    const $flash = $(this);
+    $flash.slideUp(150, function() {
+      const $container = $flash.closest('.flash-container');
+      $flash.remove();
+      if ($container.find('.flash:visible').length === 0) {
+        $container.remove();
+      }
+    });
   });
 })
