@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '3.4.8'
+ruby '4.0.2'
 gem 'rails', '~> 8'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding
@@ -41,13 +41,13 @@ group :development do
   gem 'guard-yard', require: false
   gem 'guard'
   gem 'pry-rails'
+  gem 'pry-byebug' # byebug requires readline; keep out of test boot
 end
 
 group :development, :test do
   gem 'awesome_print', require: 'ap' # better `p`
   gem 'brakeman'
   gem 'dotenv-rails'
-  gem 'pry-byebug' # pry debugger for ruby 2.1
   gem 'rspec-rails'
   gem 'rubocop-capybara', require: false
   gem 'rubocop-factory_bot', require: false
