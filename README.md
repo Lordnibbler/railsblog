@@ -156,8 +156,11 @@ heroku container:push web --arg RAILS_ENV=production -a benradler
 # releases this particular container onto the server
 heroku container:release web -a benradler
 
-# or all in one command:
+# Production all in one command:
 heroku login && heroku container:login && heroku container:push web -a benradler && heroku container:release web -a benradler
+
+# Staging all in one command:
+heroku login && heroku container:login && heroku container:push web -a benradler-staging && heroku container:release web -a benradler-staging
 ```
 
 ### Debugging
