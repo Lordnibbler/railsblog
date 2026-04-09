@@ -2,6 +2,10 @@
 # helper methods for views used application-wide
 #
 module ApplicationHelper
+  def current_page_url
+    request&.original_url || root_url
+  end
+
   #
   # @return [String] a <=55 character meta title
   #

@@ -14,7 +14,7 @@ RSpec.describe 'Redirects', type: :request do
     get '/resume-pdf'
 
     expect(response).to have_http_status(:moved_permanently)
-    expect(response.headers['Location']).to end_with('/resume/downloads/radler-resume.pdf')
+    expect(response.headers['Location']).to end_with('/web-resume/downloads/ben-radler-resume.pdf')
   end
 
   it 'redirects /sitemap.xml.gz to S3' do
