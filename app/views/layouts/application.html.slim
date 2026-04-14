@@ -63,7 +63,8 @@ html[lang="en"]
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }" @resize.window="if (window.innerWidth >= 1024) mobileMenu = false"]
     div[id="main" class="flex flex-col" style="#{main_styles}"]
       = render 'shared/header'
-      = render 'shared/flash'
+      - unless controller_name == 'pages' && params[:id] == 'contact-me'
+        = render 'shared/flash'
       - if controller_name =~ /pages|errors/
         = render 'shared/page'
       - else
