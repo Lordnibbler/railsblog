@@ -38,7 +38,7 @@ RSpec.describe 'Page metadata and markup', type: :request do
 
       expect(time_element).to be_present
       expect(time_element.text.strip).to eq(post.created_at.strftime('%B %-d, %Y %l:%M%P'))
-      expect(time_element['datetime']).to eq(post.created_at.to_formatted_s(:iso8601))
+      expect(time_element['datetime']).to eq(post.created_at.to_fs(:iso8601))
     end
   end
 
