@@ -41,7 +41,7 @@ group :development do
   gem 'guard-yard', require: false
   gem 'guard'
   gem 'pry-rails'
-  gem 'pry-byebug' # byebug requires readline; keep out of test boot
+  gem 'pry-byebug', require: false # byebug requires readline; only load it when debugging explicitly
 end
 
 group :development, :test do

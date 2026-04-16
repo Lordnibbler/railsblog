@@ -1,6 +1,8 @@
 <% set_meta_tags title: 'Contact Me', description: 'Contact Ben Radler for hiring or for help on Ruby, Rails, Node.js, Javascript' %>
 <% content_for :page_title, 'Contact Me' %>
 
+<%= render partial: "shared/flash", locals: { container_classes: "flash-container pb-6" } %>
+
 <h4 class="font-header font-medium text-black dark:text-primary-400 text-xl sm:text-2xl lg:text-3xl pt-6">
   Have Any Questions?</h4>
 <div class="w-full sm:w-2/3 pt-5 lg:pt-6">

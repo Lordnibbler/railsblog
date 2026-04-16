@@ -11,8 +11,9 @@
                 <%= "By #{post.author}" %>
             </span>
             <span class="font-body font-bold text-grey-30 dark:text-primary-500 text-xl block pt-1">
-                <time datetime="<%= post.created_at.to_formatted_s(:iso8601) %>" itemprop='datePublished' />
-                <%= post.created_at.strftime('%B %-d, %Y %l:%M%P') %>
+                <time datetime="<%= post.created_at.to_formatted_s(:iso8601) %>" itemprop='datePublished'>
+                    <%= post.created_at.strftime('%B %-d, %Y %l:%M%P') %>
+                </time>
             </span>
         </div>
     </div>

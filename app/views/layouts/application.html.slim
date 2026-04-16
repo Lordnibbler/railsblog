@@ -14,12 +14,12 @@ html[lang="en"]
 
     - # generic meta tags
     meta[itemprop="name" content="Radler Designs - benradler.com"]
-    meta[itemprop="url" content="#{root_url}"]
+    meta[itemprop="url" content="#{current_page_url}"]
     meta[itemprop="description" content="Radler Designs - Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
     meta[itemprop="thumbnailUrl" content="#{image_url("layout/social.jpg")}"]
     meta[itemprop="image" content="#{image_url("layout/social.jpg")}"]
     link[rel="image_src" href="#{image_url("layout/social.jpg")}"]
-    link[rel="canonical" href="#{root_url}"]
+    link[rel="canonical" href="#{current_page_url}"]
     link[rel="icon" type="image/png" href="#{image_url("layout/favicon.png")}"]
 
     - # for browsers/devices which customize UI based on theme
@@ -36,7 +36,7 @@ html[lang="en"]
     meta[property="og:site_name" content="Radler Designs - benradler.com"]
     meta[property="og:title" content="Radler Designs - benradler.com"]
     meta[property="og:locale" content="en_US"]
-    meta[property="og:url" content="#{root_url}"]
+    meta[property="og:url" content="#{current_page_url}"]
     meta[property="og:type" content="website"]
     meta[property="og:description" content="Radler Designs - Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
     meta[property="og:image" content="#{image_url("layout/social.jpg")}"]
@@ -48,8 +48,8 @@ html[lang="en"]
     meta[name="twitter:site" content="@benradler"]
     meta[name="twitter:title" content="Ben Radler"]
     meta[name="twitter:image" content="#{image_url("layout/social.jpg")}"]
-    meta[name="twitter:url" content="#{root_url}"]
-    meta[name="twitter:description" content="qwerty"]
+    meta[name="twitter:url" content="#{current_page_url}"]
+    meta[name="twitter:description" content="Ben has ten years of professional experience as a Software Engineer at industry-leading companies in the San Francisco Bay Area."]
     meta[name="twitter:card" content="summary_large_image"]
 
     - # staging/production require this
@@ -63,7 +63,8 @@ html[lang="en"]
   body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }" @resize.window="if (window.innerWidth >= 1024) mobileMenu = false"]
     div[id="main" class="flex flex-col" style="#{main_styles}"]
       = render 'shared/header'
-      = render 'shared/flash'
+      - unless controller_name == 'pages' && params[:id] == 'contact-me'
+        = render 'shared/flash'
       - if controller_name =~ /pages|errors/
         = render 'shared/page'
       - else
