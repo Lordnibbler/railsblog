@@ -57,7 +57,7 @@ RUN if [ "$RAILS_ENV" = "production" ]; then \
       # now that ENV is set, compile assets
       bundle exec rails assets:precompile; \
     fi
-# 9) Copy in the entrypoint and release scripts (to migrate db, warm cache, start puma server)
+# 9) Copy in the entrypoint and release scripts (to migrate db and start puma server)
 COPY entrypoint.sh /usr/bin/entrypoint.sh
 RUN chmod +x /usr/bin/entrypoint.sh
 COPY release-tasks.sh /usr/bin/release-tasks.sh

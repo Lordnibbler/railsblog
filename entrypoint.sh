@@ -6,7 +6,7 @@ if [ $# -gt 0 ]; then
   exec "$@"
 fi
 
-# in production env, migrate the db and warm the flickr redis cache
+# in production env, run release tasks before starting the web server
 if [ "$RAILS_ENV" = "production" ]; then
   ./release-tasks.sh
 fi
