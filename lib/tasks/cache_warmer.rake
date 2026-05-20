@@ -2,6 +2,7 @@ namespace :cache_warmer do
   # usage: bx rails 'cache_warmer:flickr'
   desc 'Warms cache for flickr API'
   task flickr: :environment do |_task, _args|
+    started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     Rails.logger.info('--->  Cache Warmer: starting...')
 
     # return if cache is warm already when deploying, avoiding unnecessary calls to flickr
@@ -18,6 +19,8 @@ namespace :cache_warmer do
 
       Rails.logger.info('--->  Cache Warmer: completed warming cache')
     end
+  ensure
+    elapsed = Process.clock_gettime(Process::CLOCK_MONOTONIC) - started_at
+    Rails.logger.info("--->  Cache Warmer: finished in #{elapsed.round(2)}s")
   end
 end
-
