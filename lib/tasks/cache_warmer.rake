@@ -8,10 +8,6 @@ namespace :cache_warmer do
     if Rails.cache.fetch(FlickrService::PHOTOGRAPHY_CACHE_WARMED_KEY) == true
       Rails.logger.info('--->  Cache Warmer: Cache already warm, exiting')
     else
-      # clear out the existing Rails.cache
-      Rails.logger.info('--->  Cache Warmer: Clearing existing cache')
-      Rails.cache.clear
-
       # warm the cache for num_pages worth of Flickr photos, saving
       # each page to a random index between 1..num_pages
       Rails.logger.info('--->  Cache Warmer: Warming Flickr cache')
@@ -24,5 +20,4 @@ namespace :cache_warmer do
     end
   end
 end
-
 
