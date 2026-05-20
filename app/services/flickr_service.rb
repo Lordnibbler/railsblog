@@ -1,6 +1,7 @@
 require 'flickr'
 
 # interface for fetching and caching photos from flickr API
+# rubocop:disable Metrics/ClassLength
 class FlickrService
   # This class is responsible for fetching and caching photos from Flickr API
   # It provides methods to warm up the cache, fetch photos from cache or directly from Flickr
@@ -277,3 +278,4 @@ class FlickrService
     end
   end
 end
+# rubocop:enable Metrics/ClassLength

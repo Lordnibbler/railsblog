@@ -20,7 +20,7 @@ AllCops:
     - Gemfile
     - app/helpers/application_helper.rb
 
-require:
+plugins:
   - rubocop-capybara
   - rubocop-factory_bot
   - rubocop-rails
@@ -77,7 +77,7 @@ Style/Next:
 Style/DoubleNegation:
   Enabled: false
 
-HasAndBelongsToMany:
+Rails/HasAndBelongsToMany:
   Enabled: false
 
 Metrics/AbcSize:

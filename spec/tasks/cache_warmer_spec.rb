@@ -1,13 +1,12 @@
 require 'rails_helper'
 require 'rake'
 
+Rails.application.load_tasks
+
+# rubocop:disable RSpec/DescribeClass
 describe 'cache_warmer:flickr' do
   let(:task) { Rake::Task['cache_warmer:flickr'] }
   let(:logger) { instance_double(Logger, info: nil) }
-
-  before(:all) do
-    Rails.application.load_tasks
-  end
 
   before do
     task.reenable
@@ -57,3 +56,4 @@ describe 'cache_warmer:flickr' do
     expect(logger).to have_received(:info).with('--->  Cache Warmer: finished in 2.34s')
   end
 end
+# rubocop:enable RSpec/DescribeClass
