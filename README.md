@@ -125,7 +125,7 @@ No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docke
 
 1. Pull the web image you just pushed.
 2. Run bundle exec rails db:migrate.
-3. Run bundle exec rails cache_warmer:flickr.
+3. Start bundle exec rails cache_warmer:flickr in the background if the Flickr cache is cold.
 4. Start web dyno with bundle exec puma -C config/puma.rb.
 
 ### Automatic Deployments
