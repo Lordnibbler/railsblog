@@ -164,4 +164,66 @@ describe FlickrService do
       expect(total_pages).to eq(8)
     end
   end
+
+  describe 'fetch_photos_with_retry' do
+    let(:logger) { instance_double(Logger, info: nil, error: nil) }
+
+    before do
+      allow(described_class).to receive(:logger).and_return(logger)
+    end
+
+    it 'retries retryable Flickr fetch failures' do
+      attempts = 0
+      photos = [{ key: '49822917268' }]
+
+      allow(described_class).to receive(:get_photos_from_flickr) do
+        attempts += 1
+        raise Net::ReadTimeout if attempts == 1
+
+        photos
+      end
+
+      expect(described_class.send(:fetch_photos_with_retry, 1)).to eq(photos)
+      expect(described_class).to have_received(:get_photos_from_flickr).with(page: 1).twice
+    end
+
+    it 'raises retryable failures after configured retries are exhausted' do
+      original_retries = ENV.fetch('FLICKR_CACHE_WARMER_RETRIES', nil)
+      ENV['FLICKR_CACHE_WARMER_RETRIES'] = '1'
+      error = EOFError.new('connection closed')
+
+      allow(described_class).to receive(:get_photos_from_flickr).and_raise(error)
+
+      expect { described_class.send(:fetch_photos_with_retry, 1) }.to raise_error(error)
+      expect(described_class).to have_received(:get_photos_from_flickr).with(page: 1).twice
+    ensure
+      ENV['FLICKR_CACHE_WARMER_RETRIES'] = original_retries
+    end
+
+    it 'does not retry non-retryable failures' do
+      error = ArgumentError.new('bad page')
+      allow(described_class).to receive(:get_photos_from_flickr).and_raise(error)
+
+      expect { described_class.send(:fetch_photos_with_retry, 1) }.to raise_error(error)
+      expect(described_class).to have_received(:get_photos_from_flickr).with(page: 1).once
+    end
+  end
+
+  describe 'fetch_and_randomize_photos' do
+    let(:logger) { instance_double(Logger, info: nil, error: nil) }
+
+    before do
+      allow(described_class).to receive(:logger).and_return(logger)
+    end
+
+    it 'uses future value bang so async failures are raised' do
+      future = instance_double(Concurrent::Future)
+      error = Net::ReadTimeout.new('timed out')
+
+      allow(future).to receive(:value!).and_raise(error)
+      allow(described_class).to receive(:fetch_photos_future).with(1).and_return(future)
+
+      expect { described_class.send(:fetch_and_randomize_photos, 1) }.to raise_error(error)
+    end
+  end
 end

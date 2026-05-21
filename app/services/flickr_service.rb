@@ -1,6 +1,7 @@
 require 'flickr'
 
 # interface for fetching and caching photos from flickr API
+# rubocop:disable Metrics/ClassLength
 class FlickrService
   # This class is responsible for fetching and caching photos from Flickr API
   # It provides methods to warm up the cache, fetch photos from cache or directly from Flickr
@@ -38,25 +39,26 @@ class FlickrService
     # @param pages [Integer] number of pages to fetch from Flickr
     # @return [void]
     def warm_cache_shuffled(pages: nil)
-      pages ||= total_pages
+      started_at = monotonic_time
+      pages ||= timed('fetching total Flickr pages') { total_pages }
       logger.info("Concurrently fetching #{pages} total pages of photos from Flickr")
 
-      photos = fetch_and_randomize_photos(pages)
+      photos = timed("fetching and randomizing #{pages} pages") { fetch_and_randomize_photos(pages) }
 
       # 3. Cache the individual photos
       # example cache key: flickr_photo/49822914933
-      cache_photos(photos)
+      timed("writing #{photos.count} individual photos to cache") { cache_photos(photos) }
 
       # 4. Cache photos in batches of `per_page` size
       # example cache key: flickr_photos/33668819@N03_20_1
       logger.info("Writing #{pages} pages of photos to cache")
-      cache_photos_in_batches(photos, pages)
+      timed("writing #{pages} page batches to cache") { cache_photos_in_batches(photos, pages) }
 
       logger.info("Wrote #{photos.count} photos to cache")
       logger.info("Example photo cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
       logger.info("Example batch cache key: #{self.generate_page_cache_key(user_id: FLICKR_USER_ID, page: 1,
                                                                            per_page: 20,)}")
-      logger.info('Done')
+      logger.info("Done in #{elapsed_since(started_at)}s")
     end
 
     # Fetches photos from Flickr
@@ -114,8 +116,18 @@ class FlickrService
     # @param pages [Integer] number of pages to fetch from Flickr
     # @return [Array<Hash>] array of randomized photo data
     def fetch_and_randomize_photos(pages)
-      futures = (1..pages).map { |page| fetch_photos_future(page) }
-      futures.map(&:value).flatten.compact.shuffle
+      concurrency = Integer(ENV.fetch('FLICKR_CACHE_WARMER_CONCURRENCY', 2))
+      logger.info("fetching Flickr pages with concurrency #{concurrency}")
+
+      (1..pages).each_slice(concurrency).flat_map do |page_batch|
+        futures = page_batch.map { |page| [page, fetch_photos_future(page)] }
+        futures.flat_map do |page, future|
+          future.value!
+        rescue StandardError => e
+          logger.error("failed to fetch page #{page}: #{e.class}: #{e.message}")
+          raise
+        end
+      end.shuffle
     end
 
     def fetch_photos_future(page)
@@ -127,20 +139,43 @@ class FlickrService
     # @param attempts [Integer] number of attempts made to fetch photos
     # @return [Array<Hash>, nil] array of photo data or nil if an error occurs
     def fetch_photos_with_retry(page, attempts = 0)
+      started_at = monotonic_time
       logger.info("fetching page #{page} from flickr on attempt #{attempts}")
-      get_photos_from_flickr(page:)
-    rescue Errno::ECONNRESET => e
+      get_photos_from_flickr(page:).tap do |photos|
+        logger.info("fetched page #{page} with #{photos&.count || 0} photos in #{elapsed_since(started_at)}s")
+      end
+    rescue StandardError => e
+      raise unless retryable_flickr_error?(e)
+
       retry_or_raise_error(page, attempts, e)
     end
 
     def retry_or_raise_error(page, attempts, error)
-      if attempts >= 5
-        logger.error("exhausted retries for page #{page}")
+      max_attempts = Integer(ENV.fetch('FLICKR_CACHE_WARMER_RETRIES', 5))
+      if attempts >= max_attempts
+        logger.error("exhausted retries for page #{page}: #{error.class}: #{error.message}")
         raise error
       end
 
-      logger.info("future for page #{page} retrying")
+      logger.info("future for page #{page} retrying after #{error.class}: #{error.message}")
       fetch_photos_with_retry(page, attempts + 1)
+    end
+
+    def retryable_flickr_error?(error)
+      retryable_errors = [
+        Errno::ECONNRESET,
+        EOFError,
+        JSON::ParserError,
+        Net::OpenTimeout,
+        Net::ReadTimeout,
+        Timeout::Error,
+      ]
+
+      retryable_errors.any? { |error_class| error.is_a?(error_class) } || flickr_service_unavailable?(error)
+    end
+
+    def flickr_service_unavailable?(error)
+      error.is_a?(Flickr::FailedResponse) && error.message.match?(/not currently available|unavailable|temporarily/i)
     end
 
     # Caches photos in rails cache
@@ -170,15 +205,18 @@ class FlickrService
     # @param response [Array<Hash>] response from Flickr API
     # @return [Array<Hash>] array of normalized photo data
     def normalize(response:)
-      response.map { |photo| normalize_photo(photo) }
+      logger.info("normalizing #{response.count} photos")
+      response.map.with_index(1) do |photo, index|
+        timed("normalizing photo #{index}/#{response.count} id=#{photo.id}") { normalize_photo(photo) }
+      end
     end
 
     # Normalizes a single photo response from Flickr
     # @param photo [Hash] photo data to normalize
     # @return [Hash] normalized photo data
     def normalize_photo(photo)
-      get_photo_response = get_photo(photo.id)
-      sizes = client.photos.getSizes(photo_id: photo.id)
+      get_photo_response = timed("fetching info for photo #{photo.id}") { get_photo(photo.id) }
+      sizes = timed("fetching sizes for photo #{photo.id}") { client.photos.getSizes(photo_id: photo.id) }
       {
         source: 'flickr',
         key: photo.id,
@@ -224,5 +262,20 @@ class FlickrService
     def generate_photo_cache_key(photo_id:)
       "flickr_photo/#{photo_id}"
     end
+
+    def timed(label)
+      started_at = monotonic_time
+      logger.info("#{label} started")
+      yield.tap { logger.info("#{label} finished in #{elapsed_since(started_at)}s") }
+    end
+
+    def monotonic_time
+      Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    end
+
+    def elapsed_since(started_at)
+      (monotonic_time - started_at).round(2)
+    end
   end
 end
+# rubocop:enable Metrics/ClassLength

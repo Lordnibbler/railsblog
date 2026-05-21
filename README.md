@@ -121,12 +121,13 @@ open "http://localhost:3000"
 
 This app is deployed to heroku via a docker container, using the `container` stack.
 
-No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docker-images-heroku-yml/). Heroku will honor this manifest instead. On each `container:release`, Heroku will run [`entrypoint.sh`](./entrypoint.sh):
+No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docker-images-heroku-yml/). Heroku will honor this manifest instead. On each `container:release`:
 
 1. Pull the web image you just pushed.
-2. Run bundle exec rails db:migrate.
-3. Run bundle exec rails cache_warmer:flickr.
-4. Start web dyno with bundle exec puma -C config/puma.rb.
+2. Run the release phase command, [`release-tasks.sh`](./release-tasks.sh), which runs `bundle exec rails db:migrate`.
+3. Start the web dyno with [`entrypoint.sh`](./entrypoint.sh), which runs [`release-tasks.sh`](./release-tasks.sh) in production and then starts `bundle exec puma -C config/puma.rb`.
+
+The Flickr cache warmer is intentionally not part of web dyno startup. It runs via Heroku Scheduler so a slow Flickr response cannot make a freshly deployed web dyno return errors while it is coming up.
 
 ### Automatic Deployments
 
@@ -200,8 +201,8 @@ It uses Heroku Scheduler add on to run two recurring jobs:
 * `rails sitemap:refresh`
   * runs daily to refresh the sitemap file for the site
 * `rails cache_warmer:flickr`
-  * runs daily to fetch all Flickr photos for the photography page and write their metadata to redit. this job also shuffles the images so their order changes daily to keep the page looking fresh.
-  * photo cache itself expires after 3 days, and a single warm cache key expires after 1 day. as a result, back to back deploys do not trigger a re-warm of the cache, and if a scheduler job fails to run we won't be likely to be left without a cache since there are 2 more attempts in the next 48h.
+  * runs daily to fetch all Flickr photos for the photography page and write their metadata to redis. this job also shuffles the images so their order changes daily to keep the page looking fresh.
+  * photo cache itself expires after 3 days, and a single warm cache key expires after 25 hours. the scheduler job always refreshes the cache instead of skipping when the warm key is present, so the daily run keeps extending both the photo cache and the warm marker.
 
 
 ### CDN
