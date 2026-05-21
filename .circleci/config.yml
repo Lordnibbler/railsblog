@@ -94,37 +94,26 @@ jobs:
     steps:
       - checkout
 
-      # Log into Heroku Container Registry
-      #    We assume you have set the following two environment variables in CircleCI project settings:
-      #      - HEROKU_API_KEY    (your Heroku API Key)
-      #      - HEROKU_APP_NAME   (the short name of your Heroku app, e.g. "my-rails-app-staging")
-      - run:
-          name: Heroku Container Registry Login
-          command: |
-            echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
-
-      # Build & push the production Docker image to Heroku
-      - run:
-          name: Build & Push Docker Image to Heroku
-          command: |
-            # Make sure RAILS_ENV=production, SECRET_KEY_BASE is set, etc.
-            HEROKU_APP=$HEROKU_APP_NAME
-            docker build \
-              --build-arg RAILS_ENV=production \
-              --build-arg SECRET_KEY_BASE=$(openssl rand -hex 64) \
-              -t registry.heroku.com/$HEROKU_APP/web .
-            docker push registry.heroku.com/$HEROKU_APP/web
-
-      # Install Heroku CLI (so we can run `heroku container:release`)
+      # Install Heroku CLI for the same container deploy flow used locally.
       - run:
           name: Install Heroku CLI
           command: |
             curl https://cli-assets.heroku.com/install.sh | sh
 
-      # Release the “web” image on Heroku
+      # Log into Heroku Container Registry.
+      # Requires HEROKU_API_KEY and HEROKU_APP_NAME in CircleCI project settings.
       - run:
-          name: Release to Heroku
+          name: Heroku Container Registry Login
           command: |
+            heroku container:login
+
+      # Build, push, and release the web image using Heroku's container flow.
+      - run:
+          name: Deploy to Heroku
+          command: |
+            heroku container:push web \
+              --arg SECRET_KEY_BASE=$(openssl rand -hex 64) \
+              --app $HEROKU_APP_NAME
             heroku container:release web --app $HEROKU_APP_NAME
 
 workflows:
