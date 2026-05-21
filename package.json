@@ -44,7 +44,7 @@
   },
   "scripts": {
     "build": "yarn build:js && yarn build:css",
-    "build:js": "esbuild app/javascript/application.js app/javascript/blog.js app/javascript/photography.js app/javascript/active_admin.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:js": "esbuild app/javascript/application.js app/javascript/blog.js app/javascript/photography.js app/javascript/active_admin.js --bundle --minify --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:js:watch": "yarn build:js --watch",
     "build:css": "postcss app/assets/stylesheets/application.css app/assets/stylesheets/contact-me.css --dir app/assets/builds && sass --load-path=node_modules app/assets/stylesheets/photography.sass:app/assets/builds/photography.css app/assets/stylesheets/active_admin.scss:app/assets/builds/active_admin.css app/assets/stylesheets/print.scss:app/assets/builds/print.css app/assets/stylesheets/pygment.sass:app/assets/builds/pygment.css",
     "build:css:watch": "postcss app/assets/stylesheets/application.css app/assets/stylesheets/contact-me.css --dir app/assets/builds --watch & sass --watch --load-path=node_modules app/assets/stylesheets/photography.sass:app/assets/builds/photography.css app/assets/stylesheets/active_admin.scss:app/assets/builds/active_admin.css app/assets/stylesheets/print.scss:app/assets/builds/print.css app/assets/stylesheets/pygment.sass:app/assets/builds/pygment.css"
