@@ -8,54 +8,19 @@
 version: 2.1
 
 jobs:
-  build:
-    # A Linux VM with Docker installed
-    machine: true
-    steps:
-      - checkout
-
-      # (1) Copy .env for local config
-      - run:
-          name: Setup dotenv
-          command: cp .env.example .env
-
-      # (2) Install docker-compose v2
-      - run:
-          name: Install Docker-Compose
-          shell: bash
-          command: |
-            COMPOSE_VERSION=2.18.1
-            mkdir -p "${HOME}/bin"
-            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-              -o "${HOME}/bin/docker-compose"
-            chmod +x "${HOME}/bin/docker-compose"
-            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
-
-      # (3) Build your app images in parallel
-      - run:
-          name: docker-compose build
-          command: docker-compose build --parallel
-
-      # (4) Persist code + (optional) images for downstream jobs
-      - persist_to_workspace:
-          root: .
-          paths:
-            - .
-
   test:
     machine: true
     environment:
       RAILS_ENV: test
     steps:
-      - attach_workspace:
-          at: .
+      - checkout
 
       # Copy .env.test if needed
       - run:
           name: Setup dotenv
           command: cp .env.example .env
 
-      # Install docker-compose v2 again inside this container
+      # Install docker-compose v2
       - run:
           name: Install Docker-Compose
           shell: bash
@@ -67,24 +32,28 @@ jobs:
             chmod +x "${HOME}/bin/docker-compose"
             echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
 
+      - run:
+          name: Build test image
+          command: docker-compose build web
+
       # Start only the Postgres service
       - run:
           name: Start Postgres
-          command: |
-            docker-compose up -d db && sleep 10
+          command: docker-compose up -d db
 
       # Wait for Postgres to accept connections
       - run:
           name: Wait for Postgres
           command: |
-            docker run --rm --network container:$(docker-compose ps -q db) \
-              appropriate/curl:latest sh -c "until nc -z db 5432; do sleep 1; done"
+            until docker-compose exec -T db pg_isready -U postgres -d benradler-test; do
+              sleep 1
+            done
 
       # Compile assets (jsbundling-rails + propshaft)
       - run:
           name: Compile Assets (Rails task)
           command: |
-            docker-compose run --rm \
+            docker-compose run --rm --no-deps \
               -e RAILS_ENV=test \
               -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
               web \
@@ -96,7 +65,7 @@ jobs:
           max_auto_reruns: 3
           command: |
             docker-compose \
-            run --rm \
+            run --rm --no-deps \
             -e DISABLE_DATABASE_ENVIRONMENT_CHECK=1 \
             -e SECRET_KEY_BASE=$(openssl rand -hex 64) \
             web \
@@ -105,7 +74,7 @@ jobs:
       # Lint
       - run:
           name: RuboCop
-          command: docker-compose run --rm web bundle exec rubocop
+          command: docker-compose run --rm --no-deps web bundle exec rubocop
 
       # security checks
       # Brakeman causes a stack overflow inside Bundler’s "friendly errors" ERB renderer on CI only.
@@ -124,23 +93,8 @@ jobs:
     working_directory: ~/project
     steps:
       - checkout
-      - attach_workspace:
-          at: .
 
-      # Only run this job on the master branch (see “filters” below).
-      # Step A: Install Docker CLI & Docker Compose again (needed to push images).
-      - run:
-          name: Install Docker-Compose
-          shell: bash
-          command: |
-            COMPOSE_VERSION=2.18.1
-            mkdir -p "${HOME}/bin"
-            curl -SL "https://github.com/docker/compose/releases/download/v${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-              -o "${HOME}/bin/docker-compose"
-            chmod +x "${HOME}/bin/docker-compose"
-            echo 'export PATH=$HOME/bin:$PATH' >> $BASH_ENV
-
-      # Step B: Log into Heroku Container Registry
+      # Log into Heroku Container Registry
       #    We assume you have set the following two environment variables in CircleCI project settings:
       #      - HEROKU_API_KEY    (your Heroku API Key)
       #      - HEROKU_APP_NAME   (the short name of your Heroku app, e.g. "my-rails-app-staging")
@@ -149,7 +103,7 @@ jobs:
           command: |
             echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
 
-      # Step C: Build & push the production Docker image to Heroku
+      # Build & push the production Docker image to Heroku
       - run:
           name: Build & Push Docker Image to Heroku
           command: |
@@ -161,13 +115,13 @@ jobs:
               -t registry.heroku.com/$HEROKU_APP/web .
             docker push registry.heroku.com/$HEROKU_APP/web
 
-      # Step D: Install Heroku CLI (so we can run `heroku container:release`)
+      # Install Heroku CLI (so we can run `heroku container:release`)
       - run:
           name: Install Heroku CLI
           command: |
             curl https://cli-assets.heroku.com/install.sh | sh
 
-      # Step E: Release the “web” image on Heroku
+      # Release the “web” image on Heroku
       - run:
           name: Release to Heroku
           command: |
@@ -177,10 +131,7 @@ workflows:
   version: 2
   build_test_deploy:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - test
       - deploy:
           requires:
             - test
