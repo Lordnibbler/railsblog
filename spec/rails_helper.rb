@@ -12,6 +12,7 @@ VCR.configure do |config|
   config.hook_into :webmock # or :fakeweb
   config.configure_rspec_metadata!
   config.ignore_localhost = true
+  config.ignore_hosts 'googlechromelabs.github.io'
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
