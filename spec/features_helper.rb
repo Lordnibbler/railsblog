@@ -7,11 +7,12 @@ include Warden::Test::Helpers
 Warden.test_mode!
 
 CHROME_BINARY_PATH = ENV.fetch('CHROME_BIN', '/usr/bin/chromium')
+HEADLESS_CHROME_BINARY_PATH = ENV.fetch('HEADLESS_CHROME_BIN', '/usr/bin/chromium-headless-shell')
 CHROMEDRIVER_PATH = ENV.fetch('WEB_DRIVER_CHROME_DRIVER', '/usr/bin/chromedriver')
 
-def chrome_options
+def chrome_options(binary_path: CHROME_BINARY_PATH)
   Selenium::WebDriver::Chrome::Options.new.tap do |options|
-    options.binary = CHROME_BINARY_PATH if File.exist?(CHROME_BINARY_PATH)
+    options.binary = binary_path if File.exist?(binary_path)
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
@@ -42,7 +43,10 @@ Capybara.register_driver :chrome do |app|
 end
 
 Capybara.register_driver :headless_chrome do |app|
-  chrome_driver(app, options: chrome_options.tap { |options| options.add_argument('--headless=new') })
+  chrome_driver(
+    app,
+    options: chrome_options(binary_path: HEADLESS_CHROME_BINARY_PATH).tap { |options| options.add_argument('--headless') },
+  )
 end
 
 # set CAPYBARA_DRIVER=chrome for a visible browser when debugging
