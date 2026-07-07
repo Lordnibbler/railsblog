@@ -5,7 +5,7 @@ FROM ruby:${RUBY_VERSION}
 RUN apt-get update -qq \
  && apt-get install -y --no-install-recommends \
       curl gnupg build-essential postgresql-client \
-      chromium chromium-driver \
+      chromium chromium-driver chromium-headless-shell \
  && curl -fsSL https://deb.nodesource.com/setup_22.x | bash - \
  && apt-get install -y --no-install-recommends nodejs \
  && rm -rf /var/lib/apt/lists/*
@@ -23,6 +23,7 @@ ENV RAILS_ENV=${RAILS_ENV}
 ENV RAILS_SERVE_STATIC_FILES=true
 # tell Webdrivers / Selenium where to find Chromium
 ENV CHROME_BIN=/usr/bin/chromium
+ENV HEADLESS_CHROME_BIN=/usr/bin/chromium-headless-shell
 ENV WEB_DRIVER_CHROME_DRIVER=/usr/bin/chromedriver
 
 # allow setting secret key base
