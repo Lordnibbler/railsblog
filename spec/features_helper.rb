@@ -6,15 +6,43 @@ require 'capybara/rails'
 include Warden::Test::Helpers
 Warden.test_mode!
 
-# Webdrivers::Chromedriver.required_version = "118.0.5993.70"
+CHROME_BINARY_PATH = ENV.fetch('CHROME_BIN', '/usr/bin/chromium')
+CHROMEDRIVER_PATH = ENV.fetch('WEB_DRIVER_CHROME_DRIVER', '/usr/bin/chromedriver')
+
+def chrome_options
+  Selenium::WebDriver::Chrome::Options.new.tap do |options|
+    options.binary = CHROME_BINARY_PATH if File.exist?(CHROME_BINARY_PATH)
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--disable-background-networking')
+    options.add_argument('--disable-extensions')
+    options.add_argument('--disable-search-engine-choice-screen')
+    options.add_argument('--remote-debugging-port=0')
+    options.add_argument('--window-size=1400,1400')
+  end
+end
+
+def chromedriver_service
+  return unless File.exist?(CHROMEDRIVER_PATH)
+
+  Selenium::WebDriver::Service.chrome(path: CHROMEDRIVER_PATH)
+end
+
+def chrome_driver(app, options:)
+  driver_options = { browser: :chrome, options: options }
+  service = chromedriver_service
+  driver_options[:service] = service if service
+
+  Capybara::Selenium::Driver.new(app, **driver_options)
+end
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  chrome_driver(app, options: chrome_options)
 end
 
 Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new(args: %w[no-sandbox headless disable-gpu])
-  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+  chrome_driver(app, options: chrome_options.tap { |options| options.add_argument('--headless=new') })
 end
 
 # set CAPYBARA_DRIVER=chrome for a visible browser when debugging
