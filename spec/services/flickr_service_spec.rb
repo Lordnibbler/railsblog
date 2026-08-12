@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe FlickrService do
+  describe 'logger' do
+    it 'reuses the same logger instance' do
+      expect(described_class.logger).to equal(described_class.logger)
+    end
+  end
+
   describe 'get_photos_from_flickr' do
     subject(:get_photos_from_flickr) { described_class.get_photos_from_flickr }
 
