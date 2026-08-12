@@ -95,8 +95,10 @@ describe '/' do
         end
 
         within '.flash-success' do
-          expect(page).to have_content 'Thanks for joining my newsletter!'
+          expect(page).to have_content 'Check your email to confirm your newsletter subscription.'
         end
+
+        expect(NewsletterSignup.where(email: 'bar@foo.com')).not_to exist
       end
     end
   end
