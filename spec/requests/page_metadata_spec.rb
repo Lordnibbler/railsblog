@@ -13,7 +13,7 @@ RSpec.describe 'Page metadata and markup', type: :request do
       expect(document.at_css('meta[itemprop="url"]')['content']).to eq('http://www.example.com/')
     end
 
-    it 'does not load page-specific frontend bundles' do
+    it 'only loads the frontend bundle used by the homepage contact form' do
       get root_path
 
       document = Nokogiri::HTML(response.body)
@@ -21,7 +21,8 @@ RSpec.describe 'Page metadata and markup', type: :request do
         element['src'] || element['href']
       end
 
-      expect(asset_urls).not_to include(a_string_matching(/photography|blog|contact-me|pygment/))
+      expect(asset_urls).to include(a_string_matching(/contact-me/))
+      expect(asset_urls).not_to include(a_string_matching(/photography|blog|pygment/))
     end
   end
 
@@ -66,6 +67,15 @@ RSpec.describe 'Page metadata and markup', type: :request do
   end
 
   describe 'GET /contact-me' do
+    it 'loads the contact form stylesheet' do
+      get '/contact-me'
+
+      document = Nokogiri::HTML(response.body)
+      stylesheet_urls = document.css('link[rel="stylesheet"]').filter_map { |element| element['href'] }
+
+      expect(stylesheet_urls).to include(a_string_matching(/contact-me/))
+    end
+
     it 'renders a valid submit button for the contact form' do
       get '/contact-me'
 
