@@ -17,4 +17,10 @@ RSpec.describe NewsletterSignup do
 
     expect(model.errors[:email]).to eq([])
   end
+
+  it 'normalizes email addresses' do
+    model = described_class.create!(email: ' Foo@Example.COM ')
+
+    expect(model.email).to eq('foo@example.com')
+  end
 end

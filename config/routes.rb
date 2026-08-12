@@ -62,7 +62,9 @@ Rails.application.routes.draw do
   #
   # POST for newsletter signup
   #
-  resources :newsletter_signups, only: [:create]
+  resources :newsletter_signups, only: [:create] do
+    get :confirm, on: :collection
+  end
 
   #
   # /sitemap.xml.gz
