@@ -38,6 +38,6 @@ class NewsletterSignupsController < ApplicationController
   end
 
   def newsletter_signup_params
-    params.expect(newsletter_signup: [:email, :website])
+    params.expect(newsletter_signup: %i[email website])
   end
 end

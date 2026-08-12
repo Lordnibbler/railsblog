@@ -28,7 +28,7 @@ describe NewsletterSignupsController do
   describe 'confirm' do
     it 'creates the signup from a valid token' do
       token = Rails.application.message_verifier(:newsletter_signup).generate(
-        'foo@bar.com', expires_in: 24.hours, purpose: :newsletter_signup
+        'foo@bar.com', expires_in: 24.hours, purpose: :newsletter_signup,
       )
 
       expect { get :confirm, params: { token: token } }.to change(NewsletterSignup, :count).by(1)

@@ -1,3 +1,4 @@
+# Sends double opt-in confirmation emails for newsletter subscriptions.
 class NewsletterSignupMailer < ApplicationMailer
   def confirmation(email, url_options = {})
     @confirmation_url = confirm_newsletter_signups_url(**url_options, token: confirmation_token(email))
@@ -10,7 +11,7 @@ class NewsletterSignupMailer < ApplicationMailer
     Rails.application.message_verifier(:newsletter_signup).generate(
       email,
       expires_in: 24.hours,
-      purpose: :newsletter_signup
+      purpose: :newsletter_signup,
     )
   end
 end

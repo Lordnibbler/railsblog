@@ -4,7 +4,7 @@ describe NewsletterSignupMailer do
   describe 'confirmation' do
     it 'sends an expiring confirmation link to the subscriber' do
       email = described_class.confirmation(
-        'foo@bar.com', host: 'staging.example.com', protocol: 'https', port: 443
+        'foo@bar.com', host: 'staging.example.com', protocol: 'https', port: 443,
       )
 
       expect(email.to).to eq(['foo@bar.com'])
