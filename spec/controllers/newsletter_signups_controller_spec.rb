@@ -8,6 +8,7 @@ describe NewsletterSignupsController do
       end.not_to change(NewsletterSignup, :count)
 
       expect(ActionMailer::Base.deliveries.last.to).to eq(['foo@bar.com'])
+      expect(ActionMailer::Base.deliveries.last.body.encoded).to include('http://test.host/newsletter_signups/confirm')
       expect(controller.flash['success']).to match(/check your email/i)
     end
 

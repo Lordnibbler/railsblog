@@ -10,7 +10,9 @@ class NewsletterSignupsController < ApplicationController
     if newsletter.invalid?
       flash[:error] = "Failed to join newsletter. #{newsletter.errors.full_messages.join(', ')}"
     else
-      NewsletterSignupMailer.confirmation(newsletter.email).deliver_now unless NewsletterSignup.exists?(email: newsletter.email)
+      unless NewsletterSignup.exists?(email: newsletter.email)
+        NewsletterSignupMailer.confirmation(newsletter.email, confirmation_url_options).deliver_now
+      end
       flash[:success] = 'Check your email to confirm your newsletter subscription.'
     end
 
@@ -30,6 +32,10 @@ class NewsletterSignupsController < ApplicationController
   end
 
   private
+
+  def confirmation_url_options
+    { host: request.host, protocol: request.protocol, port: request.port }
+  end
 
   def newsletter_signup_params
     params.expect(newsletter_signup: [:email, :website])

@@ -1,6 +1,6 @@
 class NewsletterSignupMailer < ApplicationMailer
-  def confirmation(email)
-    @confirmation_url = confirm_newsletter_signups_url(token: confirmation_token(email))
+  def confirmation(email, url_options = {})
+    @confirmation_url = confirm_newsletter_signups_url(**url_options, token: confirmation_token(email))
     mail(to: email, subject: 'Confirm your newsletter subscription')
   end
 
