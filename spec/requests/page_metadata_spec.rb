@@ -17,7 +17,9 @@ RSpec.describe 'Page metadata and markup', type: :request do
       get root_path
 
       document = Nokogiri::HTML(response.body)
-      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map { |element| element['src'] || element['href'] }
+      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map do |element|
+        element['src'] || element['href']
+      end
 
       expect(asset_urls).not_to include(a_string_matching(/photography|blog|contact-me|pygment/))
     end
@@ -54,7 +56,9 @@ RSpec.describe 'Page metadata and markup', type: :request do
       get post_path
 
       document = Nokogiri::HTML(response.body)
-      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map { |element| element['src'] || element['href'] }
+      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map do |element|
+        element['src'] || element['href']
+      end
 
       expect(asset_urls).to include(a_string_matching(/blog/), a_string_matching(/pygment/))
       expect(asset_urls).not_to include(a_string_matching(/photography|contact-me/))
