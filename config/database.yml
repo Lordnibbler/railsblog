@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  host: localhost # postgres docker container
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
   username: postgres
   password: password
 
@@ -12,7 +12,7 @@ development:
 
 test:
   <<: *default
-  database: benradler-test
+  database: <%= ENV.fetch("TEST_DATABASE_NAME", "benradler-test") %>
 
 production:
   <<: *default

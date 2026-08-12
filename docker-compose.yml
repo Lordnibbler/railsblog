@@ -45,7 +45,9 @@ services:
     environment:
       # runtime env
       RAILS_ENV: ${RAILS_ENV:-development}
-      DATABASE_URL: postgres://postgres:password@db:5432/benradler-${RAILS_ENV:-development}
+      # Let database.yml choose the database from the container's runtime
+      # RAILS_ENV. This keeps one-off test commands out of the development DB.
+      DB_HOST: db
       # so rails knows to bind assets host
       HOST: 0.0.0.0
   # JS/CSS watchers

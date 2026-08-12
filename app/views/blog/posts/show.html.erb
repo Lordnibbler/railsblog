@@ -48,7 +48,7 @@
             <div
                 class="border-t border-lila dark:border-primary-70 py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
                 <div class="w-1/4 lg:w-1/12 xl:w-1/5 flex justify-center">
-                    <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow" %>
+                    <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow", loading: "lazy", decoding: "async" %>
                 </div>
                 <div class="ml-0 md:ml-10 md:w-5/6 text-center md:text-left">
                     <h3 class="font-body font-bold text-secondary dark:text-primary-300 text-2xl pt-10 md:pt-0">
