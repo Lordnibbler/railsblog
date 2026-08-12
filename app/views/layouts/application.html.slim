@@ -53,10 +53,15 @@ html[lang="en"]
     meta[name="twitter:card" content="summary_large_image"]
 
     - # staging/production require this
-    = stylesheet_link_tag 'application', 'photography', 'contact-me', 'pygment', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'photography', 'data-turbo-track': 'reload' if controller_name == 'photography'
+    = stylesheet_link_tag 'contact-me', 'data-turbo-track': 'reload' if controller_name == 'pages' && params[:id] == 'contact-me'
+    = stylesheet_link_tag 'pygment', 'data-turbo-track': 'reload' if controller_path == 'blog/posts'
 
     - # javascript bundle insertion point
-    = javascript_include_tag 'application', 'photography', 'blog', 'data-turbo-track': 'reload', defer: true
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
+    = javascript_include_tag 'photography', 'data-turbo-track': 'reload', defer: true if controller_name == 'photography'
+    = javascript_include_tag 'blog', 'data-turbo-track': 'reload', defer: true if controller_path == 'blog/posts'
 
     = yield :head
     = csrf_meta_tags

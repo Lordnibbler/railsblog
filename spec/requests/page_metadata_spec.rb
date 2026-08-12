@@ -12,6 +12,15 @@ RSpec.describe 'Page metadata and markup', type: :request do
       expect(document.at_css('meta[name="twitter:url"]')['content']).to eq('http://www.example.com/')
       expect(document.at_css('meta[itemprop="url"]')['content']).to eq('http://www.example.com/')
     end
+
+    it 'does not load page-specific frontend bundles' do
+      get root_path
+
+      document = Nokogiri::HTML(response.body)
+      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map { |element| element['src'] || element['href'] }
+
+      expect(asset_urls).not_to include(a_string_matching(/photography|blog|contact-me|pygment/))
+    end
   end
 
   describe 'GET /blog/:year/:month/:day/:id' do
@@ -39,6 +48,16 @@ RSpec.describe 'Page metadata and markup', type: :request do
       expect(time_element).to be_present
       expect(time_element.text.strip).to eq(post.created_at.strftime('%B %-d, %Y %l:%M%P'))
       expect(time_element['datetime']).to eq(post.created_at.to_fs(:iso8601))
+    end
+
+    it 'only loads the blog-specific frontend assets' do
+      get post_path
+
+      document = Nokogiri::HTML(response.body)
+      asset_urls = document.css('script[src], link[rel="stylesheet"]').filter_map { |element| element['src'] || element['href'] }
+
+      expect(asset_urls).to include(a_string_matching(/blog/), a_string_matching(/pygment/))
+      expect(asset_urls).not_to include(a_string_matching(/photography|contact-me/))
     end
   end
 

@@ -52,6 +52,36 @@ const setupNavigationTransparencyHandler = () => {
   window.addEventListener("scroll", navTransparencyHandler, false)
 }
 
+const setupLazyVideos = () => {
+  const videos = document.querySelectorAll('video.lazy-video');
+  if (!videos.length) return;
+
+  const loadVideo = (video) => {
+    video.querySelectorAll('source[data-src]').forEach((source) => {
+      source.src = source.dataset.src;
+      source.removeAttribute('data-src');
+    });
+    video.load();
+    video.play().catch(() => {});
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    videos.forEach(loadVideo);
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      loadVideo(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '300px' });
+
+  videos.forEach((video) => observer.observe(video));
+}
+
 addEventListener('turbo:load', function() {
   // resize page height according to window.innerHeight to avoid navigation bar
   // on iOS causing extra scrollable area when page has very little content
@@ -59,6 +89,9 @@ addEventListener('turbo:load', function() {
 
   // make navigation transparent when scrolling past 100px
   setupNavigationTransparencyHandler()
+
+  // Avoid downloading large, below-the-fold videos until they are nearly visible.
+  setupLazyVideos()
 
   // flash auto-hiding
   $('.flash').on('click', function(event) {
