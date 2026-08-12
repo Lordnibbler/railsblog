@@ -22,7 +22,7 @@ class FlickrService
   class << self
     # @return [Logger] logger instance
     def logger
-      logger ||= begin
+      @logger ||= begin
         logger = Logger.new($stdout)
         logger.level = Logger::WARN if Rails.env.test?
         logger.formatter = proc do |severity, datetime, progname, msg|
@@ -31,8 +31,6 @@ class FlickrService
         end
         logger
       end
-
-      logger
     end
 
     # Warms up the cache by fetching photos from Flickr and caching them

@@ -32,5 +32,22 @@ describe Blog::PostsController do
 
       expect(assigns(:body_class)).to eql('post-template')
     end
+
+    it 'finds a post when its permalink date is correct' do
+      get :show, params: {
+        id: post.slug,
+        year: post.created_at.strftime('%Y'),
+        month: post.created_at.strftime('%m'),
+        day: post.created_at.strftime('%d'),
+      }
+
+      expect(assigns(:post)).to eq(post)
+    end
+
+    it 'does not find a post through a permalink with the wrong date' do
+      expect do
+        get :show, params: { id: post.slug, year: '1999', month: '01', day: '01' }
+      end.to raise_error(ActiveRecord::RecordNotFound)
+    end
   end
 end

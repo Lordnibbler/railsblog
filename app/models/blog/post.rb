@@ -47,10 +47,10 @@ class Blog::Post < ApplicationRecord
   end
 
   def next
-    self.user.posts.published.where('id > ? ', id).last
+    self.user.posts.published.where('id > ?', id).order(:id).first
   end
 
   def previous
-    self.user.posts.published.where(id: ...id).last
+    self.user.posts.published.where(id: ...id).order(id: :desc).first
   end
 end

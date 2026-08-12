@@ -25,6 +25,10 @@ class ContactFormsController < ApplicationController
   end
 
   def contact_form
-    @contact_form ||= ContactForm.new(params[:contact_form].merge(request:))
+    @contact_form ||= ContactForm.new(contact_form_params.merge(request:))
+  end
+
+  def contact_form_params
+    params.fetch(:contact_form, ActionController::Parameters.new).permit(:name, :email, :message, :nickname)
   end
 end

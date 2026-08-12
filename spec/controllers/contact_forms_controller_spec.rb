@@ -55,5 +55,17 @@ describe ContactFormsController do
         expect(post_create).to redirect_to page_path('contact-me')
       end
     end
+
+    context 'without contact form params' do
+      let(:contact_form) { {} }
+
+      it 'flashes an error instead of raising an exception' do
+        expect(controller.flash['error']).to match(/email failed to send/i)
+      end
+
+      it 'redirects to contact-me' do
+        expect(post_create).to redirect_to page_path('contact-me')
+      end
+    end
   end
 end

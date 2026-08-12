@@ -53,22 +53,28 @@ RSpec.describe Blog::Post do
   end
 
   describe 'next' do
-    let!(:long_post) { create(:long_post, user: post.user) }
+    let!(:next_post) { create(:long_post, user: post.user) }
+    let!(:newest_post) do
+      create(:post, user: post.user, title: 'Newest post', slug: 'newest-post')
+    end
 
-    it 'returns the next post' do
-      expect(post.next).to eq(long_post)
+    it 'returns the immediately following published post' do
+      expect(post.next).to eq(next_post)
     end
 
     it 'returns nil if no next post exists' do
-      expect(long_post.next).to be_nil
+      expect(newest_post.next).to be_nil
     end
   end
 
   describe 'previous' do
-    let(:long_post) { create(:long_post, user: post.user) }
+    let!(:previous_post) do
+      create(:post, user: post.user, title: 'Previous post', slug: 'previous-post')
+    end
+    let!(:latest_post) { create(:long_post, user: post.user) }
 
-    it 'returns the previous post' do
-      expect(long_post.previous).to eq(post)
+    it 'returns the immediately preceding published post' do
+      expect(latest_post.previous).to eq(previous_post)
     end
 
     it 'returns nil if no previous post exists' do

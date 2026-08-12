@@ -38,9 +38,6 @@ Rails.application.routes.draw do
 
     #
     # GET /blog/2015/01/31/post-title
-    # @note
-    #   this route introduces an issue where you can access a Blog::Post with any year/month/day
-    #   params as long as you have the correct :id
     #
     get '/:year/:month/:day/:id' => 'posts#show',
         as: 'permalink',
