@@ -15,7 +15,6 @@ gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
-gem 'jbuilder' # .builder templating
 gem 'jsbundling-rails'
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
@@ -23,13 +22,11 @@ gem 'meta-tags' # meta tags in HTML layouts
 gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'propshaft'
-gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # Markdown parsing
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-gem 'uglifier'
 gem 'webrick' # web server for capybara and local dev
 
 group :development do
@@ -37,7 +34,6 @@ group :development do
   gem 'binding_of_caller' # interact with ruby in the browser via better errors
   gem 'guard-rspec'
   gem 'guard-rubocop'
-  gem 'guard-yard', require: false
   gem 'guard'
   gem 'pry-rails'
   gem 'pry-byebug', require: false # byebug requires readline; only load it when debugging explicitly
@@ -53,7 +49,6 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'rubocop', require: false
-  gem 'spring-commands-rspec' # faster rspec loading
   gem 'spring' # speed up dev env
 end
 
