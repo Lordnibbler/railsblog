@@ -37,6 +37,7 @@ describe '/photography', :js do
     expect(page).to have_css('figure.image.grid-item')
     expect(page).to have_css('a[href*="flickr"]') # Flickr photo URLs
     expect(page).to have_css('img[src*="flickr"]') # Flickr image sources
+    expect(page).to have_css('.infinite-scroll-spinner', visible: :hidden)
   end
 
   it 'opens PhotoSwipe when a photo is clicked' do

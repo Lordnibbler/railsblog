@@ -25,9 +25,9 @@ const createMasonry = (elem) => {
 const createInfiniteScroll = (elem, masonry) => {
     return new InfiniteScroll( elem, {
         // options
-        checkLastPage: 'figure.image.grid-item',
-        path: elem.dataset.nextPagePath.replace('__PAGE__', '{{#}}'),
+        path: '.pagination-next',
         append: 'figure.image.grid-item',
+        status: '.page-load-status',
         history: false,
         outlayer: masonry,
     });

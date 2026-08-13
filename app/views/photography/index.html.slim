@@ -4,7 +4,7 @@
 - content_for :page_title, 'Photography Gallery'
 
 - # thumbnail gallery
-div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20" data-next-page-path="#{photography_path(seed: @gallery_seed, page: '__PAGE__')}" itemscope="" itemtype="http://schema.org/ImageGallery"]
+div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20" itemscope="" itemtype="http://schema.org/ImageGallery"]
   .grid-sizer
   - @photos.each do |photo|
     figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
@@ -12,6 +12,14 @@ div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20"
         img alt="#{photo[:description]}" decoding="async" height="#{photo[:photo_large][:height]}" itemprop="thumbnail" src="#{photo[:photo_large][:url]}" width="#{photo[:photo_large][:width]}"
       figcaption itemprop="caption description"
         = photo[:description]
+
+- if @gallery_has_more
+  = link_to 'Next page', photography_path(seed: @gallery_seed, page: @gallery_page + 1), class: 'pagination-next'
+
+.page-load-status aria-live="polite"
+  .infinite-scroll-request role="status"
+    .infinite-scroll-spinner aria-hidden="true"
+    span.sr-only Loading more photographs
 
 - # Root element of PhotoSwipe. Must have class pswp.
 .pswp aria-hidden="true" role="dialog" tabindex="-1"
