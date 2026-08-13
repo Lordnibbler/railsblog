@@ -41,24 +41,7 @@ describe FlickrService do
     end
   end
 
-  describe 'get_photos_from_cache' do
-    it 'uses the cache to fetch' do
-      expect(Rails.cache).to receive(:fetch).with(
-        'flickr_photos/33668819@N03_20_1',
-        expires_in: 3.days,
-      )
-
-      described_class.get_photos_from_cache
-    end
-  end
-
-  describe 'generate_photo_cache_key' do
-    it 'generates a cache key for an individual photo' do
-      expect(described_class.send(:generate_photo_cache_key, photo_id: '123')).to eq('flickr_photo/123')
-    end
-  end
-
-  describe 'warm_cache_shuffled' do
+  describe 'get_photos' do
     let(:photo) do
       {
         source: 'flickr',
@@ -120,46 +103,34 @@ describe FlickrService do
       }
     end
 
-    it 'fetches photos and caches them in a shuffled order' do
-      photo_array = Array.new(20, photo)
-      allow(described_class).to receive_messages(get_photos_from_flickr: photo_array,
-                                                 generate_photo_cache_key: 'flickr_photo/49822917268',)
-      allow(described_class).to receive(:generate_page_cache_key).and_return(
-        'flickr_photos/user_10_1',
-        'flickr_photos/user_10_2',
-        'flickr_photos/user_10_3',
-        'flickr_photos/user_10_4',
-        'flickr_photos/user_10_5',
-        'flickr_photos/user_10_6',
-        'flickr_photos/user_10_7',
-        'flickr_photos/user_10_8',
-        'flickr_photos/user_10_9',
-        'flickr_photos/user_10_10',
-      )
-      allow(Rails.cache).to receive(:write)
+    it 'returns database photos in display order and pages them' do
+      FlickrPhoto.create!(flickr_id: photo2[:key], photo_data: photo2, display_position: 2)
+      FlickrPhoto.create!(flickr_id: photo[:key], photo_data: photo, display_position: 1)
 
-      described_class.warm_cache_shuffled(pages: 10)
+      expect(described_class.get_photos).to eq([photo.deep_symbolize_keys, photo2.deep_symbolize_keys])
+    end
+  end
 
-      # fetch 10 pages of photos
-      expect(described_class).to have_received(:get_photos_from_flickr).exactly(10).times
+  describe 'sync_photos' do
+    let(:old_photo) { { source: 'flickr', key: 'old', title: 'Old' } }
+    let(:new_photo) { { source: 'flickr', key: 'new', title: 'New' } }
 
-      # cache 10 pages * 20 photos per page + 1 log message
-      expect(described_class).to have_received(:generate_photo_cache_key).exactly(201).times
+    it 'atomically replaces stale photos with the fetched catalog' do
+      FlickrPhoto.create!(flickr_id: 'old', photo_data: old_photo, display_position: 1)
+      allow(described_class).to receive(:fetch_and_randomize_photos).with(1).and_return([new_photo])
 
-      # cache 10 pages worth of photos + 1 log message
-      expect(described_class).to have_received(:generate_page_cache_key).exactly(11).times
+      described_class.sync_photos(pages: 1)
 
-      # 20 photos * 10 pages = 200
-      # 10 pages individual keys = 10
-      # total = 210
-      expect(Rails.cache).to have_received(:write).exactly(210).times
+      expect(FlickrPhoto.pluck(:flickr_id, :display_position)).to eq([['new', 1]])
+      expect(described_class.get_photos).to eq([new_photo])
+    end
 
-      # 20 photos * 10 pages = 200
-      expect(Rails.cache).to have_received(:write).with('flickr_photo/49822917268', photo,
-                                                        expires_in: 3.days,).exactly(200).times
+    it 'leaves existing photos intact when fetching fails' do
+      FlickrPhoto.create!(flickr_id: 'old', photo_data: old_photo, display_position: 1)
+      allow(described_class).to receive(:fetch_and_randomize_photos).and_raise(Net::ReadTimeout)
 
-      # 10 pages (10 batches) to be served by API
-      expect(Rails.cache).to have_received(:write).with('flickr_photos/user_10_1', photo_array, expires_in: 3.days)
+      expect { described_class.sync_photos(pages: 1) }.to raise_error(Net::ReadTimeout)
+      expect(described_class.get_photos).to eq([old_photo])
     end
   end
 

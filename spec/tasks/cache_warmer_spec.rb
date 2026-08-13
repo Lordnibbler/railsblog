@@ -14,27 +14,19 @@ describe 'cache_warmer:flickr' do
     allow(Process).to receive(:clock_gettime).with(Process::CLOCK_MONOTONIC).and_return(10.0, 12.34)
   end
 
-  it 'warms and marks the cache without clearing existing entries' do
-    allow(Rails.cache).to receive(:clear)
-    allow(Rails.cache).to receive(:write)
-    allow(FlickrService).to receive(:warm_cache_shuffled)
+  it 'synchronizes Flickr photos' do
+    allow(FlickrService).to receive(:sync_photos)
 
     task.invoke
 
-    expect(FlickrService).to have_received(:warm_cache_shuffled)
-    expect(Rails.cache).not_to have_received(:clear)
-    expect(Rails.cache).to have_received(:write).with(
-      FlickrService::PHOTOGRAPHY_CACHE_WARMED_KEY,
-      true,
-      expires_in: 25.hours,
-    )
-    expect(logger).to have_received(:info).with('--->  Cache Warmer: Warming Flickr cache')
-    expect(logger).to have_received(:info).with('--->  Cache Warmer: completed warming cache')
+    expect(FlickrService).to have_received(:sync_photos)
+    expect(logger).to have_received(:info).with('--->  Flickr Sync: synchronizing photos')
+    expect(logger).to have_received(:info).with('--->  Flickr Sync: completed synchronizing photos')
     expect(logger).to have_received(:info).with('--->  Cache Warmer: finished in 2.34s')
   end
 
   it 'logs elapsed time when warming fails' do
-    allow(FlickrService).to receive(:warm_cache_shuffled).and_raise(Net::ReadTimeout)
+    allow(FlickrService).to receive(:sync_photos).and_raise(Net::ReadTimeout)
 
     expect { task.invoke }.to raise_error(Net::ReadTimeout)
 
