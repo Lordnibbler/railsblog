@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe PhotographyController do
   it 'successfully renders the index template on GET photography_path', type: :request do
-    allow(FlickrService).to receive(:get_photos_from_cache)
+    allow(FlickrService).to receive(:get_photos).and_return([])
 
     get photography_path
 

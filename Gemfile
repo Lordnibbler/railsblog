@@ -25,7 +25,6 @@ gem 'pg' # ye olde database
 gem 'propshaft'
 gem 'pygments.rb' # Syntax highlighting in markdown
 gem 'redcarpet' # Markdown parsing
-gem 'redis'
 gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
 gem 'sitemap_generator' # generate sitemaps for submitting to search engines

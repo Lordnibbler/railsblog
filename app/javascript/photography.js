@@ -26,11 +26,10 @@ const createInfiniteScroll = (elem, masonry) => {
     return new InfiniteScroll( elem, {
         // options
         checkLastPage: 'figure.image.grid-item',
-        path: 'photography?page={{#}}',
+        path: elem.dataset.nextPagePath.replace('__PAGE__', '{{#}}'),
         append: 'figure.image.grid-item',
         history: false,
         outlayer: masonry,
-        status: '.page-load-status',
     });
 }
 
@@ -273,7 +272,7 @@ $(document).on('turbo:load', function() {
         InfiniteScroll.imagesLoaded = imagesLoaded;
 
         // instantiate infinite scroll with the gallery and masonry
-        let infiniteScroll = createInfiniteScroll(elem, msnry);
+        createInfiniteScroll(elem, msnry);
 
         // 250ms after a resize finishes, re-run masonry.layout(),
         // and rebuild a new infinite scroll with the new masonry layout

@@ -4,7 +4,7 @@ This is a Ruby on Rails 8 app. It does the following:
 * offers a contact form - [link](https://benradler.com/#contact)
 * offers a newsletter signup form
 * renders Markdown-formatted blog posts as HTML - [link](https://benradler.com/blog)
-* fetches a Flickr.com feed of my photos and renders them using photoswipe.js - [link](https://benradler.com/photography)
+* synchronizes Flickr photo metadata into PostgreSQL and renders the gallery using photoswipe.js - [link](https://benradler.com/photography)
 
 ## Development
 
@@ -127,7 +127,7 @@ No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docke
 2. Run the release phase command, [`release-tasks.sh`](./release-tasks.sh), which runs `bundle exec rails db:migrate`.
 3. Start the web dyno with [`entrypoint.sh`](./entrypoint.sh), which runs [`release-tasks.sh`](./release-tasks.sh) in production and then starts `bundle exec puma -C config/puma.rb`.
 
-The Flickr cache warmer is intentionally not part of web dyno startup. It runs via Heroku Scheduler so a slow Flickr response cannot make a freshly deployed web dyno return errors while it is coming up.
+The Flickr synchronization is intentionally not part of web dyno startup. It runs via Heroku Scheduler so a slow Flickr response cannot make a freshly deployed web dyno return errors while it is coming up. Web requests read only from PostgreSQL and never call Flickr directly.
 
 ### Automatic Deployments
 
@@ -190,10 +190,7 @@ This is a Rails app, deployed on Heroku.
 ### Persistence
 
 #### postgresql
-It uses Heroku Postgresql, configured via `DATABASE_URL` env var. The schema can be found in [db/schema.rb](db/schema.rb).
-
-#### redis
-It uses redis-to-go, configured via `REDISCLOUD_URL` env var. Redis backs the cache for the photography gallery.
+It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to application records, PostgreSQL stores the normalized Flickr photo catalog and its current display order. The schema can be found in [db/schema.rb](db/schema.rb).
 
 ### Cron
 It uses Heroku Scheduler add on to run two recurring jobs:
@@ -201,8 +198,10 @@ It uses Heroku Scheduler add on to run two recurring jobs:
 * `rails sitemap:refresh`
   * runs daily to refresh the sitemap file for the site
 * `rails cache_warmer:flickr`
-  * runs daily to fetch all Flickr photos for the photography page and write their metadata to redis. this job also shuffles the images so their order changes daily to keep the page looking fresh.
-  * photo cache itself expires after 3 days, and a single warm cache key expires after 25 hours. the scheduler job always refreshes the cache instead of skipping when the warm key is present, so the daily run keeps extending both the photo cache and the warm marker.
+  * despite the legacy task name, this does not warm a cache. it runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
+  * each successful run assigns a new shuffled display order, which remains stable across paginated requests until the next run.
+  * Flickr is fully fetched before the database transaction begins, so existing photos remain available if Flickr is unavailable or the fetch fails.
+  * run this task once after the migration is first deployed to populate the initially empty `flickr_photos` table; subsequent refreshes are handled by Heroku Scheduler.
 
 
 ### CDN

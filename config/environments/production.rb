@@ -59,8 +59,7 @@ Rails.application.configure do
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
 
-  # set redis as the production cache storage
-  config.cache_store = :redis_cache_store, { url: ENV['REDISCLOUD_URL'] }
+  config.cache_store = :null_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.asset_host = ENV['ASSET_HOST']

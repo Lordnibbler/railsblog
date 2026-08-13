@@ -30,7 +30,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = false
   end
 
-  # use in-memory caching for development, instead of redis
+  # use a local file cache in development
   # config.cache_store = :memory_store, { size: 64.megabytes }
   config.cache_store = :file_store, "tmp/cache"
 

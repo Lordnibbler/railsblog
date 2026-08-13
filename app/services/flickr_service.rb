@@ -1,21 +1,16 @@
 require 'flickr'
 
-# interface for fetching and caching photos from flickr API
+# Interface for synchronizing Flickr photos into the local database.
 # rubocop:disable Metrics/ClassLength
 class FlickrService
-  # This class is responsible for fetching and caching photos from Flickr API
-  # It provides methods to warm up the cache, fetch photos from cache or directly from Flickr
-  # and also to check if the cache is warmed up
+  # Fetches photos from Flickr for a scheduled database refresh and serves the
+  # resulting local catalog to controllers.
   #
   # Example usage:
-  #   FlickrService.warm_cache_shuffled
-  #
-  # Note: This class uses Rails.cache for caching the photos and it expects the cache to be warmed up
-  #       daily using Heroku scheduler. The cache is kept for 3 days.
+  #   FlickrService.sync_photos
   #
   # Note: This class uses Flickr API to fetch the photos and due to the instability of the API,
   #       it implements a retry logic in case of connection failures.
-  PHOTOGRAPHY_CACHE_WARMED_KEY = 'photography_cache_warmed'.freeze
   FLICKR_USER_ID = '33668819@N03'.freeze
   GET_PHOTOS_DEFAULT_OPTIONS = { user_id: FLICKR_USER_ID, per_page: 20, page: 1 }.freeze
 
@@ -33,29 +28,19 @@ class FlickrService
       end
     end
 
-    # Warms up the cache by fetching photos from Flickr and caching them
+    # Refreshes the local photo catalog from Flickr. Existing rows remain intact
+    # if fetching fails, and all database changes are committed atomically.
     # @param pages [Integer] number of pages to fetch from Flickr
     # @return [void]
-    def warm_cache_shuffled(pages: nil)
+    def sync_photos(pages: nil)
       started_at = monotonic_time
       pages ||= timed('fetching total Flickr pages') { total_pages }
       logger.info("Concurrently fetching #{pages} total pages of photos from Flickr")
 
       photos = timed("fetching and randomizing #{pages} pages") { fetch_and_randomize_photos(pages) }
 
-      # 3. Cache the individual photos
-      # example cache key: flickr_photo/49822914933
-      timed("writing #{photos.count} individual photos to cache") { cache_photos(photos) }
-
-      # 4. Cache photos in batches of `per_page` size
-      # example cache key: flickr_photos/33668819@N03_20_1
-      logger.info("Writing #{pages} pages of photos to cache")
-      timed("writing #{pages} page batches to cache") { cache_photos_in_batches(photos, pages) }
-
-      logger.info("Wrote #{photos.count} photos to cache")
-      logger.info("Example photo cache key: #{self.generate_photo_cache_key(photo_id: photos[0][:key])}")
-      logger.info("Example batch cache key: #{self.generate_page_cache_key(user_id: FLICKR_USER_ID, page: 1,
-                                                                           per_page: 20,)}")
+      timed("writing #{photos.count} photos to the database") { replace_photos(photos) }
+      logger.info("Wrote #{photos.count} photos to the database")
       logger.info("Done in #{elapsed_since(started_at)}s")
     end
 
@@ -70,37 +55,18 @@ class FlickrService
       normalize(response:)
     end
 
-    # Fetches photos from cache or directly from Flickr if not found in cache
-    # @param args [Hash] arguments to pass to the Flickr API
-    # @param cache_key [String] cache key to fetch photos from cache
-    # @return [Array<Hash>] array of photo data
-    def get_photos_from_cache(args = {}, cache_key = nil)
-      args = GET_PHOTOS_DEFAULT_OPTIONS.merge(args)
-      logger.info(args)
-      cache_key ||= self.generate_page_cache_key(
-        user_id: args[:user_id],
-        per_page: args[:per_page],
-        page: args[:page],
-      )
-      Rails.cache.fetch(cache_key, expires_in: 3.days) { get_photos_from_flickr(args) }
-    end
-
-    # Convenience wrapper used by controllers and API endpoints (cache-first).
+    # Returns one page from a seeded random ordering of the local catalog.
     def get_photos(args = {})
-      get_photos_from_cache(args)
-    end
+      page = [args.fetch(:page, 1).to_i, 1].max
+      seed = args[:seed].presence&.to_i || Random.new_seed
+      offset = (page - 1) * GET_PHOTOS_DEFAULT_OPTIONS[:per_page]
 
-    # Fetches a photo by its ID
-    # @param photo_id [String] ID of the photo to fetch
-    # @return [Hash] photo data
-    def get_photo(photo_id)
-      Rails.cache.fetch(generate_photo_cache_key(photo_id:), expires_in: 1.month) { client.photos.getInfo(photo_id:) }
-    end
-
-    # Checks if the cache is warmed up
-    # @return [Boolean] true if cache is warmed up, false otherwise
-    def cache_warmed?
-      Rails.cache.fetch(PHOTOGRAPHY_CACHE_WARMED_KEY)
+      FlickrPhoto.order(:display_position)
+                 .to_a
+                 .shuffle(random: Random.new(seed))
+                 .slice(offset, GET_PHOTOS_DEFAULT_OPTIONS[:per_page])
+                 .to_a
+                 .map(&:as_stream_item)
     end
 
     private
@@ -176,26 +142,20 @@ class FlickrService
       error.is_a?(Flickr::FailedResponse) && error.message.match?(/not currently available|unavailable|temporarily/i)
     end
 
-    # Caches photos in rails cache
-    # @param photos [Array<Hash>] array of photo data to cache
-    # @return [void]
-    def cache_photos(photos)
-      photos.each do |photo|
-        cache_key = generate_photo_cache_key(photo_id: photo[:key])
-        Rails.cache.write(cache_key, photo, expires_in: 3.days)
+    def replace_photos(photos)
+      now = Time.current
+      rows = photos.map.with_index(1) do |photo, position|
+        {
+          flickr_id: photo.fetch(:key).to_s, photo_data: photo, display_position: position,
+          created_at: now, updated_at: now,
+        }
       end
-    end
 
-    # Caches photos in batches in rails cache
-    # @param photos [Array<Hash>] array of photo data to cache
-    # @param pages [Integer] number of pages the photos are divided into
-    # @return [void]
-    def cache_photos_in_batches(photos, _pages)
-      photos_in_batches = photos.each_slice(GET_PHOTOS_DEFAULT_OPTIONS[:per_page]).to_a
-      photos_in_batches.each_with_index do |photo_batch, index|
-        cache_key = generate_page_cache_key(user_id: GET_PHOTOS_DEFAULT_OPTIONS[:user_id],
-                                            per_page: GET_PHOTOS_DEFAULT_OPTIONS[:per_page], page: index + 1,)
-        Rails.cache.write(cache_key, photo_batch, expires_in: 3.days)
+      FlickrPhoto.transaction do
+        # Avoid transient uniqueness conflicts while assigning the new ordering.
+        FlickrPhoto.update_all('display_position = display_position * -1')
+        FlickrPhoto.upsert_all(rows, unique_by: :flickr_id)
+        FlickrPhoto.where.not(flickr_id: rows.pluck(:flickr_id)).delete_all
       end
     end
 
@@ -213,7 +173,7 @@ class FlickrService
     # @param photo [Hash] photo data to normalize
     # @return [Hash] normalized photo data
     def normalize_photo(photo)
-      get_photo_response = timed("fetching info for photo #{photo.id}") { get_photo(photo.id) }
+      get_photo_response = timed("fetching info for photo #{photo.id}") { client.photos.getInfo(photo_id: photo.id) }
       sizes = timed("fetching sizes for photo #{photo.id}") { client.photos.getSizes(photo_id: photo.id) }
       {
         source: 'flickr',
@@ -242,23 +202,6 @@ class FlickrService
     def client
       Flickr.cache = 'spec/factories/fixture_files/flickr-api.yml' if Rails.env.test?
       @client ||= Flickr.new(ENV.fetch('FLICKR_API_KEY', nil), ENV.fetch('FLICKR_SECRET', nil))
-    end
-
-    # Generates a cache key for a page of photos.
-    # used by PhotographyController to fetch pages of photos to render in the UI
-    # @param user_id [String] user ID
-    # @param per_page [Integer] number of photos per page
-    # @param page [Integer] page number
-    # @return [String] cache key
-    def generate_page_cache_key(user_id:, per_page:, page:)
-      "flickr_photos/#{user_id}_#{per_page}_#{page}"
-    end
-
-    # Generates a cache key for a photo
-    # @param photo_id [String] ID of the photo
-    # @return [String] cache key
-    def generate_photo_cache_key(photo_id:)
-      "flickr_photo/#{photo_id}"
     end
 
     def timed(label)

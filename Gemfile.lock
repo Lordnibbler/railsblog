@@ -447,10 +447,6 @@ GEM
       psych (>= 4.0.0)
       tsort
     redcarpet (3.6.1)
-    redis (5.4.1)
-      redis-client (>= 0.22.0)
-    redis-client (0.26.2)
-      connection_pool
     regexp_parser (2.11.3)
     regexp_property_values (1.5.2)
     reline (0.6.3)
@@ -626,7 +622,6 @@ DEPENDENCIES
   rails (~> 8)
   rails-controller-testing
   redcarpet
-  redis
   regexp_parser
   rouge
   rspec-rails
