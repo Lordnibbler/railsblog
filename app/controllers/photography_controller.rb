@@ -11,7 +11,9 @@ class PhotographyController < ApplicationController
 
   def index
     @gallery_seed = index_params[:seed].presence || Random.new_seed
-    @photos = FlickrService.get_photos(page: index_params[:page] || 1, seed: @gallery_seed)
+    @gallery_page = [index_params.fetch(:page, 1).to_i, 1].max
+    @photos = FlickrService.get_photos(page: @gallery_page, seed: @gallery_seed)
+    @gallery_has_more = @gallery_page * FlickrService::GET_PHOTOS_DEFAULT_OPTIONS[:per_page] < FlickrPhoto.count
   end
 
   private

@@ -14,6 +14,24 @@ describe PhotographyController do
       expect(assigns(:photos)).to eq([photo])
     end
 
+    it 'provides a next page while more photos remain' do
+      allow(FlickrService).to receive(:get_photos).and_return([photo])
+      allow(FlickrPhoto).to receive(:count).and_return(21)
+
+      get :index, params: { page: 1 }
+
+      expect(assigns(:gallery_has_more)).to be(true)
+    end
+
+    it 'omits the next page after the final batch' do
+      allow(FlickrService).to receive(:get_photos).and_return([photo])
+      allow(FlickrPhoto).to receive(:count).and_return(20)
+
+      get :index, params: { page: 1 }
+
+      expect(assigns(:gallery_has_more)).to be(false)
+    end
+
     it 'returns empty list when get_photos returns nil' do
       allow(FlickrService).to receive(:get_photos).and_return([])
 
