@@ -197,8 +197,8 @@ It uses Heroku Scheduler add on to run two recurring jobs:
 
 * `rails sitemap:refresh`
   * runs daily to refresh the sitemap file for the site
-* `rails cache_warmer:flickr`
-  * despite the legacy task name, this does not warm a cache. it runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
+* `rails flickr:sync`
+  * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
   * each successful run assigns a new shuffled display order, which remains stable across paginated requests until the next run.
   * Flickr is fully fetched before the database transaction begins, so existing photos remain available if Flickr is unavailable or the fetch fails.
   * run this task once after the migration is first deployed to populate the initially empty `flickr_photos` table; subsequent refreshes are handled by Heroku Scheduler.
