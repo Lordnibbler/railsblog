@@ -4,8 +4,8 @@ require 'rake'
 Rails.application.load_tasks
 
 # rubocop:disable RSpec/DescribeClass
-describe 'cache_warmer:flickr' do
-  let(:task) { Rake::Task['cache_warmer:flickr'] }
+describe 'flickr:sync' do
+  let(:task) { Rake::Task['flickr:sync'] }
   let(:logger) { instance_double(Logger, info: nil) }
 
   before do
@@ -22,15 +22,15 @@ describe 'cache_warmer:flickr' do
     expect(FlickrService).to have_received(:sync_photos)
     expect(logger).to have_received(:info).with('--->  Flickr Sync: synchronizing photos')
     expect(logger).to have_received(:info).with('--->  Flickr Sync: completed synchronizing photos')
-    expect(logger).to have_received(:info).with('--->  Cache Warmer: finished in 2.34s')
+    expect(logger).to have_received(:info).with('--->  Flickr Sync: finished in 2.34s')
   end
 
-  it 'logs elapsed time when warming fails' do
+  it 'logs elapsed time when synchronization fails' do
     allow(FlickrService).to receive(:sync_photos).and_raise(Net::ReadTimeout)
 
     expect { task.invoke }.to raise_error(Net::ReadTimeout)
 
-    expect(logger).to have_received(:info).with('--->  Cache Warmer: finished in 2.34s')
+    expect(logger).to have_received(:info).with('--->  Flickr Sync: finished in 2.34s')
   end
 end
 # rubocop:enable RSpec/DescribeClass
