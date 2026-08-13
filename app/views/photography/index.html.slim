@@ -13,25 +13,6 @@ div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20"
       figcaption itemprop="caption description"
         = photo[:description]
 
-- # page loading spinner wheel
-.page-load-status
-  p.infinite-scroll-request
-    .loader-wheel
-      i
-        i
-          i
-            i
-              i
-                i
-                  i
-                    i
-                      i
-                        i
-                          i
-                            i
-  p.infinite-scroll-last No more images, bucko!
-  p.infinite-scroll-error No more images, bucko!
-
 - # Root element of PhotoSwipe. Must have class pswp.
 .pswp aria-hidden="true" role="dialog" tabindex="-1"
   - # Background of PhotoSwipe.
