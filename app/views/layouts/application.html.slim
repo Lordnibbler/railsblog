@@ -55,7 +55,7 @@ html[lang="en"]
     - # staging/production require this
     = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'photography', 'data-turbo-track': 'reload' if controller_name == 'photography'
-    = stylesheet_link_tag 'contact-me', 'data-turbo-track': 'reload' if controller_name == 'pages' && params[:id] == 'contact-me'
+    = stylesheet_link_tag 'contact-me', 'data-turbo-track': 'reload' if controller_name == 'home' || (controller_name == 'pages' && params[:id] == 'contact-me')
     = stylesheet_link_tag 'pygment', 'data-turbo-track': 'reload' if controller_path == 'blog/posts'
 
     - # javascript bundle insertion point
