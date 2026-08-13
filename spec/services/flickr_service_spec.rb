@@ -103,11 +103,14 @@ describe FlickrService do
       }
     end
 
-    it 'returns database photos in display order and pages them' do
+    it 'uses a repeatable random order for a seed' do
       FlickrPhoto.create!(flickr_id: photo2[:key], photo_data: photo2, display_position: 2)
       FlickrPhoto.create!(flickr_id: photo[:key], photo_data: photo, display_position: 1)
 
-      expect(described_class.get_photos).to eq([photo.deep_symbolize_keys, photo2.deep_symbolize_keys])
+      first_result = described_class.get_photos(seed: 123)
+
+      expect(described_class.get_photos(seed: 123)).to eq(first_result)
+      expect(first_result).to contain_exactly(photo.deep_symbolize_keys, photo2.deep_symbolize_keys)
     end
   end
 
@@ -122,7 +125,7 @@ describe FlickrService do
       described_class.sync_photos(pages: 1)
 
       expect(FlickrPhoto.pluck(:flickr_id, :display_position)).to eq([['new', 1]])
-      expect(described_class.get_photos).to eq([new_photo])
+      expect(described_class.get_photos(seed: 1)).to eq([new_photo])
     end
 
     it 'leaves existing photos intact when fetching fails' do
@@ -130,7 +133,7 @@ describe FlickrService do
       allow(described_class).to receive(:fetch_and_randomize_photos).and_raise(Net::ReadTimeout)
 
       expect { described_class.sync_photos(pages: 1) }.to raise_error(Net::ReadTimeout)
-      expect(described_class.get_photos).to eq([old_photo])
+      expect(described_class.get_photos(seed: 1)).to eq([old_photo])
     end
   end
 

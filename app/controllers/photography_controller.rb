@@ -10,12 +10,13 @@ class PhotographyController < ApplicationController
   end
 
   def index
-    @photos = FlickrService.get_photos(page: index_params[:page] || 1)
+    @gallery_seed = index_params[:seed].presence || Random.new_seed
+    @photos = FlickrService.get_photos(page: index_params[:page] || 1, seed: @gallery_seed)
   end
 
   private
 
   def index_params
-    params.permit(:page)
+    params.permit(:page, :seed)
   end
 end

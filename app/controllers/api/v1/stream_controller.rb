@@ -3,7 +3,7 @@
 #
 class Api::V1::StreamController < ApiController
   def index
-    render json: FlickrService.get_photos(page: params[:page])
+    render json: FlickrService.get_photos(page: params[:page], seed: params[:seed])
   end
 
   # @example response body
@@ -32,7 +32,7 @@ class Api::V1::StreamController < ApiController
     render json: {
       source: 'flickr',
       page:, # provide to this API endpoint again for next page
-      posts: FlickrService.get_photos(page: params[:page]),
+      posts: FlickrService.get_photos(page: params[:page], seed: params[:seed]),
     }
   end
 end

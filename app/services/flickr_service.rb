@@ -55,12 +55,17 @@ class FlickrService
       normalize(response:)
     end
 
-    # Returns one stable, pre-shuffled page from the local catalog.
+    # Returns one page from a seeded random ordering of the local catalog.
     def get_photos(args = {})
       page = [args.fetch(:page, 1).to_i, 1].max
+      seed = args[:seed].presence&.to_i || Random.new_seed
+      offset = (page - 1) * GET_PHOTOS_DEFAULT_OPTIONS[:per_page]
+
       FlickrPhoto.order(:display_position)
-                 .offset((page - 1) * GET_PHOTOS_DEFAULT_OPTIONS[:per_page])
-                 .limit(GET_PHOTOS_DEFAULT_OPTIONS[:per_page])
+                 .to_a
+                 .shuffle(random: Random.new(seed))
+                 .slice(offset, GET_PHOTOS_DEFAULT_OPTIONS[:per_page])
+                 .to_a
                  .map(&:as_stream_item)
     end
 

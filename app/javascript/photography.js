@@ -26,7 +26,7 @@ const createInfiniteScroll = (elem, masonry) => {
     return new InfiniteScroll( elem, {
         // options
         checkLastPage: 'figure.image.grid-item',
-        path: 'photography?page={{#}}',
+        path: elem.dataset.nextPagePath.replace('__PAGE__', '{{#}}'),
         append: 'figure.image.grid-item',
         history: false,
         outlayer: masonry,

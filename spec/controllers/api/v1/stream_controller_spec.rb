@@ -17,7 +17,7 @@ RSpec.describe Api::V1::StreamController do
 
       get :index, params: { page: '3' }
 
-      expect(FlickrService).to have_received(:get_photos).with(page: '3')
+      expect(FlickrService).to have_received(:get_photos).with(page: '3', seed: nil)
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::StreamController do
       expect(body['source']).to eq('flickr')
       expect(body['page']).to eq(5)
       expect(body['posts']).to eq(photos)
-      expect(FlickrService).to have_received(:get_photos).with(page: '4')
+      expect(FlickrService).to have_received(:get_photos).with(page: '4', seed: nil)
     end
 
     it 'defaults the next page to 2 when no page param is present' do
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::StreamController do
 
       body = response.parsed_body
       expect(body['page']).to eq(2)
-      expect(FlickrService).to have_received(:get_photos).with(page: nil)
+      expect(FlickrService).to have_received(:get_photos).with(page: nil, seed: nil)
     end
   end
 end
