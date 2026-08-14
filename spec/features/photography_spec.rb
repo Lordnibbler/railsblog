@@ -44,13 +44,20 @@ describe '/photography', :js do
     visit photography_path
 
     expect(page).to have_css('figure.image.grid-item a', minimum: 1, wait: 30)
-    first('figure.image.grid-item a').click
+    photo_link = first('figure.image.grid-item a')
+    caption = photo_link.find(:xpath, '../figcaption', visible: :all).text(:all)
+    photo_link.click
 
     expect(page).to have_css('.pswp.pswp--open', wait: 10)
     expect(page).to have_css('.pswp__button--close')
+    expect(page).to have_css('.pswp__button--fs')
     expect(page).to have_css('.pswp__counter')
 
-    expect(page).to have_css('.pswp__button--arrow--right')
+    expect(page).to have_css('.pswp__button--arrow--next')
     expect(page).to have_css('.pswp__counter', text: %r{\d+\s*/\s*\d+})
+    expect(page).to have_css('.pswp__custom-caption', text: caption)
+
+    expect(page).to have_css('.pswp.pswp--idle', visible: :all, wait: 5)
+    expect(page).to have_css('.pswp.pswp--idle .pswp__top-bar', visible: :hidden, wait: 1)
   end
 end

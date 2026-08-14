@@ -1,5 +1,4 @@
 @import "photoswipe/dist/photoswipe"
-@import "photoswipe/dist/default-skin/default-skin"
 
 // ------
 // layout
@@ -75,5 +74,31 @@
 // ------------------
 // photoswipe gallery
 // ------------------
-.pswp__caption__center
+.pswp__custom-caption
+  bottom: 16px
+  color: #fff
+  font-size: 13px
+  left: 50%
+  max-width: 420px
+  padding: 10px
+  position: absolute
   text-align: center
+  transform: translateX(-50%)
+  width: calc(100% - 32px)
+
+.pswp__button--fs
+  color: #fff
+  font-size: 11px
+  width: auto
+
+.pswp__top-bar,
+.pswp__button--arrow,
+.pswp__custom-caption
+  transition: opacity 0.25s ease
+
+.pswp.pswp--idle
+  .pswp__top-bar,
+  .pswp__button--arrow,
+  .pswp__custom-caption
+    opacity: 0 !important
+    pointer-events: none !important
