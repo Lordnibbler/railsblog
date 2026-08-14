@@ -9,6 +9,14 @@ describe '/blog' do
   before { visit blog_posts_path }
 
   describe '#index' do
+    it 'allows the document to scroll through all posts', :js do
+      expect(page.evaluate_script('document.documentElement.scrollHeight')).to be >
+        page.evaluate_script('window.innerHeight')
+
+      page.execute_script('window.scrollTo(0, document.documentElement.scrollHeight)')
+      expect(page.evaluate_script('window.scrollY')).to be_positive
+    end
+
     it 'shows title, excerpt, and featured image for posts' do
       expect(page).to have_content post.title
       expect(page).to have_content post.excerpt

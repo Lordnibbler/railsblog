@@ -10,7 +10,7 @@ describe '/' do
       visit root_path
 
       within '#latest' do
-        expect(page).to have_css('a.bg-white', count: 2)
+        expect(page).to have_css('.glass-card', count: 2)
       end
     end
 
@@ -19,7 +19,7 @@ describe '/' do
         visit root_path
 
         within '#latest' do
-          page.first(:css, 'a.bg-white').click
+          page.first(:css, '.glass-card').click
         end
 
         expect(page).to have_content 'Spicy jalapeno bacon'
