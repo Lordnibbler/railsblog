@@ -30,7 +30,7 @@ describe '/' do
     it 'activates the liquid glass navigation after scrolling' do
       visit root_path
 
-      expect(page).to have_no_css('.desktop-nav.nav-liquid-glass')
+      expect(page).to have_css('.desktop-nav:not(.nav-liquid-glass)')
 
       page.execute_script('window.scrollTo(0, 200)')
 
@@ -75,12 +75,12 @@ describe '/' do
         end
 
         expect(page).to have_content 'Spicy jalapeno bacon'
-      expect(page).to have_content(/Previous Post/i)
-      expect(page).to have_no_content(/Read More/i)
-      expect(page).to have_css('article.article-glass.glass-panel')
-      expect(page).to have_css('.article-author.glass-panel')
-      expect(page).to have_css('nav.article-navigation[aria-label="Post navigation"]')
-    end
+        expect(page).to have_content(/Previous Post/i)
+        expect(page).to have_no_content(/Read More/i)
+        expect(page).to have_css('article.article-glass.glass-panel')
+        expect(page).to have_css('.article-author.glass-panel')
+        expect(page).to have_css('nav.article-navigation[aria-label="Post navigation"]')
+      end
     end
   end
 

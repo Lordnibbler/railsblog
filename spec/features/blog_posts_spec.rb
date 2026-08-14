@@ -10,8 +10,10 @@ describe '/blog' do
 
   describe '#index' do
     it 'allows the document to scroll through all posts', :js do
-      expect(page.evaluate_script('document.documentElement.scrollHeight')).to be >
-        page.evaluate_script('window.innerHeight')
+      document_height = page.evaluate_script('document.documentElement.scrollHeight')
+      viewport_height = page.evaluate_script('window.innerHeight')
+
+      expect(document_height).to be > viewport_height
 
       page.execute_script('window.scrollTo(0, document.documentElement.scrollHeight)')
       expect(page.evaluate_script('window.scrollY')).to be_positive
@@ -46,7 +48,7 @@ describe '/blog' do
             :post,
             title: "Pagination post #{index}",
             slug: "pagination-post-#{index}",
-            user: post.user
+            user: post.user,
           )
         end
         visit blog_posts_path
