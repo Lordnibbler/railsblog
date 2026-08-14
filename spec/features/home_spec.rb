@@ -18,6 +18,37 @@ describe '/' do
     end
   end
 
+  context 'with JavaScript enabled', :js do
+    it 'activates the liquid glass navigation after scrolling' do
+      visit root_path
+
+      expect(page).to have_no_css('.desktop-nav.nav-liquid-glass')
+
+      page.execute_script('window.scrollTo(0, 200)')
+
+      expect(page).to have_css('.desktop-nav.nav-liquid-glass')
+      expect(page).to have_css(
+        '.desktop-nav.nav-glass-on-dark, .desktop-nav.nav-glass-on-light',
+      )
+    end
+
+    it 'opens and closes the animated mobile navigation' do
+      page.current_window.resize_to(390, 844)
+      visit root_path
+
+      open_button = find('button[aria-label="Open navigation"]')
+      open_button.click
+
+      expect(open_button['aria-expanded']).to eq('true')
+      expect(page).to have_css('.mobile-nav.mobile-nav-open')
+
+      find('button[aria-label="Close navigation"]').click
+
+      expect(page).to have_no_css('.mobile-nav.mobile-nav-open')
+      expect(open_button['aria-expanded']).not_to eq('true')
+    end
+  end
+
   context 'when blog posts exist' do
     it 'shows all published posts' do
       visit root_path
