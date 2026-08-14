@@ -2,6 +2,9 @@
 set -e
 
 if command -v foreman >/dev/null 2>&1; then
+  # Precompiled assets bypass Propshaft's live development asset path and can
+  # leave the browser on stale JS/CSS even while the bundler watchers rebuild.
+  bin/rails assets:clobber
   exec foreman start -f Procfile.dev "$@"
 fi
 
