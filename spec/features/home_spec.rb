@@ -16,6 +16,14 @@ describe '/' do
     within '#expertise' do
       expect(page).to have_css('.glass-card-static', count: 3)
     end
+
+    within '#videos' do
+      expect(page).to have_css('.video-glass-card.glass-panel', count: 3)
+    end
+
+    expect(page).to have_css('.newsletter-input')
+    expect(page).to have_css('.newsletter-button.glass-button')
+    expect(page).to have_css('.glass-footer')
   end
 
   context 'with JavaScript enabled', :js do
@@ -67,9 +75,12 @@ describe '/' do
         end
 
         expect(page).to have_content 'Spicy jalapeno bacon'
-        expect(page).to have_content(/Previous Post/i)
-        expect(page).to have_no_content(/Read More/i)
-      end
+      expect(page).to have_content(/Previous Post/i)
+      expect(page).to have_no_content(/Read More/i)
+      expect(page).to have_css('article.article-glass.glass-panel')
+      expect(page).to have_css('.article-author.glass-panel')
+      expect(page).to have_css('nav.article-navigation[aria-label="Post navigation"]')
+    end
     end
   end
 

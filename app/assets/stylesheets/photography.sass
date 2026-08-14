@@ -23,6 +23,9 @@
 
 .pagination-next
   display: none
+  margin: 2rem auto
+  padding: 0.65rem 1.25rem
+  width: fit-content
 
 .page-load-status
   display: none
@@ -31,9 +34,10 @@
 
 .infinite-scroll-spinner
   animation: infinite-scroll-spin 0.8s linear infinite
-  border: 3px solid rgba(128, 128, 128, 0.35)
+  border: 3px solid rgba(85, 64, 175, 0.20)
   border-radius: 50%
-  border-top-color: currentColor
+  border-top-color: #5540af
+  box-shadow: 0 0 0 0.4rem rgba(255, 255, 255, 0.22), 0 5px 18px rgba(37, 25, 91, 0.16)
   height: 2rem
   margin: 0 auto
   width: 2rem
@@ -75,6 +79,11 @@
 // photoswipe gallery
 // ------------------
 .pswp__custom-caption
+  -webkit-backdrop-filter: blur(10px) saturate(150%)
+  backdrop-filter: blur(10px) saturate(150%)
+  background: rgba(26, 18, 54, 0.52)
+  border: 1px solid rgba(255, 255, 255, 0.22)
+  border-radius: 9999px
   bottom: 16px
   color: #fff
   font-size: 13px

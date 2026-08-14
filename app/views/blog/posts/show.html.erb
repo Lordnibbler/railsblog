@@ -5,7 +5,7 @@
 
 <div class="page-surface">
     <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-18 xl:mt-16">
-        <div class="max-w-4xl mx-auto">
+        <article class="article-glass glass-panel max-w-4xl mx-auto p-6 sm:p-8 md:p-10">
             <% # meta %>
             <%= render partial: 'meta', locals: { post: @post } %>
 
@@ -25,9 +25,9 @@
             </div>
 
             <% # pagination %>
-            <div class="flex justify-between border-t border-lila dark:border-primary-70 py-12 mt-10">
+            <nav class="article-navigation flex justify-between gap-4 border-t border-lila dark:border-primary-70 pt-8 mt-10" aria-label="Post navigation">
                 <% if @post.previous.present? %>
-                    <a href="<%= blog_posts_permalink_path(@post.previous) %>" class="flex items-center">
+                    <a href="<%= blog_posts_permalink_path(@post.previous) %>" class="pagination-pill article-navigation-pill flex items-center">
                         <i class='bx bx-left-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
                         <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block pl-2 md:pl-5">
                             Previous Post
@@ -35,18 +35,17 @@
                     </a>
                 <% end %>
                 <% if @post.next.present? %>
-                    <a href="<%= blog_posts_permalink_path(@post.next) %>" class="flex items-center">
+                    <a href="<%= blog_posts_permalink_path(@post.next) %>" class="pagination-pill article-navigation-pill flex items-center">
                         <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block pr-2 md:pr-5">
                             Next Post
                         </span>
                         <i class='bx bx-right-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
                     </a>
                 <% end %>
-            </div>
+            </nav>
 
             <% # author information %>
-            <div
-                class="border-t border-lila dark:border-primary-70 py-12 pt-12 xl:pb-20 flex flex-col md:flex-row items-center md:items-start">
+            <div class="article-author glass-panel mt-10 p-6 sm:p-8 flex flex-col md:flex-row items-center md:items-start">
                 <div class="w-1/4 lg:w-1/12 xl:w-1/5 flex justify-center">
                     <%= image_tag @post.user.avatar_url, alt: "author image", class: "rounded-full shadow", loading: "lazy", decoding: "async" %>
                 </div>
@@ -70,6 +69,6 @@
             </div>
 
             <%= render 'shared/disqus_thread' %>
-        </div>
+        </article>
     </div>
 </div>

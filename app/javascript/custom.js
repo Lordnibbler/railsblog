@@ -27,7 +27,8 @@ const setupNavigationTransparencyHandler = () => {
       .find((element) => !navElement.contains(element));
     const requestedContrast = underlyingElement?.closest("[data-navigation-contrast]")
       ?.dataset.navigationContrast
-      || (underlyingElement?.closest("video, iframe") ? "light" : undefined);
+      || (underlyingElement?.closest("video, iframe") ? "light" : undefined)
+      || (document.body.classList.contains("photography-template") ? "light" : undefined);
     const contrast = requestedContrast || (colorScheme.matches ? "light" : "dark");
 
     navElement.classList.toggle("nav-glass-on-dark", contrast === "light");

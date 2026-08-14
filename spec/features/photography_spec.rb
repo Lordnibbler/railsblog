@@ -38,6 +38,17 @@ describe '/photography', :js do
     expect(page).to have_css('a[href*="flickr"]') # Flickr photo URLs
     expect(page).to have_css('img[src*="flickr"]') # Flickr image sources
     expect(page).to have_css('.infinite-scroll-spinner', visible: :hidden)
+    expect(page).to have_css('.glass-footer')
+  end
+
+  it 'uses light navigation content over the photo gallery' do
+    page.current_window.resize_to(1400, 700)
+    visit photography_path
+
+    expect(page).to have_css('.my-gallery[data-navigation-contrast="light"]', wait: 30)
+    page.execute_script('window.scrollTo(0, 200)')
+
+    expect(page).to have_css('.desktop-nav.nav-liquid-glass.nav-glass-on-dark')
   end
 
   it 'opens PhotoSwipe when a photo is clicked' do
@@ -56,6 +67,7 @@ describe '/photography', :js do
     expect(page).to have_css('.pswp__button--arrow--next')
     expect(page).to have_css('.pswp__counter', text: %r{\d+\s*/\s*\d+})
     expect(page).to have_css('.pswp__custom-caption', text: caption)
+    expect(page).to have_css('.pswp__custom-caption')
 
     expect(page).to have_css('.pswp.pswp--idle', visible: :all, wait: 5)
     expect(page).to have_css('.pswp.pswp--idle .pswp__top-bar', visible: :hidden, wait: 1)

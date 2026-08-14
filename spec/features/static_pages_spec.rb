@@ -17,5 +17,7 @@ describe 'static pages' do
 
     expect(page).to have_content('Privacy Policy')
     expect(page).to have_content('SquareCrusher!')
+    expect(page).to have_css('.content-glass-panel.glass-panel')
+    expect(page).to have_css('.glass-footer')
   end
 end
