@@ -11,4 +11,125 @@ html {
     scroll-padding-top: 40px;
 }
 
+@layer components {
+    .desktop-nav {
+        isolation: isolate;
+        overflow: hidden;
+        right: 0;
+        left: 0;
+        width: auto;
+        border: 1px solid transparent;
+        border-radius: 0;
+    }
+
+    /* Override Tailwind's generic .transition utility so the pill geometry animates too. */
+    .desktop-nav.transition {
+        transition:
+            top 350ms ease,
+            right 350ms ease,
+            left 350ms ease,
+            border-color 350ms ease,
+            border-radius 350ms ease,
+            background-color 350ms ease,
+            box-shadow 350ms ease;
+    }
+
+    /*
+        A layered, light-catching surface for the navigation once content is
+        scrolling underneath it. The opaque background is also a fallback for
+        browsers that do not support backdrop-filter.
+    */
+    .desktop-nav.nav-liquid-glass {
+        top: 0.75rem;
+        right: 0.75rem;
+        left: 0.75rem;
+        width: auto;
+        border: 1px solid rgb(255 255 255 / 0.44);
+        border-radius: 1.5rem;
+        background-color: transparent;
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.58),
+            inset 0 -2px 3px rgb(25 19 52 / 0.16),
+            0 12px 36px rgb(25 19 52 / 0.26);
+        -webkit-backdrop-filter: blur(6px) saturate(165%) contrast(105%);
+        backdrop-filter: blur(6px) saturate(165%) contrast(105%);
+    }
+
+    .desktop-nav::before {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 18% -70%, rgb(255 255 255 / 0.32), transparent 45%),
+            radial-gradient(ellipse at 82% 170%, rgb(187 178 223 / 0.18), transparent 46%),
+            linear-gradient(100deg, transparent 42%, rgb(255 255 255 / 0.08) 50%, transparent 58%),
+            linear-gradient(115deg, rgb(255 255 255 / 0.18), transparent 34%),
+            linear-gradient(180deg, rgb(85 64 175 / 0.22), rgb(65 47 144 / 0.12));
+        content: "";
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 350ms ease;
+    }
+
+    .desktop-nav.nav-liquid-glass::before {
+        opacity: 1;
+    }
+
+    .desktop-nav::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background:
+            linear-gradient(115deg, rgb(255 255 255 / 0.28), transparent 34%),
+            linear-gradient(180deg, rgb(255 255 255 / 0.30), rgb(238 235 247 / 0.12));
+        content: "";
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 350ms ease;
+    }
+
+    .desktop-nav.nav-liquid-glass a,
+    .desktop-nav.nav-liquid-glass button {
+        color: rgb(25 19 52);
+        text-shadow: 0 1px 1px rgb(255 255 255 / 0.45);
+        transition:
+            color 350ms ease,
+            text-shadow 350ms ease;
+    }
+
+    .desktop-nav.nav-liquid-glass button i {
+        color: inherit;
+    }
+
+    .desktop-nav.nav-liquid-glass.nav-glass-on-light a:hover,
+    .desktop-nav.nav-liquid-glass.nav-glass-on-light a:focus-visible {
+        text-decoration-color: rgb(85 64 175);
+    }
+
+    .desktop-nav.nav-liquid-glass.nav-glass-on-dark {
+        border-color: rgb(255 255 255 / 0.52);
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.62),
+            inset 0 -2px 3px rgb(0 0 0 / 0.16),
+            0 12px 36px rgb(0 0 0 / 0.28);
+    }
+
+    .desktop-nav.nav-liquid-glass.nav-glass-on-dark::after {
+        opacity: 1;
+    }
+
+    .desktop-nav.nav-liquid-glass.nav-glass-on-dark a,
+    .desktop-nav.nav-liquid-glass.nav-glass-on-dark button {
+        color: rgb(250 250 250);
+        text-shadow: 0 1px 2px rgb(0 0 0 / 0.55);
+    }
+
+    @media (min-width: 640px) {
+        .desktop-nav.nav-liquid-glass {
+            right: 1.25rem;
+            left: 1.25rem;
+        }
+    }
+}
+
 @tailwind utilities;

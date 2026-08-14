@@ -18,13 +18,28 @@ const setupAppHeightHandler = () => {
 }
 
 const setupNavigationTransparencyHandler = () => {
+  const navElement = document.querySelector(".desktop-nav");
+  const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function updateNavigationContrast() {
+    const sampleY = Math.max(0, Math.min(window.innerHeight - 1, navElement.getBoundingClientRect().bottom - 1));
+    const underlyingElement = document.elementsFromPoint(window.innerWidth / 2, sampleY)
+      .find((element) => !navElement.contains(element));
+    const requestedContrast = underlyingElement?.closest("[data-navigation-contrast]")
+      ?.dataset.navigationContrast;
+    const contrast = requestedContrast || (colorScheme.matches ? "light" : "dark");
+
+    navElement.classList.toggle("nav-glass-on-dark", contrast === "light");
+    navElement.classList.toggle("nav-glass-on-light", contrast === "dark");
+  }
+
   function navTransparencyHandler() {
     //
-    // when page is scrolled down >=100px, make the navigation 95% transparent
+    // when page is scrolled down >=100px, give the navigation a liquid-glass surface
     // when page is scrolled up <100px, make the navigation 100% transparent (home) or opaque (all other pages)
     //
     let notScrolledClasses // class when page is scrolled to top
-    let scrolledClasses = ["bg-primary/95", "dark:bg-primary-50/95"] // class when page is scrolled past 100px
+    let scrolledClasses = ["nav-liquid-glass"] // class when page is scrolled past 100px
     if (window.location.pathname === "/") {
       notScrolledClasses = ["bg-primary/0", "dark:bg-primary-50/0"]
     } else {
@@ -32,13 +47,14 @@ const setupNavigationTransparencyHandler = () => {
     }
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background
-    const navElement = document.querySelector(".desktop-nav");
     if (this.scrollY > 100 || this.scrollY === undefined) {
       navElement.classList.add(...scrolledClasses)
       navElement.classList.remove(...notScrolledClasses)
+      updateNavigationContrast()
     } else {
       navElement.classList.add(...notScrolledClasses)
       navElement.classList.remove(...scrolledClasses)
+      navElement.classList.remove("nav-glass-on-dark", "nav-glass-on-light")
     }
   }
 
@@ -50,6 +66,14 @@ const setupNavigationTransparencyHandler = () => {
 
   // when page scrolls, update nav transparency as needed
   window.addEventListener("scroll", navTransparencyHandler, false)
+
+  // Theme changes can alter the background beneath a stationary header.
+  const colorSchemeHandler = () => {
+    if (navElement.classList.contains("nav-liquid-glass")) {
+      updateNavigationContrast()
+    }
+  }
+  colorScheme.addEventListener("change", colorSchemeHandler)
 }
 
 const setupLazyVideos = () => {
