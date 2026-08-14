@@ -3,23 +3,27 @@
   description: 'Ben Radler is an Engineer in San Francisco. He uses technology like Ruby, Rails, Javascript, Node.js',
 ) %>
 
-<div class="glass-stage dark:bg-primary-20">
+<div class="page-surface flex-shrink-0">
     <div class="container py-6 md:py-10 mt-12 sm:mt-16 lg:mt-18 xl:mt-16">
+      <header class="max-w-4xl mx-auto mb-4 md:mb-6">
+        <h1 class="flex items-center font-body font-semibold text-primary dark:text-primary-900 text-3xl sm:text-4xl md:text-5xl xl:text-6xl pt-5">
+          Blog
+        </h1>
+      </header>
+
       <% @posts.each do |post| %>
-        <div class="glass-panel max-w-4xl mx-auto mb-12 p-6 sm:p-8" id="post-<%= post.id %>" role="article"  itemscope='' itemtype='http://schema.org/Article'>
+        <div class="blog-post-card glass-panel max-w-4xl mx-auto mb-12 p-6 sm:p-8" id="post-<%= post.id %>" role="article"  itemscope='' itemtype='http://schema.org/Article'>
           <%= render partial: 'meta', locals: { post: post } %>
 
           <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">
-            <%= image_tag cdn_image_url(post.featured_image), loading: "lazy", decoding: "async" if post.featured_image.attached? %>
+            <%= image_tag cdn_image_url(post.featured_image), class: "rounded-xl", loading: "lazy", decoding: "async" if post.featured_image.attached? %>
             <%= markdown post.excerpt %>
-            <% if post.more_text? %>
-              <a href="<%= blog_posts_permalink_path(post) %>" class="flex items-center no-underline">
-                  <span class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block">
-                      Continue Reading
-                  </span>
-                  <i class='bx bx-right-arrow-alt text-2xl text-primary dark:text-primary-500'></i>
-              </a>
-            <% end %>
+            <a href="<%= blog_posts_permalink_path(post) %>" class="glass-button inline-flex items-center px-5 py-2.5 rounded-full no-underline">
+                <span class="font-body font-bold text-white text-base uppercase block">
+                    <%= post.more_text? ? "Continue Reading" : "View Post" %>
+                </span>
+                <i class='bx bx-right-arrow-alt text-2xl text-white'></i>
+            </a>
           </div>
         </div>
       <% end %>

@@ -59,7 +59,7 @@ describe ApplicationHelper do
     it 'returns appropriate styles for non-photography_path' do
       allow(helper).to receive(:current_page?).and_return(false)
 
-      expect(helper.main_styles).to eql('height: 100vh; height: var(--app-height, 100vh);')
+      expect(helper.main_styles).to eql('min-height: 100vh; min-height: var(--app-height, 100vh);')
     end
   end
 

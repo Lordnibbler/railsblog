@@ -1,6 +1,6 @@
 = paginator.render do
-  div[class="pagination max-w-4xl mx-auto mb-20"]
-    ul[class="flex flex-row items-center"]
+  nav[class="pagination glass-panel w-fit max-w-full mx-auto mb-20 p-2 rounded-full" aria-label="Blog pagination"]
+    ul[class="flex flex-row items-center gap-1"]
       = raw(prev_page_tag) unless current_page.first?
       - each_page do |page|
         - if page.left_outer? || page.right_outer? || page.inside_window?
