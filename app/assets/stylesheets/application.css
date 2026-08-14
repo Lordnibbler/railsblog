@@ -12,6 +12,17 @@ html {
 }
 
 @layer components {
+    .section-divider {
+        border-top: 1px solid transparent;
+        border-image: linear-gradient(90deg, transparent, rgb(85 64 175 / 0.24), transparent) 1;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .section-divider {
+            border-image-source: linear-gradient(90deg, transparent, rgb(153 140 207 / 0.22), transparent);
+        }
+    }
+
     .glass-stage {
         position: relative;
         isolation: isolate;
