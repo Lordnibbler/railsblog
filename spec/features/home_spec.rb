@@ -5,6 +5,19 @@ describe '/' do
   let!(:long_post) { create(:long_post, user: post.user) }
   let!(:unpublished_post) { create(:unpublished_post, user: post.user) }
 
+  it 'renders the adaptive glass navigation and static expertise cards' do
+    visit root_path
+
+    expect(page).to have_css('.navigation-container')
+    expect(page).to have_css('button[aria-label="Open navigation"]', visible: :all)
+    expect(page).to have_css('button[aria-label="Close navigation"]', visible: :all)
+    expect(page).to have_css('.mobile-nav-panel[role="dialog"]')
+
+    within '#expertise' do
+      expect(page).to have_css('.glass-card-static', count: 3)
+    end
+  end
+
   context 'when blog posts exist' do
     it 'shows all published posts' do
       visit root_path
