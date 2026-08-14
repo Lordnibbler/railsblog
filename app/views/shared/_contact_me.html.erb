@@ -7,27 +7,27 @@
 
   <div class="flex flex-col md:flex-row gap-x-4">
       <div class="flex-auto">
-        <%= f.text_field :name, placeholder: 'name',   class: "w-full font-body text-black px-4 py-3 border-grey-50 rounded" %>
+        <%= f.text_field :name, placeholder: 'name',   class: "contact-input w-full font-body text-black px-4 py-3 rounded" %>
       </div>
       <div class="flex-auto">
-        <%= f.text_field :email, placeholder: 'email', class: "w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-0" %>
+        <%= f.text_field :email, placeholder: 'email', class: "contact-input w-full font-body text-black px-4 py-3 rounded mt-6 md:mt-0" %>
       </div>
   </div>
 
-  <%= f.text_area  :message, placeholder: 'message', class:"w-full font-body text-black px-4 py-3 border-grey-50 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
+  <%= f.text_area  :message, placeholder: 'message', class:"contact-input w-full font-body text-black px-4 py-3 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
 
   <button
     type="submit"
-    class="bg-primary dark:bg-primary-80 hover:bg-primary-60 dark:hover:bg-primary-100 transition-colors px-8 py-3 flex justify-center mt-6 rounded items-center">
+    class="glass-button px-8 py-3 flex justify-center mt-6 rounded items-center">
     <span class="font-header font-bold text-lg text-white uppercase">Send</span>
     <i class='bx bx-chevron-right text-3xl relative -right-2 font-header font-bold text-lg text-white'></i>
   </button>
 
 <% end %>
 
-<div class="flex flex-col lg:flex-row pt-16">
-  <div class="w-full lg:w-1/3 border-l-2 border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
-    <div class="flex items-center">
+<div class="contact-details glass-panel flex flex-col lg:flex-row mt-16 overflow-hidden">
+  <div class="contact-detail w-full lg:w-1/3 px-6 py-6 sm:py-8">
+    <div class="contact-detail-label flex items-center">
       <i class='bx bxl-linkedin text-grey-40 dark:text-primary-1000 text-2xl'></i>
       <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         LinkedIn</p>
@@ -36,9 +36,8 @@
         <a href="https://www.linkedin.com/in/benradler/">linkedin.com/benradler</a>
     </p>
   </div>
-  <div
-    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
-    <div class="flex items-center">
+  <div class="contact-detail w-full lg:w-1/3 px-6 py-6 sm:py-8">
+    <div class="contact-detail-label flex items-center">
       <i class='bx bx-envelope text-grey-40 dark:text-primary-1000 text-2xl'></i>
       <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         Email</p>
@@ -47,9 +46,8 @@
       <a href="mailto:info@benradler.com">info@benradler.com</a>
     </p>
   </div>
-  <div
-    class="w-full lg:w-1/3 border-l-2 lg:border-l-0 border-t-0 lg:border-t-2 border-r-2 border-b-2 border-grey-60 px-6 py-6 sm:py-8 dark:bg-primary-40 dark:border-primary-300">
-    <div class="flex items-center">
+  <div class="contact-detail w-full lg:w-1/3 px-6 py-6 sm:py-8">
+    <div class="contact-detail-label flex items-center">
       <i class='bx bx-map text-grey-40 dark:text-primary-1000 text-2xl'></i>
       <p class="font-body font-bold text-grey-40 dark:text-primary-1000 lg:text-lg uppercase pl-2">
         Location</p>
