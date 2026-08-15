@@ -1,11 +1,11 @@
-<div class="bg-center bg-cover bg-no-repeat relative py-16 lg:py-24 bg-primary" data-navigation-contrast="light"
+<div class="newsletter-section bg-center bg-cover bg-no-repeat relative py-16 lg:py-24 bg-primary" data-navigation-contrast="light"
     style="background-image: url(<%= asset_path("home/bg-cta.jpg") %>);">
     <div
-        class="bg-center bg-cover bg-no-repeat absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from dark:from-hero-gradient-dark-from to-cta-gradient-to">
+        class="newsletter-scrim bg-center bg-cover bg-no-repeat absolute inset-0 z-20 bg-gradient-to-r from-hero-gradient-from dark:from-hero-gradient-dark-from to-cta-gradient-to">
     </div>
     <div class="container z-30 relative">
         <h3
-            class="font-header text-white text-3xl sm:text-4xl lg:text-5xl uppercase leading-tight text-center tracking-wide">
+            class="newsletter-heading font-header text-white text-3xl sm:text-4xl lg:text-5xl uppercase leading-tight text-center tracking-wide">
             Keep <span class="font-bold">up-to-date</span> <br />
             with what I'm up to</h3>
         <%= form_for NewsletterSignup.new, url: newsletter_signups_path, html: { class: "flex flex-col sm:flex-row justify-center mt-6" } do |form| %>
