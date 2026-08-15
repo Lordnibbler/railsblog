@@ -95,6 +95,10 @@ One-shot command to start everything
 ./bin/dev
 ```
 
+`bin/dev` clears generated precompiled assets before starting Rails and the JS/CSS
+watchers. After changing frontend source files, wait for the relevant watcher to
+finish and refresh the browser; the development processes do not need restarting.
+
 Start everything individually
 
 ```shell

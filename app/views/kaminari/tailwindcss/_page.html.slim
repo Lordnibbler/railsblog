@@ -1,9 +1,9 @@
-li class="page#{' current' if page.current?} "
+li class="page#{' current' if page.current?}"
   - if page.current?
-    = link_to "#", class: "flex items-center mr-4" do
-      span[class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block"]
+    span[class="pagination-pill pagination-pill-current flex items-center justify-center" aria-current="page"]
+      span[class="font-body font-bold text-white text-base block"]
         = page
   - else
-    = link_to url, remote: remote, rel: (page.next? ? 'next' : page.prev? ? 'prev' : nil), class: "flex items-center mr-4" do
-      span[class="font-body text-primary dark:text-primary-500 text-lg uppercase block"]
+    = link_to url, remote: remote, rel: (page.next? ? 'next' : page.prev? ? 'prev' : nil), class: "pagination-pill flex items-center justify-center" do
+      span[class="font-body text-primary dark:text-primary-500 text-base block"]
         = page

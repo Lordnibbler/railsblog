@@ -9,9 +9,9 @@
 }">
     <% # desktop navigation %>
     <div class="desktop-nav fixed transition ease-in-out duration-300 w-full z-50 top-0 py-3 sm:py-5 <%= navigation_class %>">
-        <div class="container flex justify-between items-center">
+        <div class="navigation-container flex justify-between items-center">
             <div>
-                <a href="/" class="uppercase text-white text-2xl sm:text-4xl lg:text-2xl xl:text-4xl">
+                <a href="/" class="uppercase text-white text-2xl sm:text-4xl lg:text-2xl">
                     <span class="font-black">Radler</span> <span class="font-thin">Designs</span>
                 </a>
             </div>
@@ -32,22 +32,30 @@
 
             <% # hamburger icon %>
             <div class="block lg:hidden">
-                <button @click="$parent.mobileMenu = true"><i class='bx bx-menu text-white text-4xl'></i></button>
+                <button class="mobile-nav-toggle text-white" x-ref="mobileToggle"
+                    @click="$parent.mobileMenu = !$parent.mobileMenu; if ($parent.mobileMenu) $nextTick(() => $refs.mobilePanel.querySelector('a').focus())"
+                    aria-expanded="false"
+                    :aria-expanded="$parent.mobileMenu.toString()"
+                    aria-label="Open navigation"
+                    x-bind:aria-label="$parent.mobileMenu ? 'Close navigation' : 'Open navigation'">
+                    <span class="mobile-nav-toggle-icon" aria-hidden="true"
+                        :class="{ 'mobile-nav-toggle-icon-open': $parent.mobileMenu }"></span>
+                </button>
             </div>
         </div>
     </div>
 
     <% # mobile navigation %>
-    <div class="mobile-nav fixed inset-0 bg-black bg-opacity-70 z-50 min-h-full lg:hidden opacity-0 pointer-events-none overflow-auto"
-        :class="{ 'opacity-100 pointer-events-auto': $parent.mobileMenu }">
-        <div class="w-2/3 md:w-1/3 bg-primary dark:bg-primary-50 min-h-full absolute right-0 shadow py-4 px-8">
-
-            <% # close mobile nav %>
-            <button class="absolute top-0 right-0 mt-4 mr-4" @click="$parent.mobileMenu = false">
-                <%= image_tag "icon-close.svg", class: "h-10 w-auto", alt: "close" %>
-            </button>
-
-            <ul class="flex flex-col mt-8">
+    <div class="mobile-nav fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40 min-h-full lg:hidden opacity-0 pointer-events-none overflow-hidden"
+        :class="{ 'opacity-100 pointer-events-auto mobile-nav-open': $parent.mobileMenu }"
+        inert :inert="!$parent.mobileMenu"
+        aria-hidden="true" :aria-hidden="(!$parent.mobileMenu).toString()"
+        @click.self="$parent.mobileMenu = false; $nextTick(() => $refs.mobileToggle.focus())"
+        @keydown.escape.window="if ($parent.mobileMenu) { $parent.mobileMenu = false; $nextTick(() => $refs.mobileToggle.focus()) }"
+        @wheel.self.prevent @touchmove.self.prevent>
+        <div class="mobile-nav-panel mobile-glass-panel py-5 px-6 sm:px-8" x-ref="mobilePanel"
+            role="dialog" aria-modal="true" aria-label="Site navigation">
+            <ul class="mobile-nav-list flex flex-col">
                 <%= mobile_navigation_link(name: 'home',        path: root_path) %>
                 <%= mobile_navigation_link(name: 'photography', path: photography_path) %>
                 <%= mobile_navigation_link(name: "blog",        path: blog_posts_path) %>

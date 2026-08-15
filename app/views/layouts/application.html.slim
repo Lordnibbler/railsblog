@@ -23,6 +23,7 @@ html[lang="en"]
     link[rel="icon" type="image/png" href="#{image_url("layout/favicon.png")}"]
 
     - # for browsers/devices which customize UI based on theme
+    meta[name="theme-color" content="#5540af"]
     meta[name="theme-color" content="#5540af" media="(prefers-color-scheme: light)"]
     meta[name="theme-color" content="#2a2057" media="(prefers-color-scheme: dark)"]
 
@@ -65,7 +66,7 @@ html[lang="en"]
 
     = yield :head
     = csrf_meta_tags
-  body[class="#{@body_class}" :class="{ 'overflow-hidden max-h-screen': mobileMenu }" x-data="{ mobileMenu: false }" @resize.window="if (window.innerWidth >= 1024) mobileMenu = false"]
+  body[class="#{@body_class}" x-data="{ mobileMenu: false }" @resize.window="if (window.innerWidth >= 1024) mobileMenu = false"]
     div[id="main" class="flex flex-col" style="#{main_styles}"]
       = render 'shared/header'
       - unless controller_name == 'pages' && params[:id] == 'contact-me'

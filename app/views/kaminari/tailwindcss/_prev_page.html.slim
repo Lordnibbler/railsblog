@@ -1,5 +1,5 @@
 li[class="page-prev"]
-  = link_to url, rel: 'prev', remote: remote, class: "flex items-center mr-3" do
+  = link_to url, rel: 'prev', remote: remote, class: "pagination-pill pagination-pill-wide flex items-center" do
     i[class='bx bx-left-arrow-alt text-2xl text-primary dark:text-primary-500']
-    span[class="font-body font-bold text-primary dark:text-primary-500 text-lg uppercase block"]
+    span[class="font-body font-bold text-primary dark:text-primary-500 text-sm uppercase block"]
       = raw(t('views.pagination.previous'))
