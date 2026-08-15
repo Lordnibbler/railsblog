@@ -223,6 +223,9 @@ body {
     .rides-metrics div { padding: 0.85rem; border: 1px solid rgb(255 255 255 / 0.08); border-radius: 0.65rem; background: rgb(255 255 255 / 0.04); }
     .rides-metrics span { display: block; color: rgb(255 255 255 / 0.42); font-size: 0.58rem; text-transform: uppercase; }
     .rides-metrics strong { display: block; padding-top: 0.35rem; font: 600 1.35rem Raleway, sans-serif; }
+    .rides-metrics .rides-cancellation-metric { grid-column: 1 / -1; position: relative; overflow: hidden; border-color: rgb(255 82 120 / .24); background: linear-gradient(90deg, rgb(255 82 120 / .11), rgb(255 255 255 / .03)); }
+    .rides-cancellation-metric::after { position: absolute; right: 1rem; bottom: .75rem; width: 2.4rem; height: 2.4rem; border: 1px solid rgb(255 82 120 / .4); border-radius: 50%; content: "×"; color: #ff839f; font: 300 1.7rem/2.2rem Raleway, sans-serif; text-align: center; }
+    .rides-cancellation-metric small { display: block; padding-top: .15rem; color: rgb(255 255 255 / .45); font: .56rem monospace; }
     .rides-slider { display: block; padding: 0.8rem 0; }
     .rides-slider > span { display: flex; justify-content: space-between; padding-bottom: 0.55rem; color: rgb(255 255 255 / 0.55); font-size: 0.66rem; text-transform: uppercase; }
     .rides-slider output { color: #f9e71c; }

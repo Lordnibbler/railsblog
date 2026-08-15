@@ -238,13 +238,15 @@ const setupRidesSimulation = () => {
   const serviceProfiles = {
     users: { multiplier: 4.2, latency: 42, color: '#9d86ff' }, pricing: { multiplier: 7.8, latency: 68, color: '#f9e71c' },
     rides: { multiplier: 11.5, latency: 84, color: '#ff8c42' }, dispatch: { multiplier: 14.2, latency: 112, color: '#ff3f9b' },
+    cancels: { eventDriven: true, latency: 76, color: '#ff5278' },
     location: { multiplier: 24.5, latency: 38, color: '#42d9c8' }, payments: { multiplier: 2.8, latency: 146, color: '#6ca8ff' },
     notifications: { multiplier: 3.7, latency: 55, color: '#c89cff' }, reviews: { multiplier: 0.7, latency: 73, color: '#ffbd66' },
-    resources: { multiplier: 1.4, latency: 91, color: '#8ad6a3' },
+    resources: { eventDriven: true, latency: 91, color: '#8ad6a3' },
   };
   const serviceHistories = Object.fromEntries(Object.keys(serviceProfiles).map((name) => [name, Array(60).fill(0)]));
   const overloadProfiles = { rides: 2.0, dispatch: 3.8, payments: 2.4 };
   let lastServiceSample = 0;
+  const pendingServiceEvents = { cancels: 0, resources: 0 };
   const controls = { load: 65, supply: 72, cancel: 8 };
   const standardRouteDefinitions = [
     [[-122.4324, 37.7692], [-122.4262, 37.7767], [-122.4087, 37.7878]],
@@ -266,6 +268,9 @@ const setupRidesSimulation = () => {
   let startTime = 0;
   let animation;
   let completedRides = 0;
+  let cancelledRides = 0;
+  let previousVisibleTripCount = 0;
+  let cancellationMarkers = [];
   let width;
   let height;
   let mapCenterX;
@@ -326,21 +331,36 @@ const setupRidesSimulation = () => {
     trips = Array.from({ length: driverCount }, (_value, index) => {
       const source = routes[index % routes.length];
       const routeIndex = (Math.floor(index / routes.length) * 13 + index * 3) % Math.max(1, source.pickupIndex - 1);
-      return { ...source, hasDriver: true, routeIndex, progress: (index % 7) / 7, pickedUp: false, complete: false, speed: 0.58 + Math.random() * 0.5, riderOffset: (index % 9) - 4 };
+      const cancellationWindow = Math.max(1, source.pickupIndex - routeIndex);
+      return { ...source, hasDriver: true, hasRider: true, routeIndex, progress: (index % 7) / 7, pickedUp: false, complete: false, speed: 0.58 + Math.random() * 0.5, riderOffset: (index % 9) - 4, willCancel: Math.random() * 100 < controls.cancel, cancelAt: routeIndex + Math.max(1, Math.floor(cancellationWindow * (0.25 + Math.random() * 0.5))), newRiderAt: 0 };
     });
+  };
+  const resetRider = (trip, routeIndex = 0) => {
+    trip.hasRider = true; trip.pickedUp = false; trip.willCancel = Math.random() * 100 < controls.cancel;
+    const cancellationWindow = Math.max(1, trip.pickupIndex - routeIndex);
+    trip.cancelAt = routeIndex + Math.max(1, Math.floor(cancellationWindow * (0.25 + Math.random() * 0.5)));
   };
   const drawRider = (trip) => {
     const [baseX, baseY] = screenPoint(trip.rider); const x = baseX + trip.riderOffset * 1.4; const y = baseY + (trip.riderOffset % 3) * 2; context.fillStyle = '#2388ff'; context.strokeStyle = 'white'; context.lineWidth = 1.2;
     context.beginPath(); context.arc(x, y - 3.2, 2.4, 0, Math.PI * 2); context.fill(); context.stroke();
     context.beginPath(); context.roundRect(x - 2.6, y - 0.7, 5.2, 6.2, 2); context.fill(); context.stroke();
   };
-  const drawVehicle = (trip) => {
+  const drawVehicle = (trip, elapsed) => {
+    if (!trip.hasRider && elapsed >= trip.newRiderAt) resetRider(trip, trip.routeIndex);
     const current = screenPoint(trip.route[trip.routeIndex]); const next = screenPoint(trip.route[Math.min(trip.routeIndex + 1, trip.route.length - 1)]);
     const dx = next[0] - current[0]; const dy = next[1] - current[1]; const distance = Math.max(0.1, Math.hypot(dx, dy));
     trip.progress += trip.speed / distance;
-    if (trip.progress >= 1) { trip.routeIndex += 1; trip.progress = 0; if (trip.routeIndex >= trip.pickupIndex) trip.pickedUp = true; if (trip.routeIndex >= trip.route.length - 1) { completedRides += 1; trip.routeIndex = 0; trip.progress = 0; trip.pickedUp = false; } }
+    if (trip.progress >= 1) {
+      trip.routeIndex += 1; trip.progress = 0;
+      if (!trip.pickedUp && trip.hasRider && trip.willCancel && trip.routeIndex >= trip.cancelAt && trip.routeIndex < trip.pickupIndex) {
+        cancelledRides += 1; pendingServiceEvents.cancels += 1; cancellationMarkers.push({ coordinate: trip.rider, createdAt: elapsed });
+        trip.hasRider = false; trip.willCancel = false; trip.newRiderAt = elapsed + 0.8;
+      }
+      if (trip.routeIndex >= trip.pickupIndex && trip.hasRider) trip.pickedUp = true;
+      if (trip.routeIndex >= trip.route.length - 1) { completedRides += 1; trip.routeIndex = 0; trip.progress = 0; resetRider(trip); }
+    }
     const x = current[0] + dx * trip.progress; const y = current[1] + dy * trip.progress; const angle = Math.atan2(dy, dx);
-    if (!trip.pickedUp) { context.strokeStyle = 'rgba(35,136,255,.32)'; context.lineWidth = 1; context.beginPath(); context.moveTo(x, y); const rider = screenPoint(trip.rider); context.lineTo(rider[0], rider[1]); context.stroke(); }
+    if (!trip.pickedUp && trip.hasRider) { context.strokeStyle = 'rgba(35,136,255,.32)'; context.lineWidth = 1; context.beginPath(); context.moveTo(x, y); const rider = screenPoint(trip.rider); context.lineTo(rider[0], rider[1]); context.stroke(); }
     context.save(); context.translate(x, y); context.rotate(angle); context.fillStyle = '#ff3f9b'; context.strokeStyle = 'white'; context.lineWidth = 1.1;
     context.beginPath(); context.roundRect(-6, -3.4, 12, 6.8, 2.4); context.fill(); context.stroke(); context.fillStyle = '#351638'; context.fillRect(-2.4, -2.1, 4.4, 4.2); context.fillStyle = '#f9e71c'; context.fillRect(4.7, -2.1, 1.3, 1.2); context.fillRect(4.7, 1, 1.3, 1.2); context.restore();
   };
@@ -353,28 +373,36 @@ const setupRidesSimulation = () => {
       context.fillStyle = 'rgba(18,13,41,.82)'; context.beginPath(); context.roundRect(x - 40, y - 37, 80, 17, 8); context.fill();
       context.fillStyle = 'white'; context.font = '600 8px Raleway, sans-serif'; context.textAlign = 'center'; context.fillText('CONCERT EGRESS', x, y - 26);
     }
-    visibleTrips.forEach((trip) => { if (!trip.pickedUp) drawRider(trip); if (trip.hasDriver) drawVehicle(trip); });
+    cancellationMarkers = cancellationMarkers.filter((marker) => elapsed - marker.createdAt < 2.2);
+    cancellationMarkers.forEach((marker) => {
+      const [x, y] = screenPoint(marker.coordinate); const age = elapsed - marker.createdAt; const progress = age / 2.2; const radius = 7 + progress * 20;
+      context.save(); context.globalAlpha = 1 - progress; context.strokeStyle = '#ff5278'; context.lineWidth = 2;
+      context.beginPath(); context.arc(x, y, radius, 0, Math.PI * 2); context.stroke();
+      context.beginPath(); context.moveTo(x - 4, y - 4); context.lineTo(x + 4, y + 4); context.moveTo(x + 4, y - 4); context.lineTo(x - 4, y + 4); context.stroke(); context.restore();
+    });
+    visibleTrips.forEach((trip) => { if (!trip.pickedUp && trip.hasRider) drawRider(trip); if (trip.hasDriver) drawVehicle(trip, elapsed); });
     const seconds = Math.floor(elapsed);
     root.querySelector('[data-rides-clock]').textContent = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
   };
   const updateServiceLoad = (time, loadFactor) => {
     if (!servicePanel || time - lastServiceSample < 250) return;
-    lastServiceSample = time; let total = 0;
+    const sampleSeconds = Math.max(0.001, (time - lastServiceSample) / 1000); lastServiceSample = time; let total = 0;
+    const sampledEvents = { ...pendingServiceEvents }; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0;
     servicePanel.querySelectorAll('[data-service-key]').forEach((row) => {
       const name = row.dataset.serviceKey; const profile = serviceProfiles[name];
       if (!profile) return;
       const jitter = 0.94 + Math.random() * 0.12; const overload = selectedScenario === 'overload' ? Math.max(0, (loadFactor - 0.42) / 0.58) : 0; const serviceOverload = overloadProfiles[name] || 0;
-      const rps = Math.round(controls.load * profile.multiplier * loadFactor * jitter * (1 + overload * serviceOverload * 0.16)); total += rps;
-      const pressure = Math.max(0, loadFactor * controls.load / 100 - 0.82); const latency = Math.round(profile.latency * (1 + pressure * pressure * 4.5 + overload * serviceOverload) * jitter);
+      const rps = profile.eventDriven ? Math.round((sampledEvents[name] || 0) / sampleSeconds) : Math.round(controls.load * profile.multiplier * loadFactor * jitter * (1 + overload * serviceOverload * 0.16)); total += rps;
+      const pressure = name === 'resources' ? 0 : Math.max(0, loadFactor * controls.load / 100 - 0.82); const latency = rps === 0 ? 0 : Math.round(profile.latency * (1 + pressure * pressure * 4.5 + overload * serviceOverload) * jitter);
       const history = serviceHistories[name]; history.push(rps); history.shift();
-      row.querySelector('[data-service-rps]').textContent = rps.toLocaleString(); row.querySelector('[data-service-latency]').textContent = `${latency}ms`;
-      const health = row.querySelector('[data-service-health]'); const latencyRatio = latency / profile.latency; const critical = latencyRatio > 3.2; const degraded = latencyRatio > 1.7;
+      row.querySelector('[data-service-rps]').textContent = rps.toLocaleString(); row.querySelector('[data-service-latency]').textContent = latency ? `${latency}ms` : '—';
+      const health = row.querySelector('[data-service-health]'); const latencyRatio = latency / profile.latency; const critical = name !== 'resources' && latencyRatio > 3.2; const degraded = name !== 'resources' && latencyRatio > 1.7;
       health.textContent = critical ? 'Critical' : degraded ? 'Degraded' : 'Nominal'; health.classList.toggle('is-degraded', degraded && !critical); health.classList.toggle('is-critical', critical);
       const chart = row.querySelector('canvas'); const bounds = chart.getBoundingClientRect(); const ratio = Math.min(devicePixelRatio || 1, 2);
       if (chart.width !== Math.round(bounds.width * ratio)) { chart.width = Math.round(bounds.width * ratio); chart.height = Math.round(bounds.height * ratio); }
       const chartContext = chart.getContext('2d'); chartContext.setTransform(ratio, 0, 0, ratio, 0, 0); chartContext.clearRect(0, 0, bounds.width, bounds.height);
       chartContext.fillStyle = `${profile.color}18`; chartContext.strokeStyle = profile.color; chartContext.lineWidth = 1.4; chartContext.beginPath();
-      const ceiling = Math.max(1, controls.load * profile.multiplier); history.forEach((value, index) => { const x = index / (history.length - 1) * bounds.width; const y = bounds.height - Math.min(1, value / ceiling) * (bounds.height - 3) - 1.5; if (index === 0) chartContext.moveTo(x, y); else chartContext.lineTo(x, y); });
+      const ceiling = profile.eventDriven ? Math.max(1, ...history) : Math.max(1, controls.load * profile.multiplier); history.forEach((value, index) => { const x = index / (history.length - 1) * bounds.width; const y = bounds.height - Math.min(1, value / ceiling) * (bounds.height - 3) - 1.5; if (index === 0) chartContext.moveTo(x, y); else chartContext.lineTo(x, y); });
       chartContext.lineTo(bounds.width, bounds.height); chartContext.lineTo(0, bounds.height); chartContext.closePath(); chartContext.fill(); chartContext.beginPath(); history.forEach((value, index) => { const x = index / (history.length - 1) * bounds.width; const y = bounds.height - Math.min(1, value / ceiling) * (bounds.height - 3) - 1.5; if (index === 0) chartContext.moveTo(x, y); else chartContext.lineTo(x, y); }); chartContext.stroke();
     });
     servicePanel.querySelector('[data-service-total]').textContent = `${total.toLocaleString()} RPS`;
@@ -382,10 +410,11 @@ const setupRidesSimulation = () => {
   const tick = (time) => {
     const elapsed = (time - startTime) / 1000;
     const phase = phases.find((item) => elapsed < item.end);
-    if (!phase) { root.querySelector('[data-rides-phase]').textContent = 'Complete'; root.querySelector('[data-rides-status]').classList.remove('is-running'); root.querySelector('[data-rides-run] span').textContent = 'Run again'; return; }
+    if (!phase) { pendingServiceEvents.resources += previousVisibleTripCount * 2; previousVisibleTripCount = 0; root.querySelector('[data-rides-phase]').textContent = 'Complete'; root.querySelector('[data-rides-status]').classList.remove('is-running'); root.querySelector('[data-rides-run] span').textContent = 'Run again'; return; }
     const factor = phase.name === 'Ramp' ? Math.max(0.12, elapsed / 12) : phase.name === 'Recovery' ? Math.max(0.08, (42 - elapsed) / 12) : 1;
     const visibleTrips = trips.slice(0, Math.max(1, Math.round(trips.length * factor)));
-    const activeRiders = visibleTrips.filter((trip) => !trip.pickedUp).length; const activeDrivers = visibleTrips.filter((trip) => trip.hasDriver).length; const activeTrips = visibleTrips.filter((trip) => trip.pickedUp).length;
+    const visibleDelta = visibleTrips.length - previousVisibleTripCount; if (visibleDelta !== 0) pendingServiceEvents.resources += Math.abs(visibleDelta) * 2; previousVisibleTripCount = visibleTrips.length;
+    const activeRiders = visibleTrips.filter((trip) => !trip.pickedUp && trip.hasRider).length; const activeDrivers = visibleTrips.filter((trip) => trip.hasDriver).length; const activeTrips = visibleTrips.filter((trip) => trip.pickedUp).length;
     drawMap(elapsed, visibleTrips);
     try { updateServiceLoad(time, factor); } catch (error) { console.warn('Service telemetry update failed', error); }
     root.querySelector('[data-rides-fleet]').textContent = activeDrivers;
@@ -394,6 +423,8 @@ const setupRidesSimulation = () => {
     root.querySelector('[data-rides-metric="trips"]').textContent = activeTrips;
     root.querySelector('[data-rides-metric="latency"]').textContent = `${(1.1 + Math.max(0, activeRiders - activeDrivers) * 0.7).toFixed(1)}s`;
     root.querySelector('[data-rides-metric="success"]').textContent = `${Math.max(82, Math.round(100 - controls.cancel - Math.max(0, activeRiders - activeDrivers) * 2))}%`;
+    root.querySelector('[data-rides-metric="cancellations"]').textContent = cancelledRides.toLocaleString();
+    root.querySelector('[data-rides-cancel-rate]').textContent = `${(cancelledRides / Math.max(1, cancelledRides + completedRides) * 100).toFixed(1)}% of outcomes`;
     animation = requestAnimationFrame(tick);
   };
   root.querySelectorAll('[data-rides-control]').forEach((control) => control.addEventListener('input', () => { controls[control.dataset.ridesControl] = Number(control.value); root.querySelector(`[data-rides-output="${control.dataset.ridesControl}"]`).textContent = `${control.value}%`; }));
@@ -404,7 +435,7 @@ const setupRidesSimulation = () => {
     root.querySelectorAll('[data-rides-preset]').forEach((option) => { const selected = option === button; option.classList.toggle('is-active', selected); option.setAttribute('aria-pressed', selected.toString()); });
     ['load', 'supply', 'cancel'].forEach((name, index) => { controls[name] = values[index]; const input = root.querySelector(`[data-rides-control="${name}"]`); input.value = values[index]; root.querySelector(`[data-rides-output="${name}"]`).textContent = `${values[index]}%`; });
   }));
-  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; configureTrips(routes, 1); startTime = performance.now(); root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
+  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; cancelledRides = 0; previousVisibleTripCount = 0; cancellationMarkers = []; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0; lastServiceSample = performance.now(); Object.values(serviceHistories).forEach((history) => history.fill(0)); configureTrips(routes, 1); startTime = performance.now(); root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
   window.addEventListener('resize', resize); resize(); drawMap();
 };
 

@@ -42,6 +42,7 @@
             <div><span>Active trips</span><strong data-rides-metric="trips">0</strong></div>
             <div><span>P95 match</span><strong data-rides-metric="latency">—</strong></div>
             <div><span>Success rate</span><strong data-rides-metric="success">100%</strong></div>
+            <div class="rides-cancellation-metric"><span>Cancellations</span><strong data-rides-metric="cancellations">0</strong><small data-rides-cancel-rate>0.0% of requests</small></div>
           </div>
           <label class="rides-slider"><span><span>Target load</span><output data-rides-output="load">65%</output></span><input type="range" min="20" max="100" value="65" data-rides-control="load"></label>
           <label class="rides-slider"><span><span>Driver supply</span><output data-rides-output="supply">72%</output></span><input type="range" min="25" max="100" value="72" data-rides-control="supply"></label>
@@ -57,7 +58,7 @@
         </div>
         <div class="service-load-columns" aria-hidden="true"><span>Service</span><span>Request volume / 60 samples</span><span>RPS</span><span>P95</span><span>Health</span></div>
         <div class="service-load-rows">
-          <% [['users', 'Users & identity'], ['pricing', 'Pricing'], ['rides', 'Rides'], ['dispatch', 'Dispatch / matching'], ['location', 'Location'], ['payments', 'Payments'], ['notifications', 'Notifications'], ['reviews', 'Reviews'], ['resources', 'Resource Manager']].each do |key, name| %>
+          <% [['users', 'Users & identity'], ['pricing', 'Pricing'], ['rides', 'Rides'], ['dispatch', 'Dispatch / matching'], ['cancels', 'Cancels'], ['location', 'Location'], ['payments', 'Payments'], ['notifications', 'Notifications'], ['reviews', 'Reviews'], ['resources', 'Resource Manager']].each do |key, name| %>
             <div class="service-load-row" data-service-key="<%= key %>">
               <strong><i></i><%= name %></strong>
               <canvas aria-label="<%= name %> request history"></canvas>
@@ -67,7 +68,7 @@
             </div>
           <% end %>
         </div>
-        <div class="service-load-footnote">Modeled service fan-out based on actions such as price checks, ride requests, accepts, location updates, drop-offs, payments, and resource leasing.</div>
+        <div class="service-load-footnote">Modeled service fan-out based on client actions. Cancels receives traffic only when a rider cancels; Resource Manager receives traffic only as rider and driver resources are allocated or released.</div>
       </div>
       <div class="lab-notes">
         <div class="lab-note"><span>01</span><div><h3>Probabilistic clients</h3><p>Riders request and cancel while drivers accept and complete trips according to configurable behaviors.</p></div></div>
