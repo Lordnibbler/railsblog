@@ -678,6 +678,42 @@ body {
         text-shadow: 0 1px 2px rgb(0 0 0 / 0.55);
     }
 
+    @media (prefers-color-scheme: dark) {
+        .desktop-nav.nav-liquid-glass {
+            border-color: rgb(187 178 223 / 0.36);
+            background-color: rgb(22 15 51 / 0.42);
+            box-shadow:
+                inset 0 1px 0 rgb(255 255 255 / 0.20),
+                inset 0 -2px 4px rgb(5 3 15 / 0.34),
+                0 12px 36px rgb(5 3 15 / 0.42);
+            -webkit-backdrop-filter: blur(8px) saturate(140%) contrast(108%);
+            backdrop-filter: blur(8px) saturate(140%) contrast(108%);
+        }
+
+        .desktop-nav.nav-liquid-glass::before {
+            background:
+                radial-gradient(ellipse at 18% -70%, rgb(174 157 238 / 0.15), transparent 43%),
+                radial-gradient(ellipse at 82% 170%, rgb(92 68 184 / 0.18), transparent 46%),
+                linear-gradient(100deg, transparent 42%, rgb(255 255 255 / 0.035) 50%, transparent 58%),
+                linear-gradient(115deg, rgb(126 105 210 / 0.10), transparent 34%),
+                linear-gradient(180deg, rgb(58 42 121 / 0.30), rgb(20 13 48 / 0.24));
+        }
+
+        .desktop-nav.nav-liquid-glass.nav-glass-on-dark {
+            border-color: rgb(187 178 223 / 0.40);
+            box-shadow:
+                inset 0 1px 0 rgb(255 255 255 / 0.22),
+                inset 0 -2px 4px rgb(0 0 0 / 0.30),
+                0 12px 36px rgb(0 0 0 / 0.42);
+        }
+
+        .desktop-nav.nav-liquid-glass.nav-glass-on-dark::after {
+            background:
+                linear-gradient(115deg, rgb(157 138 228 / 0.10), transparent 32%),
+                linear-gradient(180deg, rgb(65 47 144 / 0.18), rgb(18 12 43 / 0.18));
+        }
+    }
+
     @media (min-width: 640px) {
         .desktop-nav.nav-liquid-glass {
             right: 1.25rem;

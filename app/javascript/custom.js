@@ -64,11 +64,12 @@ const setupNavigationTransparencyHandler = (signal) => {
     }
   }
 
-  // run once on homepage load to ensure classes are set appropriately,
-  // in case of linking straight to homepage on an anchor (hash)
-  if (window.location.pathname === "/" && window.location.hash) {
-    navTransparencyHandler()
-  }
+  // Initialize every page. Safari and Turbo can restore a previous scroll
+  // position without dispatching a new scroll event, which otherwise leaves
+  // the glass surface without its matching foreground contrast class.
+  navTransparencyHandler()
+  window.requestAnimationFrame(navTransparencyHandler)
+  window.addEventListener("pageshow", navTransparencyHandler, { signal })
 
   // when page scrolls, update nav transparency as needed
   window.addEventListener("scroll", navTransparencyHandler, { signal })
