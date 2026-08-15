@@ -34,7 +34,8 @@
             <div class="block lg:hidden">
                 <button class="mobile-nav-toggle text-white" x-ref="mobileToggle"
                     @click="$parent.mobileMenu = !$parent.mobileMenu; if ($parent.mobileMenu) $nextTick(() => $refs.mobilePanel.querySelector('a').focus())"
-                    :aria-expanded="$parent.mobileMenu"
+                    aria-expanded="false"
+                    :aria-expanded="$parent.mobileMenu.toString()"
                     aria-label="Open navigation"
                     x-bind:aria-label="$parent.mobileMenu ? 'Close navigation' : 'Open navigation'">
                     <span class="mobile-nav-toggle-icon" aria-hidden="true"

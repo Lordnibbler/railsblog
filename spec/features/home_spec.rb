@@ -44,12 +44,13 @@ describe '/' do
       page.current_window.resize_to(390, 844)
       visit root_path
 
+      expect(page).to have_css('button.mobile-nav-toggle[aria-expanded="false"]', visible: :all)
       open_button = find('button[aria-label="Open navigation"]')
       open_button_rect = open_button.rect
-      viewport_width = page.evaluate_script('window.innerWidth')
+      viewport_width = page.evaluate_script('document.documentElement.clientWidth')
       open_button.click
 
-      expect(open_button['aria-expanded']).to eq('true')
+      expect(page).to have_css('button.mobile-nav-toggle[aria-expanded="true"]', visible: :all)
       expect(page).to have_css('.mobile-nav.mobile-nav-open')
       expect(page.evaluate_script("document.querySelector('.mobile-nav').inert")).to be(false)
       expect(page.evaluate_script('document.activeElement.textContent.trim()')).to eq('home')
@@ -69,7 +70,7 @@ describe '/' do
       close_button.click
 
       expect(page).to have_no_css('.mobile-nav.mobile-nav-open')
-      expect(open_button['aria-expanded']).not_to eq('true')
+      expect(page).to have_css('button.mobile-nav-toggle[aria-expanded="false"]', visible: :all)
       expect(page.evaluate_script("document.activeElement.getAttribute('aria-label')")).to eq('Open navigation')
     end
   end

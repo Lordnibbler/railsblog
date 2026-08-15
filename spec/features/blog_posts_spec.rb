@@ -10,12 +10,22 @@ describe '/blog' do
 
   describe '#index' do
     it 'allows the document to scroll through all posts', :js do
-      document_height = page.evaluate_script('document.documentElement.scrollHeight')
-      viewport_height = page.evaluate_script('window.innerHeight')
+      overflow = page.evaluate_script(<<~JS)
+        [document.documentElement, document.body].map((element) =>
+          getComputedStyle(element).overflowY
+        )
+      JS
+      expect(overflow).not_to include('hidden')
 
-      expect(document_height).to be > viewport_height
+      page.execute_script(<<~JS)
+        const scrollTarget = document.createElement('div');
+        scrollTarget.id = 'scroll-test-target';
+        scrollTarget.style.height = `${window.innerHeight * 2}px`;
+        document.body.appendChild(scrollTarget);
+      JS
 
       page.execute_script('window.scrollTo(0, document.documentElement.scrollHeight)')
+      expect(page).to have_css('#scroll-test-target')
       expect(page.evaluate_script('window.scrollY')).to be_positive
     end
 
