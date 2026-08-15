@@ -7,7 +7,6 @@ describe '/lab' do
     expect(page).to have_title('Creative Engineering Lab - Ben Radler')
     expect(page).to have_css('.lab-page')
     expect(page).to have_content(/Ideas you can\s*step inside\./)
-    expect(page).to have_css('[data-signal-garden]')
     expect(page).to have_css('[data-rides-simulation]')
     expect(page).to have_css('canvas[data-rides-canvas]')
     expect(page).to have_css('[data-rides-tiles]')
@@ -17,9 +16,6 @@ describe '/lab' do
     expect(page).to have_button('Intentional overload')
     expect(page).to have_css('[data-service-load]')
     expect(page).to have_css('.service-load-row[data-service-key]', count: 9)
-    expect(page).to have_css('canvas[data-lab-canvas]')
-    expect(page).to have_css('input[data-lab-control]', count: 3)
-    expect(page).to have_css('[data-lab-palette]', count: 3)
     expect(page).to have_css('[data-composition-studio]')
     expect(page).to have_content('Guided analysis')
     expect(page).to have_no_content('Recompose')
@@ -32,10 +28,11 @@ describe '/lab' do
     expect(page).to have_css('[data-perf-database]')
     expect(page).to have_css('[data-circleci-runs]')
     expect(page).to have_css('[data-new-relic-state]')
-    expect(page).to have_css('[data-sand-game] canvas[data-sand-canvas]')
-    expect(page).to have_css('[data-sand-material]', count: 4)
-    expect(page).to have_css('[data-life-game] canvas[data-life-canvas]')
-    expect(page).to have_css('[data-life-preset]', count: 3)
+    expect(page).to have_no_content('Signal Garden')
+    expect(page).to have_no_content('Element Fall')
+    expect(page).to have_no_content('Life, Iterated')
+    expect(page.body.index('Composition Studio')).to be < page.body.index('Site Control Room')
+    expect(page.body.index('Site Control Room')).to be < page.body.index('Simulated City')
   end
 
   it 'links to the lab from the desktop and mobile navigation' do

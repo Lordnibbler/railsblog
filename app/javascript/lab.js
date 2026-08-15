@@ -651,4 +651,4 @@ const setupLifeGame = () => {
   window.addEventListener('resize', resize); resize(); seed('glider'); frame = requestAnimationFrame(animate);
 };
 
-document.addEventListener('turbo:load', () => { setupSignalGarden(); setupRidesSimulation(); setupSandGame(); setupLifeGame(); setupCompositionStudio(); setupSiteControlRoom(); });
+document.addEventListener('turbo:load', () => { setupCompositionStudio(); setupSiteControlRoom(); setupRidesSimulation(); });

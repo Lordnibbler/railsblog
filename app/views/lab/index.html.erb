@@ -12,7 +12,7 @@
       </h1>
       <div class="lab-intro">
         <p>Small, expressive experiments built where systems thinking meets motion, sound, and play.</p>
-        <a href="#simulated-rides" class="lab-jump-link">
+        <a href="#composition-studio" class="lab-jump-link">
           Enter the first experiment <i class="bx bx-down-arrow-alt" aria-hidden="true"></i>
         </a>
       </div>
@@ -20,10 +20,11 @@
     <div class="lab-hero-grid" aria-hidden="true"></div>
   </section>
 
+  <% simulated_city_experiment = capture do %>
   <section id="simulated-rides" class="lab-rides section-divider">
     <div class="container py-16 md:py-24">
       <div class="lab-experiment-heading">
-        <div><p class="lab-kicker">Experiment 001 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
+        <div><p class="lab-kicker">Experiment 003 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
         <p class="lab-deck">A visual homage to SimulatedRides: probabilistic riders and drivers exercise a two-sided marketplace through ramp, soak, and recovery. <a class="lab-inline-link" href="https://eng.lyft.com/simulatedrides-how-lyft-uses-load-testing-to-ensure-reliable-service-during-peak-events-644dcb654454" target="_blank" rel="noopener">Read the original engineering article <i class="bx bx-link-external"></i></a></p>
       </div>
       <div class="rides-console glass-panel" data-rides-simulation>
@@ -75,7 +76,9 @@
       </div>
     </div>
   </section>
+  <% end %>
 
+  <% capture do %>
   <section id="signal-garden" class="lab-experiment section-divider">
     <div class="container py-16 md:py-24">
       <div class="lab-experiment-heading">
@@ -192,12 +195,14 @@
       </div>
     </div>
   </section>
+  <% end %>
 
   <% photo_manifest = @photos.map { |photo| { id: photo[:flickr_id], url: photo.dig(:photo_large, :url), width: photo.dig(:photo_large, :width), height: photo.dig(:photo_large, :height), title: photo[:title], description: photo[:description], timestamp: photo[:created_at], composition: photo[:composition_analysis] } } %>
 
+  <% composition_studio_experiment = capture do %>
   <section id="composition-studio" class="composition-studio-section section-divider">
     <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 005 / Visual criticism</p><h2 class="font-header font-semibold uppercase">Composition Studio</h2></div><p class="lab-deck">A vision model analyzes each street photograph for its strongest compositional techniques. The image-specific readings and coordinates are stored in PostgreSQL, then rendered as animated overlays that reveal the lines, layers, color, rhythm, and visual relationships within each frame.</p></div>
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 001 / Visual criticism</p><h2 class="font-header font-semibold uppercase">Composition Studio</h2></div><p class="lab-deck">A vision model analyzes each street photograph for its strongest compositional techniques. The image-specific readings and coordinates are stored in PostgreSQL, then rendered as animated overlays that reveal the lines, layers, color, rhythm, and visual relationships within each frame.</p></div>
       <div class="composition-studio glass-panel" data-composition-studio data-photos="<%= json_escape(photo_manifest.first(12).to_json) %>">
         <header class="composition-toolbar">
           <div class="composition-modes"><span class="is-active">Guided analysis</span></div>
@@ -235,10 +240,12 @@
       </div>
     </div>
   </section>
+  <% end %>
 
+  <% site_control_room_experiment = capture do %>
   <section id="site-control-room" class="control-room-section section-divider">
     <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 006 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 002 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
       <div class="control-room glass-panel" data-control-room data-status="<%= json_escape(@site_status.to_json) %>">
         <header class="control-room-header"><div class="control-room-live"><i></i><span>System online</span><strong data-control-clock>00:00:00</strong></div><div><span>PUBLIC TELEMETRY / SECRETS REDACTED</span></div></header>
         <div class="control-room-vitals">
@@ -281,6 +288,11 @@
       </div>
     </div>
   </section>
+  <% end %>
+
+  <%= composition_studio_experiment %>
+  <%= site_control_room_experiment %>
+  <%= simulated_city_experiment %>
 
   <section class="lab-cta" data-navigation-contrast="light">
     <div class="container py-20 md:py-28 text-center">
