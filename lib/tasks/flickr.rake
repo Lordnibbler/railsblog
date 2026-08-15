@@ -24,4 +24,16 @@ namespace :flickr do
     analyzed = CompositionAnalysisService.analyze_pending(force:)
     Rails.logger.info("--->  Composition Analysis: analyzed #{analyzed} photographs")
   end
+
+  desc 'Exports persisted composition analyses as checksummed JSON without API calls'
+  task export_composition_analyses: :environment do
+    $stdout.write(CompositionAnalysisTransferService.export)
+  end
+
+  desc 'Imports checksummed composition analyses from FILE or standard input without API calls'
+  task import_composition_analyses: :environment do
+    source = ENV['FILE'].present? ? File.read(ENV.fetch('FILE')) : $stdin.read
+    imported = CompositionAnalysisTransferService.import(source)
+    Rails.logger.info("Imported #{imported} composition analyses without API calls")
+  end
 end
