@@ -163,8 +163,6 @@ GEM
     drb (2.2.3)
     erb (6.0.4)
     erubi (1.13.1)
-    excon (1.5.0)
-      logger
     factory_bot (6.5.6)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
@@ -181,22 +179,6 @@ GEM
     ffi (1.17.3-x86_64-linux-gnu)
     ffi (1.17.3-x86_64-linux-musl)
     flickr (2.1.0)
-    fog-aws (3.33.1)
-      base64 (>= 0.2, < 0.4)
-      fog-core (~> 2.6)
-      fog-json (~> 1.1)
-      fog-xml (~> 0.1)
-    fog-core (2.6.0)
-      builder
-      excon (~> 1.0)
-      formatador (>= 0.2, < 2.0)
-      mime-types
-    fog-json (1.2.0)
-      fog-core
-      multi_json (~> 1.10)
-    fog-xml (0.1.5)
-      fog-core
-      nokogiri (>= 1.5.11, < 2.0.0)
     formatador (1.2.3)
       reline
     formtastic (6.0.0)
@@ -301,10 +283,6 @@ GEM
     meta-tags (2.22.2)
       actionpack (>= 6.0.0, < 8.2)
     method_source (1.1.0)
-    mime-types (3.7.0)
-      logger
-      mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0924)
     mini_magick (5.3.1)
       logger
     mini_mime (1.1.5)
@@ -312,7 +290,6 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    multi_json (1.19.1)
     nenv (0.3.0)
     net-imap (0.6.4.1)
       date
@@ -583,7 +560,6 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   flickr
-  fog-aws
   friendly_id
   guard
   guard-rspec
@@ -606,7 +582,6 @@ DEPENDENCIES
   rails (~> 8)
   rails-controller-testing
   redcarpet
-  regexp_parser
   rouge
   rspec-rails
   rspec_junit_formatter

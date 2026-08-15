@@ -3,15 +3,12 @@ ruby '4.0.2'
 gem 'rails', '~> 8'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding
-gem 'aws-sdk-s3', require: false # aws uploads for ActiveStorage production
 gem 'client_side_validations' # validate forms in views before submitting to server
 gem 'concurrent-ruby' # concurrency, used in FlickrService
 gem 'connection_pool', '< 3' # Rails 8.1 calls ConnectionPool with positional args
 gem 'devise', '>= 4.4.0' # authentication for activeadmin
 gem 'flickr' # interact with flickr's API
-gem 'fog-aws' # upload to AWS; used for sitemap s3 upload
 gem 'friendly_id' # canonical URLs
-gem 'health_check' # health check endpoint for NewRelic
 gem 'high_voltage' # static pages
 gem 'humanize' # convert 10 -> "ten"
 gem 'image_processing' # process representations of ActiveSupport images
@@ -19,15 +16,15 @@ gem 'jsbundling-rails'
 gem 'kaminari' # pagination
 gem 'mail_form' # send email straight from a <form> (contact page)
 gem 'meta-tags' # meta tags in HTML layouts
-gem 'newrelic_rpm'
 gem 'pg' # ye olde database
 gem 'propshaft'
 gem 'redcarpet' # Markdown parsing
-gem 'regexp_parser'
 gem 'rouge' # syntax highlighting
-gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 gem 'slim' # view templating
-gem 'webrick' # web server for capybara and local dev
+
+group :development, :production do
+  gem 'puma'
+end
 
 group :development do
   gem 'better_errors' # improved error pages
@@ -59,10 +56,14 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter' # formatting for circleci
   gem 'vcr' # record http requests and play them back in tests
+  gem 'webrick' # Capybara test server
   gem 'webdrivers'
   gem 'webmock'
 end
 
 group :production do
-  gem 'puma'
+  gem 'aws-sdk-s3', require: false # AWS uploads for Active Storage and sitemaps
+  gem 'health_check' # health check endpoint for New Relic
+  gem 'newrelic_rpm'
+  gem 'sitemap_generator' # generate sitemaps for submitting to search engines
 end
