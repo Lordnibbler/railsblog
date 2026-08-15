@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=4.0.2
+ARG RUBY_VERSION=4.0.6
 FROM ruby:${RUBY_VERSION}
 
 # 1) System deps + Node.js 22.x via NodeSource
