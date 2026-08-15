@@ -630,7 +630,7 @@ body {
     .home-lab-copy > p { max-width: 36rem; padding-top: 1.5rem; color: rgb(255 255 255 / .66); font-size: .95rem; line-height: 1.75; }
     .home-lab-tags { display: flex; flex-wrap: wrap; gap: .4rem; padding-top: 1.5rem; }
     .home-lab-tags span { padding: .38rem .58rem; border: 1px solid rgb(255 255 255 / .13); border-radius: 9999px; color: rgb(255 255 255 / .55); font: .54rem monospace; letter-spacing: .05em; text-transform: uppercase; }
-    .home-lab-button { display: inline-flex; align-items: center; gap: .65rem; margin-top: 2rem; padding: .8rem 1.15rem; border-radius: .25rem; color: white; font: 700 .78rem Raleway, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
+    .home-lab-button { display: inline-flex; align-items: center; gap: .65rem; margin-top: 2rem; padding: .8rem 1.15rem; border-radius: .25rem; color: white; font: 700 1.125rem Raleway, sans-serif; letter-spacing: .06em; text-transform: uppercase; }
     .home-lab-button i { font-size: 1.25rem; transition: transform .2s ease; }
     .home-lab-button:hover i { transform: translateX(.25rem); }
     .home-lab-gallery { position: relative; display: block; min-height: 39rem; perspective: 70rem; }
