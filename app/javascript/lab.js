@@ -244,6 +244,7 @@ const setupRidesSimulation = () => {
     resources: { eventDriven: true, latency: 91, color: '#8ad6a3' },
   };
   const serviceHistories = Object.fromEntries(Object.keys(serviceProfiles).map((name) => [name, Array(60).fill(0)]));
+  const serviceRunningStats = Object.fromEntries(Object.keys(serviceProfiles).map((name) => [name, { events: 0, elapsed: 0, latencyTotal: 0, latencySamples: 0 }]));
   const overloadProfiles = { rides: 2.0, dispatch: 3.8, payments: 2.4 };
   let lastServiceSample = 0;
   const pendingServiceEvents = { cancels: 0, resources: 0 };
@@ -392,11 +393,15 @@ const setupRidesSimulation = () => {
       const name = row.dataset.serviceKey; const profile = serviceProfiles[name];
       if (!profile) return;
       const jitter = 0.94 + Math.random() * 0.12; const overload = selectedScenario === 'overload' ? Math.max(0, (loadFactor - 0.42) / 0.58) : 0; const serviceOverload = overloadProfiles[name] || 0;
-      const rps = profile.eventDriven ? Math.round((sampledEvents[name] || 0) / sampleSeconds) : Math.round(controls.load * profile.multiplier * loadFactor * jitter * (1 + overload * serviceOverload * 0.16)); total += rps;
-      const pressure = name === 'resources' ? 0 : Math.max(0, loadFactor * controls.load / 100 - 0.82); const latency = rps === 0 ? 0 : Math.round(profile.latency * (1 + pressure * pressure * 4.5 + overload * serviceOverload) * jitter);
+      const eventCount = sampledEvents[name] || 0; const rps = profile.eventDriven ? eventCount / sampleSeconds : Math.round(controls.load * profile.multiplier * loadFactor * jitter * (1 + overload * serviceOverload * 0.16)); total += rps;
+      const pressure = name === 'resources' ? 0 : Math.max(0, loadFactor * controls.load / 100 - 0.82); const sampledLatency = rps === 0 ? 0 : Math.round(profile.latency * (1 + pressure * pressure * 4.5 + overload * serviceOverload) * jitter);
+      const running = serviceRunningStats[name];
+      if (profile.eventDriven) { running.elapsed += sampleSeconds; running.events += eventCount; if (eventCount > 0) { running.latencyTotal += sampledLatency; running.latencySamples += 1; } }
+      const displayedRps = profile.eventDriven ? running.events / Math.max(running.elapsed, sampleSeconds) : rps;
+      const displayedLatency = profile.eventDriven ? running.latencyTotal / Math.max(1, running.latencySamples) : sampledLatency;
       const history = serviceHistories[name]; history.push(rps); history.shift();
-      row.querySelector('[data-service-rps]').textContent = rps.toLocaleString(); row.querySelector('[data-service-latency]').textContent = latency ? `${latency}ms` : '—';
-      const health = row.querySelector('[data-service-health]'); const latencyRatio = latency / profile.latency; const critical = name !== 'resources' && latencyRatio > 3.2; const degraded = name !== 'resources' && latencyRatio > 1.7;
+      row.querySelector('[data-service-rps]').textContent = profile.eventDriven ? displayedRps.toFixed(1) : rps.toLocaleString(); row.querySelector('[data-service-latency]').textContent = displayedLatency ? `${Math.round(displayedLatency)}ms` : '—';
+      const health = row.querySelector('[data-service-health]'); const latencyRatio = displayedLatency / profile.latency; const critical = name !== 'resources' && latencyRatio > 3.2; const degraded = name !== 'resources' && latencyRatio > 1.7;
       health.textContent = critical ? 'Critical' : degraded ? 'Degraded' : 'Nominal'; health.classList.toggle('is-degraded', degraded && !critical); health.classList.toggle('is-critical', critical);
       const chart = row.querySelector('canvas'); const bounds = chart.getBoundingClientRect(); const ratio = Math.min(devicePixelRatio || 1, 2);
       if (chart.width !== Math.round(bounds.width * ratio)) { chart.width = Math.round(bounds.width * ratio); chart.height = Math.round(bounds.height * ratio); }
@@ -405,7 +410,7 @@ const setupRidesSimulation = () => {
       const ceiling = profile.eventDriven ? Math.max(1, ...history) : Math.max(1, controls.load * profile.multiplier); history.forEach((value, index) => { const x = index / (history.length - 1) * bounds.width; const y = bounds.height - Math.min(1, value / ceiling) * (bounds.height - 3) - 1.5; if (index === 0) chartContext.moveTo(x, y); else chartContext.lineTo(x, y); });
       chartContext.lineTo(bounds.width, bounds.height); chartContext.lineTo(0, bounds.height); chartContext.closePath(); chartContext.fill(); chartContext.beginPath(); history.forEach((value, index) => { const x = index / (history.length - 1) * bounds.width; const y = bounds.height - Math.min(1, value / ceiling) * (bounds.height - 3) - 1.5; if (index === 0) chartContext.moveTo(x, y); else chartContext.lineTo(x, y); }); chartContext.stroke();
     });
-    servicePanel.querySelector('[data-service-total]').textContent = `${total.toLocaleString()} RPS`;
+    servicePanel.querySelector('[data-service-total]').textContent = `${Math.round(total).toLocaleString()} RPS`;
   };
   const tick = (time) => {
     const elapsed = (time - startTime) / 1000;
@@ -435,7 +440,7 @@ const setupRidesSimulation = () => {
     root.querySelectorAll('[data-rides-preset]').forEach((option) => { const selected = option === button; option.classList.toggle('is-active', selected); option.setAttribute('aria-pressed', selected.toString()); });
     ['load', 'supply', 'cancel'].forEach((name, index) => { controls[name] = values[index]; const input = root.querySelector(`[data-rides-control="${name}"]`); input.value = values[index]; root.querySelector(`[data-rides-output="${name}"]`).textContent = `${values[index]}%`; });
   }));
-  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; cancelledRides = 0; previousVisibleTripCount = 0; cancellationMarkers = []; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0; lastServiceSample = performance.now(); Object.values(serviceHistories).forEach((history) => history.fill(0)); configureTrips(routes, 1); startTime = performance.now(); root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
+  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; cancelledRides = 0; previousVisibleTripCount = 0; cancellationMarkers = []; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0; lastServiceSample = performance.now(); Object.values(serviceHistories).forEach((history) => history.fill(0)); Object.values(serviceRunningStats).forEach((stats) => { stats.events = 0; stats.elapsed = 0; stats.latencyTotal = 0; stats.latencySamples = 0; }); configureTrips(routes, 1); startTime = performance.now(); root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
   window.addEventListener('resize', resize); resize(); drawMap();
 };
 
