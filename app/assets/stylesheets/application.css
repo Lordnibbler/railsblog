@@ -236,7 +236,11 @@ body {
     .rides-presets button.is-active { border-color: #f9e71c; background: rgb(249 231 28 / .1); color: #f9e71c; }
     .rides-presets .rides-overload-preset { border-color: rgb(255 82 120 / .28); color: #ff839f; }
     .rides-presets .rides-overload-preset.is-active { border-color: #ff5278; background: rgb(255 82 120 / .13); color: #ff8da6; }
-    .rides-run { display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; margin-top: 1.35rem; padding: 0.75rem; border-radius: 0.65rem; font: 700 0.75rem Raleway, sans-serif; text-transform: uppercase; }
+    .rides-actions { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .55rem; margin-top: 1.35rem; }
+    .rides-run, .rides-stop { display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.75rem; border-radius: 0.65rem; font: 700 0.75rem Raleway, sans-serif; text-transform: uppercase; }
+    .rides-stop { border: 1px solid rgb(255 82 120 / .4); background: rgb(255 82 120 / .08); color: #ff91a9; }
+    .rides-stop:hover:not(:disabled) { border-color: #ff5278; background: rgb(255 82 120 / .16); color: white; }
+    .rides-stop:disabled { cursor: not-allowed; opacity: .3; }
 
     .lab-page .glass-panel.service-load-panel { margin-top: 2rem; overflow: hidden; border-color: rgb(255 255 255 / .14); border-radius: 1.25rem; background: #120d29; color: white; box-shadow: 0 1.5rem 4rem rgb(25 15 65 / .16); }
     .service-load-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1.35rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .1); }

@@ -14,6 +14,7 @@ describe '/lab' do
     expect(page).to have_link('CARTO')
     expect(page).to have_css('[data-rides-preset]', count: 3)
     expect(page).to have_button('Intentional overload')
+    expect(page).to have_button('Stop test', disabled: true)
     expect(page).to have_css('[data-service-load]')
     expect(page).to have_css('[data-rides-metric="cancellations"]')
     expect(page).to have_css('.service-load-row[data-service-key]', count: 10)

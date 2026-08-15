@@ -235,6 +235,7 @@ const setupRidesSimulation = () => {
   const context = canvas.getContext('2d');
   const tileLayer = root.querySelector('[data-rides-tiles]');
   const servicePanel = document.querySelector('[data-service-load]');
+  const stopButton = root.querySelector('[data-rides-stop]');
   const serviceProfiles = {
     users: { multiplier: 4.2, latency: 42, color: '#9d86ff' }, pricing: { multiplier: 7.8, latency: 68, color: '#f9e71c' },
     rides: { multiplier: 11.5, latency: 84, color: '#ff8c42' }, dispatch: { multiplier: 14.2, latency: 112, color: '#ff3f9b' },
@@ -268,6 +269,7 @@ const setupRidesSimulation = () => {
   const routeCaches = {};
   let startTime = 0;
   let animation;
+  let isTestRunning = false;
   let completedRides = 0;
   let cancelledRides = 0;
   let previousVisibleTripCount = 0;
@@ -415,7 +417,7 @@ const setupRidesSimulation = () => {
   const tick = (time) => {
     const elapsed = (time - startTime) / 1000;
     const phase = phases.find((item) => elapsed < item.end);
-    if (!phase) { pendingServiceEvents.resources += previousVisibleTripCount * 2; previousVisibleTripCount = 0; root.querySelector('[data-rides-phase]').textContent = 'Complete'; root.querySelector('[data-rides-status]').classList.remove('is-running'); root.querySelector('[data-rides-run] span').textContent = 'Run again'; return; }
+    if (!phase) { pendingServiceEvents.resources += previousVisibleTripCount * 2; previousVisibleTripCount = 0; isTestRunning = false; stopButton.disabled = true; root.querySelector('[data-rides-phase]').textContent = 'Complete'; root.querySelector('[data-rides-status]').classList.remove('is-running'); root.querySelector('[data-rides-run] span').textContent = 'Run again'; return; }
     const factor = phase.name === 'Ramp' ? Math.max(0.12, elapsed / 12) : phase.name === 'Recovery' ? Math.max(0.08, (42 - elapsed) / 12) : 1;
     const visibleTrips = trips.slice(0, Math.max(1, Math.round(trips.length * factor)));
     const visibleDelta = visibleTrips.length - previousVisibleTripCount; if (visibleDelta !== 0) pendingServiceEvents.resources += Math.abs(visibleDelta) * 2; previousVisibleTripCount = visibleTrips.length;
@@ -440,7 +442,14 @@ const setupRidesSimulation = () => {
     root.querySelectorAll('[data-rides-preset]').forEach((option) => { const selected = option === button; option.classList.toggle('is-active', selected); option.setAttribute('aria-pressed', selected.toString()); });
     ['load', 'supply', 'cancel'].forEach((name, index) => { controls[name] = values[index]; const input = root.querySelector(`[data-rides-control="${name}"]`); input.value = values[index]; root.querySelector(`[data-rides-output="${name}"]`).textContent = `${values[index]}%`; });
   }));
-  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; cancelledRides = 0; previousVisibleTripCount = 0; cancellationMarkers = []; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0; lastServiceSample = performance.now(); Object.values(serviceHistories).forEach((history) => history.fill(0)); Object.values(serviceRunningStats).forEach((stats) => { stats.events = 0; stats.elapsed = 0; stats.latencyTotal = 0; stats.latencySamples = 0; }); configureTrips(routes, 1); startTime = performance.now(); root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
+  stopButton.addEventListener('click', () => {
+    if (!isTestRunning) return;
+    cancelAnimationFrame(animation); isTestRunning = false; pendingServiceEvents.resources += previousVisibleTripCount * 2; previousVisibleTripCount = 0; cancellationMarkers = [];
+    updateServiceLoad(Math.max(performance.now(), lastServiceSample + 251), 0); drawMap((performance.now() - startTime) / 1000, []);
+    root.querySelector('[data-rides-fleet]').textContent = '0'; root.querySelector('[data-rides-metric="requests"]').textContent = '0'; root.querySelector('[data-rides-metric="trips"]').textContent = '0';
+    root.querySelector('[data-rides-phase]').textContent = 'Stopped'; root.querySelector('[data-rides-status]').classList.remove('is-running'); root.querySelector('[data-rides-run] span').textContent = 'Run again'; stopButton.disabled = true;
+  });
+  root.querySelector('[data-rides-run]').addEventListener('click', async () => { cancelAnimationFrame(animation); isTestRunning = false; stopButton.disabled = true; const label = root.querySelector('[data-rides-run] span'); label.textContent = 'Routing fleet…'; root.querySelector('[data-rides-phase]').textContent = 'Routing'; const scenario = selectedScenario; try { const routes = await loadRoutes(); completedRides = 0; cancelledRides = 0; previousVisibleTripCount = 0; cancellationMarkers = []; pendingServiceEvents.cancels = 0; pendingServiceEvents.resources = 0; lastServiceSample = performance.now(); Object.values(serviceHistories).forEach((history) => history.fill(0)); Object.values(serviceRunningStats).forEach((stats) => { stats.events = 0; stats.elapsed = 0; stats.latencyTotal = 0; stats.latencySamples = 0; }); configureTrips(routes, 1); startTime = performance.now(); isTestRunning = true; stopButton.disabled = false; root.querySelector('[data-rides-status]').classList.add('is-running'); label.textContent = 'Restart test'; animation = requestAnimationFrame(tick); } catch (_error) { routeCaches[scenario] = null; root.querySelector('[data-rides-phase]').textContent = 'Route unavailable'; label.textContent = 'Try routing again'; } });
   window.addEventListener('resize', resize); resize(); drawMap();
 };
 

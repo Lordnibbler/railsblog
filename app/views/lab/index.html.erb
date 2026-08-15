@@ -48,7 +48,10 @@
           <label class="rides-slider"><span><span>Driver supply</span><output data-rides-output="supply">72%</output></span><input type="range" min="25" max="100" value="72" data-rides-control="supply"></label>
           <label class="rides-slider"><span><span>Cancellation</span><output data-rides-output="cancel">8%</output></span><input type="range" min="0" max="30" value="8" data-rides-control="cancel"></label>
           <div class="rides-presets"><button type="button" class="is-active" data-rides-preset="steady" aria-pressed="true">Steady</button><button type="button" data-rides-preset="concert" aria-pressed="false">Concert exit</button><button type="button" class="rides-overload-preset" data-rides-preset="overload" aria-pressed="false"><i class="bx bx-error"></i> Intentional overload</button></div>
-          <button type="button" class="glass-button rides-run" data-rides-run><i class="bx bx-play"></i><span>Run load test</span></button>
+          <div class="rides-actions">
+            <button type="button" class="glass-button rides-run" data-rides-run><i class="bx bx-play"></i><span>Run load test</span></button>
+            <button type="button" class="rides-stop" data-rides-stop disabled><i class="bx bx-stop-circle"></i><span>Stop test</span></button>
+          </div>
         </div>
       </div>
       <div class="service-load-panel glass-panel" data-service-load>
