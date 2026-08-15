@@ -9,8 +9,7 @@ describe '/' do
     visit root_path
 
     expect(page).to have_css('.navigation-container')
-    expect(page).to have_css('button[aria-label="Open navigation"]', visible: :all)
-    expect(page).to have_css('button[aria-label="Close navigation"]', visible: :all)
+    expect(page.all('button.mobile-nav-toggle', visible: :all).size).to eq(1)
     expect(page).to have_css('.mobile-nav-panel[role="dialog"]')
 
     within '#expertise' do
@@ -45,12 +44,16 @@ describe '/' do
       visit root_path
 
       open_button = find('button[aria-label="Open navigation"]')
+      open_button_rect = open_button.rect
       open_button.click
 
       expect(open_button['aria-expanded']).to eq('true')
       expect(page).to have_css('.mobile-nav.mobile-nav-open')
 
-      find('button[aria-label="Close navigation"]').click
+      close_button = find('button[aria-label="Close navigation"]')
+      expect(close_button.rect.x).to be_within(0.5).of(open_button_rect.x)
+      expect(close_button.rect.y).to be_within(0.5).of(open_button_rect.y)
+      close_button.click
 
       expect(page).to have_no_css('.mobile-nav.mobile-nav-open')
       expect(open_button['aria-expanded']).not_to eq('true')
