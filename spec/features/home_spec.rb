@@ -40,6 +40,19 @@ describe '/' do
       )
     end
 
+    it 'restores the navigation contrast state when the page is already scrolled' do
+      visit root_path
+      page.execute_script(<<~JS)
+        window.scrollTo(0, 900)
+        window.dispatchEvent(new PageTransitionEvent('pageshow'))
+      JS
+
+      expect(page).to have_css('.desktop-nav.nav-liquid-glass')
+      expect(page).to have_css(
+        '.desktop-nav.nav-glass-on-dark, .desktop-nav.nav-glass-on-light',
+      )
+    end
+
     it 'opens and closes the animated mobile navigation' do
       page.current_window.resize_to(390, 844)
       visit root_path
