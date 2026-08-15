@@ -11,6 +11,7 @@ describe '/' do
     expect(page).to have_css('.navigation-container')
     expect(page.all('button.mobile-nav-toggle', visible: :all).size).to eq(1)
     expect(page).to have_css('.mobile-nav-panel[role="dialog"]')
+    expect(page).to have_css('.mobile-nav[inert][aria-hidden="true"]', visible: :all)
 
     within '#expertise' do
       expect(page).to have_css('.glass-card-static', count: 3)
@@ -45,10 +46,22 @@ describe '/' do
 
       open_button = find('button[aria-label="Open navigation"]')
       open_button_rect = open_button.rect
+      viewport_width = page.evaluate_script('window.innerWidth')
       open_button.click
 
       expect(open_button['aria-expanded']).to eq('true')
       expect(page).to have_css('.mobile-nav.mobile-nav-open')
+      expect(page.evaluate_script("document.querySelector('.mobile-nav').inert")).to be(false)
+      expect(page.evaluate_script('document.activeElement.textContent.trim()')).to eq('home')
+
+      panel_rect = find('.mobile-nav-panel').rect
+      panel_insets = page.evaluate_script(<<~JS)
+        ['left', 'right'].map((property) =>
+          getComputedStyle(document.querySelector('.mobile-nav-panel'))[property]
+        )
+      JS
+      expect(panel_insets).to eq(%w[16px 16px])
+      expect(panel_rect.width).to be > viewport_width * 0.9
 
       close_button = find('button[aria-label="Close navigation"]')
       expect(close_button.rect.x).to be_within(0.5).of(open_button_rect.x)
@@ -57,6 +70,7 @@ describe '/' do
 
       expect(page).to have_no_css('.mobile-nav.mobile-nav-open')
       expect(open_button['aria-expanded']).not_to eq('true')
+      expect(page.evaluate_script("document.activeElement.getAttribute('aria-label')")).to eq('Open navigation')
     end
   end
 

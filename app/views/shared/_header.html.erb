@@ -32,8 +32,8 @@
 
             <% # hamburger icon %>
             <div class="block lg:hidden">
-                <button class="mobile-nav-toggle text-white"
-                    @click="$parent.mobileMenu = !$parent.mobileMenu"
+                <button class="mobile-nav-toggle text-white" x-ref="mobileToggle"
+                    @click="$parent.mobileMenu = !$parent.mobileMenu; if ($parent.mobileMenu) $nextTick(() => $refs.mobilePanel.querySelector('a').focus())"
                     :aria-expanded="$parent.mobileMenu"
                     aria-label="Open navigation"
                     x-bind:aria-label="$parent.mobileMenu ? 'Close navigation' : 'Open navigation'">
@@ -47,9 +47,12 @@
     <% # mobile navigation %>
     <div class="mobile-nav fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-40 min-h-full lg:hidden opacity-0 pointer-events-none overflow-hidden"
         :class="{ 'opacity-100 pointer-events-auto mobile-nav-open': $parent.mobileMenu }"
-        @click.self="$parent.mobileMenu = false" @keydown.escape.window="$parent.mobileMenu = false"
+        inert :inert="!$parent.mobileMenu"
+        aria-hidden="true" :aria-hidden="(!$parent.mobileMenu).toString()"
+        @click.self="$parent.mobileMenu = false; $nextTick(() => $refs.mobileToggle.focus())"
+        @keydown.escape.window="if ($parent.mobileMenu) { $parent.mobileMenu = false; $nextTick(() => $refs.mobileToggle.focus()) }"
         @wheel.self.prevent @touchmove.self.prevent>
-        <div class="mobile-nav-panel mobile-glass-panel py-5 px-6 sm:px-8"
+        <div class="mobile-nav-panel mobile-glass-panel py-5 px-6 sm:px-8" x-ref="mobilePanel"
             role="dialog" aria-modal="true" aria-label="Site navigation">
             <ul class="mobile-nav-list flex flex-col">
                 <%= mobile_navigation_link(name: 'home',        path: root_path) %>

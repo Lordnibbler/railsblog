@@ -1,6 +1,8 @@
 import $ from 'jquery';
 
-const setupAppHeightHandler = () => {
+let pageLifecycleController;
+
+const setupAppHeightHandler = (signal) => {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS
   // set a css variable `--appHeight` so we can use the window's innerHeight to set the page height
   // link: https://bugs.webkit.org/show_bug.cgi?id=141832
@@ -10,15 +12,17 @@ const setupAppHeightHandler = () => {
   };
 
   let resizeComplete;
-  window.addEventListener('resize', function () {
-    this.clearTimeout(resizeComplete);
-    resizeComplete = this.setTimeout(appHeight, 100);
-  });
+  window.addEventListener('resize', () => {
+    window.clearTimeout(resizeComplete);
+    resizeComplete = window.setTimeout(appHeight, 100);
+  }, { signal });
   appHeight();
 }
 
-const setupNavigationTransparencyHandler = () => {
+const setupNavigationTransparencyHandler = (signal) => {
   const navElement = document.querySelector(".desktop-nav");
+  if (!navElement) return;
+
   const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
   function updateNavigationContrast() {
@@ -49,7 +53,7 @@ const setupNavigationTransparencyHandler = () => {
     }
 
     // event listener logic, when page scrolls past 100px y-axis, switch CSS background
-    if (this.scrollY > 100 || this.scrollY === undefined) {
+    if (window.scrollY > 100) {
       navElement.classList.add(...scrolledClasses)
       navElement.classList.remove(...notScrolledClasses)
       updateNavigationContrast()
@@ -67,7 +71,7 @@ const setupNavigationTransparencyHandler = () => {
   }
 
   // when page scrolls, update nav transparency as needed
-  window.addEventListener("scroll", navTransparencyHandler, false)
+  window.addEventListener("scroll", navTransparencyHandler, { signal })
 
   // Theme changes can alter the background beneath a stationary header.
   const colorSchemeHandler = () => {
@@ -75,10 +79,10 @@ const setupNavigationTransparencyHandler = () => {
       updateNavigationContrast()
     }
   }
-  colorScheme.addEventListener("change", colorSchemeHandler)
+  colorScheme.addEventListener("change", colorSchemeHandler, { signal })
 }
 
-const setupLazyVideos = () => {
+const setupLazyVideos = (signal) => {
   const videos = document.querySelectorAll('video.lazy-video');
   if (!videos.length) return;
 
@@ -105,22 +109,27 @@ const setupLazyVideos = () => {
     });
   }, { rootMargin: '300px' });
 
+  signal.addEventListener('abort', () => observer.disconnect(), { once: true });
   videos.forEach((video) => observer.observe(video));
 }
 
 addEventListener('turbo:load', function() {
+  pageLifecycleController?.abort();
+  pageLifecycleController = new AbortController();
+  const { signal } = pageLifecycleController;
+
   // resize page height according to window.innerHeight to avoid navigation bar
   // on iOS causing extra scrollable area when page has very little content
-  setupAppHeightHandler()
+  setupAppHeightHandler(signal)
 
   // make navigation transparent when scrolling past 100px
-  setupNavigationTransparencyHandler()
+  setupNavigationTransparencyHandler(signal)
 
   // Avoid downloading large, below-the-fold videos until they are nearly visible.
-  setupLazyVideos()
+  setupLazyVideos(signal)
 
   // flash auto-hiding
-  $('.flash').on('click', function(event) {
+  $('.flash').off('click.radler').on('click.radler', function() {
     const $flash = $(this);
     $flash.slideUp(150, function() {
       const $container = $flash.closest('.flash-container');
