@@ -3,13 +3,44 @@
 
 - content_for :page_title, 'Photography Gallery'
 
+- # editorial introduction and gallery controls
+section.photography-hero data-navigation-contrast="light"
+  .photography-hero-glow aria-hidden="true"
+  .photography-hero-content
+    p.photography-kicker Street studies / California & beyond
+    h1 Moments between moments.
+    .photography-hero-footer
+      p A living archive of light, geometry, motion, and the small human stories hiding in plain sight.
+      .photography-stat
+        strong = @photo_count
+        span photographs in the archive
+
+.photography-toolbar aria-label="Gallery display controls"
+  .photography-toolbar-inner
+    .photography-toolbar-group
+      span View
+      button.is-active type="button" data-gallery-density="editorial" aria-pressed="true" Editorial
+      button type="button" data-gallery-density="mosaic" aria-pressed="false" Mosaic
+    .photography-toolbar-status aria-live="polite"
+      span data-gallery-visible = @photos.length
+      |  frames loaded
+    .photography-toolbar-group.photography-mood-controls
+      span Mood
+      button.is-active type="button" data-gallery-mood="all" aria-pressed="true" All
+      button type="button" data-gallery-mood="warm" aria-pressed="false" Warm
+      button type="button" data-gallery-mood="cool" aria-pressed="false" Cool
+      button type="button" data-gallery-mood="quiet" aria-pressed="false" Quiet
+
 - # thumbnail gallery
-div[class="my-gallery grid are-images-unloaded mt-16 sm:mt-20 lg:mt-18 xl:mt-20" data-navigation-contrast="light" itemscope="" itemtype="http://schema.org/ImageGallery"]
+div[class="my-gallery grid gallery-editorial are-images-unloaded" data-navigation-contrast="light" data-gallery-total=@photo_count itemscope="" itemtype="http://schema.org/ImageGallery"]
   .grid-sizer
-  - @photos.each do |photo|
-    figure.image.grid-item itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
+  - @photos.each_with_index do |photo, index|
+    figure.image.grid-item data-gallery-item="" data-gallery-index=(index + 1) itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
       a data-pswp-height=photo[:photo_large][:height] data-pswp-width=photo[:photo_large][:width] href=photo[:photo_large][:url] itemprop="contentUrl"
-        img alt="#{photo[:description]}" decoding="async" height="#{photo[:photo_large][:height]}" itemprop="thumbnail" src="#{photo[:photo_large][:url]}" width="#{photo[:photo_large][:width]}"
+        img alt="#{photo[:description]}" decoding="async" height="#{photo[:photo_large][:height]}" itemprop="thumbnail" loading=(index > 5 ? "lazy" : "eager") src="#{photo[:photo_large][:url]}" width="#{photo[:photo_large][:width]}"
+        .photography-card-chrome aria-hidden="true"
+          span.photography-card-number = format('%02d', index + 1)
+          span.photography-card-open View frame
       figcaption itemprop="caption description"
         = photo[:description]
 

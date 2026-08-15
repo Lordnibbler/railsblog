@@ -1,0 +1,38 @@
+<section class="home-lab section-divider" id="lab-preview" data-navigation-contrast="dark">
+    <div class="container py-16 md:py-24">
+        <div class="home-lab-layout">
+            <div class="home-lab-copy">
+                <span class="home-lab-kicker">Creative Engineering Lab / 08 Experiments</span>
+                <h2 class="font-header font-semibold uppercase">Where production systems become playable.</h2>
+                <p>
+                    Step inside a collection of interactive experiments built from the same ideas that shaped my work at Lyft and Cruise: simulation, scale, observability, computer vision, and emergent systems. Stress-test a city, explore photographs as data, or change a living world with your cursor.
+                </p>
+                <div class="home-lab-tags" aria-label="Lab subjects">
+                    <span>Simulation</span><span>Generative systems</span><span>Photography</span><span>Observability</span>
+                </div>
+                <%= link_to lab_path, class: 'home-lab-button glass-button', aria: { label: 'Enter the Creative Engineering Lab' } do %>
+                    Enter the lab <i class="bx bx-right-arrow-alt" aria-hidden="true"></i>
+                <% end %>
+            </div>
+
+            <%= link_to lab_path, class: 'home-lab-gallery', aria: { label: 'Preview the Creative Engineering Lab experiments' } do %>
+                <figure class="home-lab-frame home-lab-frame-city">
+                    <%= image_tag 'home/map.jpg', alt: 'A city map representing the Simulated Rides experiment', loading: 'lazy' %>
+                    <div class="lab-map-routes" aria-hidden="true"><i></i><i></i><i></i><b></b><b></b><b></b><b></b></div>
+                    <figcaption><span>01</span><strong>Simulated Rides</strong><small>Live city-scale load test</small></figcaption>
+                </figure>
+                <figure class="home-lab-frame home-lab-frame-signal">
+                    <%= image_tag 'home/bg-cta.jpg', alt: 'Colored light trails representing the Signal Garden experiment', loading: 'lazy' %>
+                    <div class="lab-signal-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                    <figcaption><span>02</span><strong>Signal Garden</strong><small>A field shaped by you</small></figcaption>
+                </figure>
+                <figure class="home-lab-frame home-lab-frame-photo">
+                    <%= image_tag 'home/bg-hero.jpg', alt: "Ben Radler's photography inside an interactive visual analysis", loading: 'lazy' %>
+                    <div class="lab-photo-reticle" aria-hidden="true"><i></i><b></b></div>
+                    <figcaption><span>06</span><strong>Photographer’s Eye</strong><small>Composition as data</small></figcaption>
+                </figure>
+                <span class="home-lab-gallery-hint">Open all experiments <i class="bx bx-up-arrow-alt"></i></span>
+            <% end %>
+        </div>
+    </div>
+</section>
