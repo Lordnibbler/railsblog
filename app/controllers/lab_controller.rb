@@ -1,8 +1,13 @@
 # Renders interactive creative-engineering experiments.
 class LabController < ApplicationController
   def index
-    body_class 'lab-template'
-    @photos = FlickrPhoto.order(:display_position).limit(30).map(&:as_stream_item)
+    body_class 'lab'
+    @photos = FlickrPhoto.order(Arel.sql('RANDOM()')).limit(30).map do |photo|
+      photo.as_stream_item.merge(
+        flickr_id: photo.flickr_id,
+        composition_analysis: photo.composition_analyzed? ? photo.composition_analysis : nil,
+      )
+    end
     @site_status = measured_site_status
   end
 

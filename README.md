@@ -194,7 +194,7 @@ This is a Rails app, deployed on Heroku.
 ### Persistence
 
 #### postgresql
-It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to application records, PostgreSQL stores the normalized Flickr photo catalog and its current display order. The schema can be found in [db/schema.rb](db/schema.rb).
+It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to application records, PostgreSQL stores the normalized Flickr photo catalog, its current display order, and cached vision-model composition readings used by the Composition Studio. The schema can be found in [db/schema.rb](db/schema.rb).
 
 ### Cron
 It uses Heroku Scheduler add on to run two recurring jobs:
@@ -203,9 +203,16 @@ It uses Heroku Scheduler add on to run two recurring jobs:
   * runs daily to refresh the sitemap file for the site
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
+  * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
   * each successful run assigns a new shuffled display order, which remains stable across paginated requests until the next run.
   * Flickr is fully fetched before the database transaction begins, so existing photos remain available if Flickr is unavailable or the fetch fails.
   * run this task once after the migration is first deployed to populate the initially empty `flickr_photos` table; subsequent refreshes are handled by Heroku Scheduler.
+
+Run `rails flickr:analyze_compositions` to analyze the next pending batch without synchronizing Flickr. The API key is used only by this server-side task; model results and normalized overlay coordinates are saved in PostgreSQL, so page requests never call OpenAI or expose credentials.
+
+To intentionally replace existing paid results, pass the explicit `force` argument to either task: `rails 'flickr:sync[force]'` or `rails 'flickr:analyze_compositions[force]'`. The configured batch limit still applies.
+
+Each persisted reading is bound to its Flickr ID and current analysis version. Its classifications receive image-scoped IDs and contain photograph-specific evidence plus normalized overlay geometry. The rubric currently covers fourteen techniques, including framing, symmetry, juxtaposition, color relationships, and dynamic diagonals in addition to the studio's original nine.
 
 
 ### CDN

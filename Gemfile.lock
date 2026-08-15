@@ -415,6 +415,8 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+    readline (0.0.4)
+      reline
     redcarpet (3.6.1)
     regexp_parser (2.11.3)
     regexp_property_values (1.5.2)
@@ -581,6 +583,7 @@ DEPENDENCIES
   puma
   rails (~> 8)
   rails-controller-testing
+  readline
   redcarpet
   rouge
   rspec-rails
@@ -600,3 +603,6 @@ DEPENDENCIES
 
 RUBY VERSION
   ruby 4.0.6p0
+
+BUNDLED WITH
+  4.0.16

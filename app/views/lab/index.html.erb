@@ -193,38 +193,52 @@
     </div>
   </section>
 
-  <% photo_manifest = @photos.map { |photo| { url: photo.dig(:photo_large, :url), width: photo.dig(:photo_large, :width), height: photo.dig(:photo_large, :height), title: photo[:title], description: photo[:description], timestamp: photo[:created_at] } } %>
+  <% photo_manifest = @photos.map { |photo| { id: photo[:flickr_id], url: photo.dig(:photo_large, :url), width: photo.dig(:photo_large, :width), height: photo.dig(:photo_large, :height), title: photo[:title], description: photo[:description], timestamp: photo[:created_at], composition: photo[:composition_analysis] } } %>
 
-  <section id="visual-constellation" class="photo-experiment photo-constellation-section section-divider">
+  <section id="composition-studio" class="composition-studio-section section-divider">
     <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 005 / Visual search</p><h2 class="font-header font-semibold uppercase">Visual Constellation</h2></div><p class="lab-deck">Navigate the archive as a field of relationships. Photographs gravitate toward neighbors that share color, light, contrast, and shape.</p></div>
-      <div class="constellation-console glass-panel" data-photo-constellation data-photos="<%= json_escape(photo_manifest.to_json) %>">
-        <div class="constellation-toolbar"><div class="lab-live-status"><span></span><strong data-constellation-status>Analyzing archive</strong></div><div class="constellation-axes"><span>Organize by</span><button class="is-active" data-constellation-axis="similarity">Similarity</button><button data-constellation-axis="color">Color</button><button data-constellation-axis="light">Light</button><button data-constellation-axis="shape">Shape</button></div></div>
-        <div class="constellation-stage"><canvas data-constellation-canvas aria-label="Navigable constellation of photographs"></canvas><div class="constellation-preview" data-constellation-preview><img alt=""><div><span>Nearest frame</span><strong></strong><p></p></div></div><p class="lab-canvas-hint"><i class="bx bx-move"></i> Drag to travel · scroll to zoom · select a frame</p></div>
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 005 / Visual criticism</p><h2 class="font-header font-semibold uppercase">Composition Studio</h2></div><p class="lab-deck">A vision model analyzes each street photograph for its strongest compositional techniques. The image-specific readings and coordinates are stored in PostgreSQL, then rendered as animated overlays that reveal the lines, layers, color, rhythm, and visual relationships within each frame.</p></div>
+      <div class="composition-studio glass-panel" data-composition-studio data-photos="<%= json_escape(photo_manifest.first(12).to_json) %>">
+        <header class="composition-toolbar">
+          <div class="composition-modes"><span class="is-active">Guided analysis</span></div>
+          <div class="composition-progress"><span data-composition-index>01</span> / <span><%= [photo_manifest.first(12).length, 1].max.to_s.rjust(2, '0') %></span></div>
+        </header>
+        <div class="composition-workspace">
+          <div class="composition-stage" data-composition-stage>
+            <img data-composition-image alt="Selected street photograph">
+            <svg class="composition-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <g data-overlay="thirds"><path d="M33.33 0V100M66.66 0V100M0 33.33H100M0 66.66H100"/><circle cx="33.33" cy="33.33" r="1.5"/><circle cx="66.66" cy="66.66" r="1.5"/></g>
+              <g data-overlay="triangle"><path data-composition-triangle d="M8 84L52 16L91 78Z"/></g>
+              <g data-overlay="odds"><circle cx="28" cy="55" r="5"/><circle cx="52" cy="28" r="5"/><circle cx="76" cy="62" r="5"/><circle cx="36" cy="78" r="5"/><circle cx="70" cy="82" r="5"/></g>
+              <g data-overlay="leading"><path d="M0 92L55 48L100 58M8 100L55 48L86 0"/><circle data-composition-focus cx="55" cy="48" r="7"/></g>
+              <g data-overlay="spiral"><path d="M8 72C8 24 74 10 88 43C99 70 65 91 42 76C23 63 34 39 52 39C67 39 72 55 62 63C54 70 45 63 46 56"/></g>
+              <g data-overlay="layers"><path d="M0 67C22 60 37 63 50 71S78 82 100 68V100H0ZM0 36C19 28 39 31 55 39S83 46 100 34V68C77 76 66 66 50 63S19 61 0 70Z"/></g>
+              <g data-overlay="space"><rect data-composition-space x="0" y="0" width="35" height="100"/></g>
+              <g data-overlay="pattern"><path d="M0 20H100M0 40H100M0 60H100M0 80H100M20 0V100M40 0V100M60 0V100M80 0V100"/></g>
+              <g data-overlay="density"><rect x="2" y="2" width="96" height="96"/><path d="M2 16V2H16M84 2H98V16M98 84V98H84M16 98H2V84"/></g>
+              <g data-overlay="frame"><rect x="18" y="14" width="64" height="72"/><path d="M18 30V14H34M66 14H82V30M82 70V86H66M34 86H18V70"/></g>
+              <g data-overlay="symmetry"><path data-composition-symmetry d="M50 4V96"/></g>
+              <g data-overlay="juxtaposition"><circle cx="32" cy="50" r="7"/><circle cx="68" cy="50" r="7"/><path d="M39 50H61"/></g>
+              <g data-overlay="color"><rect x="12" y="18" width="76" height="64"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/></g>
+              <g data-overlay="diagonal"><path data-composition-diagonal d="M5 90L95 10"/></g>
+            </svg>
+            <div class="composition-stage-label" data-composition-stage-label>Reading frame…</div>
+          </div>
+          <aside class="composition-panel">
+            <div data-composition-analysis>
+              <span class="composition-eyebrow" data-composition-source>Image-specific reading / Browser analyzed</span><h3 data-composition-title>Reading the frame</h3><p data-composition-copy>Measuring color, contrast, visual weight, and edge structure. Only strongly supported techniques will appear.</p>
+              <div class="composition-techniques" role="listbox" aria-label="Composition overlays"><button type="button" class="is-active" data-technique="thirds"><i>01</i><span>Balance</span><strong>Rule of thirds</strong></button><button type="button" data-technique="leading"><i>02</i><span>Direction</span><strong>Leading lines</strong></button><button type="button" data-technique="triangle"><i>03</i><span>Structure</span><strong>Implied triangle</strong></button><button type="button" data-technique="odds"><i>04</i><span>Grouping</span><strong>Rule of odds</strong></button><button type="button" data-technique="layers"><i>05</i><span>Depth</span><strong>Layered planes</strong></button><button type="button" data-technique="space"><i>06</i><span>Restraint</span><strong>Negative space</strong></button><button type="button" data-technique="spiral"><i>07</i><span>Flow</span><strong>Spiral path</strong></button><button type="button" data-technique="pattern"><i>08</i><span>Rhythm</span><strong>Repetition</strong></button><button type="button" data-technique="density"><i>09</i><span>Density</span><strong>Fill the frame</strong></button><button type="button" data-technique="frame"><i>10</i><span>Focus</span><strong>Frame within frame</strong></button><button type="button" data-technique="symmetry"><i>11</i><span>Order</span><strong>Symmetry</strong></button><button type="button" data-technique="juxtaposition"><i>12</i><span>Meaning</span><strong>Juxtaposition</strong></button><button type="button" data-technique="color"><i>13</i><span>Palette</span><strong>Color relationship</strong></button><button type="button" data-technique="diagonal"><i>14</i><span>Energy</span><strong>Dynamic diagonal</strong></button></div>
+            </div>
+          </aside>
+        </div>
+        <footer class="composition-filmstrip"><button type="button" data-composition-previous aria-label="Previous photograph"><i class="bx bx-left-arrow-alt"></i></button><div><% @photos.first(12).each_with_index do |photo, index| %><button type="button" data-composition-select="<%= index %>" class="<%= 'is-active' if index.zero? %>" aria-label="View photograph <%= index + 1 %>"><img src="<%= photo.dig(:photo_large, :url) %>" alt="" loading="lazy"></button><% end %></div><button type="button" data-composition-next aria-label="Next photograph"><i class="bx bx-right-arrow-alt"></i></button></footer>
       </div>
-    </div>
-  </section>
-
-  <section id="photographers-eye" class="photo-experiment photographers-eye-section section-divider">
-    <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 006 / Computational composition</p><h2 class="font-header font-semibold uppercase">The Photographer’s Eye</h2></div><p class="lab-deck">A browser-side reading of structure and attention. Compare the finished frame with its geometry, contrast, and likely visual center.</p></div>
-      <div class="eye-console glass-panel" data-photographers-eye data-photos="<%= json_escape(photo_manifest.first(10).to_json) %>">
-        <div class="eye-stage"><img data-eye-image alt="Selected photograph"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><g data-eye-thirds><path d="M33.33 0V100M66.66 0V100M0 33.33H100M0 66.66H100"/></g><g data-eye-diagonals><path d="M0 0L100 100M100 0L0 100"/></g><g data-eye-saliency><circle cx="50" cy="50" r="8"/><circle cx="50" cy="50" r="16"/></g></svg><div class="eye-scan-line"></div><div class="eye-analysis-status" data-eye-status>Analyzing frame…</div></div>
-        <aside class="eye-panel"><div class="eye-modes"><button class="is-active" data-eye-mode="attention">Attention</button><button data-eye-mode="geometry">Geometry</button><button data-eye-mode="contrast">Contrast</button></div><div class="eye-reading"><span>Machine reading</span><strong data-eye-reading>Locating visual center…</strong><p data-eye-copy></p></div><div class="eye-metrics"><div><span>Luminance</span><strong data-eye-luminance>—</strong></div><div><span>Contrast</span><strong data-eye-contrast>—</strong></div><div><span>Orientation</span><strong data-eye-orientation>—</strong></div></div><div class="eye-strip"><% @photos.first(10).each_with_index do |photo, index| %><button data-eye-select="<%= index %>" class="<%= 'is-active' if index.zero? %>"><img src="<%= photo.dig(:photo_large, :url) %>" alt="" loading="lazy"></button><% end %></div></aside>
-      </div>
-    </div>
-  </section>
-
-  <section id="photo-time-machine" class="photo-experiment time-machine-section section-divider">
-    <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 007 / Temporal archive</p><h2 class="font-header font-semibold uppercase">Street Time Machine</h2></div><p class="lab-deck">Scrub through the archive as a strip of luminous negatives. Time changes scale; individual moments expand from the flow.</p></div>
-      <div class="time-machine glass-panel" data-photo-timeline data-photos="<%= json_escape(photo_manifest.to_json) %>"><div class="time-machine-readout"><span data-timeline-year>Archive</span><strong data-timeline-title>Drag through time</strong><p data-timeline-position>01 / <%= photo_manifest.length.to_s.rjust(2, '0') %></p></div><div class="time-machine-viewport"><div class="time-machine-track" data-timeline-track></div><div class="time-machine-focus" aria-hidden="true"></div></div><div class="time-machine-controls"><button data-timeline-action="previous" aria-label="Previous photograph"><i class="bx bx-left-arrow-alt"></i></button><input type="range" min="0" max="<%= [photo_manifest.length - 1, 0].max %>" value="0" data-timeline-scrubber aria-label="Move through photography timeline"><button data-timeline-action="next" aria-label="Next photograph"><i class="bx bx-right-arrow-alt"></i></button></div></div>
     </div>
   </section>
 
   <section id="site-control-room" class="control-room-section section-divider">
     <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 008 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 006 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
       <div class="control-room glass-panel" data-control-room data-status="<%= json_escape(@site_status.to_json) %>">
         <header class="control-room-header"><div class="control-room-live"><i></i><span>System online</span><strong data-control-clock>00:00:00</strong></div><div><span>PUBLIC TELEMETRY / SECRETS REDACTED</span></div></header>
         <div class="control-room-vitals">
