@@ -43,4 +43,19 @@ describe '/lab' do
 
     expect(page).to have_css("a[href='#{lab_path}']", text: /^lab$/i, count: 2, visible: :all)
   end
+
+  it 'renders the simulated city controls and telemetry contract' do
+    visit lab_path
+
+    expect(page).to have_button('Run load test')
+    expect(page).to have_button('Stop test', disabled: true)
+    expect(page).to have_css('[data-rides-control="cancel"][min="0"][max="30"][value="8"]')
+    expect(page).to have_css('[data-rides-metric="cancellations"]', text: '0')
+    expect(page).to have_css('[data-rides-cancel-rate]', text: '0.0% of requests')
+    expect(page.all('.service-load-row[data-service-key]').pluck(:'data-service-key')).to eq(
+      %w[users pricing rides dispatch cancels location payments notifications reviews resources],
+    )
+    expect(page).to have_css('[data-service-key="cancels"] [data-service-rps]', text: '0')
+    expect(page).to have_css('[data-service-key="resources"] [data-service-health]', text: 'Nominal')
+  end
 end
