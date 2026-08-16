@@ -41,19 +41,16 @@ const parsePhotoSwipeHash = () => {
     };
 };
 
-const rgbToMood = (red, green, blue) => {
-    const maximum = Math.max(red, green, blue) / 255;
-    const minimum = Math.min(red, green, blue) / 255;
-    const saturation = maximum === minimum ? 0 : (maximum - minimum) / (1 - Math.abs(maximum + minimum - 1));
-    let hue = 0;
-    if (maximum !== minimum) {
-        if (maximum === red / 255) hue = 60 * (((green - blue) / 255) / (maximum - minimum));
-        else if (maximum === green / 255) hue = 60 * (((blue - red) / 255) / (maximum - minimum) + 2);
-        else hue = 60 * (((red - green) / 255) / (maximum - minimum) + 4);
-    }
-    if (hue < 0) hue += 360;
-    if (saturation < 0.2) return 'quiet';
-    return hue < 78 || hue > 318 ? 'warm' : 'cool';
+const classifyMoods = ({ red, blue, luminance, contrast, saturation }) => {
+    const moods = [];
+    const warmth = (red - blue) / 255;
+    if (warmth > 0.06 && luminance > 0.3) moods.push('golden');
+    if (luminance < 0.38) moods.push('nocturne');
+    if (saturation > 0.34 && contrast > 0.14) moods.push('electric');
+    if (contrast < 0.15 && saturation < 0.3) moods.push('soft');
+    if (contrast > 0.22) moods.push('graphic');
+    if (saturation < 0.14) moods.push('monochrome');
+    return moods;
 };
 
 const fallbackColor = (source) => {
@@ -61,7 +58,14 @@ const fallbackColor = (source) => {
     return [72 + hash % 150, 68 + (hash >> 8) % 140, 82 + (hash >> 16) % 150];
 };
 
-const sampleImageColor = (source) => new Promise((resolve) => {
+const fallbackAnalysis = (source) => {
+    const [red, green, blue] = fallbackColor(source);
+    const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+    const saturation = (Math.max(red, green, blue) - Math.min(red, green, blue)) / 255;
+    return { red, green, blue, luminance, saturation, contrast: 0.1 };
+};
+
+const sampleImageMood = (source) => new Promise((resolve) => {
     const image = new Image();
     image.crossOrigin = 'anonymous';
     image.onload = () => {
@@ -71,15 +75,20 @@ const sampleImageColor = (source) => new Promise((resolve) => {
             const context = canvas.getContext('2d', { willReadFrequently: true });
             context.drawImage(image, 0, 0, 12, 12);
             const pixels = context.getImageData(0, 0, 12, 12).data;
-            let red = 0; let green = 0; let blue = 0; let count = 0;
+            let red = 0; let green = 0; let blue = 0; let luminance = 0; let luminanceSquared = 0; let saturation = 0; let count = 0;
             for (let index = 0; index < pixels.length; index += 16) {
                 if (pixels[index + 3] < 128) continue;
-                red += pixels[index]; green += pixels[index + 1]; blue += pixels[index + 2]; count += 1;
+                const pixelRed = pixels[index]; const pixelGreen = pixels[index + 1]; const pixelBlue = pixels[index + 2];
+                const pixelLuminance = (0.2126 * pixelRed + 0.7152 * pixelGreen + 0.0722 * pixelBlue) / 255;
+                red += pixelRed; green += pixelGreen; blue += pixelBlue; luminance += pixelLuminance; luminanceSquared += pixelLuminance ** 2;
+                saturation += (Math.max(pixelRed, pixelGreen, pixelBlue) - Math.min(pixelRed, pixelGreen, pixelBlue)) / 255; count += 1;
             }
-            resolve(count ? [red / count, green / count, blue / count] : fallbackColor(source));
-        } catch (_error) { resolve(fallbackColor(source)); }
+            if (!count) { resolve(fallbackAnalysis(source)); return; }
+            const averageLuminance = luminance / count;
+            resolve({ red: red / count, green: green / count, blue: blue / count, luminance: averageLuminance, saturation: saturation / count, contrast: Math.sqrt(Math.max(0, luminanceSquared / count - averageLuminance ** 2)) });
+        } catch (_error) { resolve(fallbackAnalysis(source)); }
     };
-    image.onerror = () => resolve(fallbackColor(source));
+    image.onerror = () => resolve(fallbackAnalysis(source));
     image.src = source;
 });
 
@@ -94,9 +103,10 @@ const decorateGalleryItems = (gallery, items, applyFilter) => {
         item.dataset.colorReady = 'true';
         const source = item.querySelector('img')?.currentSrc || item.querySelector('img')?.src;
         if (!source) return;
-        sampleImageColor(source).then(([red, green, blue]) => {
+        sampleImageMood(source).then((analysis) => {
+            const { red, green, blue } = analysis;
             item.style.setProperty('--photo-accent', `${Math.round(red)} ${Math.round(green)} ${Math.round(blue)}`);
-            item.dataset.galleryMood = rgbToMood(red, green, blue);
+            item.dataset.galleryMoods = classifyMoods(analysis).join(' ');
             applyFilter();
         });
     });
@@ -211,10 +221,15 @@ $(document).on('turbo:load', function() {
     if (elem) {
         let msnry = createMasonry(elem)
         let activeMood = 'all';
+        let activeSubject = 'all';
         const visibleStatus = document.querySelector('[data-gallery-visible]');
         const applyFilter = () => {
             elem.querySelectorAll('[data-gallery-item]').forEach((item) => {
-                item.classList.toggle('is-filtered', activeMood !== 'all' && item.dataset.galleryMood !== activeMood);
+                const moods = (item.dataset.galleryMoods || '').split(' ');
+                const subjects = (item.dataset.gallerySubjects || '').split(' ');
+                const moodMismatch = activeMood !== 'all' && !moods.includes(activeMood);
+                const subjectMismatch = activeSubject !== 'all' && !subjects.includes(activeSubject);
+                item.classList.toggle('is-filtered', moodMismatch || subjectMismatch);
             });
             const visibleCount = elem.querySelectorAll('[data-gallery-item]:not(.is-filtered)').length;
             if (visibleStatus) visibleStatus.textContent = visibleCount;
@@ -239,6 +254,18 @@ $(document).on('turbo:load', function() {
             button.addEventListener('click', () => {
                 activeMood = button.dataset.galleryMood;
                 document.querySelectorAll('[data-gallery-mood]').forEach((option) => {
+                    const selected = option === button;
+                    option.classList.toggle('is-active', selected);
+                    option.setAttribute('aria-pressed', selected.toString());
+                });
+                applyFilter();
+            });
+        });
+
+        document.querySelectorAll('[data-gallery-subject]').forEach((button) => {
+            button.addEventListener('click', () => {
+                activeSubject = button.dataset.gallerySubject;
+                document.querySelectorAll('[data-gallery-subject]').forEach((option) => {
                     const selected = option === button;
                     option.classList.toggle('is-active', selected);
                     option.setAttribute('aria-pressed', selected.toString());

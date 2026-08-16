@@ -59,6 +59,7 @@ class FlickrService
     def get_photos(args = {})
       page = [args.fetch(:page, 1).to_i, 1].max
       seed = args[:seed].presence&.to_i || Random.new_seed
+      include_subjects = args.fetch(:include_subjects, false)
       offset = (page - 1) * GET_PHOTOS_DEFAULT_OPTIONS[:per_page]
 
       FlickrPhoto.order(:display_position)
@@ -66,7 +67,10 @@ class FlickrService
                  .shuffle(random: Random.new(seed))
                  .slice(offset, GET_PHOTOS_DEFAULT_OPTIONS[:per_page])
                  .to_a
-                 .map(&:as_stream_item)
+                 .map do |photo|
+                   item = photo.as_stream_item
+                   include_subjects ? item.merge(gallery_subjects: PhotoSubjectClassifier.call(photo)) : item
+                 end
     end
 
     private

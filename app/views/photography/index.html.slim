@@ -27,15 +27,27 @@ section.photography-hero data-navigation-contrast="light"
     .photography-toolbar-group.photography-mood-controls
       span Mood
       button.is-active type="button" data-gallery-mood="all" aria-pressed="true" All
-      button type="button" data-gallery-mood="warm" aria-pressed="false" Warm
-      button type="button" data-gallery-mood="cool" aria-pressed="false" Cool
-      button type="button" data-gallery-mood="quiet" aria-pressed="false" Quiet
+      button type="button" data-gallery-mood="golden" aria-pressed="false" Golden
+      button type="button" data-gallery-mood="nocturne" aria-pressed="false" Nocturne
+      button type="button" data-gallery-mood="electric" aria-pressed="false" Electric
+      button type="button" data-gallery-mood="soft" aria-pressed="false" Soft
+      button type="button" data-gallery-mood="graphic" aria-pressed="false" Graphic
+      button type="button" data-gallery-mood="monochrome" aria-pressed="false" Monochrome
+    .photography-toolbar-group.photography-subject-controls
+      span Subject
+      button.is-active type="button" data-gallery-subject="all" aria-pressed="true" All
+      button type="button" data-gallery-subject="people" aria-pressed="false" People
+      button type="button" data-gallery-subject="animals" aria-pressed="false" Animals
+      button type="button" data-gallery-subject="street" aria-pressed="false" Street
+      button type="button" data-gallery-subject="landscape" aria-pressed="false" Landscape
+      button type="button" data-gallery-subject="architecture" aria-pressed="false" Architecture
+      button type="button" data-gallery-subject="transit" aria-pressed="false" Transit
 
 - # thumbnail gallery
 div[class="my-gallery grid gallery-editorial are-images-unloaded" data-navigation-contrast="light" data-gallery-total=@photo_count itemscope="" itemtype="http://schema.org/ImageGallery"]
   .grid-sizer
   - @photos.each_with_index do |photo, index|
-    figure.image.grid-item data-gallery-item="" data-gallery-index=(index + 1) itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
+    figure.image.grid-item data-gallery-item="" data-gallery-index=(index + 1) data-gallery-subjects=Array(photo[:gallery_subjects]).join(' ') itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject"
       a data-pswp-height=photo[:photo_large][:height] data-pswp-width=photo[:photo_large][:width] href=photo[:photo_large][:url] itemprop="contentUrl"
         img alt="#{photo[:description]}" decoding="async" height="#{photo[:photo_large][:height]}" itemprop="thumbnail" loading=(index > 5 ? "lazy" : "eager") src="#{photo[:photo_large][:url]}" width="#{photo[:photo_large][:width]}"
         .photography-card-chrome aria-hidden="true"
