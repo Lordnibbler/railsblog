@@ -275,9 +275,19 @@
             <dl><div><dt>Static assets</dt><dd><%= @site_status.dig(:delivery, :assets) %></dd></div><div><dt>Object storage</dt><dd><%= @site_status.dig(:delivery, :storage) %> / S3</dd></div><div><dt>Cache policy</dt><dd><%= @site_status.dig(:delivery, :cache_control) %></dd></div></dl>
           </article>
           <article class="control-module pipeline-module">
-            <div class="control-module-heading"><div><span>Image pipeline</span><strong>Flickr to browser</strong></div><i class="bx bx-image"></i></div>
-            <ol class="pipeline-flow"><li><b>01</b><span>Scheduled Flickr sync</span><i>Daily</i></li><li><b>02</b><span>Normalize metadata</span><i>Service</i></li><li><b>03</b><span>Atomic PostgreSQL swap</span><i>Transaction</i></li><li><b>04</b><span>Seeded pagination</span><i>Rails</i></li><li><b>05</b><span>Lazy image delivery</span><i>CDN</i></li></ol>
-            <div class="pipeline-pulse" aria-hidden="true"><i></i><i></i><i></i><span>metadata</span><span>pixels</span></div>
+            <div class="control-module-heading"><div><span>Image pipeline</span><strong>Catalog delivery telemetry</strong></div><i class="bx bx-image"></i></div>
+            <p class="pipeline-description">A live snapshot of how Flickr metadata becomes a database-backed gallery. Web requests never call the Flickr API.</p>
+            <ol class="pipeline-flow" aria-label="Flickr image delivery stages">
+              <li><b>01</b><span><strong>Flickr API sync</strong><small data-pipeline-sync-age data-last-sync="<%= @site_status.dig(:flickr, :last_sync) %>">Checking freshness…</small></span><i>Daily job</i></li>
+              <li><b>02</b><span><strong>PostgreSQL catalog</strong><small><%= @site_status.dig(:flickr, :photos) %> records · <%= number_to_human_size(@site_status.dig(:flickr, :metadata_bytes)) %> metadata</small></span><i>Atomic</i></li>
+              <li><b>03</b><span><strong>Vision analysis cache</strong><small><%= @site_status.dig(:flickr, :current_analysis) %> current · <%= @site_status.dig(:flickr, :analysis_errors) %> errors</small></span><i><%= @site_status.dig(:flickr, :photos).positive? ? number_to_percentage(@site_status.dig(:flickr, :current_analysis) * 100.0 / @site_status.dig(:flickr, :photos), precision: 0) : '—' %></i></li>
+              <li><b>04</b><span><strong>Rails gallery query</strong><small>Seeded random order · <%= @site_status.dig(:flickr, :page_size) %> records per page</small></span><i>DB only</i></li>
+              <li><b>05</b><span><strong>Browser image delivery</strong><small><%= @site_status.dig(:flickr, :complete_renditions) %>/<%= @site_status.dig(:flickr, :photos) %> photos have all four responsive sizes</small></span><i><%= @site_status.dig(:flickr, :delivery_host) %></i></li>
+            </ol>
+            <div class="pipeline-health">
+              <div><span>Analysis coverage</span><strong><%= @site_status.dig(:flickr, :current_analysis) %> / <%= @site_status.dig(:flickr, :photos) %></strong><i><b style="width: <%= @site_status.dig(:flickr, :photos).positive? ? @site_status.dig(:flickr, :current_analysis) * 100.0 / @site_status.dig(:flickr, :photos) : 0 %>%"></b></i></div>
+              <div><span>Rendition coverage</span><strong><%= @site_status.dig(:flickr, :complete_renditions) %> / <%= @site_status.dig(:flickr, :photos) %></strong><i><b style="width: <%= @site_status.dig(:flickr, :photos).positive? ? @site_status.dig(:flickr, :complete_renditions) * 100.0 / @site_status.dig(:flickr, :photos) : 0 %>%"></b></i></div>
+            </div>
           </article>
           <article class="control-module performance-module">
             <div class="control-module-heading"><div><span>Performance</span><strong>Live delivery telemetry</strong></div><i class="bx bx-tachometer"></i></div>

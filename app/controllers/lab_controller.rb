@@ -59,7 +59,42 @@ class LabController < ApplicationController
   end
 
   def flickr_status
-    { photos: FlickrPhoto.count, last_sync: FlickrPhoto.maximum(:updated_at)&.iso8601 }
+    photos = flickr_photos_snapshot
+    total = photos.count
+
+    {
+      photos: total,
+      last_sync: photos.filter_map(&:updated_at).max&.iso8601,
+      metadata_bytes: photos.sum { |photo| photo.photo_data.to_json.bytesize },
+      current_analysis: current_analysis_count(photos),
+      analysis_errors: photos.count { |photo| photo.composition_analysis_error.present? },
+      complete_renditions: complete_rendition_count(photos),
+      page_size: FlickrService::GET_PHOTOS_DEFAULT_OPTIONS.fetch(:per_page),
+      delivery_host: flickr_delivery_host(photos),
+    }
+  end
+
+  def flickr_photos_snapshot
+    FlickrPhoto.select(
+      :photo_data, :composition_analysis_version, :composition_analysis_error,
+      :composition_analyzed_at, :updated_at,
+    ).to_a
+  end
+
+  def current_analysis_count(photos)
+    photos.count { |photo| photo.composition_analysis_version == CompositionAnalysisService::VERSION }
+  end
+
+  def complete_rendition_count(photos)
+    sizes = %w[photo_thumbnail photo_small photo_medium photo_large]
+    photos.count { |photo| sizes.all? { |size| photo.photo_data.dig(size, 'url').present? } }
+  end
+
+  def flickr_delivery_host(photos)
+    url = photos.filter_map { |photo| photo.photo_data.dig('photo_large', 'url') }.first
+    URI.parse(url.to_s).host || 'Flickr static CDN'
+  rescue URI::InvalidURIError
+    'Flickr static CDN'
   end
 
   def test_status
