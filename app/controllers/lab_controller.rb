@@ -18,7 +18,7 @@ class LabController < ApplicationController
     thread = Thread.current
     subscriber = ActiveSupport::Notifications.subscribe('sql.active_record') do |*arguments|
       event = ActiveSupport::Notifications::Event.new(*arguments)
-      database_ms += event.duration if Thread.current == thread && !%w[SCHEMA CACHE].include?(event.payload[:name])
+      database_ms += event.duration if Thread.current == thread && %w[SCHEMA CACHE].exclude?(event.payload[:name])
     end
     started_at = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     site_status.tap do |status|
@@ -32,34 +32,59 @@ class LabController < ApplicationController
   end
 
   def site_status
-    spec_files = Rails.root.glob('spec/**/*_spec.rb')
     {
-      runtime: { rails: Rails.version, ruby: RUBY_VERSION, environment: Rails.env },
-      release: {
-        version: ENV['HEROKU_RELEASE_VERSION'] || 'local',
-        revision: (ENV['HEROKU_SLUG_COMMIT'] || ENV['SOURCE_VERSION'] || 'development').first(8),
-        created_at: ENV['HEROKU_RELEASE_CREATED_AT'],
-      },
-      flickr: { photos: FlickrPhoto.count, last_sync: FlickrPhoto.maximum(:updated_at)&.iso8601 },
-      tests: {
-        files: spec_files.count,
-        examples: spec_files.sum { |path| path.read.scan(/^\s*it\s+['"]/).count },
-        ci: Rails.root.join('.circleci/config.yml').exist? ? 'CircleCI' : 'Not configured',
-      },
-      delivery: {
-        assets: URI.parse(ENV.fetch('ASSET_HOST', 'https://CloudFront')).host || 'CloudFront',
-        storage: Rails.application.config.active_storage.service.to_s,
-        edge: 'Cloudflare → CloudFront',
-        cache_control: '1 year / immutable assets',
-      },
+      runtime: runtime_status,
+      release: release_status,
+      flickr: flickr_status,
+      tests: test_status,
+      delivery: delivery_status,
       assets: asset_inventory,
-      integrations: {
-        new_relic: ENV['NEW_RELIC_USER_API_KEY'].present? && ENV['NEW_RELIC_ACCOUNT_ID'].present?,
-        circleci_insights: ENV['CIRCLECI_TOKEN'].present?,
-      },
+      integrations: integration_status,
     }
   rescue URI::InvalidURIError
     {}
+  end
+
+  def runtime_status
+    { rails: Rails.version, ruby: RUBY_VERSION, environment: Rails.env }
+  end
+
+  def release_status
+    revision = ENV['HEROKU_SLUG_COMMIT'] || ENV['SOURCE_VERSION'] || 'development'
+    {
+      version: ENV['HEROKU_RELEASE_VERSION'] || 'local',
+      revision: revision.first(8),
+      created_at: ENV.fetch('HEROKU_RELEASE_CREATED_AT', nil),
+    }
+  end
+
+  def flickr_status
+    { photos: FlickrPhoto.count, last_sync: FlickrPhoto.maximum(:updated_at)&.iso8601 }
+  end
+
+  def test_status
+    spec_files = Rails.root.glob('spec/**/*_spec.rb')
+    {
+      files: spec_files.count,
+      examples: spec_files.sum { |path| path.read.scan(/^\s*it\s+['"]/).count },
+      ci: Rails.root.join('.circleci/config.yml').exist? ? 'CircleCI' : 'Not configured',
+    }
+  end
+
+  def delivery_status
+    {
+      assets: URI.parse(ENV.fetch('ASSET_HOST', 'https://CloudFront')).host || 'CloudFront',
+      storage: Rails.application.config.active_storage.service.to_s,
+      edge: 'Cloudflare → CloudFront',
+      cache_control: '1 year / immutable assets',
+    }
+  end
+
+  def integration_status
+    {
+      new_relic: ENV['NEW_RELIC_USER_API_KEY'].present? && ENV['NEW_RELIC_ACCOUNT_ID'].present?,
+      circleci_insights: ENV['CIRCLECI_TOKEN'].present?,
+    }
   end
 
   def asset_inventory

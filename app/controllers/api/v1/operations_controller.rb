@@ -9,7 +9,7 @@ class Api::V1::OperationsController < ApiController
   private
 
   def circleci_insights
-    token = ENV['CIRCLECI_TOKEN']
+    token = ENV.fetch('CIRCLECI_TOKEN', nil)
     return disconnected('CIRCLECI_TOKEN is not configured') if token.blank?
 
     uri = URI('https://circleci.com/api/v2/insights/gh/Lordnibbler/railsblog/workflows/build_test_deploy')
@@ -19,26 +19,33 @@ class Api::V1::OperationsController < ApiController
       { duration: run['duration'], status: run['status'], created_at: run['created_at'], branch: run['branch'] }
     end
     { connected: true, runs: runs }
-  rescue StandardError => error
-    unavailable(error)
+  rescue StandardError => e
+    unavailable(e)
   end
 
   def new_relic_insights
-    api_key = ENV['NEW_RELIC_USER_API_KEY']
-    account_id = ENV['NEW_RELIC_ACCOUNT_ID']
+    api_key = ENV.fetch('NEW_RELIC_USER_API_KEY', nil)
+    account_id = ENV.fetch('NEW_RELIC_ACCOUNT_ID', nil)
     return disconnected('NerdGraph credentials are not configured') if api_key.blank? || account_id.blank?
 
     app_name = ENV.fetch('NEW_RELIC_APP_NAME', 'benradler.com').gsub("'", "''")
-    nrql = "SELECT average(duration) * 1000 AS response_ms, percentile(duration, 95) * 1000 AS p95_ms, rate(count(*), 1 minute) AS rpm, percentage(count(*), WHERE error IS true) AS error_rate FROM Transaction WHERE appName = '#{app_name}' SINCE 30 minutes ago"
+    nrql = <<~NRQL.squish
+      SELECT average(duration) * 1000 AS response_ms,
+        percentile(duration, 95) * 1000 AS p95_ms,
+        rate(count(*), 1 minute) AS rpm,
+        percentage(count(*), WHERE error IS true) AS error_rate
+      FROM Transaction WHERE appName = '#{app_name}' SINCE 30 minutes ago
+    NRQL
     query = 'query($account: Int!, $nrql: Nrql!) { actor { account(id: $account) { nrql(query: $nrql) { results } } } }'
-    payload = request_json(URI('https://api.newrelic.com/graphql'), { 'API-Key' => api_key }, { query: query, variables: { account: account_id.to_i, nrql: nrql } })
+    payload = request_json(URI('https://api.newrelic.com/graphql'), { 'API-Key' => api_key },
+                           { query: query, variables: { account: account_id.to_i, nrql: nrql } })
     errors = payload['errors']
-    raise errors.map { |error| error['message'] }.join(', ') if errors.present?
+    raise errors.pluck('message').join(', ') if errors.present?
 
     metrics = payload.dig('data', 'actor', 'account', 'nrql', 'results')&.first || {}
     { connected: true, metrics: metrics }
-  rescue StandardError => error
-    unavailable(error)
+  rescue StandardError => e
+    unavailable(e)
   end
 
   def request_json(uri, headers, body = nil)
