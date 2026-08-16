@@ -526,6 +526,16 @@ const setupCompositionStudio = () => {
     juxtaposition: ['Two elements create a third idea', 'The relationship between two subjects or objects creates meaning through contrast, resemblance, scale, gesture, or coincidence.'],
     color: ['Color organizes attention', 'A specific repeated, complementary, or isolated color relationship carries visual weight and connects otherwise separate parts of the frame.'],
     diagonal: ['A diagonal energizes the frame', 'A strong slanted edge divides the image or creates tension and movement without necessarily directing attention toward one subject.'],
+    perspective: ['Perspective constructs depth', 'Converging edges, foreshortening, viewpoint, or relative size make the eye travel into the scene and establish a strong sense of spatial depth.'],
+    abstraction: ['Form overtakes subject', 'Cropping, geometry, texture, shadow, or an unusual viewpoint makes the arrangement of forms more immediate than literal subject recognition.'],
+    motion_blur: ['Blur carries movement', 'Directional subject or camera blur turns elapsed movement into a visible path and gives the still frame a sense of velocity.'],
+    light: ['Light establishes the subject', 'A specific pool, shaft, edge, or pattern of light and shadow organizes attention rather than merely providing exposure.'],
+    silhouette: ['Outline becomes the subject', 'A dark figure or object separates cleanly from a brighter field, making shape and gesture the photograph’s primary visual language.'],
+    reflection: ['A reflection doubles the scene', 'A reflected form creates visual dialogue, ambiguity, symmetry, or layering with its source in the physical scene.'],
+    scale: ['Size establishes hierarchy', 'A strong size relationship between identifiable subjects communicates distance, environmental scale, vulnerability, humor, or visual dominance.'],
+    occlusion: ['Concealment creates a reveal', 'Overlap or partial concealment makes the eye reconstruct the subject, creating depth, ambiguity, suspense, or a layered visual discovery.'],
+    balance: ['Unequal weight finds equilibrium', 'Different visual masses counterweight one another across the frame without depending on symmetry or equal spacing.'],
+    low_high_angle: ['Viewpoint reshapes the scene', 'An unusually low or elevated camera position changes apparent scale, geometry, and the subject’s relationship to the surrounding environment.'],
   })[technique];
   const modelTechnique = () => features.modelTechniques?.find((item) => item.key === technique);
   const activeTechniqueCopy = () => { const reading = modelTechnique(); return reading ? [reading.title, reading.explanation] : techniqueCopy(); };
@@ -544,13 +554,16 @@ const setupCompositionStudio = () => {
     if (technique === 'symmetry' && techniquePoints.length === 2) root.querySelector('[data-composition-symmetry]').setAttribute('d', pointPath(techniquePoints));
     if (technique === 'juxtaposition') { const group = root.querySelector('[data-overlay="juxtaposition"]'); group.querySelectorAll('circle').forEach((circle, index) => { const point = techniquePoints[index]; circle.hidden = !point; if (point) { circle.setAttribute('cx', point.x); circle.setAttribute('cy', point.y); } }); if (techniquePoints.length === 2) group.querySelector('path').setAttribute('d', pointPath(techniquePoints)); }
     if (technique === 'color') root.querySelectorAll('[data-overlay="color"] circle').forEach((circle, index) => { const point = techniquePoints[index]; circle.hidden = !point; if (point) { circle.setAttribute('cx', point.x); circle.setAttribute('cy', point.y); } });
+    if (['perspective', 'motion_blur', 'low_high_angle'].includes(technique) && techniquePoints.length > 1) root.querySelector(`[data-overlay="${technique}"] path`).setAttribute('d', pointPath(techniquePoints));
+    if (['abstraction', 'light', 'silhouette', 'occlusion'].includes(technique) && region) { const rect = root.querySelector(`[data-overlay="${technique}"] rect`); ['x', 'y', 'width', 'height'].forEach((attribute) => rect.setAttribute(attribute, region[attribute])); }
+    if (['reflection', 'scale', 'balance'].includes(technique)) { const group = root.querySelector(`[data-overlay="${technique}"]`); group.querySelectorAll('circle').forEach((circle, index) => { const point = techniquePoints[index]; circle.hidden = !point; if (point) { circle.setAttribute('cx', point.x); circle.setAttribute('cy', point.y); } }); if (techniquePoints.length > 1) group.querySelector('path').setAttribute('d', pointPath(techniquePoints)); }
     const focus = techniquePoints[techniquePoints.length - 1] || (region ? { x: region.x + region.width / 2, y: region.y + region.height / 2 } : null);
     if (focus) { features.saliencyX = focus.x; features.saliencyY = focus.y; root.style.setProperty('--composition-focus-x', `${focus.x}%`); root.style.setProperty('--composition-focus-y', `${focus.y}%`); root.querySelector('[data-composition-focus]').setAttribute('cx', focus.x); root.querySelector('[data-composition-focus]').setAttribute('cy', focus.y); }
   };
   const applyTechnique = () => {
     applyModelGeometry();
     const overlayCanvas = root.querySelector('.composition-overlay'); root.querySelectorAll('[data-overlay]').forEach((overlay) => overlay.classList.toggle('is-active', overlay.dataset.overlay === technique)); overlayCanvas.classList.remove('is-animating'); void overlayCanvas.getBoundingClientRect(); overlayCanvas.classList.add('is-animating'); root.querySelectorAll('[data-technique]').forEach((button) => { const active = button.dataset.technique === technique; button.classList.toggle('is-active', active); button.setAttribute('aria-selected', active.toString()); });
-    const [title, copy] = activeTechniqueCopy(); root.querySelector('[data-composition-title]').textContent = title; root.querySelector('[data-composition-copy]').textContent = copy; root.querySelector('[data-composition-stage-label]').textContent = technique.replace('-', ' ');
+    const [title, copy] = activeTechniqueCopy(); root.querySelector('[data-composition-title]').textContent = title; root.querySelector('[data-composition-copy]').textContent = copy; root.querySelector('[data-composition-stage-label]').textContent = technique.replace(/[_-]/g, ' ');
   };
   const selectRelevantTechniques = () => {
     const ranked = Object.entries(features.compositionScores || {}).sort((left, right) => right[1] - left[1]); const relevant = ranked.filter(([, score], index) => index < 3 && score >= .55).map(([name]) => name);

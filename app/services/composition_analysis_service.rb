@@ -5,11 +5,12 @@ require 'net/http'
 # wait on, or receive credentials for, the external API.
 # rubocop:disable Metrics/ClassLength
 class CompositionAnalysisService
-  VERSION = '2026-08-14-v2'.freeze
+  VERSION = '2026-08-15-v3'.freeze
   ENDPOINT = URI('https://api.openai.com/v1/responses')
   TECHNIQUES = %w[
     thirds leading triangle odds layers space spiral pattern density
-    frame symmetry juxtaposition color diagonal
+    frame symmetry juxtaposition color diagonal perspective abstraction
+    motion_blur light silhouette reflection scale occlusion balance low_high_angle
   ].freeze
 
   class << self
@@ -122,8 +123,18 @@ class CompositionAnalysisService
       - juxtaposition: two visibly distinct subjects, objects, signs, or ideas gain meaning from their contrast, resemblance, or accidental relationship.
       - color: a specific complementary, repeated, or isolated color relationship organizes attention and is central to the composition—not merely because the photograph is colorful.
       - diagonal: one or more strong diagonal forms create energy, division, or tension across the frame. Use leading instead when the form's primary job is directing attention to a subject.
+      - perspective: converging lines, foreshortening, viewpoint, or exaggerated relative size creates spatial depth or directs attention. Do not use merely because the scene has depth.
+      - abstraction: cropping, geometry, texture, shadow, or an unusual viewpoint makes formal relationships more important than immediate literal subject recognition.
+      - motion_blur: clearly directional subject or camera blur communicates movement and organizes visual flow. Ordinary softness, missed focus, or shallow depth of field does not qualify.
+      - light: a specific pool, shaft, edge, or pattern of light and shadow establishes the subject or controls the eye's path. Generic good exposure does not qualify.
+      - silhouette: a distinctly outlined dark subject against a brighter field creates the image's primary shape, gesture, or separation.
+      - reflection: a visible reflected subject materially creates doubling, ambiguity, layering, symmetry, or visual dialogue. Shiny surfaces without a meaningful reflected form do not qualify.
+      - scale: a strong size relationship between identifiable subjects establishes hierarchy, distance, humor, vulnerability, or environmental scale.
+      - occlusion: intentional overlap or partial concealment of a subject creates depth, suspense, ambiguity, or a visual reveal.
+      - balance: unequal visual masses clearly counterweight one another across the frame without relying on symmetry or a thirds placement alone.
+      - low_high_angle: an unusually low or elevated camera position materially changes scale, geometry, or the subject's relationship to the environment. An ordinary eye-level view does not qualify.
 
-      Every classification must be unique to this exact image: name its concrete visible subjects, objects, colors, gestures, or structures. Never return generic copy that could describe another photograph. Every selected technique must also produce a useful, image-specific overlay: provide at least one point on the actual evidence, plus a subtle bounding region when it helps. If you cannot place an honest overlay, omit the technique. Coordinates use percentages from the image's top-left, from 0 to 100. For leading lines, diagonals, spirals, patterns, and layered planes, order multiple points along the visible path or boundary. For triangle use exactly 3 points; for odds use exactly 3 or 5 subject centers; for juxtaposition use the two contrasted subject centers; for symmetry use two points defining the axis. A region may be null only when the points alone clearly explain the classification. Do not select a weak technique merely to create variety.
+      Every classification must be unique to this exact image: name its concrete visible subjects, objects, colors, gestures, or structures. Never return generic copy that could describe another photograph. Every selected technique must also produce a useful, image-specific overlay: provide at least one point on the actual evidence, plus a subtle bounding region when it helps. If you cannot place an honest overlay, omit the technique. Coordinates use percentages from the image's top-left, from 0 to 100. For leading lines, diagonals, spirals, patterns, layered planes, perspective, motion blur, and low/high angle, order multiple points along the visible path or boundary. For triangle use exactly 3 points; for odds use exactly 3 or 5 subject centers; for juxtaposition, reflection, scale, and balance use the two compared subject centers; for symmetry use two points defining the axis. Abstraction, light, silhouette, and occlusion should include a tight region around the relevant visible evidence. A region may be null only when the points alone clearly explain the classification. Do not select a weak technique merely to create variety.
 
       Photograph title: #{photo.photo_data['title'].presence || 'Untitled'}
       Photograph description: #{photo.photo_data['description'].presence || 'None'}

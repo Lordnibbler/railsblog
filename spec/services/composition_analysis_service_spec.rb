@@ -66,7 +66,8 @@ describe CompositionAnalysisService do
       'text', 'format', 'schema', 'properties', 'techniques', 'items', 'properties', 'key', 'enum',
     )
     expect(technique_enum).to include(
-      'frame', 'symmetry', 'juxtaposition', 'color', 'diagonal',
+      'frame', 'symmetry', 'juxtaposition', 'color', 'diagonal', 'perspective', 'abstraction', 'motion_blur',
+      'light', 'silhouette', 'reflection', 'scale', 'occlusion', 'balance', 'low_high_angle',
     )
     expect(request['Authorization']).to eq('Bearer test-key')
   end

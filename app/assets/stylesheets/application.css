@@ -314,6 +314,10 @@ body {
     .composition-overlay [data-overlay="space"] rect { fill: rgb(116 87 222 / .18); stroke: rgb(218 210 255 / .9); stroke-width: 1.35; stroke-dasharray: 7 5; vector-effect: non-scaling-stroke; }
     .composition-overlay [data-overlay="density"] rect { fill: rgb(249 231 28 / .035); stroke: #fff06a; stroke-width: 1.4; vector-effect: non-scaling-stroke; }
     .composition-overlay [data-overlay="frame"] rect, .composition-overlay [data-overlay="color"] rect { fill: rgb(249 231 28 / .035); stroke: rgb(255 240 106 / .95); stroke-width: 1.4; stroke-dasharray: 7 5; vector-effect: non-scaling-stroke; }
+    .composition-overlay [data-overlay="abstraction"] rect, .composition-overlay [data-overlay="light"] rect, .composition-overlay [data-overlay="silhouette"] rect, .composition-overlay [data-overlay="occlusion"] rect { fill: rgb(249 231 28 / .05); stroke: rgb(255 240 106 / .95); stroke-width: 1.4; stroke-dasharray: 7 5; vector-effect: non-scaling-stroke; }
+    .composition-overlay [data-overlay="motion_blur"] path { stroke: rgb(107 230 216 / .92); }
+    .composition-overlay [data-overlay="perspective"] path, .composition-overlay [data-overlay="low_high_angle"] path { stroke: rgb(255 114 180 / .9); }
+    .composition-overlay [data-overlay="silhouette"] rect { fill: rgb(10 7 25 / .18); stroke: rgb(255 255 255 / .82); }
     .composition-overlay [data-overlay="symmetry"] path { stroke: rgb(107 230 216 / .9); stroke-dasharray: 1 .75; }
     .composition-overlay [data-overlay="juxtaposition"] path { stroke: rgb(255 255 255 / .55); }
     .composition-overlay [data-overlay="color"] circle:first-of-type { fill: rgb(255 91 156 / .12); stroke: #ff5b9c; }

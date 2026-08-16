@@ -224,7 +224,7 @@ FILE=/tmp/composition-analyses.json rails flickr:import_composition_analyses
 
 The importer matches rows by Flickr ID, rejects missing or duplicate IDs and modified payloads, and updates only composition-analysis columns in a transaction. It never invokes OpenAI.
 
-Each persisted reading is bound to its Flickr ID and current analysis version. Its classifications receive image-scoped IDs and contain photograph-specific evidence plus normalized overlay geometry. The rubric currently covers fourteen techniques, including framing, symmetry, juxtaposition, color relationships, and dynamic diagonals in addition to the studio's original nine.
+Each persisted reading is bound to its Flickr ID and current analysis version. Its classifications receive image-scoped IDs and contain photograph-specific evidence plus normalized overlay geometry. The rubric currently covers twenty-four techniques, including perspective, abstraction, motion blur, light and shadow, silhouette, reflection, scale, occlusion, asymmetrical balance, and low/high camera angles. Existing stored readings are preserved when the rubric changes; they are only replaced by an explicit forced analysis run.
 
 
 ### CDN
