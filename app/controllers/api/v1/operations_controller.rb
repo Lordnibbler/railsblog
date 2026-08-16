@@ -16,7 +16,11 @@ class Api::V1::OperationsController < ApiController
     uri.query = URI.encode_www_form(branch: ENV.fetch('CIRCLECI_BRANCH', 'master'))
     payload = request_json(uri, { 'Circle-Token' => token })
     runs = Array(payload['items']).first(12).map do |run|
-      { duration: run['duration'], status: run['status'], created_at: run['created_at'], branch: run['branch'] }
+      {
+        id: run['id'], duration: run['duration'], status: run['status'],
+        created_at: run['created_at'], stopped_at: run['stopped_at'],
+        branch: run['branch'], credits_used: run['credits_used'],
+      }
     end
     { connected: true, runs: runs }
   rescue StandardError => e

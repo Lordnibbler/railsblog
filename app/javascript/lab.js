@@ -586,10 +586,11 @@ const setupCompositionStudio = () => {
 const setupSiteControlRoom = () => {
   const root = document.querySelector('[data-control-room]'); if (!root) return;
   let status; try { status = JSON.parse(root.dataset.status || '{}'); } catch (_error) { status = {}; }
-  const startedAt = Date.now(); let refreshedAt = Date.now(); const repository = 'Lordnibbler/railsblog';
+  let refreshedAt = Date.now(); const repository = 'Lordnibbler/railsblog';
   const escapeHtml = (value) => String(value).replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character]);
   const clock = root.querySelector('[data-control-clock]'); const refreshAge = root.querySelector('[data-control-refresh]');
-  const updateClock = () => { const elapsed = Math.floor((Date.now() - startedAt) / 1000); clock.textContent = `${String(Math.floor(elapsed / 3600)).padStart(2, '0')}:${String(Math.floor(elapsed % 3600 / 60)).padStart(2, '0')}:${String(elapsed % 60).padStart(2, '0')}`; const age = Math.floor((Date.now() - refreshedAt) / 1000); refreshAge.textContent = age < 5 ? 'now' : `${age}s ago`; };
+  const releaseCreatedAt = Date.parse(clock.dataset.releaseCreatedAt || '');
+  const updateClock = () => { const elapsed = Number.isFinite(releaseCreatedAt) ? Math.max(0, Math.floor((Date.now() - releaseCreatedAt) / 1000)) : null; clock.textContent = elapsed === null ? 'metadata unavailable' : `${Math.floor(elapsed / 86400)}d ${String(Math.floor(elapsed % 86400 / 3600)).padStart(2, '0')}h ${String(Math.floor(elapsed % 3600 / 60)).padStart(2, '0')}m`; const age = Math.floor((Date.now() - refreshedAt) / 1000); refreshAge.textContent = age < 5 ? 'now' : `${age}s ago`; };
   setInterval(updateClock, 1000); updateClock();
 
   const formatBytes = (bytes) => { if (!bytes) return '0 KB'; const units = ['B', 'KB', 'MB', 'GB']; const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1); return `${(bytes / 1024 ** index).toFixed(index > 1 ? 1 : 0)} ${units[index]}`; };
@@ -608,34 +609,31 @@ const setupSiteControlRoom = () => {
   };
 
   const refreshProviderTelemetry = async () => {
-    const circleState = root.querySelector('[data-circleci-state]'); const circleSummary = root.querySelector('[data-circleci-summary]'); const circleRuns = root.querySelector('[data-circleci-runs]'); const newRelicState = root.querySelector('[data-new-relic-state]');
+    const circleState = root.querySelector('[data-circleci-state]'); const circleSummary = root.querySelector('[data-circleci-summary]'); const circleRuns = root.querySelector('[data-circleci-runs]'); const newRelicState = root.querySelector('[data-new-relic-state]'); const deployments = root.querySelector('[data-deploy-feed]');
     try {
       const response = await fetch('/api/v1/operations'); if (!response.ok) throw new Error(`Telemetry returned ${response.status}`); const telemetry = await response.json();
       if (telemetry.circleci?.connected) {
         const runs = telemetry.circleci.runs || []; const durations = runs.map((run) => Number(run.duration)).filter(Number.isFinite); const average = durations.length ? durations.reduce((sum, duration) => sum + duration, 0) / durations.length : 0; const maximum = Math.max(...durations, 1);
         circleState.textContent = durations.length ? `${Math.round(average)} sec average` : 'Connected · no recent runs'; circleSummary.textContent = `${runs.length} recent workflow runs`;
         circleRuns.replaceChildren(...runs.slice().reverse().map((run) => { const bar = document.createElement('i'); bar.style.height = `${Math.max(8, Number(run.duration || 0) / maximum * 100)}%`; bar.className = `is-${run.status || 'unknown'}`; bar.title = `${run.status || 'unknown'} · ${Math.round(run.duration || 0)} sec`; return bar; }));
-      } else { circleState.textContent = telemetry.circleci?.state === 'unavailable' ? 'Temporarily unavailable' : 'Token not configured'; circleSummary.textContent = telemetry.circleci?.reason || 'Server-side integration disconnected'; circleRuns.replaceChildren(); }
+        const successfulDeploys = runs.filter((run) => run.status === 'success').slice(0, 4);
+        deployments.innerHTML = successfulDeploys.length ? successfulDeploys.map((run) => { const deployedAt = new Date(run.stopped_at || run.created_at); const date = Number.isNaN(deployedAt.valueOf()) ? 'Time unavailable' : deployedAt.toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }); const details = [`${Math.round(run.duration || 0)} sec`, run.branch || 'default branch']; if (Number.isFinite(Number(run.credits_used))) details.push(`${run.credits_used} credits`); return `<a href="https://app.circleci.com/pipelines/github/${repository}" target="_blank" rel="noopener"><i class="bx bx-check-circle"></i><span><b>Production deploy</b><small>${escapeHtml(date)} · ${escapeHtml(details.join(' · '))}</small></span><strong>${escapeHtml(String(run.id || '').slice(0, 8))}</strong></a>`; }).join('') : '<div class="control-unavailable"><i class="bx bx-history"></i><span>No successful deployments found</span><small>CircleCI returned no successful workflow runs for this branch.</small></div>';
+      } else { circleState.textContent = telemetry.circleci?.state === 'unavailable' ? 'Temporarily unavailable' : 'Token not configured'; circleSummary.textContent = telemetry.circleci?.reason || 'Server-side integration disconnected'; circleRuns.replaceChildren(); deployments.innerHTML = '<div class="control-unavailable"><i class="bx bx-lock-alt"></i><span>CircleCI deployment history unavailable</span><small>Configure the server-side CircleCI token to load releases.</small></div>'; }
       if (telemetry.new_relic?.connected) {
         const metrics = telemetry.new_relic.metrics || {}; newRelicState.textContent = `${Math.round(metrics.response_ms || 0)} ms average`;
         root.querySelector('[data-new-relic-browser]').textContent = `P95 ${Math.round(metrics.p95_ms || 0)} ms · ${Number(metrics.rpm || 0).toFixed(1)} rpm · ${Number(metrics.error_rate || 0).toFixed(2)}% errors`;
       } else if (!status.integrations?.new_relic) { newRelicState.textContent = 'Not configured'; }
-    } catch (_error) { circleState.textContent = 'Telemetry unavailable'; circleSummary.textContent = 'The site remains operational; provider history could not be loaded.'; }
+    } catch (_error) { circleState.textContent = 'Telemetry unavailable'; circleSummary.textContent = 'The site remains operational; provider history could not be loaded.'; deployments.innerHTML = '<div class="control-unavailable"><i class="bx bx-cloud-off"></i><span>CircleCI deployment history unavailable</span><small>The provider could not be reached.</small></div>'; }
   };
 
   const githubRequest = async (path) => { const response = await fetch(`https://api.github.com/repos/${repository}${path}`, { headers: { Accept: 'application/vnd.github+json' } }); if (!response.ok) throw new Error(`GitHub returned ${response.status}`); return response.json(); };
   const refreshGithub = async () => {
-    const feed = root.querySelector('[data-github-feed]'); const deployments = root.querySelector('[data-deploy-feed]');
+    const feed = root.querySelector('[data-github-feed]');
     try {
       const commits = await githubRequest('/commits?per_page=5');
       feed.replaceChildren(...commits.map((commit) => { const item = document.createElement('a'); item.href = commit.html_url; item.target = '_blank'; item.rel = 'noopener'; item.innerHTML = `<i class="bx bx-git-commit"></i><div><strong>${escapeHtml(commit.commit.message.split('\n')[0])}</strong><span>${escapeHtml(commit.sha.slice(0, 7))} · ${escapeHtml(new Date(commit.commit.author.date).toLocaleDateString())}</span></div>`; return item; }));
       const combined = await githubRequest(`/commits/${commits[0].sha}/status`); const buildState = document.createElement('div'); buildState.className = `build-state build-state-${combined.state}`; buildState.innerHTML = `<i></i><span>Latest commit status</span><strong>${combined.state}</strong>`; feed.prepend(buildState);
     } catch (error) { feed.innerHTML = `<div class="control-unavailable"><i class="bx bx-cloud-off"></i><span>Public GitHub activity unavailable</span><small>${escapeHtml(error.message)}</small></div>`; }
-    try {
-      const records = await githubRequest('/deployments?per_page=4');
-      if (!records.length) { deployments.innerHTML = '<div class="control-unavailable"><i class="bx bx-lock-alt"></i><span>Heroku deployment history is private</span><small>Current release metadata remains visible above.</small></div>'; }
-      else deployments.innerHTML = records.map((record) => `<a href="${escapeHtml(record.creator.html_url)}" target="_blank" rel="noopener"><i class="bx bx-check-circle"></i><span>${escapeHtml(record.environment || 'production')}</span><strong>${escapeHtml(record.sha.slice(0, 7))}</strong></a>`).join('');
-    } catch (_error) { deployments.innerHTML = '<div class="control-unavailable"><i class="bx bx-lock-alt"></i><span>Deployment history unavailable</span><small>No privileged API credentials are exposed.</small></div>'; }
     refreshedAt = Date.now(); updateClock();
   };
   const refreshAll = () => { refreshBrowserPerformance(); refreshProviderTelemetry(); refreshGithub(); };

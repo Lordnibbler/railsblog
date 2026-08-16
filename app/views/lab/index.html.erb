@@ -24,7 +24,7 @@
   <section id="simulated-rides" class="lab-rides section-divider">
     <div class="container py-16 md:py-24">
       <div class="lab-experiment-heading">
-        <div><p class="lab-kicker">Experiment 003 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
+        <div><p class="lab-kicker">Experiment 002 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
         <p class="lab-deck">I helped engineer and create SimulatedRides at Lyft to load-test its two-sided marketplace at massive scale. This interactive homage sends probabilistic riders and drivers through ramp, soak, and recovery. <a class="lab-inline-link" href="https://eng.lyft.com/simulatedrides-how-lyft-uses-load-testing-to-ensure-reliable-service-during-peak-events-644dcb654454" target="_blank" rel="noopener">Read the Lyft Engineering article I co-authored <i class="bx bx-link-external"></i></a></p>
       </div>
       <div class="rides-console glass-panel" data-rides-simulation>
@@ -259,9 +259,9 @@
   <% site_control_room_experiment = capture do %>
   <section id="site-control-room" class="control-room-section section-divider">
     <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 002 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 003 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
       <div class="control-room glass-panel" data-control-room data-status="<%= json_escape(@site_status.to_json) %>">
-        <header class="control-room-header"><div class="control-room-live"><i></i><span>System online</span><strong data-control-clock>00:00:00</strong></div><div><span>PUBLIC TELEMETRY / SECRETS REDACTED</span></div></header>
+        <header class="control-room-header"><div class="control-room-live"><i></i><span>Since deploy</span><strong data-control-clock data-release-created-at="<%= @site_status.dig(:release, :created_at) %>">—</strong></div><div><span>PUBLIC TELEMETRY / SECRETS REDACTED</span></div></header>
         <div class="control-room-vitals">
           <article><span>Application</span><strong>Rails <%= @site_status.dig(:runtime, :rails) %></strong><small>Ruby <%= @site_status.dig(:runtime, :ruby) %> · <%= @site_status.dig(:runtime, :environment) %></small></article>
           <article><span>Release</span><strong><%= @site_status.dig(:release, :version) %></strong><small>Revision <%= @site_status.dig(:release, :revision) %></small></article>
@@ -277,6 +277,7 @@
           <article class="control-module pipeline-module">
             <div class="control-module-heading"><div><span>Image pipeline</span><strong>Flickr to browser</strong></div><i class="bx bx-image"></i></div>
             <ol class="pipeline-flow"><li><b>01</b><span>Scheduled Flickr sync</span><i>Daily</i></li><li><b>02</b><span>Normalize metadata</span><i>Service</i></li><li><b>03</b><span>Atomic PostgreSQL swap</span><i>Transaction</i></li><li><b>04</b><span>Seeded pagination</span><i>Rails</i></li><li><b>05</b><span>Lazy image delivery</span><i>CDN</i></li></ol>
+            <div class="pipeline-pulse" aria-hidden="true"><i></i><i></i><i></i><span>metadata</span><span>pixels</span></div>
           </article>
           <article class="control-module performance-module">
             <div class="control-module-heading"><div><span>Performance</span><strong>Live delivery telemetry</strong></div><i class="bx bx-tachometer"></i></div>
@@ -295,7 +296,7 @@
           </article>
           <article class="control-module deploy-module">
             <div class="control-module-heading"><div><span>Delivery history</span><strong>Deployments & build</strong></div><i class="bx bx-rocket"></i></div>
-            <div class="deploy-current"><span>Current release</span><strong><%= @site_status.dig(:release, :version) %></strong><p><%= @site_status.dig(:release, :created_at) || 'Release timestamp available on Heroku' %></p></div><div class="deploy-feed" data-deploy-feed><span>Loading public deployment records…</span></div>
+            <div class="deploy-current"><span>Current release</span><strong><%= @site_status.dig(:release, :version) %></strong><p><%= @site_status.dig(:release, :created_at) || 'Release timestamp available on Heroku' %></p></div><div class="deploy-feed" data-deploy-feed><span>Loading CircleCI deployment records…</span></div>
           </article>
         </div>
         <footer class="control-room-footer"><span>Last browser refresh <strong data-control-refresh>now</strong></span><button type="button" data-control-refresh-button><i class="bx bx-refresh"></i> Refresh public signals</button></footer>
@@ -305,8 +306,8 @@
   <% end %>
 
   <%= composition_studio_experiment %>
-  <%= site_control_room_experiment %>
   <%= simulated_city_experiment %>
+  <%= site_control_room_experiment %>
 
   <section class="lab-cta" data-navigation-contrast="light">
     <div class="container py-20 md:py-28 text-center">

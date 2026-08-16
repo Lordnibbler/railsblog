@@ -145,6 +145,32 @@ heroku authorizations:create
 
 and set at <https://app.circleci.com/settings/project/github/Lordnibbler/railsblog/environment-variables>.
 
+### Lab operations telemetry
+
+The Site Control Room works without provider credentials, but its New Relic and CircleCI panels need read-only server-side API credentials for live production data. Configure them as Heroku config vars; they are consumed by Rails and are never sent to the browser:
+
+```shell
+heroku config:set \
+  NEW_RELIC_LICENSE_KEY=your_ingest_license_key \
+  NEW_RELIC_USER_API_KEY=your_user_api_key \
+  NEW_RELIC_ACCOUNT_ID=your_numeric_account_id \
+  NEW_RELIC_APP_NAME=benradler.com \
+  CIRCLECI_TOKEN=your_circleci_personal_api_token \
+  CIRCLECI_BRANCH=master \
+  --app benradler
+```
+
+`NEW_RELIC_LICENSE_KEY` activates the installed Ruby APM agent. The user API key and account ID let the control-room endpoint query NerdGraph for the last 30 minutes of response time, throughput, and errors. `NEW_RELIC_APP_NAME` must match the application name reported by `config/newrelic.yml`. `CIRCLECI_TOKEN` must be able to read project insights; the panel queries the `build_test_deploy` workflow for the configured branch.
+
+Once those config vars are present and a new dyno is running, both panels load automatically in production. Enable Heroku runtime dyno metadata so the “Since deploy” clock and current release timestamp receive `HEROKU_RELEASE_CREATED_AT`, `HEROKU_RELEASE_VERSION`, and `HEROKU_SLUG_COMMIT`:
+
+```shell
+heroku labs:enable runtime-dyno-metadata --app benradler
+heroku restart --app benradler
+```
+
+Recent deployment rows come from successful runs of CircleCI’s `build_test_deploy` workflow on the configured production branch. The panel shows the completion date and time, duration, branch, credits used, and CircleCI workflow ID. Because the deploy job is filtered to `master`, a successful workflow returned for that branch represents a successful production deployment. Current Heroku release metadata appears independently.
+
 ### Manual Deployments to Heroku via containers
 
 ```shell

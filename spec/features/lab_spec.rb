@@ -34,11 +34,13 @@ describe '/lab' do
     expect(page).to have_css('[data-perf-database]')
     expect(page).to have_css('[data-circleci-runs]')
     expect(page).to have_css('[data-new-relic-state]')
+    expect(page).to have_css('[data-control-clock][data-release-created-at]')
+    expect(page).to have_css('.pipeline-pulse', count: 1)
     expect(page).to have_no_content('Signal Garden')
     expect(page).to have_no_content('Element Fall')
     expect(page).to have_no_content('Life, Iterated')
-    expect(page.body.index('Composition Studio')).to be < page.body.index('Site Control Room')
-    expect(page.body.index('Site Control Room')).to be < page.body.index('Simulated City')
+    expect(page.body.index('Composition Studio')).to be < page.body.index('Simulated City')
+    expect(page.body.index('Simulated City')).to be < page.body.index('Site Control Room')
   end
 
   it 'links to the lab from the desktop and mobile navigation' do
