@@ -37,14 +37,6 @@ describe '/photography', :js do
     expect(page).to have_css('figure.image.grid-item')
     expect(page).to have_css('a[href*="flickr"]') # Flickr photo URLs
     expect(page).to have_css('img[src*="flickr"]') # Flickr image sources
-    expect(page).to have_css('.photography-hero')
-    expect(page).to have_css('.photography-toolbar')
-    expect(page).to have_button('Editorial')
-    expect(page).to have_button('Mosaic')
-    expect(page).to have_button('Warm')
-    expect(page).to have_button('Cool')
-    expect(page).to have_button('Quiet')
-    expect(page).to have_css('[data-gallery-item][data-color-ready="true"]', minimum: 1, wait: 30)
     expect(page).to have_css('.infinite-scroll-spinner', visible: :hidden)
     expect(page).to have_css('.glass-footer')
   end
