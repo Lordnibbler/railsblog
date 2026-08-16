@@ -172,7 +172,7 @@ describe '/admin' do
           expect(page).to have_css('a.default-button', text: 'Original')
           expect(page).to have_css('a.default-button', text: '320')
           expect(page).to have_css('a.default-button', text: '640')
-          expect(page).to have_css('a.default-button', text: '1280')
+          expect(page).to have_link('1280', visible: :all)
           expect(page).to have_css('a.danger-button', text: 'Delete')
           click_on 'Delete'
         end
@@ -184,7 +184,7 @@ describe '/admin' do
           expect(page).to have_no_css('a.default-button', text: 'Original')
           expect(page).to have_no_css('a.default-button', text: '320')
           expect(page).to have_no_css('a.default-button', text: '640')
-          expect(page).to have_no_css('a.default-button', text: '1280')
+          expect(page).to have_no_link('1280', visible: :all)
           expect(page).to have_no_css('a.danger-button', text: 'Delete')
         end
       end
