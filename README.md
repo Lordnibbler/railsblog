@@ -162,12 +162,42 @@ heroku config:set \
 
 `NEW_RELIC_LICENSE_KEY` activates the installed Ruby APM agent. The user API key and account ID let the control-room endpoint query NerdGraph for the last 30 minutes of response time, throughput, and errors. `NEW_RELIC_APP_NAME` must match the application name reported by `config/newrelic.yml`. `CIRCLECI_TOKEN` must be able to read project insights; the panel queries the `build_test_deploy` workflow for the configured branch.
 
-Once those config vars are present and a new dyno is running, both panels load automatically in production. Enable Heroku runtime dyno metadata so the “Since deploy” clock and current release timestamp receive `HEROKU_RELEASE_CREATED_AT`, `HEROKU_RELEASE_VERSION`, and `HEROKU_SLUG_COMMIT`:
+Create or retrieve the New Relic ingest license and user keys from the New Relic API Keys screen. The numeric account ID is the value shown by the account selector or the `account` query parameter in a New Relic URL. For example, `account=898521` means `NEW_RELIC_ACCOUNT_ID=898521`. A UUID shown beneath a user or access-management identity is not the account ID. The user key must belong to a user who can query the selected account through NerdGraph.
+
+CircleCI API v2 requires a personal API token. Create one under **User Settings → Personal API Tokens**, test it against `https://circleci.com/api/v2/me`, and store it on Heroku as `CIRCLECI_TOKEN`. Do not configure this particular token only as a CircleCI project environment variable: the production Rails process makes the Insights request, so the credential must be available to the Heroku app.
+
+Once those config vars are present and a new dyno is running, both panels load automatically in production. They can be verified without exposing their credentials:
+
+```shell
+curl -s https://benradler.com/api/v1/operations
+
+heroku config:get NEW_RELIC_APP_NAME --app benradler
+heroku config:get NEW_RELIC_ACCOUNT_ID --app benradler
+heroku config:get CIRCLECI_BRANCH --app benradler
+```
+
+The JSON response should report `connected: true` for both providers. New Relic metrics can initially be zero until the APM application has received traffic within the queried 30-minute window.
+
+Enable Heroku runtime dyno metadata so the “Since deploy” clock and current release timestamp receive `HEROKU_RELEASE_CREATED_AT`, `HEROKU_RELEASE_VERSION`, and build metadata:
 
 ```shell
 heroku labs:enable runtime-dyno-metadata --app benradler
-heroku restart --app benradler
+heroku labs:enable runtime-dyno-build-metadata --app benradler
 ```
+
+Heroku makes this metadata available on the next deployment. A restart alone might not populate it, so deploy a new release after enabling both Labs features. Do not manually set `HEROKU_*` variables.
+
+The control room intentionally displays “metadata unavailable” during local development because a local process has no Heroku release. If production still shows that message after a new deployment, inspect the release metadata from a one-off dyno:
+
+```shell
+heroku run 'printenv HEROKU_RELEASE_CREATED_AT' --app benradler
+heroku run 'printenv HEROKU_RELEASE_VERSION' --app benradler
+
+heroku labs:info runtime-dyno-metadata --app benradler
+heroku labs:info runtime-dyno-build-metadata --app benradler
+```
+
+`HEROKU_RELEASE_CREATED_AT` should return an ISO-8601 timestamp. If it is empty, confirm both Labs features are enabled and perform another deployment.
 
 Recent deployment rows come from successful runs of CircleCI’s `build_test_deploy` workflow on the configured production branch. The panel shows the completion date and time, duration, branch, credits used, and CircleCI workflow ID. Because the deploy job is filtered to `master`, a successful workflow returned for that branch represents a successful production deployment. Current Heroku release metadata appears independently.
 
