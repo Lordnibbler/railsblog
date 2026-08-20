@@ -55,7 +55,7 @@ module ApplicationHelper
   # @return [String] desktop navigation link for links that dont scroll the homepage when clicked
   #
   def desktop_navigation_link(name:, path:)
-    content_tag(:li, class: 'group pl-6') do
+    content_tag(:li, class: 'group pl-4 xl:pl-6') do
       link_to(
         name,
         path,
@@ -69,7 +69,7 @@ module ApplicationHelper
   # or link visitor pre-scrolled to the section
   #
   def scrolling_desktop_navigation_link(name:, path:)
-    content_tag(:li, class: 'group pl-6') do
+    content_tag(:li, class: 'group pl-4 xl:pl-6') do
       if request.path == '/'
         content_tag(
           :a,

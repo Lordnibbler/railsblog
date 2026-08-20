@@ -1,0 +1,38 @@
+<section class="home-lab section-divider" id="lab-preview" data-navigation-contrast="dark">
+    <div class="container py-16 md:py-24">
+        <div class="home-lab-layout">
+            <div class="home-lab-copy">
+                <span class="home-lab-kicker">Creative Engineering Lab / 03 Experiments</span>
+                <h2 class="font-header font-semibold uppercase">Where production systems become playable.</h2>
+                <p>
+                    Step inside three interactive experiments built from the same ideas that shaped my work at Lyft and Cruise: computer vision, simulation, scale, and production observability. Explore photographs as data, stress-test a city, or inspect how this site operates.
+                </p>
+                <div class="home-lab-tags" aria-label="Lab subjects">
+                    <span>Computer vision</span><span>Photography</span><span>Observability</span><span>Simulation</span>
+                </div>
+                <%= link_to lab_path, class: 'home-lab-button glass-button', aria: { label: 'Enter the Creative Engineering Lab' } do %>
+                    Enter the lab <i class="bx bx-right-arrow-alt" aria-hidden="true"></i>
+                <% end %>
+            </div>
+
+            <%= link_to lab_path, class: 'home-lab-gallery', aria: { label: 'Preview the Creative Engineering Lab experiments' } do %>
+                <figure class="home-lab-frame home-lab-frame-photo">
+                    <%= image_tag 'home/bg-hero.jpg', alt: "Ben Radler's photography inside the Composition Studio", loading: 'lazy' %>
+                    <div class="lab-photo-reticle" aria-hidden="true"><i></i><b></b></div>
+                    <figcaption><span>01</span><strong>Composition Studio</strong><small>Vision analysis as data</small></figcaption>
+                </figure>
+                <figure class="home-lab-frame home-lab-frame-city">
+                    <%= image_tag 'home/map.jpg', alt: 'A city map representing the Simulated City experiment', loading: 'lazy' %>
+                    <div class="lab-map-routes" aria-hidden="true"><i></i><i></i><i></i><b></b><b></b><b></b><b></b></div>
+                    <figcaption><span>02</span><strong>Simulated City</strong><small>Live city-scale load test</small></figcaption>
+                </figure>
+                <figure class="home-lab-frame home-lab-frame-signal">
+                    <%= image_tag 'home/bg-cta.jpg', alt: 'Operational signals representing the Site Control Room', loading: 'lazy' %>
+                    <div class="lab-signal-particles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+                    <figcaption><span>03</span><strong>Site Control Room</strong><small>Production systems exposed</small></figcaption>
+                </figure>
+                <span class="home-lab-gallery-hint">Open all experiments <i class="bx bx-up-arrow-alt"></i></span>
+            <% end %>
+        </div>
+    </div>
+</section>

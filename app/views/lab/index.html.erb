@@ -1,0 +1,329 @@
+<% set_meta_tags title: 'Creative Engineering Lab - Ben Radler',
+  description: 'Interactive browser experiments combining software engineering, generative art, motion, and play.' %>
+
+<main class="lab-page page-surface">
+  <section class="lab-hero" data-navigation-contrast="light">
+    <div class="lab-orb lab-orb-one" aria-hidden="true"></div>
+    <div class="lab-orb lab-orb-two" aria-hidden="true"></div>
+    <div class="container relative z-10 pt-36 pb-20 sm:pt-44 sm:pb-28">
+      <div class="lab-eyebrow"><span></span> Creative Engineering / 001</div>
+      <h1 class="lab-title font-header font-semibold text-white uppercase">
+        Ideas you can<br><span>step inside.</span>
+      </h1>
+      <div class="lab-intro">
+        <p>Interactive experiments where photography, computer vision, production systems, and large-scale simulation become something you can see and explore.</p>
+        <a href="#composition-studio" class="lab-jump-link">
+          Enter the first experiment <i class="bx bx-down-arrow-alt" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="lab-hero-grid" aria-hidden="true"></div>
+  </section>
+
+  <% simulated_city_experiment = capture do %>
+  <section id="simulated-rides" class="lab-rides section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading">
+        <div><p class="lab-kicker">Experiment 002 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
+        <p class="lab-deck">I helped engineer and create SimulatedRides at Lyft to load-test its two-sided marketplace at massive scale. This interactive homage sends probabilistic riders and drivers through ramp, soak, and recovery. <a class="lab-inline-link" href="https://eng.lyft.com/simulatedrides-how-lyft-uses-load-testing-to-ensure-reliable-service-during-peak-events-644dcb654454" target="_blank" rel="noopener">Read the Lyft Engineering article I co-authored <i class="bx bx-link-external"></i></a></p>
+      </div>
+      <div class="rides-console glass-panel" data-rides-simulation>
+        <div class="rides-map">
+          <div class="rides-map-tiles" data-rides-tiles aria-hidden="true"></div>
+          <canvas data-rides-canvas aria-label="Live rideshare load-test simulation"></canvas>
+          <div class="rides-phase"><span data-rides-status></span><strong data-rides-phase>Ready</strong><small>Test phase</small></div>
+          <div class="rides-legend"><span><i class="rider-dot"></i>Awaiting rider</span><span><i class="driver-dot"></i>Active driver</span><span class="rides-fleet-count"><b data-rides-fleet>0</b> vehicles</span></div>
+          <span class="rides-map-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></span>
+        </div>
+        <div class="rides-sidebar">
+          <div class="rides-header"><span>SIMULATION / PEAK_EVENT</span><strong data-rides-clock>00:00</strong></div>
+          <div class="rides-metrics">
+            <div><span>Requests / min</span><strong data-rides-metric="requests">0</strong></div>
+            <div><span>Active trips</span><strong data-rides-metric="trips">0</strong></div>
+            <div><span>P95 match</span><strong data-rides-metric="latency">—</strong></div>
+            <div><span>Success rate</span><strong data-rides-metric="success">100%</strong></div>
+            <div class="rides-cancellation-metric"><span>Cancellations</span><strong data-rides-metric="cancellations">0</strong><small data-rides-cancel-rate>0.0% of requests</small></div>
+          </div>
+          <label class="rides-slider"><span><span>Target load</span><output data-rides-output="load">65%</output></span><input type="range" min="20" max="100" value="65" data-rides-control="load"></label>
+          <label class="rides-slider"><span><span>Driver supply</span><output data-rides-output="supply">72%</output></span><input type="range" min="25" max="100" value="72" data-rides-control="supply"></label>
+          <label class="rides-slider"><span><span>Cancellation</span><output data-rides-output="cancel">8%</output></span><input type="range" min="0" max="30" value="8" data-rides-control="cancel"></label>
+          <div class="rides-presets"><button type="button" class="is-active" data-rides-preset="steady" aria-pressed="true">Steady</button><button type="button" data-rides-preset="concert" aria-pressed="false">Concert exit</button><button type="button" class="rides-overload-preset" data-rides-preset="overload" aria-pressed="false"><i class="bx bx-error"></i> Intentional overload</button></div>
+          <div class="rides-actions">
+            <button type="button" class="glass-button rides-run" data-rides-run><i class="bx bx-play"></i><span>Run load test</span></button>
+            <button type="button" class="rides-stop" data-rides-stop disabled><i class="bx bx-stop-circle"></i><span>Stop test</span></button>
+          </div>
+        </div>
+      </div>
+      <div class="service-load-panel glass-panel" data-service-load>
+        <div class="service-load-header">
+          <div><p>Downstream service telemetry</p><span>Synthetic requests generated by client actions</span></div>
+          <div class="service-load-total"><span>Total throughput</span><strong data-service-total>0 RPS</strong></div>
+        </div>
+        <div class="service-load-columns" aria-hidden="true"><span>Service</span><span>Request volume / 60 samples</span><span>RPS</span><span>P95</span><span>Health</span></div>
+        <div class="service-load-rows">
+          <% [['users', 'Users & identity'], ['pricing', 'Pricing'], ['rides', 'Rides'], ['dispatch', 'Dispatch / matching'], ['cancels', 'Cancels'], ['location', 'Location'], ['payments', 'Payments'], ['notifications', 'Notifications'], ['reviews', 'Reviews'], ['resources', 'Resource Manager']].each do |key, name| %>
+            <div class="service-load-row" data-service-key="<%= key %>">
+              <strong><i></i><%= name %></strong>
+              <canvas aria-label="<%= name %> request history"></canvas>
+              <output data-service-rps>0</output>
+              <output data-service-latency>—</output>
+              <span data-service-health>Nominal</span>
+            </div>
+          <% end %>
+        </div>
+        <div class="service-load-footnote">Modeled service fan-out based on client actions. Cancels receives traffic only when a rider cancels; Resource Manager receives traffic only as rider and driver resources are allocated or released.</div>
+      </div>
+      <div class="lab-notes">
+        <div class="lab-note"><span>01</span><div><h3>Probabilistic clients</h3><p>Riders request and cancel while drivers accept and complete trips according to configurable behaviors.</p></div></div>
+        <div class="lab-note"><span>02</span><div><h3>Ramp, soak, recover</h3><p>The scenario gradually injects demand, holds its target, then drains synthetic clients safely.</p></div></div>
+        <div class="lab-note"><span>03</span><div><h3>Observable outcomes</h3><p>Marketplace health emerges through throughput, match latency, active trips, and success rate.</p></div></div>
+      </div>
+    </div>
+  </section>
+  <% end %>
+
+  <% capture do %>
+  <section id="signal-garden" class="lab-experiment section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading">
+        <div>
+          <p class="lab-kicker">Experiment 002 / Generative Systems</p>
+          <h2 class="font-header font-semibold uppercase">Signal Garden</h2>
+        </div>
+        <p class="lab-deck">A living field of independent agents. Move through it, disturb its currents, and tune the system into something of your own.</p>
+      </div>
+
+      <div class="lab-canvas-shell glass-panel" data-signal-garden>
+        <div class="lab-canvas-toolbar">
+          <div class="lab-live-status"><span></span> Live simulation</div>
+          <div class="lab-canvas-actions">
+            <button type="button" data-lab-action="local"><i class="bx bx-current-location"></i><span>Use my location</span></button>
+            <select data-lab-mode aria-label="Local data source"><option value="weather">Live weather</option><option value="traffic">Modeled traffic</option></select>
+            <button type="button" data-lab-action="randomize" aria-label="Randomize the signal garden">
+              <i class="bx bx-shuffle" aria-hidden="true"></i> Randomize
+            </button>
+            <button type="button" data-lab-action="pause" aria-pressed="false">
+              <i class="bx bx-pause" aria-hidden="true"></i> <span>Pause</span>
+            </button>
+          </div>
+        </div>
+        <div class="lab-local-data" data-lab-local aria-live="polite"><span>DEMO SIGNAL</span><strong>Move through the field to shape it</strong></div>
+
+        <div class="lab-canvas-wrap">
+          <canvas data-lab-canvas aria-label="An interactive generative particle field"></canvas>
+          <p class="lab-canvas-hint"><i class="bx bx-pointer" aria-hidden="true"></i> Move or drag to bend the field</p>
+          <div class="lab-canvas-readout" aria-hidden="true">
+            <span data-lab-fps>60 FPS</span><span>WEB CANVAS</span>
+          </div>
+        </div>
+
+        <div class="lab-controls" aria-label="Signal Garden controls">
+          <label>
+            <span><span>Density</span><output data-output="density">72</output></span>
+            <input type="range" min="25" max="100" value="72" data-lab-control="density">
+          </label>
+          <label>
+            <span><span>Flow</span><output data-output="flow">58</output></span>
+            <input type="range" min="10" max="100" value="58" data-lab-control="flow">
+          </label>
+          <label>
+            <span><span>Trail</span><output data-output="trail">68</output></span>
+            <input type="range" min="5" max="95" value="68" data-lab-control="trail">
+          </label>
+          <div class="lab-palettes" aria-label="Color palette">
+            <span>Signal</span>
+            <button type="button" class="is-active" data-lab-palette="violet" aria-label="Violet signal" aria-pressed="true"></button>
+            <button type="button" data-lab-palette="solar" aria-label="Solar signal" aria-pressed="false"></button>
+            <button type="button" data-lab-palette="ocean" aria-label="Ocean signal" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="lab-notes">
+        <div class="lab-note">
+          <span>01</span>
+          <div><h3>Emergence over choreography</h3><p>Every particle follows a few small rules. Their collective movement creates the composition—no animation timeline required.</p></div>
+        </div>
+        <div class="lab-note">
+          <span>02</span>
+          <div><h3>Built for the browser</h3><p>A responsive Canvas renderer adapts its particle budget to the display while respecting reduced-motion preferences.</p></div>
+        </div>
+        <div class="lab-note">
+          <span>03</span>
+          <div><h3>You complete the system</h3><p>Pointer position becomes a force in the simulation, turning observation into collaboration.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="falling-sand" class="lab-sandbox section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading">
+        <div><p class="lab-kicker">Experiment 003 / Cellular materials</p><h2 class="font-header font-semibold uppercase">Element Fall</h2></div>
+        <p class="lab-deck">A pocket-sized falling-sand world. Paint matter into the field and watch simple local rules create dunes, dams, currents, and collapse.</p>
+      </div>
+      <div class="cellular-console glass-panel" data-sand-game>
+        <div class="cellular-toolbar">
+          <div class="lab-live-status"><span></span> Cellular simulation</div>
+          <div class="material-tools" role="toolbar" aria-label="Material brush">
+            <button type="button" class="is-active" data-sand-material="sand" aria-pressed="true"><i></i>Sand</button>
+            <button type="button" data-sand-material="water" aria-pressed="false"><i></i>Water</button>
+            <button type="button" data-sand-material="stone" aria-pressed="false"><i></i>Stone</button>
+            <button type="button" data-sand-material="erase" aria-pressed="false"><i></i>Erase</button>
+          </div>
+          <div class="lab-canvas-actions"><button type="button" data-sand-action="clear"><i class="bx bx-trash"></i>Clear</button><button type="button" data-sand-action="pause" aria-pressed="false"><i class="bx bx-pause"></i><span>Pause</span></button></div>
+        </div>
+        <div class="cellular-stage">
+          <canvas data-sand-canvas aria-label="Interactive falling sand material simulation"></canvas>
+          <p class="lab-canvas-hint"><i class="bx bx-pointer"></i> Draw or touch to add material</p>
+        </div>
+        <div class="cellular-footer"><label>Brush size <output data-sand-output>4</output><input type="range" min="1" max="10" value="4" data-sand-brush></label><span>SAND FALLS · WATER FLOWS · STONE HOLDS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="game-of-life" class="lab-life section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading">
+        <div><p class="lab-kicker">Experiment 004 / Cellular automata</p><h2 class="font-header font-semibold uppercase">Life, Iterated</h2></div>
+        <p class="lab-deck">Conway’s Game of Life needs no players—only a seed. Draw a few living cells and four rules turn them into oscillators, travelers, or beautiful noise.</p>
+      </div>
+      <div class="cellular-console life-console glass-panel" data-life-game>
+        <div class="cellular-toolbar">
+          <div class="lab-live-status"><span></span> Generation <strong data-life-generation>0</strong></div>
+          <div class="life-presets"><button type="button" data-life-preset="glider">Glider</button><button type="button" data-life-preset="pulsar">Pulsar</button><button type="button" data-life-preset="random">Random field</button></div>
+          <div class="lab-canvas-actions"><button type="button" data-life-action="step"><i class="bx bx-skip-next"></i>Step</button><button type="button" data-life-action="clear"><i class="bx bx-trash"></i>Clear</button><button type="button" data-life-action="play" aria-pressed="false"><i class="bx bx-play"></i><span>Play</span></button></div>
+        </div>
+        <div class="cellular-stage life-stage"><canvas data-life-canvas aria-label="Interactive Conway's Game of Life grid"></canvas><p class="lab-canvas-hint"><i class="bx bx-pointer"></i> Draw cells, then press play</p></div>
+        <div class="cellular-footer"><label>Tempo <output data-life-output>8</output><input type="range" min="1" max="16" value="8" data-life-speed></label><span>B3 / S23 · BIRTH AT 3 · SURVIVE AT 2 OR 3</span></div>
+      </div>
+    </div>
+  </section>
+  <% end %>
+
+  <% photo_manifest = @photos.map { |photo| { id: photo[:flickr_id], url: photo.dig(:photo_large, :url), width: photo.dig(:photo_large, :width), height: photo.dig(:photo_large, :height), title: photo[:title], description: photo[:description], timestamp: photo[:created_at], composition: photo[:composition_analysis] } } %>
+
+  <% composition_studio_experiment = capture do %>
+  <section id="composition-studio" class="composition-studio-section section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 001 / Visual criticism</p><h2 class="font-header font-semibold uppercase">Composition Studio</h2></div><p class="lab-deck">A vision model analyzes each street photograph for its strongest compositional techniques. The image-specific readings and coordinates are stored in PostgreSQL, then rendered as animated overlays that reveal the lines, layers, color, rhythm, and visual relationships within each frame.</p></div>
+      <div class="composition-studio glass-panel" data-composition-studio data-photos="<%= json_escape(photo_manifest.first(12).to_json) %>">
+        <header class="composition-toolbar">
+          <div class="composition-modes"><span class="is-active">Guided analysis</span></div>
+          <div class="composition-progress"><span data-composition-index>01</span> / <span><%= [photo_manifest.first(12).length, 1].max.to_s.rjust(2, '0') %></span></div>
+        </header>
+        <div class="composition-workspace">
+          <div class="composition-stage" data-composition-stage>
+            <img data-composition-image alt="Selected street photograph">
+            <svg class="composition-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <g data-overlay="thirds"><path d="M33.33 0V100M66.66 0V100M0 33.33H100M0 66.66H100"/><circle cx="33.33" cy="33.33" r="1.5"/><circle cx="66.66" cy="66.66" r="1.5"/></g>
+              <g data-overlay="triangle"><path data-composition-triangle d="M8 84L52 16L91 78Z"/></g>
+              <g data-overlay="odds"><circle cx="28" cy="55" r="5"/><circle cx="52" cy="28" r="5"/><circle cx="76" cy="62" r="5"/><circle cx="36" cy="78" r="5"/><circle cx="70" cy="82" r="5"/></g>
+              <g data-overlay="leading"><path d="M0 92L55 48L100 58M8 100L55 48L86 0"/><circle data-composition-focus cx="55" cy="48" r="7"/></g>
+              <g data-overlay="spiral"><path d="M8 72C8 24 74 10 88 43C99 70 65 91 42 76C23 63 34 39 52 39C67 39 72 55 62 63C54 70 45 63 46 56"/></g>
+              <g data-overlay="layers"><path d="M0 67C22 60 37 63 50 71S78 82 100 68V100H0ZM0 36C19 28 39 31 55 39S83 46 100 34V68C77 76 66 66 50 63S19 61 0 70Z"/></g>
+              <g data-overlay="space"><rect data-composition-space x="0" y="0" width="35" height="100"/></g>
+              <g data-overlay="pattern"><path d="M0 20H100M0 40H100M0 60H100M0 80H100M20 0V100M40 0V100M60 0V100M80 0V100"/></g>
+              <g data-overlay="density"><rect x="2" y="2" width="96" height="96"/><path d="M2 16V2H16M84 2H98V16M98 84V98H84M16 98H2V84"/></g>
+              <g data-overlay="frame"><rect x="18" y="14" width="64" height="72"/><path d="M18 30V14H34M66 14H82V30M82 70V86H66M34 86H18V70"/></g>
+              <g data-overlay="symmetry"><path data-composition-symmetry d="M50 4V96"/></g>
+              <g data-overlay="juxtaposition"><circle cx="32" cy="50" r="7"/><circle cx="68" cy="50" r="7"/><path d="M39 50H61"/></g>
+              <g data-overlay="color"><rect x="12" y="18" width="76" height="64"/><circle cx="35" cy="50" r="6"/><circle cx="65" cy="50" r="6"/></g>
+              <g data-overlay="diagonal"><path data-composition-diagonal d="M5 90L95 10"/></g>
+              <g data-overlay="perspective"><path d="M5 95L52 42L95 95M18 0L52 42L84 0"/></g>
+              <g data-overlay="abstraction"><rect x="18" y="18" width="64" height="64"/></g>
+              <g data-overlay="motion_blur"><path d="M8 38L92 38M4 50L96 50M12 62L88 62"/></g>
+              <g data-overlay="light"><rect x="24" y="18" width="52" height="64"/></g>
+              <g data-overlay="silhouette"><rect x="34" y="16" width="32" height="70"/></g>
+              <g data-overlay="reflection"><circle cx="36" cy="35" r="6"/><circle cx="64" cy="65" r="6"/><path d="M36 35L64 65"/></g>
+              <g data-overlay="scale"><circle cx="30" cy="52" r="10"/><circle cx="72" cy="52" r="4"/><path d="M40 52H68"/></g>
+              <g data-overlay="occlusion"><rect x="25" y="22" width="50" height="60"/><path d="M25 68L75 38"/></g>
+              <g data-overlay="balance"><circle cx="28" cy="48" r="7"/><circle cx="72" cy="48" r="7"/><path d="M12 72H88M50 68V76"/></g>
+              <g data-overlay="low_high_angle"><path d="M8 88L50 44L92 88M50 44V8"/></g>
+            </svg>
+            <div class="composition-stage-label" data-composition-stage-label>Reading frame…</div>
+          </div>
+          <aside class="composition-panel">
+            <div data-composition-analysis>
+              <span class="composition-eyebrow" data-composition-source>Image-specific reading / Browser analyzed</span><h3 data-composition-title>Reading the frame</h3><p data-composition-copy>Measuring color, contrast, visual weight, and edge structure. Only strongly supported techniques will appear.</p>
+              <div class="composition-techniques" role="listbox" aria-label="Composition overlays"><button type="button" class="is-active" data-technique="thirds"><i>01</i><span>Balance</span><strong>Rule of thirds</strong></button><button type="button" data-technique="leading"><i>02</i><span>Direction</span><strong>Leading lines</strong></button><button type="button" data-technique="triangle"><i>03</i><span>Structure</span><strong>Implied triangle</strong></button><button type="button" data-technique="odds"><i>04</i><span>Grouping</span><strong>Rule of odds</strong></button><button type="button" data-technique="layers"><i>05</i><span>Depth</span><strong>Layered planes</strong></button><button type="button" data-technique="space"><i>06</i><span>Restraint</span><strong>Negative space</strong></button><button type="button" data-technique="spiral"><i>07</i><span>Flow</span><strong>Spiral path</strong></button><button type="button" data-technique="pattern"><i>08</i><span>Rhythm</span><strong>Repetition</strong></button><button type="button" data-technique="density"><i>09</i><span>Density</span><strong>Fill the frame</strong></button><button type="button" data-technique="frame"><i>10</i><span>Focus</span><strong>Frame within frame</strong></button><button type="button" data-technique="symmetry"><i>11</i><span>Order</span><strong>Symmetry</strong></button><button type="button" data-technique="juxtaposition"><i>12</i><span>Meaning</span><strong>Juxtaposition</strong></button><button type="button" data-technique="color"><i>13</i><span>Palette</span><strong>Color relationship</strong></button><button type="button" data-technique="diagonal"><i>14</i><span>Energy</span><strong>Dynamic diagonal</strong></button><button type="button" data-technique="perspective"><i>15</i><span>Depth</span><strong>Perspective</strong></button><button type="button" data-technique="abstraction"><i>16</i><span>Form</span><strong>Abstraction</strong></button><button type="button" data-technique="motion_blur"><i>17</i><span>Motion</span><strong>Motion blur</strong></button><button type="button" data-technique="light"><i>18</i><span>Illumination</span><strong>Light &amp; shadow</strong></button><button type="button" data-technique="silhouette"><i>19</i><span>Shape</span><strong>Silhouette</strong></button><button type="button" data-technique="reflection"><i>20</i><span>Doubling</span><strong>Reflection</strong></button><button type="button" data-technique="scale"><i>21</i><span>Hierarchy</span><strong>Scale</strong></button><button type="button" data-technique="occlusion"><i>22</i><span>Reveal</span><strong>Occlusion</strong></button><button type="button" data-technique="balance"><i>23</i><span>Weight</span><strong>Asymmetrical balance</strong></button><button type="button" data-technique="low_high_angle"><i>24</i><span>Viewpoint</span><strong>Low / high angle</strong></button></div>
+            </div>
+          </aside>
+        </div>
+        <footer class="composition-filmstrip"><button type="button" data-composition-previous aria-label="Previous photograph"><i class="bx bx-left-arrow-alt"></i></button><div><% @photos.first(12).each_with_index do |photo, index| %><button type="button" data-composition-select="<%= index %>" class="<%= 'is-active' if index.zero? %>" aria-label="View photograph <%= index + 1 %>"><img src="<%= photo.dig(:photo_large, :url) %>" alt="" loading="lazy"></button><% end %></div><button type="button" data-composition-next aria-label="Next photograph"><i class="bx bx-right-arrow-alt"></i></button></footer>
+      </div>
+    </div>
+  </section>
+  <% end %>
+
+  <% site_control_room_experiment = capture do %>
+  <section id="site-control-room" class="control-room-section section-divider">
+    <div class="container py-16 md:py-24">
+      <div class="lab-experiment-heading"><div><p class="lab-kicker">Experiment 003 / Production systems</p><h2 class="font-header font-semibold uppercase">Site Control Room</h2></div><p class="lab-deck">A safe, live window into how this portfolio is built, tested, synchronized, delivered, and operated.</p></div>
+      <div class="control-room glass-panel" data-control-room data-status="<%= json_escape(@site_status.to_json) %>">
+        <header class="control-room-header"><div class="control-room-live"><i></i><span>Since deploy</span><strong data-control-clock data-release-created-at="<%= @site_status.dig(:release, :created_at) %>">—</strong></div><div><span>PUBLIC TELEMETRY / SECRETS REDACTED</span></div></header>
+        <div class="control-room-vitals">
+          <article><span>Application</span><strong>Rails <%= @site_status.dig(:runtime, :rails) %></strong><small>Ruby <%= @site_status.dig(:runtime, :ruby) %> · <%= @site_status.dig(:runtime, :environment) %></small></article>
+          <article><span>Release</span><strong><%= @site_status.dig(:release, :version) %></strong><small>Revision <%= @site_status.dig(:release, :revision) %></small></article>
+          <article><span>Flickr catalog</span><strong><%= @site_status.dig(:flickr, :photos) %> photos</strong><small data-flickr-health><%= @site_status.dig(:flickr, :last_sync) ? 'Synchronized' : 'Awaiting first sync' %></small></article>
+          <article><span>Test suite</span><strong><%= @site_status.dig(:tests, :examples) %> examples</strong><small><%= @site_status.dig(:tests, :files) %> spec files · <%= @site_status.dig(:tests, :ci) %></small></article>
+        </div>
+        <div class="control-room-grid">
+          <article class="control-module architecture-module">
+            <div class="control-module-heading"><div><span>Delivery topology</span><strong>Request path</strong></div><i class="bx bx-network-chart"></i></div>
+            <div class="architecture-flow"><div><i class="bx bx-globe"></i><span>Visitor</span></div><b></b><div><i class="bx bx-shield-quarter"></i><span>Cloudflare</span></div><b></b><div><i class="bx bx-cloud"></i><span>CloudFront</span></div><b></b><div><i class="bx bx-code-block"></i><span>Rails / Heroku</span></div></div>
+            <dl><div><dt>Static assets</dt><dd><%= @site_status.dig(:delivery, :assets) %></dd></div><div><dt>Object storage</dt><dd><%= @site_status.dig(:delivery, :storage) %> / S3</dd></div><div><dt>Cache policy</dt><dd><%= @site_status.dig(:delivery, :cache_control) %></dd></div></dl>
+          </article>
+          <article class="control-module pipeline-module">
+            <div class="control-module-heading"><div><span>Image pipeline</span><strong>Catalog delivery telemetry</strong></div><i class="bx bx-image"></i></div>
+            <p class="pipeline-description">A live snapshot of how Flickr metadata becomes a database-backed gallery. Web requests never call the Flickr API.</p>
+            <ol class="pipeline-flow" aria-label="Flickr image delivery stages">
+              <li><b>01</b><span><strong>Flickr API sync</strong><small data-pipeline-sync-age data-last-sync="<%= @site_status.dig(:flickr, :last_sync) %>">Checking freshness…</small></span><i>Daily job</i></li>
+              <li><b>02</b><span><strong>PostgreSQL catalog</strong><small><%= @site_status.dig(:flickr, :photos) %> records · <%= number_to_human_size(@site_status.dig(:flickr, :metadata_bytes)) %> metadata</small></span><i>Atomic</i></li>
+              <li><b>03</b><span><strong>Vision analysis cache</strong><small><%= @site_status.dig(:flickr, :current_analysis) %> current · <%= @site_status.dig(:flickr, :analysis_errors) %> errors</small></span><i><%= @site_status.dig(:flickr, :photos).positive? ? number_to_percentage(@site_status.dig(:flickr, :current_analysis) * 100.0 / @site_status.dig(:flickr, :photos), precision: 0) : '—' %></i></li>
+              <li><b>04</b><span><strong>Rails gallery query</strong><small>Seeded random order · <%= @site_status.dig(:flickr, :page_size) %> records per page</small></span><i>DB only</i></li>
+              <li><b>05</b><span><strong>Browser image delivery</strong><small><%= @site_status.dig(:flickr, :complete_renditions) %>/<%= @site_status.dig(:flickr, :photos) %> photos have all four responsive sizes</small></span><i><%= @site_status.dig(:flickr, :delivery_host) %></i></li>
+            </ol>
+            <div class="pipeline-health">
+              <div><span>Analysis coverage</span><strong><%= @site_status.dig(:flickr, :current_analysis) %> / <%= @site_status.dig(:flickr, :photos) %></strong><i><b style="width: <%= @site_status.dig(:flickr, :photos).positive? ? @site_status.dig(:flickr, :current_analysis) * 100.0 / @site_status.dig(:flickr, :photos) : 0 %>%"></b></i></div>
+              <div><span>Rendition coverage</span><strong><%= @site_status.dig(:flickr, :complete_renditions) %> / <%= @site_status.dig(:flickr, :photos) %></strong><i><b style="width: <%= @site_status.dig(:flickr, :photos).positive? ? @site_status.dig(:flickr, :complete_renditions) * 100.0 / @site_status.dig(:flickr, :photos) : 0 %>%"></b></i></div>
+            </div>
+          </article>
+          <article class="control-module performance-module">
+            <div class="control-module-heading"><div><span>Performance</span><strong>Live delivery telemetry</strong></div><i class="bx bx-tachometer"></i></div>
+            <div class="performance-signals">
+              <div><span>Browser navigation</span><strong data-perf-navigation>Measuring…</strong><small data-perf-dom>DOM timing</small></div>
+              <div><span>Page / database</span><strong data-perf-server>Measuring…</strong><small data-perf-database>DB snapshot <%= @site_status.dig(:timing, :database_ms) %> ms</small></div>
+              <div><span>Transferred assets</span><strong data-perf-transfer>Measuring…</strong><small data-perf-resources>Browser resource timing</small></div>
+              <div><span>Build inventory</span><strong><%= number_to_human_size(@site_status.dig(:assets, :bytes)) %></strong><small><%= @site_status.dig(:assets, :files) %> compiled files · JS <%= number_to_human_size(@site_status.dig(:assets, :javascript_bytes)) %> · CSS <%= number_to_human_size(@site_status.dig(:assets, :stylesheet_bytes)) %></small></div>
+              <div><span>New Relic APM</span><strong data-new-relic-state><%= @site_status.dig(:integrations, :new_relic) ? 'Server connected' : 'Not configured' %></strong><small data-new-relic-browser>Checking browser agent…</small></div>
+              <div><span>CircleCI insights</span><strong data-circleci-state><%= @site_status.dig(:integrations, :circleci_insights) ? 'Loading build history…' : 'Token not configured' %></strong><small data-circleci-summary>Build-duration history · credentials stay server-side</small><div class="build-duration-bars" data-circleci-runs></div></div>
+            </div>
+          </article>
+          <article class="control-module github-module">
+            <div class="control-module-heading"><div><span>Source activity</span><strong>Recent GitHub changes</strong></div><i class="bx bxl-github"></i></div>
+            <div class="github-feed" data-github-feed><div class="control-loading"><i></i>Contacting public GitHub API…</div></div>
+          </article>
+          <article class="control-module deploy-module">
+            <div class="control-module-heading"><div><span>Delivery history</span><strong>Deployments & build</strong></div><i class="bx bx-rocket"></i></div>
+            <div class="deploy-current"><span>Current release</span><strong><%= @site_status.dig(:release, :version) %></strong><p><%= @site_status.dig(:release, :created_at) || 'Release timestamp available on Heroku' %></p></div><div class="deploy-feed" data-deploy-feed><span>Loading CircleCI deployment records…</span></div>
+          </article>
+        </div>
+        <footer class="control-room-footer"><span>Last browser refresh <strong data-control-refresh>now</strong></span><button type="button" data-control-refresh-button><i class="bx bx-refresh"></i> Refresh public signals</button></footer>
+      </div>
+    </div>
+  </section>
+  <% end %>
+
+  <%= composition_studio_experiment %>
+  <%= simulated_city_experiment %>
+  <%= site_control_room_experiment %>
+
+  <section class="lab-cta" data-navigation-contrast="light">
+    <div class="container py-20 md:py-28 text-center">
+      <p class="lab-kicker">Have an interesting problem?</p>
+      <h2 class="font-header font-semibold text-white uppercase">Let’s make something<br>people remember.</h2>
+      <a href="/#contact" class="glass-button lab-cta-button">Start a conversation <i class="bx bx-right-arrow-alt" aria-hidden="true"></i></a>
+    </div>
+  </section>
+</main>

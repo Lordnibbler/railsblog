@@ -82,7 +82,7 @@ describe ApplicationHelper do
       link = helper.desktop_navigation_link(name: 'Home', path: root_path)
 
       # rubocop:disable Layout/LineLength
-      expect(link).to eq('<li class="group pl-6"><a class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow" href="/">Home</a></li>')
+      expect(link).to eq('<li class="group pl-4 xl:pl-6"><a class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow" href="/">Home</a></li>')
       # rubocop:enable Layout/LineLength
     end
   end
@@ -95,7 +95,7 @@ describe ApplicationHelper do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="group pl-6"><a x-on:click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
+        expect(link).to eq('<li class="group pl-4 xl:pl-6"><a x-on:click="triggerNavItem(&#39;#videos&#39;)" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end
@@ -105,7 +105,7 @@ describe ApplicationHelper do
         link = helper.scrolling_desktop_navigation_link(name: 'Videos', path: '#videos')
 
         # rubocop:disable Layout/LineLength
-        expect(link).to eq('<li class="group pl-6"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
+        expect(link).to eq('<li class="group pl-4 xl:pl-6"><a href="/#videos" data-turbo="false" class="font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow">Videos</a></li>')
         # rubocop:enable Layout/LineLength
       end
     end

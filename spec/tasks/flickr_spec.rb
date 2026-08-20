@@ -12,6 +12,7 @@ describe 'flickr:sync' do
     task.reenable
     allow(Rails).to receive(:logger).and_return(logger)
     allow(Process).to receive(:clock_gettime).with(Process::CLOCK_MONOTONIC).and_return(10.0, 12.34)
+    allow(CompositionAnalysisService).to receive(:analyze_pending).with(force: false).and_return(0)
   end
 
   it 'synchronizes Flickr photos' do
@@ -20,6 +21,7 @@ describe 'flickr:sync' do
     task.invoke
 
     expect(FlickrService).to have_received(:sync_photos)
+    expect(CompositionAnalysisService).to have_received(:analyze_pending).with(force: false)
     expect(logger).to have_received(:info).with('--->  Flickr Sync: synchronizing photos')
     expect(logger).to have_received(:info).with('--->  Flickr Sync: completed synchronizing photos')
     expect(logger).to have_received(:info).with('--->  Flickr Sync: finished in 2.34s')
@@ -31,6 +33,15 @@ describe 'flickr:sync' do
     expect { task.invoke }.to raise_error(Net::ReadTimeout)
 
     expect(logger).to have_received(:info).with('--->  Flickr Sync: finished in 2.34s')
+  end
+
+  it 'passes an explicit force argument to composition analysis' do
+    allow(FlickrService).to receive(:sync_photos)
+    allow(CompositionAnalysisService).to receive(:analyze_pending).with(force: true).and_return(2)
+
+    task.invoke('force')
+
+    expect(CompositionAnalysisService).to have_received(:analyze_pending).with(force: true)
   end
 end
 # rubocop:enable RSpec/DescribeClass

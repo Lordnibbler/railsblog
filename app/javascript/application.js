@@ -35,3 +35,4 @@ document.addEventListener('turbo:load', startClientSideValidations);
 
 // custom javascripts used throughout the frontend of the site
 import './custom';
+import './lab';

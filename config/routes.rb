@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      get :operations, to: 'operations#index'
+
       # GET /api/v1/stream
       resources :stream, only: [:index] do
         collection do
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   end
 
   get '/photography', to: 'photography#index'
+  get '/lab', to: 'lab#index', as: :lab
 
   #
   # @note for legacy redirects from old blog which didn't have /blog prefix in route

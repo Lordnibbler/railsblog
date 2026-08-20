@@ -145,6 +145,62 @@ heroku authorizations:create
 
 and set at <https://app.circleci.com/settings/project/github/Lordnibbler/railsblog/environment-variables>.
 
+### Lab operations telemetry
+
+The Site Control Room works without provider credentials, but its New Relic and CircleCI panels need read-only server-side API credentials for live production data. Configure them as Heroku config vars; they are consumed by Rails and are never sent to the browser:
+
+```shell
+heroku config:set \
+  NEW_RELIC_LICENSE_KEY=your_ingest_license_key \
+  NEW_RELIC_USER_API_KEY=your_user_api_key \
+  NEW_RELIC_ACCOUNT_ID=your_numeric_account_id \
+  NEW_RELIC_APP_NAME=benradler.com \
+  CIRCLECI_TOKEN=your_circleci_personal_api_token \
+  CIRCLECI_BRANCH=master \
+  --app benradler
+```
+
+`NEW_RELIC_LICENSE_KEY` activates the installed Ruby APM agent. The user API key and account ID let the control-room endpoint query NerdGraph for the last 30 minutes of response time, throughput, and errors. `NEW_RELIC_APP_NAME` must match the application name reported by `config/newrelic.yml`. `CIRCLECI_TOKEN` must be able to read project insights; the panel queries the `build_test_deploy` workflow for the configured branch.
+
+Create or retrieve the New Relic ingest license and user keys from the New Relic API Keys screen. The numeric account ID is the value shown by the account selector or the `account` query parameter in a New Relic URL. For example, `account=898521` means `NEW_RELIC_ACCOUNT_ID=898521`. A UUID shown beneath a user or access-management identity is not the account ID. The user key must belong to a user who can query the selected account through NerdGraph.
+
+CircleCI API v2 requires a personal API token. Create one under **User Settings → Personal API Tokens**, test it against `https://circleci.com/api/v2/me`, and store it on Heroku as `CIRCLECI_TOKEN`. Do not configure this particular token only as a CircleCI project environment variable: the production Rails process makes the Insights request, so the credential must be available to the Heroku app.
+
+Once those config vars are present and a new dyno is running, both panels load automatically in production. They can be verified without exposing their credentials:
+
+```shell
+curl -s https://benradler.com/api/v1/operations
+
+heroku config:get NEW_RELIC_APP_NAME --app benradler
+heroku config:get NEW_RELIC_ACCOUNT_ID --app benradler
+heroku config:get CIRCLECI_BRANCH --app benradler
+```
+
+The JSON response should report `connected: true` for both providers. New Relic metrics can initially be zero until the APM application has received traffic within the queried 30-minute window.
+
+Enable Heroku runtime dyno metadata so the “Since deploy” clock and current release timestamp receive `HEROKU_RELEASE_CREATED_AT`, `HEROKU_RELEASE_VERSION`, and build metadata:
+
+```shell
+heroku labs:enable runtime-dyno-metadata --app benradler
+heroku labs:enable runtime-dyno-build-metadata --app benradler
+```
+
+Heroku makes this metadata available on the next deployment. A restart alone might not populate it, so deploy a new release after enabling both Labs features. Do not manually set `HEROKU_*` variables.
+
+The control room intentionally displays “metadata unavailable” during local development because a local process has no Heroku release. If production still shows that message after a new deployment, inspect the release metadata from a one-off dyno:
+
+```shell
+heroku run 'printenv HEROKU_RELEASE_CREATED_AT' --app benradler
+heroku run 'printenv HEROKU_RELEASE_VERSION' --app benradler
+
+heroku labs:info runtime-dyno-metadata --app benradler
+heroku labs:info runtime-dyno-build-metadata --app benradler
+```
+
+`HEROKU_RELEASE_CREATED_AT` should return an ISO-8601 timestamp. If it is empty, confirm both Labs features are enabled and perform another deployment.
+
+Recent deployment rows come from successful runs of CircleCI’s `build_test_deploy` workflow on the configured production branch. The panel shows the completion date and time, duration, branch, credits used, and CircleCI workflow ID. Because the deploy job is filtered to `master`, a successful workflow returned for that branch represents a successful production deployment. Current Heroku release metadata appears independently.
+
 ### Manual Deployments to Heroku via containers
 
 ```shell
@@ -194,7 +250,7 @@ This is a Rails app, deployed on Heroku.
 ### Persistence
 
 #### postgresql
-It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to application records, PostgreSQL stores the normalized Flickr photo catalog and its current display order. The schema can be found in [db/schema.rb](db/schema.rb).
+It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to application records, PostgreSQL stores the normalized Flickr photo catalog, its current display order, and cached vision-model composition readings used by the Composition Studio. The schema can be found in [db/schema.rb](db/schema.rb).
 
 ### Cron
 It uses Heroku Scheduler add on to run two recurring jobs:
@@ -203,9 +259,28 @@ It uses Heroku Scheduler add on to run two recurring jobs:
   * runs daily to refresh the sitemap file for the site
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
+  * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
   * each successful run assigns a new shuffled display order, which remains stable across paginated requests until the next run.
   * Flickr is fully fetched before the database transaction begins, so existing photos remain available if Flickr is unavailable or the fetch fails.
   * run this task once after the migration is first deployed to populate the initially empty `flickr_photos` table; subsequent refreshes are handled by Heroku Scheduler.
+
+Run `rails flickr:analyze_compositions` to analyze the next pending batch without synchronizing Flickr. The API key is used only by this server-side task; model results and normalized overlay coordinates are saved in PostgreSQL, so page requests never call OpenAI or expose credentials.
+
+To intentionally replace existing paid results, pass the explicit `force` argument to either task: `rails 'flickr:sync[force]'` or `rails 'flickr:analyze_compositions[force]'`. The configured batch limit still applies.
+
+Move paid composition readings between databases without calling the model again:
+
+```shell
+# Export from the source database. The JSON includes a record count and SHA-256 checksum.
+rails flickr:export_composition_analyses > /tmp/composition-analyses.json
+
+# Import after the destination has the Flickr catalog and composition migration.
+FILE=/tmp/composition-analyses.json rails flickr:import_composition_analyses
+```
+
+The importer matches rows by Flickr ID, rejects missing or duplicate IDs and modified payloads, and updates only composition-analysis columns in a transaction. It never invokes OpenAI.
+
+Each persisted reading is bound to its Flickr ID and current analysis version. Its classifications receive image-scoped IDs and contain photograph-specific evidence plus normalized overlay geometry. The rubric currently covers twenty-four techniques, including perspective, abstraction, motion blur, light and shadow, silhouette, reflection, scale, occlusion, asymmetrical balance, and low/high camera angles. Existing stored readings are preserved when the rubric changes; they are only replaced by an explicit forced analysis run.
 
 
 ### CDN
