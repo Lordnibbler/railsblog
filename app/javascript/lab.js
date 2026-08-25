@@ -240,8 +240,8 @@ const setupRidesSimulation = () => {
     users: { multiplier: 4.2, latency: 42, color: '#9d86ff' }, pricing: { multiplier: 7.8, latency: 68, color: '#f9e71c' },
     rides: { multiplier: 11.5, latency: 84, color: '#ff8c42' }, dispatch: { multiplier: 14.2, latency: 112, color: '#ff3f9b' },
     cancels: { eventDriven: true, latency: 76, color: '#ff5278' },
-    location: { multiplier: 24.5, latency: 38, color: '#42d9c8' }, payments: { multiplier: 2.8, latency: 146, color: '#6ca8ff' },
-    notifications: { multiplier: 3.7, latency: 55, color: '#c89cff' }, reviews: { multiplier: 0.7, latency: 73, color: '#ffbd66' },
+    payments: { multiplier: 2.8, latency: 146, color: '#6ca8ff' },
+    notifications: { multiplier: 3.7, latency: 55, color: '#c89cff' },
     resources: { eventDriven: true, latency: 91, color: '#8ad6a3' },
   };
   const serviceHistories = Object.fromEntries(Object.keys(serviceProfiles).map((name) => [name, Array(60).fill(0)]));
@@ -510,7 +510,7 @@ const setupPhotoTimeline = () => {
 const setupCompositionStudio = () => {
   const root = document.querySelector('[data-composition-studio]'); if (!root) return; const photos = parsePhotoManifest(root); if (!photos.length) return;
   const image = root.querySelector('[data-composition-image]');
-  let selected = 0; let technique = 'thirds'; let features = fallbackPhotoFeatures(photos[0]);
+  let selected = 0; let technique = 'thirds'; let features = fallbackPhotoFeatures(photos[0]); let renderVersion = 0;
   const techniqueCopy = () => ({
     thirds: ['Balance across the frame', `The strongest measurable detail sits near ${Math.round(features.saliencyX)}% × ${Math.round(features.saliencyY)}%. The thirds grid reveals whether that visual weight is centered, counterbalanced, or deliberately held toward an edge.`],
     leading: features.curated ? ['Architecture guides the eye', 'The curved walkways enter from multiple edges and carry attention toward the human figure. Their repeated arcs create depth while keeping the subject visually anchored.'] : ['Lines create direction', 'Street edges, shadows, architecture, and gestures can pull attention toward a subject. These candidate diagonals demonstrate visual flow—not a claim that every detected edge was intentional.'],
@@ -572,14 +572,22 @@ const setupCompositionStudio = () => {
     technique = relevant[0]; return true;
   };
   const renderPhoto = async () => {
+    const version = ++renderVersion;
     const photo = photos[selected]; image.src = photo.url; image.alt = photo.title || 'Selected street photograph'; root.querySelector('[data-composition-index]').textContent = String(selected + 1).padStart(2, '0'); root.querySelector('[data-composition-stage-label]').textContent = 'Analyzing frame…'; root.querySelectorAll('[data-composition-select]').forEach((button) => button.classList.toggle('is-active', Number(button.dataset.compositionSelect) === selected));
-    features = await analyzePhoto(photo); const profile = curatedCompositionProfiles[String(photo.id)]; const modelAnalysis = photo.composition; const modelReadings = (modelAnalysis?.techniques || []).filter((item) => item.points?.length);
+    const analyzedFeatures = await analyzePhoto(photo); if (version !== renderVersion) return; features = analyzedFeatures; const profile = curatedCompositionProfiles[String(photo.id)]; const modelAnalysis = photo.composition; const modelReadings = (modelAnalysis?.techniques || []).filter((item) => item.points?.length);
     if (modelAnalysis && Array.isArray(modelReadings)) { const firstPoint = modelReadings.flatMap((item) => item.points || [])[0]; features = { ...features, analysisAvailable: true, saliencyX: firstPoint?.x || features.saliencyX, saliencyY: firstPoint?.y || features.saliencyY, compositionScores: Object.fromEntries(modelReadings.map((item) => [item.key, item.confidence])), modelTechniques: modelReadings, modelSummary: modelAnalysis.summary, modelAnalyzed: true }; }
     else if (profile) { features = { ...features, analysisAvailable: true, saliencyX: profile.focus.x, saliencyY: profile.focus.y, compositionScores: Object.fromEntries(profile.techniques.map((name, index) => [name, 1 - index * .04])), curated: true }; }
     root.querySelector('[data-composition-source]').textContent = features.modelAnalyzed ? 'Vision analysis / Persisted reading' : profile ? 'Photographer annotation / Authored reading' : 'Image-specific reading / Browser analyzed'; root.style.setProperty('--composition-focus-x', `${features.saliencyX}%`); root.style.setProperty('--composition-focus-y', `${features.saliencyY}%`); root.querySelector('[data-composition-focus]').setAttribute('cx', features.saliencyX); root.querySelector('[data-composition-focus]').setAttribute('cy', features.saliencyY); const space = root.querySelector('[data-composition-space]'); space.setAttribute('x', features.saliencyX > 50 ? 0 : 65); const leadingPath = root.querySelector('[data-overlay="leading"] path'); leadingPath.setAttribute('d', profile?.leadingPath || `M0 92L${features.saliencyX} ${features.saliencyY}L100 58M8 100L${features.saliencyX} ${features.saliencyY}L86 0`); const trianglePoints = (features.compositionPoints || []).slice(0, 3); if (trianglePoints.length === 3) root.querySelector('[data-composition-triangle]').setAttribute('d', `M${trianglePoints[0].x} ${trianglePoints[0].y}L${trianglePoints[1].x} ${trianglePoints[1].y}L${trianglePoints[2].x} ${trianglePoints[2].y}Z`); root.querySelectorAll('[data-overlay="odds"] circle').forEach((circle, index) => { const point = features.compositionPoints?.[index]; circle.hidden = !point; if (point) { circle.setAttribute('cx', point.x); circle.setAttribute('cy', point.y); } }); if (selectRelevantTechniques()) applyTechnique();
   };
   root.querySelectorAll('[data-technique]').forEach((button) => button.addEventListener('click', () => { technique = button.dataset.technique; applyTechnique(); })); root.querySelectorAll('[data-composition-select]').forEach((button) => button.addEventListener('click', () => { selected = Number(button.dataset.compositionSelect); renderPhoto(); }));
   root.querySelector('[data-composition-previous]').addEventListener('click', () => { selected = (selected - 1 + photos.length) % photos.length; renderPhoto(); }); root.querySelector('[data-composition-next]').addEventListener('click', () => { selected = (selected + 1) % photos.length; renderPhoto(); });
+  window.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.target.closest('input, select, textarea, [contenteditable="true"]')) return;
+    const bounds = root.getBoundingClientRect(); const visible = bounds.top < window.innerHeight * .8 && bounds.bottom > window.innerHeight * .2;
+    if (!visible) return;
+    event.preventDefault(); selected = (selected + (event.key === 'ArrowRight' ? 1 : -1) + photos.length) % photos.length; renderPhoto();
+  });
   renderPhoto();
 };
 
@@ -591,7 +599,7 @@ const setupSiteControlRoom = () => {
   const clock = root.querySelector('[data-control-clock]'); const refreshAge = root.querySelector('[data-control-refresh]');
   const releaseCreatedAt = Date.parse(clock.dataset.releaseCreatedAt || '');
   const pipelineSyncAge = root.querySelector('[data-pipeline-sync-age]'); const lastSyncAt = Date.parse(pipelineSyncAge?.dataset.lastSync || '');
-  const updateClock = () => { const elapsed = Number.isFinite(releaseCreatedAt) ? Math.max(0, Math.floor((Date.now() - releaseCreatedAt) / 1000)) : null; clock.textContent = elapsed === null ? 'metadata unavailable' : `${Math.floor(elapsed / 86400)}d ${String(Math.floor(elapsed % 86400 / 3600)).padStart(2, '0')}h ${String(Math.floor(elapsed % 3600 / 60)).padStart(2, '0')}m`; const age = Math.floor((Date.now() - refreshedAt) / 1000); refreshAge.textContent = age < 5 ? 'now' : `${age}s ago`; if (pipelineSyncAge) { const syncAge = Number.isFinite(lastSyncAt) ? Math.max(0, Math.floor((Date.now() - lastSyncAt) / 1000)) : null; pipelineSyncAge.textContent = syncAge === null ? 'No completed sync recorded' : `Last completed ${syncAge < 3600 ? `${Math.max(1, Math.floor(syncAge / 60))}m` : syncAge < 86400 ? `${Math.floor(syncAge / 3600)}h` : `${Math.floor(syncAge / 86400)}d`} ago · ${new Date(lastSyncAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}`; pipelineSyncAge.classList.toggle('is-stale', syncAge !== null && syncAge > 129600); } };
+  const updateClock = () => { const elapsed = Number.isFinite(releaseCreatedAt) ? Math.max(0, Math.floor((Date.now() - releaseCreatedAt) / 1000)) : null; clock.textContent = elapsed === null ? 'metadata unavailable' : `${Math.floor(elapsed / 86400)}d ${String(Math.floor(elapsed % 86400 / 3600)).padStart(2, '0')}h ${String(Math.floor(elapsed % 3600 / 60)).padStart(2, '0')}m ${String(elapsed % 60).padStart(2, '0')}s`; const age = Math.floor((Date.now() - refreshedAt) / 1000); refreshAge.textContent = age < 5 ? 'now' : `${age}s ago`; if (pipelineSyncAge) { const syncAge = Number.isFinite(lastSyncAt) ? Math.max(0, Math.floor((Date.now() - lastSyncAt) / 1000)) : null; pipelineSyncAge.textContent = syncAge === null ? 'No completed sync recorded' : `Last completed ${syncAge < 3600 ? `${Math.max(1, Math.floor(syncAge / 60))}m` : syncAge < 86400 ? `${Math.floor(syncAge / 3600)}h` : `${Math.floor(syncAge / 86400)}d`} ago · ${new Date(lastSyncAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}`; pipelineSyncAge.classList.toggle('is-stale', syncAge !== null && syncAge > 129600); } };
   setInterval(updateClock, 1000); updateClock();
 
   const formatBytes = (bytes) => { if (!bytes) return '0 KB'; const units = ['B', 'KB', 'MB', 'GB']; const index = Math.min(Math.floor(Math.log(bytes) / Math.log(1024)), units.length - 1); return `${(bytes / 1024 ** index).toFixed(index > 1 ? 1 : 0)} ${units[index]}`; };
@@ -638,7 +646,7 @@ const setupSiteControlRoom = () => {
     refreshedAt = Date.now(); updateClock();
   };
   const refreshAll = () => { refreshBrowserPerformance(); refreshProviderTelemetry(); refreshGithub(); };
-  root.querySelector('[data-control-refresh-button]').addEventListener('click', refreshAll); window.setTimeout(refreshBrowserPerformance, 0); refreshProviderTelemetry(); refreshGithub();
+  root.querySelector('[data-control-refresh-button]').addEventListener('click', refreshAll); window.setTimeout(refreshBrowserPerformance, 0); window.setInterval(refreshBrowserPerformance, 5000); refreshProviderTelemetry(); refreshGithub();
 };
 
 const setupSandGame = () => {

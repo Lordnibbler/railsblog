@@ -5,14 +5,14 @@
   <section class="lab-hero" data-navigation-contrast="light">
     <div class="lab-orb lab-orb-one" aria-hidden="true"></div>
     <div class="lab-orb lab-orb-two" aria-hidden="true"></div>
-    <div class="container relative z-10 pt-36 pb-20 sm:pt-44 sm:pb-28">
+    <div class="container relative z-10 pt-28 pb-14 sm:pt-40 sm:pb-20">
       <div class="lab-eyebrow"><span></span> Creative Engineering / 001</div>
       <h1 class="lab-title font-header font-semibold text-white uppercase">
         Ideas you can<br><span>step inside.</span>
       </h1>
       <div class="lab-intro">
         <p>Interactive experiments where photography, computer vision, production systems, and large-scale simulation become something you can see and explore.</p>
-        <a href="#composition-studio" class="lab-jump-link">
+        <a href="#composition-studio" class="lab-jump-link" x-data @click.prevent="$scroll('#composition-studio', { offset: 40 })">
           Enter the first experiment <i class="bx bx-down-arrow-alt" aria-hidden="true"></i>
         </a>
       </div>
@@ -61,7 +61,7 @@
         </div>
         <div class="service-load-columns" aria-hidden="true"><span>Service</span><span>Request volume / 60 samples</span><span>RPS</span><span>P95</span><span>Health</span></div>
         <div class="service-load-rows">
-          <% [['users', 'Users & identity'], ['pricing', 'Pricing'], ['rides', 'Rides'], ['dispatch', 'Dispatch / matching'], ['cancels', 'Cancels'], ['location', 'Location'], ['payments', 'Payments'], ['notifications', 'Notifications'], ['reviews', 'Reviews'], ['resources', 'Resource Manager']].each do |key, name| %>
+          <% [['users', 'Users & identity'], ['pricing', 'Pricing'], ['rides', 'Rides'], ['dispatch', 'Dispatch / matching'], ['cancels', 'Cancels'], ['payments', 'Payments'], ['notifications', 'Notifications'], ['resources', 'Resource Manager']].each do |key, name| %>
             <div class="service-load-row" data-service-key="<%= key %>">
               <strong><i></i><%= name %></strong>
               <canvas aria-label="<%= name %> request history"></canvas>

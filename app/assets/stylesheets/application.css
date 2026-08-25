@@ -29,7 +29,7 @@ body {
 
     .lab-hero {
         position: relative;
-        min-height: min(52rem, 92vh);
+        min-height: 0;
         overflow: hidden;
         background:
             radial-gradient(circle at 78% 24%, rgb(124 91 255 / 0.32), transparent 28rem),
@@ -109,7 +109,7 @@ body {
 
     .lab-title {
         max-width: 65rem;
-        padding-top: 2.25rem;
+        padding-top: 1.5rem;
         font-size: clamp(3.4rem, 9vw, 8.2rem);
         line-height: 0.88;
         letter-spacing: -0.055em;
@@ -128,7 +128,7 @@ body {
         justify-content: space-between;
         gap: 2rem;
         max-width: 68rem;
-        padding-top: 3rem;
+        padding-top: 2rem;
         color: rgb(255 255 255 / 0.78);
     }
 
@@ -243,14 +243,14 @@ body {
     .rides-stop:disabled { cursor: not-allowed; opacity: .3; }
 
     .lab-page .glass-panel.service-load-panel { margin-top: 2rem; overflow: hidden; border-color: rgb(255 255 255 / .14); border-radius: 1.25rem; background: #120d29; color: white; box-shadow: 0 1.5rem 4rem rgb(25 15 65 / .16); }
-    .service-load-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1.35rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
+    .service-load-header { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .1); }
     .service-load-header p { font: 700 .82rem Raleway, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
     .service-load-header > div > span { display: block; padding-top: .3rem; color: rgb(255 255 255 / .42); font-size: .65rem; }
     .service-load-total { text-align: right; }
     .service-load-total strong { display: block; padding-top: .2rem; color: #f9e71c; font: 600 1.5rem Raleway, sans-serif; }
     .service-load-columns, .service-load-row { display: grid; grid-template-columns: minmax(9rem, 1fr) minmax(12rem, 2fr) 5rem 5rem 5rem; align-items: center; gap: 1rem; }
     .service-load-columns { padding: .65rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .06); color: rgb(255 255 255 / .28); font: .56rem monospace; letter-spacing: .08em; text-transform: uppercase; }
-    .service-load-row { min-height: 3.9rem; padding: .55rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .055); }
+    .service-load-row { min-height: 3.35rem; padding: .4rem 1.5rem; border-bottom: 1px solid rgb(255 255 255 / .055); }
     .service-load-row:last-child { border-bottom: 0; }
     .service-load-row > strong { display: flex; align-items: center; gap: .55rem; color: rgb(255 255 255 / .78); font-size: .7rem; font-weight: 600; }
     .service-load-row > strong i { width: .42rem; height: .42rem; flex-shrink: 0; border-radius: 50%; background: #42d9c8; box-shadow: 0 0 .65rem rgb(66 217 200 / .5); }
@@ -414,7 +414,7 @@ body {
     .lab-page .glass-panel.control-room { overflow: hidden; border-color: rgb(255 255 255 / .14); border-radius: 1.5rem; background: #100b25; color: white; box-shadow: 0 2rem 5rem rgb(25 15 65 / .24); }
     .control-room-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4rem; padding: .8rem 1.3rem; border-bottom: 1px solid rgb(255 255 255 / .1); background: linear-gradient(90deg, rgb(66 217 200 / .06), transparent); color: rgb(255 255 255 / .35); font: .58rem monospace; letter-spacing: .08em; }
     .control-room-live { display: flex; align-items: center; gap: .55rem; }
-    .control-room-live i { width: .5rem; height: .5rem; border-radius: 50%; background: #42d9c8; box-shadow: 0 0 .8rem #42d9c8; }
+    .control-room-live i { width: .5rem; height: .5rem; border-radius: 50%; background: #42d9c8; box-shadow: 0 0 .8rem #42d9c8; animation: control-live-pulse 2s ease-out infinite; }
     .control-room-live span { color: #7be3d5; text-transform: uppercase; }
     .control-room-live strong { padding-left: .5rem; border-left: 1px solid rgb(255 255 255 / .12); color: rgb(255 255 255 / .65); }
     .control-room-vitals { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid rgb(255 255 255 / .1); }
@@ -434,7 +434,10 @@ body {
     .architecture-flow div { display: grid; gap: .5rem; min-height: 5.5rem; padding: .8rem; border: 1px solid rgb(255 255 255 / .09); border-radius: .65rem; background: rgb(255 255 255 / .035); text-align: center; place-content: center; }
     .architecture-flow div i { color: #f9e71c; font-size: 1.5rem; }
     .architecture-flow div span { color: rgb(255 255 255 / .68); font-size: .64rem; }
-    .architecture-flow b { height: 1px; background: linear-gradient(90deg, #5540af, #42d9c8); position: relative; }
+    .architecture-flow b { position: relative; height: 1px; overflow: visible; background: linear-gradient(90deg, #5540af, #42d9c8); }
+    .architecture-flow b::before { position: absolute; top: -.18rem; left: 0; width: .38rem; height: .38rem; border-radius: 50%; background: #f9e71c; box-shadow: 0 0 .65rem #f9e71c; content: ""; animation: control-packet 2.4s ease-in-out infinite; }
+    .architecture-flow b:nth-of-type(2)::before { animation-delay: .8s; }
+    .architecture-flow b:nth-of-type(3)::before { animation-delay: 1.6s; }
     .architecture-flow b::after { position: absolute; top: -.18rem; right: 0; border-top: .2rem solid transparent; border-bottom: .2rem solid transparent; border-left: .3rem solid #42d9c8; content: ""; }
     .architecture-module dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
     .architecture-module dl div { padding: .65rem .8rem; border-radius: .45rem; background: rgb(255 255 255 / .03); }
@@ -444,6 +447,11 @@ body {
     .pipeline-flow { padding-top: .65rem; }
     .pipeline-flow li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr) auto; align-items: center; gap: .65rem; padding: .62rem 0; border-bottom: 1px solid rgb(255 255 255 / .06); }
     .pipeline-flow > li > b { display: grid; width: 1.35rem; height: 1.35rem; border: 1px solid rgb(153 140 207 / .28); border-radius: 50%; color: #998ccf; font: .5rem monospace; place-items: center; }
+    .pipeline-flow > li { animation: control-stage-pulse 5s ease-in-out infinite; }
+    .pipeline-flow > li:nth-child(2) { animation-delay: 1s; }
+    .pipeline-flow > li:nth-child(3) { animation-delay: 2s; }
+    .pipeline-flow > li:nth-child(4) { animation-delay: 3s; }
+    .pipeline-flow > li:nth-child(5) { animation-delay: 4s; }
     .pipeline-flow span strong { display: block; color: rgb(255 255 255 / .72); font: 600 .64rem Raleway, sans-serif; }
     .pipeline-flow span small { display: block; overflow: hidden; padding-top: .18rem; color: rgb(255 255 255 / .34); font: .49rem/1.35 monospace; text-overflow: ellipsis; white-space: nowrap; }
     .pipeline-flow span small.is-stale { color: #f9e71c; }
@@ -483,6 +491,10 @@ body {
     .control-loading, .control-unavailable { display: grid; grid-template-columns: 1.5rem 1fr; gap: .5rem; padding: 1.2rem 0; color: rgb(255 255 255 / .4); font-size: .63rem; }
     .control-loading i { width: .55rem; height: .55rem; margin-top: .15rem; border: 1px solid rgb(255 255 255 / .2); border-top-color: #42d9c8; border-radius: 50%; animation: control-spin .8s linear infinite; }
     @keyframes control-spin { to { transform: rotate(360deg); } }
+    @keyframes control-live-pulse { 0% { box-shadow: 0 0 0 0 rgb(66 217 200 / .7); } 70%, 100% { box-shadow: 0 0 0 .55rem rgb(66 217 200 / 0); } }
+    @keyframes control-packet { 0% { opacity: 0; transform: translateX(0); } 15%, 80% { opacity: 1; } 100% { opacity: 0; transform: translateX(1.65rem); } }
+    @keyframes control-packet-mobile { 0% { opacity: 0; transform: translateY(0); } 15%, 80% { opacity: 1; } 100% { opacity: 0; transform: translateY(.8rem); } }
+    @keyframes control-stage-pulse { 0%, 18%, 100% { background: transparent; } 8% { background: rgb(66 217 200 / .055); } }
     .control-unavailable i { color: #998ccf; font-size: 1rem; }
     .control-unavailable span { color: rgb(255 255 255 / .58); }
     .control-unavailable small { grid-column: 2; color: rgb(255 255 255 / .3); }
@@ -510,7 +522,6 @@ body {
     .lab-cta-button { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2.5rem; padding: 0.85rem 1.4rem; border-radius: 9999px; color: white; font-family: Raleway, sans-serif; font-weight: 700; text-transform: uppercase; }
 
     @media (max-width: 767px) {
-        .lab-hero { min-height: 43rem; }
         .lab-intro, .lab-experiment-heading, .lab-next-heading { align-items: start; flex-direction: column; }
         .lab-title { font-size: clamp(3.1rem, 16vw, 5rem); }
         .lab-canvas-wrap { height: 28rem; }
@@ -549,6 +560,7 @@ body {
         .control-module, .control-module:nth-child(even) { border-right: 0; }
         .architecture-flow { grid-template-columns: 1fr; gap: .4rem; }
         .architecture-flow b { width: 1px; height: 1rem; margin: 0 auto; }
+        .architecture-flow b::before { top: 0; left: -.18rem; animation-name: control-packet-mobile; }
         .architecture-flow b::after { top: auto; right: -.18rem; bottom: 0; border-top: .3rem solid #42d9c8; border-right: .2rem solid transparent; border-bottom: 0; border-left: .2rem solid transparent; }
         .architecture-module dl { grid-template-columns: 1fr; }
         .performance-signals { grid-template-columns: 1fr; }
@@ -584,6 +596,7 @@ body {
 
     @media (prefers-reduced-motion: reduce) {
         .lab-jump-link { scroll-behavior: auto; }
+        .control-room-live i, .architecture-flow b::before, .pipeline-flow > li { animation: none; }
         .composition-overlay.is-animating [data-overlay].is-active, .composition-overlay.is-animating [data-overlay].is-active path, .composition-overlay.is-animating [data-overlay].is-active circle, .composition-overlay.is-animating [data-overlay].is-active rect { animation: none; }
     }
 

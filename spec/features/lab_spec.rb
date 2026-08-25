@@ -17,7 +17,7 @@ describe '/lab' do
     expect(page).to have_button('Stop test', disabled: true)
     expect(page).to have_css('[data-service-load]')
     expect(page).to have_css('[data-rides-metric="cancellations"]')
-    expect(page).to have_css('.service-load-row[data-service-key]', count: 10)
+    expect(page).to have_css('.service-load-row[data-service-key]', count: 8)
     expect(page).to have_css('.service-load-row[data-service-key="cancels"]')
     expect(page).to have_css('[data-composition-studio]')
     expect(page).to have_content('Guided analysis')
@@ -61,7 +61,7 @@ describe '/lab' do
     expect(page).to have_css('[data-rides-metric="cancellations"]', text: '0')
     expect(page).to have_css('[data-rides-cancel-rate]', text: '0.0% of requests')
     expect(page.all('.service-load-row[data-service-key]').pluck(:'data-service-key')).to eq(
-      %w[users pricing rides dispatch cancels location payments notifications reviews resources],
+      %w[users pricing rides dispatch cancels payments notifications resources],
     )
     expect(page).to have_css('[data-service-key="cancels"] [data-service-rps]', text: '0')
     expect(page).to have_css('[data-service-key="resources"] [data-service-health]', text: 'Nominal')
