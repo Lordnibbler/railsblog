@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateRenderedMarkdown(){
-    const markdownValue = marked.parse(blogPostBodyElement.value);
+    // Match Redcarpet's four-space indentation requirement for nested lists so
+    // the preview does not show nesting that the published post will flatten.
+    const markdownValue = marked.parse(blogPostBodyElement.value, { pedantic: true });
     const blogPostBodyMarkedElement = document.querySelector('#blog_post_body_marked');
     blogPostBodyMarkedElement.innerHTML = markdownValue;
   }
