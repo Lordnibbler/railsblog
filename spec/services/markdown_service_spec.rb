@@ -38,5 +38,22 @@ describe MarkdownService do
         expect(described_class.call(fenced_markdown)).to eql(fenced_html)
       end
     end
+
+    context 'with deeply nested lists' do
+      let(:markdown) do
+        <<~MARKDOWN
+          * first level
+              * second level
+                  * third level
+                      * fourth level
+        MARKDOWN
+      end
+
+      it 'preserves each level when list items use four-space indentation' do
+        rendered = Nokogiri::HTML.fragment(described_class.call(markdown))
+
+        expect(rendered.css('ul ul ul ul').text).to include('fourth level')
+      end
+    end
   end
 end

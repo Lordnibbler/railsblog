@@ -22,6 +22,23 @@ body {
 }
 
 @layer components {
+    /* Keep deeply nested Markdown lists visually distinct in rendered posts. */
+    .prose ul ul {
+        list-style-type: circle;
+    }
+
+    .prose ul ul ul {
+        list-style-type: square;
+    }
+
+    .prose ol ol {
+        list-style-type: lower-alpha;
+    }
+
+    .prose ol ol ol {
+        list-style-type: lower-roman;
+    }
+
     .lab-page {
         overflow: hidden;
         color: #171229;
