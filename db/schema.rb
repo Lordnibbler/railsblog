@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_14_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -57,11 +57,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_12_000000) do
   end
 
   create_table "flickr_photos", force: :cascade do |t|
+    t.jsonb "composition_analysis", default: {}, null: false
+    t.text "composition_analysis_error"
+    t.string "composition_analysis_version"
+    t.datetime "composition_analyzed_at"
     t.datetime "created_at", null: false
     t.integer "display_position", null: false
     t.string "flickr_id", null: false
     t.jsonb "photo_data", default: {}, null: false
     t.datetime "updated_at", null: false
+    t.index ["composition_analyzed_at"], name: "index_flickr_photos_on_composition_analyzed_at"
     t.index ["display_position"], name: "index_flickr_photos_on_display_position", unique: true
     t.index ["flickr_id"], name: "index_flickr_photos_on_flickr_id", unique: true
   end

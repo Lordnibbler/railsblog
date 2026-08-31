@@ -34,6 +34,7 @@ group :development do
   gem 'guard'
   gem 'pry-rails'
   gem 'pry-byebug', require: false # byebug requires readline; only load it when debugging explicitly
+  gem 'readline' # interactive input for Pry; no longer available implicitly under Ruby 4
 end
 
 group :development, :test do

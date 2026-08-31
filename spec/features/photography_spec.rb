@@ -51,6 +51,23 @@ describe '/photography', :js do
     expect(page).to have_css('.desktop-nav.nav-liquid-glass.nav-glass-on-dark')
   end
 
+  it 'places the gallery directly beneath the navigation at responsive sizes' do
+    [500, 1400].each do |width|
+      page.current_window.resize_to(width, 700)
+      visit photography_path
+
+      expect(page).to have_css('.my-gallery', wait: 30)
+      navigation_bottom, gallery_top = page.evaluate_script(<<~JS)
+        [
+          document.querySelector('.desktop-nav').getBoundingClientRect().bottom,
+          document.querySelector('.my-gallery').getBoundingClientRect().top
+        ]
+      JS
+
+      expect(navigation_bottom - gallery_top).to be_between(0, 2)
+    end
+  end
+
   it 'opens PhotoSwipe when a photo is clicked' do
     visit photography_path
 

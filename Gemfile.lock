@@ -300,7 +300,8 @@ GEM
       timeout
     net-smtp (0.5.1)
       net-protocol
-    newrelic_rpm (9.24.0)
+    newrelic_rpm (10.7.0)
+      logger
     nio4r (2.7.5)
     nokogiri (1.19.4)
       mini_portile2 (~> 2.8.2)
@@ -415,6 +416,8 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
+    readline (0.0.4)
+      reline
     redcarpet (3.6.1)
     regexp_parser (2.11.3)
     regexp_property_values (1.5.2)
@@ -581,6 +584,7 @@ DEPENDENCIES
   puma
   rails (~> 8)
   rails-controller-testing
+  readline
   redcarpet
   rouge
   rspec-rails
@@ -602,4 +606,4 @@ RUBY VERSION
   ruby 4.0.6p0
 
 BUNDLED WITH
-  4.0.8
+  4.0.16

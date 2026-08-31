@@ -6,4 +6,8 @@ class FlickrPhoto < ApplicationRecord
   def as_stream_item
     photo_data.deep_symbolize_keys
   end
+
+  def composition_analyzed?
+    composition_analysis.present?
+  end
 end

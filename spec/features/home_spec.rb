@@ -21,6 +21,11 @@ describe '/' do
       expect(page).to have_css('.video-glass-card.glass-panel', count: 3)
     end
 
+    within '#lab-preview' do
+      expect(page).to have_css('.home-lab-frame', count: 3)
+      expect(page).to have_link('Enter the lab', href: lab_path)
+    end
+
     expect(page).to have_css('.newsletter-input')
     expect(page).to have_css('.newsletter-button.glass-button')
     expect(page).to have_css('.glass-footer')
