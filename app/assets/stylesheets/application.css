@@ -641,11 +641,18 @@ body {
 
     @media (max-width: 639px) {
         .hero-social-bar {
+            width: 100%;
             gap: 0.4rem;
+            padding: 0.5rem 0.65rem;
         }
 
         .hero-social-label {
-            margin-bottom: 0.2rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .hero-social-bar > div:last-child {
+            width: 100%;
+            justify-content: space-evenly;
         }
     }
 
