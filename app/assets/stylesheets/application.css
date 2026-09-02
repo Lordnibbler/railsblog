@@ -590,6 +590,14 @@ body {
         transform: translateY(-1px);
     }
 
+    .hero-social-bar a i {
+        transition: color 180ms ease;
+    }
+
+    .hero-social-bar a:hover i {
+        color: #f9e71c;
+    }
+
     .hero-social-bar a:focus-visible {
         outline: 2px solid rgb(249 231 28 / 0.82);
         outline-offset: 3px;
