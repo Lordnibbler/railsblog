@@ -1,6 +1,38 @@
 import $ from 'jquery';
 
 let pageLifecycleController;
+let smoothScrollAnimationFrame;
+
+window.smoothScrollTo = (target, offset = 0) => {
+  const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
+  const targetY = targetElement instanceof Element
+    ? targetElement.getBoundingClientRect().top + window.scrollY - offset
+    : Number(target) - offset;
+
+  if (!Number.isFinite(targetY)) return;
+
+  window.cancelAnimationFrame(smoothScrollAnimationFrame);
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    window.scrollTo(0, targetY);
+    return;
+  }
+
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  const startedAt = performance.now();
+  const duration = 400;
+
+  const animate = (now) => {
+    const progress = Math.min((now - startedAt) / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    window.scrollTo(0, startY + (distance * easedProgress));
+
+    if (progress < 1) smoothScrollAnimationFrame = window.requestAnimationFrame(animate);
+  };
+
+  smoothScrollAnimationFrame = window.requestAnimationFrame(animate);
+};
 
 const setupAppHeightHandler = (signal) => {
   // webkit "bug" means 100vh includes hidden area below navigation bar on iOS/iPadOS

@@ -21,8 +21,8 @@ describe '/' do
     contact_link = find_link('Start a conversation', href: '#contact')
     expect(work_link['x-data']).not_to be_nil
     expect(contact_link['x-data']).not_to be_nil
-    expect(work_link['x-on:click.prevent']).to eq("$scroll('#work', { offset: 40 })")
-    expect(contact_link['x-on:click.prevent']).to eq("$scroll('#contact', { offset: 40 })")
+    expect(work_link['x-on:click.prevent']).to eq("window.smoothScrollTo('#work', 40)")
+    expect(contact_link['x-on:click.prevent']).to eq("window.smoothScrollTo('#contact', 40)")
 
     within '#videos' do
       expect(page).to have_css('.video-glass-card.glass-panel', count: 3)

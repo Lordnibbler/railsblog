@@ -1,26 +1,9 @@
 <div x-data="{
     triggerNavItem(id) {
-        $scroll(id, { offset: 40 })
+        window.smoothScrollTo(id, 40)
     },
     triggerHomeItem() {
-        const start = window.scrollY
-        const duration = 800
-
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            window.scrollTo(0, 0)
-            return
-        }
-
-        const startedAt = performance.now()
-        const scrollToTop = (now) => {
-            const progress = Math.min((now - startedAt) / duration, 1)
-            const easedProgress = 1 - Math.pow(1 - progress, 3)
-            window.scrollTo(0, start * (1 - easedProgress))
-
-            if (progress < 1) requestAnimationFrame(scrollToTop)
-        }
-
-        requestAnimationFrame(scrollToTop)
+        window.smoothScrollTo(0)
     },
     triggerMobileNavItem(id) {
         $parent.mobileMenu = false;
