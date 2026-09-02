@@ -87,6 +87,12 @@ module ApplicationHelper
     end
   end
 
+  def home_desktop_navigation_link(name:)
+    content_tag(:li, class: 'group pl-4 xl:pl-6') do
+      link_to(name, root_path, **home_navigation_attributes('triggerHomeItem()'), class: DESKTOP_NAVIGATION_CLASSES)
+    end
+  end
+
   #
   # @return [String] desktop navigation link for links that scroll the homepage when clicked,
   # or link visitor pre-scrolled to the section
@@ -123,6 +129,18 @@ module ApplicationHelper
         class: MOBILE_NAVIGATION_CLASSES,
       )
     end
+  end
+
+  def home_mobile_navigation_link(name:)
+    content_tag(:li, class: 'pb-4') do
+      link_to(name, root_path, **home_navigation_attributes('triggerMobileHomeItem()'), class: MOBILE_NAVIGATION_CLASSES)
+    end
+  end
+
+  def home_navigation_attributes(click_action)
+    return {} unless request.path == '/'
+
+    { 'x-on:click.prevent': click_action }
   end
 
   #
