@@ -30,11 +30,9 @@
                     </a>
                 </div>
                 <div class="hero-social-bar flex flex-col sm:flex-row justify-center lg:justify-start mx-auto lg:mx-0 mt-5">
-                    <div class="flex justify-center sm:justify-start items-center pl-0 md:pl-1">
-                        <p class="font-body text-white text-lg uppercase">Find Me Here</p>
-                        <div class="hidden sm:block">
-                            <i class='bx bx-chevron-right text-yellow text-3xl'></i>
-                        </div>
+                    <div class="hero-social-label flex justify-center sm:justify-start items-center">
+                        <p class="font-body font-semibold text-white/80 text-sm uppercase tracking-widest">Find me here</p>
+                        <span class="hero-social-divider hidden sm:block" aria-hidden="true"></span>
                     </div>
                     <%= render partial: 'shared/social_icons', locals: { icon_classes: 'text-white hover:text-yellow' } %>
                 </div>
