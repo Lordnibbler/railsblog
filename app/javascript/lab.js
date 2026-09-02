@@ -510,7 +510,29 @@ const setupPhotoTimeline = () => {
 const setupCompositionStudio = () => {
   const root = document.querySelector('[data-composition-studio]'); if (!root) return; const photos = parsePhotoManifest(root); if (!photos.length) return;
   const image = root.querySelector('[data-composition-image]');
+  const stage = root.querySelector('[data-composition-stage]');
+  const neighborImages = { previous: root.querySelector('[data-composition-neighbor="previous"]'), next: root.querySelector('[data-composition-neighbor="next"]') };
   let selected = 0; let technique = 'thirds'; let features = fallbackPhotoFeatures(photos[0]); let renderVersion = 0;
+  const photoReady = new Map(photos.map((photo) => [photo.url, new Promise((resolve) => {
+    const preload = new Image(); const finish = () => typeof preload.decode === 'function' ? preload.decode().catch(() => {}).then(resolve) : resolve();
+    preload.onload = finish; preload.onerror = resolve; preload.src = photo.url; if (preload.complete) finish();
+  })]));
+  let aspectAnimation;
+  const photoStageHeight = (photo) => stage.clientWidth * (Number(photo.height) || 2) / (Number(photo.width) || 3);
+  const updateStageAspect = (photo, animate = false, duration = 420) => {
+    const width = Number(photo.width) || 3; const height = Number(photo.height) || 2;
+    const currentHeight = stage.getBoundingClientRect().height; const targetHeight = photoStageHeight(photo);
+    stage.style.setProperty('--composition-photo-aspect', `${width} / ${height}`);
+    if (stage.clientWidth) stage.style.setProperty('--composition-stage-height', `${targetHeight}px`);
+    aspectAnimation?.cancel();
+    if (animate && currentHeight && Math.abs(currentHeight - targetHeight) > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      aspectAnimation = stage.animate([{ height: `${currentHeight}px` }, { height: `${targetHeight}px` }], { duration, easing: 'cubic-bezier(.22, 1, .36, 1)' });
+    }
+  };
+  const updateCarouselImages = () => {
+    const previous = photos[(selected - 1 + photos.length) % photos.length]; const next = photos[(selected + 1) % photos.length];
+    neighborImages.previous.src = previous.url; neighborImages.next.src = next.url;
+  };
   const techniqueCopy = () => ({
     thirds: ['Balance across the frame', `The strongest measurable detail sits near ${Math.round(features.saliencyX)}% × ${Math.round(features.saliencyY)}%. The thirds grid reveals whether that visual weight is centered, counterbalanced, or deliberately held toward an edge.`],
     leading: features.curated ? ['Architecture guides the eye', 'The curved walkways enter from multiple edges and carry attention toward the human figure. Their repeated arcs create depth while keeping the subject visually anchored.'] : ['Lines create direction', 'Street edges, shadows, architecture, and gestures can pull attention toward a subject. These candidate diagonals demonstrate visual flow—not a claim that every detected edge was intentional.'],
@@ -571,16 +593,50 @@ const setupCompositionStudio = () => {
     if (!features.analysisAvailable || !relevant.length) { root.querySelectorAll('[data-technique]').forEach((button) => { button.hidden = true; }); root.querySelectorAll('[data-overlay]').forEach((overlay) => overlay.classList.remove('is-active')); root.querySelector('[data-composition-title]').textContent = features.analysisAvailable ? 'No dominant textbook geometry' : 'Pixel analysis unavailable'; root.querySelector('[data-composition-copy]').textContent = features.modelSummary || (features.analysisAvailable ? 'This frame does not strongly match the limited structures this study can measure. Its interest may come from subject, timing, gesture, color, or meaning instead.' : 'This image host did not permit browser pixel access, so the studio will not invent compositional claims for this frame.'); root.querySelector('[data-composition-stage-label]').textContent = 'Original frame'; return false; }
     technique = relevant[0]; return true;
   };
-  const renderPhoto = async () => {
+  const renderPhoto = async (animateAspect = false) => {
     const version = ++renderVersion;
-    const photo = photos[selected]; image.src = photo.url; image.alt = photo.title || 'Selected street photograph'; root.querySelector('[data-composition-index]').textContent = String(selected + 1).padStart(2, '0'); root.querySelector('[data-composition-stage-label]').textContent = 'Analyzing frame…'; root.querySelectorAll('[data-composition-select]').forEach((button) => button.classList.toggle('is-active', Number(button.dataset.compositionSelect) === selected));
+    const photo = photos[selected]; updateStageAspect(photo, animateAspect); image.src = photo.url; image.alt = photo.title || 'Selected street photograph'; updateCarouselImages(); root.querySelector('[data-composition-index]').textContent = String(selected + 1).padStart(2, '0'); root.querySelector('[data-composition-stage-label]').textContent = 'Analyzing frame…'; root.querySelectorAll('[data-composition-select]').forEach((button) => button.classList.toggle('is-active', Number(button.dataset.compositionSelect) === selected));
     const analyzedFeatures = await analyzePhoto(photo); if (version !== renderVersion) return; features = analyzedFeatures; const profile = curatedCompositionProfiles[String(photo.id)]; const modelAnalysis = photo.composition; const modelReadings = (modelAnalysis?.techniques || []).filter((item) => item.points?.length);
     if (modelAnalysis && Array.isArray(modelReadings)) { const firstPoint = modelReadings.flatMap((item) => item.points || [])[0]; features = { ...features, analysisAvailable: true, saliencyX: firstPoint?.x || features.saliencyX, saliencyY: firstPoint?.y || features.saliencyY, compositionScores: Object.fromEntries(modelReadings.map((item) => [item.key, item.confidence])), modelTechniques: modelReadings, modelSummary: modelAnalysis.summary, modelAnalyzed: true }; }
     else if (profile) { features = { ...features, analysisAvailable: true, saliencyX: profile.focus.x, saliencyY: profile.focus.y, compositionScores: Object.fromEntries(profile.techniques.map((name, index) => [name, 1 - index * .04])), curated: true }; }
     root.querySelector('[data-composition-source]').textContent = features.modelAnalyzed ? 'Vision analysis / Persisted reading' : profile ? 'Photographer annotation / Authored reading' : 'Image-specific reading / Browser analyzed'; root.style.setProperty('--composition-focus-x', `${features.saliencyX}%`); root.style.setProperty('--composition-focus-y', `${features.saliencyY}%`); root.querySelector('[data-composition-focus]').setAttribute('cx', features.saliencyX); root.querySelector('[data-composition-focus]').setAttribute('cy', features.saliencyY); const space = root.querySelector('[data-composition-space]'); space.setAttribute('x', features.saliencyX > 50 ? 0 : 65); const leadingPath = root.querySelector('[data-overlay="leading"] path'); leadingPath.setAttribute('d', profile?.leadingPath || `M0 92L${features.saliencyX} ${features.saliencyY}L100 58M8 100L${features.saliencyX} ${features.saliencyY}L86 0`); const trianglePoints = (features.compositionPoints || []).slice(0, 3); if (trianglePoints.length === 3) root.querySelector('[data-composition-triangle]').setAttribute('d', `M${trianglePoints[0].x} ${trianglePoints[0].y}L${trianglePoints[1].x} ${trianglePoints[1].y}L${trianglePoints[2].x} ${trianglePoints[2].y}Z`); root.querySelectorAll('[data-overlay="odds"] circle').forEach((circle, index) => { const point = features.compositionPoints?.[index]; circle.hidden = !point; if (point) { circle.setAttribute('cx', point.x); circle.setAttribute('cy', point.y); } }); if (selectRelevantTechniques()) applyTechnique();
   };
-  root.querySelectorAll('[data-technique]').forEach((button) => button.addEventListener('click', () => { technique = button.dataset.technique; applyTechnique(); })); root.querySelectorAll('[data-composition-select]').forEach((button) => button.addEventListener('click', () => { selected = Number(button.dataset.compositionSelect); renderPhoto(); }));
-  root.querySelector('[data-composition-previous]').addEventListener('click', () => { selected = (selected - 1 + photos.length) % photos.length; renderPhoto(); }); root.querySelector('[data-composition-next]').addEventListener('click', () => { selected = (selected + 1) % photos.length; renderPhoto(); });
+  root.querySelectorAll('[data-technique]').forEach((button) => button.addEventListener('click', () => { technique = button.dataset.technique; applyTechnique(); })); root.querySelectorAll('[data-composition-select]').forEach((button) => button.addEventListener('click', () => { selected = Number(button.dataset.compositionSelect); renderPhoto(true); }));
+  root.querySelector('[data-composition-previous]').addEventListener('click', () => { selected = (selected - 1 + photos.length) % photos.length; renderPhoto(true); }); root.querySelector('[data-composition-next]').addEventListener('click', () => { selected = (selected + 1) % photos.length; renderPhoto(true); });
+  let swipe;
+  const finishSwipe = (event, cancelled = false) => {
+    if (!swipe || event.pointerId !== swipe.pointerId) return;
+    const distance = event.clientX - swipe.startX; const elapsed = Math.max(performance.now() - swipe.startedAt, 1); const velocity = Math.abs(distance) / elapsed;
+    const shouldNavigate = !cancelled && swipe.horizontal && (Math.abs(distance) > Math.min(stage.clientWidth * .12, 48) || (Math.abs(distance) > 18 && velocity > .3));
+    stage.classList.remove('is-swiping');
+    if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
+    swipe = undefined;
+    if (shouldNavigate) {
+      const direction = distance < 0 ? 1 : -1; const nextSelected = (selected + direction + photos.length) % photos.length;
+      stage.classList.add('is-settling'); stage.style.setProperty('--composition-swipe-x', `${-direction * stage.clientWidth}px`); updateStageAspect(photos[nextSelected], true, 320);
+      window.setTimeout(async () => {
+        await photoReady.get(photos[nextSelected].url);
+        selected = nextSelected; stage.classList.add('is-resetting'); stage.style.setProperty('--composition-swipe-x', '0px'); renderPhoto();
+        requestAnimationFrame(() => requestAnimationFrame(() => { stage.classList.remove('is-resetting'); stage.classList.remove('is-settling'); }));
+      }, 320);
+    } else { stage.style.setProperty('--composition-swipe-x', '0px'); updateStageAspect(photos[selected], true, 240); }
+  };
+  stage.addEventListener('pointerdown', (event) => {
+    if (stage.classList.contains('is-settling') || (event.pointerType === 'mouse' && event.button !== 0)) return;
+    swipe = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, startHeight: stage.getBoundingClientRect().height, startedAt: performance.now(), horizontal: false, vertical: false };
+  });
+  stage.addEventListener('pointermove', (event) => {
+    if (!swipe || event.pointerId !== swipe.pointerId) return;
+    const distanceX = event.clientX - swipe.startX; const distanceY = event.clientY - swipe.startY;
+    if (swipe.vertical) return;
+    if (!swipe.horizontal && Math.max(Math.abs(distanceX), Math.abs(distanceY)) < 10) return;
+    if (!swipe.horizontal && Math.abs(distanceY) >= Math.abs(distanceX) * .8) { swipe.vertical = true; return; }
+    if (!swipe.horizontal) { swipe.horizontal = true; aspectAnimation?.cancel(); stage.setPointerCapture(event.pointerId); stage.classList.add('is-swiping'); }
+    stage.style.setProperty('--composition-swipe-x', `${distanceX * .82}px`);
+    const direction = distanceX < 0 ? 1 : -1; const neighbor = photos[(selected + direction + photos.length) % photos.length]; const progress = Math.min(Math.abs(distanceX) / stage.clientWidth, 1);
+    stage.style.setProperty('--composition-stage-height', `${swipe.startHeight + (photoStageHeight(neighbor) - swipe.startHeight) * progress}px`);
+  });
+  stage.addEventListener('pointerup', finishSwipe); stage.addEventListener('pointercancel', (event) => finishSwipe(event, true));
   window.addEventListener('keydown', (event) => {
     if (!['ArrowLeft', 'ArrowRight'].includes(event.key) || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target.closest('input, select, textarea, [contenteditable="true"]')) return;
@@ -588,6 +644,7 @@ const setupCompositionStudio = () => {
     if (!visible) return;
     event.preventDefault(); selected = (selected + (event.key === 'ArrowRight' ? 1 : -1) + photos.length) % photos.length; renderPhoto();
   });
+  window.addEventListener('resize', () => updateStageAspect(photos[selected]));
   renderPhoto();
 };
 
