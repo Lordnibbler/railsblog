@@ -213,8 +213,12 @@
           <div class="composition-progress"><span data-composition-index>01</span> / <span><%= [photo_manifest.first(12).length, 1].max.to_s.rjust(2, '0') %></span></div>
         </header>
         <div class="composition-workspace">
-          <div class="composition-stage" data-composition-stage>
-            <img data-composition-image alt="Selected street photograph">
+          <div class="composition-stage" data-composition-stage role="group" aria-label="Swipeable composition study">
+            <div class="composition-swipe-track" data-composition-track>
+              <div class="composition-slide"><img data-composition-neighbor="previous" alt="" aria-hidden="true"></div>
+              <div class="composition-slide"><img data-composition-image alt="Selected street photograph"></div>
+              <div class="composition-slide"><img data-composition-neighbor="next" alt="" aria-hidden="true"></div>
+            </div>
             <svg class="composition-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
               <g data-overlay="thirds"><path d="M33.33 0V100M66.66 0V100M0 33.33H100M0 66.66H100"/><circle cx="33.33" cy="33.33" r="1.5"/><circle cx="66.66" cy="66.66" r="1.5"/></g>
               <g data-overlay="triangle"><path data-composition-triangle d="M8 84L52 16L91 78Z"/></g>
@@ -242,6 +246,7 @@
               <g data-overlay="low_high_angle"><path d="M8 88L50 44L92 88M50 44V8"/></g>
             </svg>
             <div class="composition-stage-label" data-composition-stage-label>Reading frame…</div>
+            <p class="composition-swipe-hint" aria-hidden="true"><i class="bx bx-left-arrow-alt"></i> Swipe to explore <i class="bx bx-right-arrow-alt"></i></p>
           </div>
           <aside class="composition-panel">
             <div data-composition-analysis>

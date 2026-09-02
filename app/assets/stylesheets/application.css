@@ -316,10 +316,16 @@ body {
     .composition-progress { color: rgb(255 255 255 / .3); font: .62rem monospace; }
     .composition-progress [data-composition-index] { color: white; }
     .composition-workspace { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(18rem, .65fr); min-height: 43rem; }
-    .composition-stage { position: relative; min-width: 0; overflow: hidden; background: #07050e; }
-    .composition-stage > img { width: 100%; height: 100%; object-fit: cover; transition: filter .45s ease, transform .45s ease; }
-    .composition-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .composition-overlay { transition: opacity .3s ease; }
+    .composition-stage { --composition-swipe-x: 0px; position: relative; min-width: 0; overflow: hidden; background: #07050e; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+    .composition-stage.is-swiping { cursor: grabbing; }
+    .composition-swipe-track { display: flex; position: absolute; inset: 0 auto 0 0; width: 300%; height: 100%; transform: translate3d(calc(-33.333333% + var(--composition-swipe-x)), 0, 0); transition: transform .32s cubic-bezier(.22, 1, .36, 1); will-change: transform; }
+    .composition-slide { width: 33.333333%; min-width: 0; height: 100%; flex: 0 0 33.333333%; overflow: hidden; background: #07050e; }
+    .composition-slide img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .composition-stage.is-swiping .composition-swipe-track { transition: none; }
+    .composition-stage.is-resetting .composition-swipe-track { transition: none; }
+    .composition-overlay { position: absolute; inset: 0; width: 100%; height: 100%; transform: translate3d(var(--composition-swipe-x), 0, 0); transition: opacity .3s ease, transform .32s cubic-bezier(.22, 1, .36, 1); will-change: transform; }
+    .composition-stage.is-swiping .composition-overlay { transition: opacity .3s ease; }
+    .composition-stage.is-resetting .composition-overlay { transition: opacity .3s ease; }
     .composition-overlay [data-overlay] { opacity: 0; transition: opacity .45s ease; }
     .composition-overlay [data-overlay].is-active { opacity: .68; }
     .composition-overlay.is-animating [data-overlay].is-active { animation: composition-overlay-reveal 3.4s cubic-bezier(.22, 1, .36, 1) both; }
@@ -344,6 +350,7 @@ body {
     @keyframes composition-line-drift { 0% { stroke-dashoffset: 42; } 58%, 100% { stroke-dashoffset: 0; } }
     @keyframes composition-point-breathe { 0% { opacity: 0; transform: scale(.82); } 22% { opacity: 1; transform: scale(1.06); } 58% { opacity: .72; transform: scale(.98); } 100% { opacity: .92; transform: scale(1); } }
     .composition-stage-label { position: absolute; top: 1rem; left: 1rem; padding: .42rem .6rem; border: 1px solid rgb(255 255 255 / .16); border-radius: 9999px; background: rgb(16 11 37 / .68); color: rgb(255 255 255 / .68); font: .55rem monospace; letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(8px); }
+    .composition-swipe-hint { display: none; position: absolute; right: 1rem; bottom: 1rem; align-items: center; gap: .3rem; padding: .42rem .6rem; border: 1px solid rgb(255 255 255 / .16); border-radius: 9999px; background: rgb(16 11 37 / .68); color: rgb(255 255 255 / .72); font: .55rem monospace; letter-spacing: .06em; text-transform: uppercase; pointer-events: none; backdrop-filter: blur(8px); }
     .composition-panel { padding: 1.4rem; background: linear-gradient(145deg, #17102f, #100b25); }
     .composition-eyebrow { color: #f9e71c; font: .54rem monospace; letter-spacing: .1em; text-transform: uppercase; }
     .composition-panel h3 { padding-top: .7rem; font: 700 1.35rem/1.1 Raleway, sans-serif; text-transform: uppercase; }
@@ -562,7 +569,9 @@ body {
         .constellation-axes button { flex-shrink: 0; }
         .lab-page .glass-panel.eye-console { grid-template-columns: 1fr; }
         .composition-workspace { grid-template-columns: 1fr; }
-        .composition-stage { min-height: 31rem; }
+        .composition-stage { height: var(--composition-stage-height, auto); min-height: 0; aspect-ratio: var(--composition-photo-aspect, 3 / 2); }
+        .composition-slide img { object-fit: contain; }
+        .composition-swipe-hint { display: flex; }
         .composition-toolbar { align-items: flex-start; flex-direction: column; gap: .65rem; }
         .composition-modes { width: 100%; overflow-x: auto; }
         .composition-modes span { flex: 0 0 auto; }
@@ -615,6 +624,7 @@ body {
         .lab-jump-link { scroll-behavior: auto; }
         .control-room-live i, .architecture-flow b::before, .pipeline-flow > li { animation: none; }
         .composition-overlay.is-animating [data-overlay].is-active, .composition-overlay.is-animating [data-overlay].is-active path, .composition-overlay.is-animating [data-overlay].is-active circle, .composition-overlay.is-animating [data-overlay].is-active rect { animation: none; }
+        .composition-stage { transition: none; }
     }
 
     .hero-social-bar {
