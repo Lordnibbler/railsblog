@@ -25,7 +25,7 @@
     <div class="container py-16 md:py-24">
       <div class="lab-experiment-heading">
         <div><p class="lab-kicker">Experiment 002 / Load testing</p><h2 class="font-header font-semibold uppercase">Simulated City</h2></div>
-        <p class="lab-deck">I helped engineer and create SimulatedRides at Lyft to load-test its two-sided marketplace at massive scale. This interactive homage sends probabilistic riders and drivers through ramp, soak, and recovery. <a class="lab-inline-link" href="https://eng.lyft.com/simulatedrides-how-lyft-uses-load-testing-to-ensure-reliable-service-during-peak-events-644dcb654454" target="_blank" rel="noopener">Read the Lyft Engineering article I co-authored <i class="bx bx-link-external"></i></a></p>
+        <p class="lab-deck">I helped engineer and create SimulatedRides at Lyft to load-test its two-sided marketplace at massive scale. This interactive homage sends probabilistic riders and drivers through ramp, soak, and recovery. <a class="lab-inline-link" href="https://eng.lyft.com/simulatedrides-how-lyft-uses-load-testing-to-ensure-reliable-service-during-peak-events-644dcb654454" target="_blank" rel="noopener noreferrer">Read the Lyft Engineering article I co-authored <i class="bx bx-link-external"></i></a></p>
       </div>
       <div class="rides-console glass-panel" data-rides-simulation>
         <div class="rides-map">
@@ -33,7 +33,7 @@
           <canvas data-rides-canvas aria-label="Live rideshare load-test simulation"></canvas>
           <div class="rides-phase"><span data-rides-status></span><strong data-rides-phase>Ready</strong><small>Test phase</small></div>
           <div class="rides-legend"><span><i class="rider-dot"></i>Awaiting rider</span><span><i class="driver-dot"></i>Active driver</span><span class="rides-fleet-count"><b data-rides-fleet>0</b> vehicles</span></div>
-          <span class="rides-map-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener">CARTO</a></span>
+          <span class="rides-map-credit">© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> © <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a></span>
         </div>
         <div class="rides-sidebar">
           <div class="rides-header"><span>SIMULATION / PEAK_EVENT</span><strong data-rides-clock>00:00</strong></div>
@@ -82,124 +82,6 @@
   </section>
   <% end %>
 
-  <% capture do %>
-  <section id="signal-garden" class="lab-experiment section-divider">
-    <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading">
-        <div>
-          <p class="lab-kicker">Experiment 002 / Generative Systems</p>
-          <h2 class="font-header font-semibold uppercase">Signal Garden</h2>
-        </div>
-        <p class="lab-deck">A living field of independent agents. Move through it, disturb its currents, and tune the system into something of your own.</p>
-      </div>
-
-      <div class="lab-canvas-shell glass-panel" data-signal-garden>
-        <div class="lab-canvas-toolbar">
-          <div class="lab-live-status"><span></span> Live simulation</div>
-          <div class="lab-canvas-actions">
-            <button type="button" data-lab-action="local"><i class="bx bx-current-location"></i><span>Use my location</span></button>
-            <select data-lab-mode aria-label="Local data source"><option value="weather">Live weather</option><option value="traffic">Modeled traffic</option></select>
-            <button type="button" data-lab-action="randomize" aria-label="Randomize the signal garden">
-              <i class="bx bx-shuffle" aria-hidden="true"></i> Randomize
-            </button>
-            <button type="button" data-lab-action="pause" aria-pressed="false">
-              <i class="bx bx-pause" aria-hidden="true"></i> <span>Pause</span>
-            </button>
-          </div>
-        </div>
-        <div class="lab-local-data" data-lab-local aria-live="polite"><span>DEMO SIGNAL</span><strong>Move through the field to shape it</strong></div>
-
-        <div class="lab-canvas-wrap">
-          <canvas data-lab-canvas aria-label="An interactive generative particle field"></canvas>
-          <p class="lab-canvas-hint"><i class="bx bx-pointer" aria-hidden="true"></i> Move or drag to bend the field</p>
-          <div class="lab-canvas-readout" aria-hidden="true">
-            <span data-lab-fps>60 FPS</span><span>WEB CANVAS</span>
-          </div>
-        </div>
-
-        <div class="lab-controls" aria-label="Signal Garden controls">
-          <label>
-            <span><span>Density</span><output data-output="density">72</output></span>
-            <input type="range" min="25" max="100" value="72" data-lab-control="density">
-          </label>
-          <label>
-            <span><span>Flow</span><output data-output="flow">58</output></span>
-            <input type="range" min="10" max="100" value="58" data-lab-control="flow">
-          </label>
-          <label>
-            <span><span>Trail</span><output data-output="trail">68</output></span>
-            <input type="range" min="5" max="95" value="68" data-lab-control="trail">
-          </label>
-          <div class="lab-palettes" aria-label="Color palette">
-            <span>Signal</span>
-            <button type="button" class="is-active" data-lab-palette="violet" aria-label="Violet signal" aria-pressed="true"></button>
-            <button type="button" data-lab-palette="solar" aria-label="Solar signal" aria-pressed="false"></button>
-            <button type="button" data-lab-palette="ocean" aria-label="Ocean signal" aria-pressed="false"></button>
-          </div>
-        </div>
-      </div>
-
-      <div class="lab-notes">
-        <div class="lab-note">
-          <span>01</span>
-          <div><h3>Emergence over choreography</h3><p>Every particle follows a few small rules. Their collective movement creates the composition—no animation timeline required.</p></div>
-        </div>
-        <div class="lab-note">
-          <span>02</span>
-          <div><h3>Built for the browser</h3><p>A responsive Canvas renderer adapts its particle budget to the display while respecting reduced-motion preferences.</p></div>
-        </div>
-        <div class="lab-note">
-          <span>03</span>
-          <div><h3>You complete the system</h3><p>Pointer position becomes a force in the simulation, turning observation into collaboration.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="falling-sand" class="lab-sandbox section-divider">
-    <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading">
-        <div><p class="lab-kicker">Experiment 003 / Cellular materials</p><h2 class="font-header font-semibold uppercase">Element Fall</h2></div>
-        <p class="lab-deck">A pocket-sized falling-sand world. Paint matter into the field and watch simple local rules create dunes, dams, currents, and collapse.</p>
-      </div>
-      <div class="cellular-console glass-panel" data-sand-game>
-        <div class="cellular-toolbar">
-          <div class="lab-live-status"><span></span> Cellular simulation</div>
-          <div class="material-tools" role="toolbar" aria-label="Material brush">
-            <button type="button" class="is-active" data-sand-material="sand" aria-pressed="true"><i></i>Sand</button>
-            <button type="button" data-sand-material="water" aria-pressed="false"><i></i>Water</button>
-            <button type="button" data-sand-material="stone" aria-pressed="false"><i></i>Stone</button>
-            <button type="button" data-sand-material="erase" aria-pressed="false"><i></i>Erase</button>
-          </div>
-          <div class="lab-canvas-actions"><button type="button" data-sand-action="clear"><i class="bx bx-trash"></i>Clear</button><button type="button" data-sand-action="pause" aria-pressed="false"><i class="bx bx-pause"></i><span>Pause</span></button></div>
-        </div>
-        <div class="cellular-stage">
-          <canvas data-sand-canvas aria-label="Interactive falling sand material simulation"></canvas>
-          <p class="lab-canvas-hint"><i class="bx bx-pointer"></i> Draw or touch to add material</p>
-        </div>
-        <div class="cellular-footer"><label>Brush size <output data-sand-output>4</output><input type="range" min="1" max="10" value="4" data-sand-brush></label><span>SAND FALLS · WATER FLOWS · STONE HOLDS</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="game-of-life" class="lab-life section-divider">
-    <div class="container py-16 md:py-24">
-      <div class="lab-experiment-heading">
-        <div><p class="lab-kicker">Experiment 004 / Cellular automata</p><h2 class="font-header font-semibold uppercase">Life, Iterated</h2></div>
-        <p class="lab-deck">Conway’s Game of Life needs no players—only a seed. Draw a few living cells and four rules turn them into oscillators, travelers, or beautiful noise.</p>
-      </div>
-      <div class="cellular-console life-console glass-panel" data-life-game>
-        <div class="cellular-toolbar">
-          <div class="lab-live-status"><span></span> Generation <strong data-life-generation>0</strong></div>
-          <div class="life-presets"><button type="button" data-life-preset="glider">Glider</button><button type="button" data-life-preset="pulsar">Pulsar</button><button type="button" data-life-preset="random">Random field</button></div>
-          <div class="lab-canvas-actions"><button type="button" data-life-action="step"><i class="bx bx-skip-next"></i>Step</button><button type="button" data-life-action="clear"><i class="bx bx-trash"></i>Clear</button><button type="button" data-life-action="play" aria-pressed="false"><i class="bx bx-play"></i><span>Play</span></button></div>
-        </div>
-        <div class="cellular-stage life-stage"><canvas data-life-canvas aria-label="Interactive Conway's Game of Life grid"></canvas><p class="lab-canvas-hint"><i class="bx bx-pointer"></i> Draw cells, then press play</p></div>
-        <div class="cellular-footer"><label>Tempo <output data-life-output>8</output><input type="range" min="1" max="16" value="8" data-life-speed></label><span>B3 / S23 · BIRTH AT 3 · SURVIVE AT 2 OR 3</span></div>
-      </div>
-    </div>
-  </section>
-  <% end %>
 
   <% photo_manifest = @photos.map { |photo| { id: photo[:flickr_id], url: photo.dig(:photo_large, :url), width: photo.dig(:photo_large, :width), height: photo.dig(:photo_large, :height), title: photo[:title], description: photo[:description], timestamp: photo[:created_at], composition: photo[:composition_analysis] } } %>
 

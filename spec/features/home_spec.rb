@@ -17,6 +17,9 @@ describe '/' do
       expect(page).to have_css('.glass-card-static', count: 3)
     end
 
+    expect(page).to have_link('View my work', href: '#work')
+    expect(page).to have_link('Start a conversation', href: '#contact')
+
     within '#videos' do
       expect(page).to have_css('.video-glass-card.glass-panel', count: 3)
     end
@@ -27,6 +30,7 @@ describe '/' do
     end
 
     expect(page).to have_css('.newsletter-input')
+    expect(page).to have_field('Email address', type: 'email')
     expect(page).to have_css('.newsletter-button.glass-button')
     expect(page).to have_css('.glass-footer')
   end
@@ -121,6 +125,19 @@ describe '/' do
   end
 
   context 'when using contact form' do
+    it 'provides labels and required semantics for every message field' do
+      visit root_path
+
+      within '#new_contact_form' do
+        expect(page).to have_field('Name', type: 'text')
+        expect(page).to have_field('Email', type: 'email')
+        expect(page).to have_field('Message')
+        expect(page).to have_css('#contact_form_name[required]')
+        expect(page).to have_css('#contact_form_email[required]')
+        expect(page).to have_css('#contact_form_message[required]')
+      end
+    end
+
     context 'with invalid data', :js do
       before { visit root_path }
 

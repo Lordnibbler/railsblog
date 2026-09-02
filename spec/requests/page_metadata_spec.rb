@@ -24,6 +24,15 @@ RSpec.describe 'Page metadata and markup', type: :request do
       expect(asset_urls).to include(a_string_matching(/contact-me/))
       expect(asset_urls).not_to include(a_string_matching(/photography|blog|pygment/))
     end
+
+    it 'describes current high-scale systems experience' do
+      get root_path
+
+      document = Nokogiri::HTML(response.body)
+
+      expect(document.at_css('meta[name="description"]')['content']).to include('high-scale systems')
+      expect(document.at_css('meta[property="og:description"]')['content']).to include('Cruise', 'Lyft')
+    end
   end
 
   describe 'GET /blog/:year/:month/:day/:id' do
@@ -85,6 +94,20 @@ RSpec.describe 'Page metadata and markup', type: :request do
       expect(submit_button).to be_present
       expect(submit_button.text.squish).to include('Send')
       expect(submit_button.at_css('input, button')).to be_nil
+    end
+
+    it 'associates labels with required contact fields' do
+      get '/contact-me'
+
+      document = Nokogiri::HTML(response.body)
+
+      %w[name email message].each do |field|
+        input = document.at_css("#contact_form_#{field}")
+        label = document.at_css("label[for='contact_form_#{field}']")
+
+        expect(input['required']).to be_present
+        expect(label).to be_present
+      end
     end
   end
 end

@@ -161,32 +161,6 @@ body {
     .lab-deck, .lab-next-heading p { max-width: 32rem; color: #665f76; font-size: 1.05rem; line-height: 1.75; }
     .lab-inline-link { display: inline; color: #5540af; font-weight: 600; text-decoration: underline; text-decoration-color: rgb(85 64 175 / .35); text-underline-offset: .2rem; }
 
-    .lab-page .glass-panel.lab-canvas-shell { overflow: hidden; border-color: rgb(255 255 255 / 0.14); border-radius: 1.5rem; background: #100b25; box-shadow: 0 2rem 5rem rgb(25 15 65 / 0.25); }
-    .lab-canvas-toolbar { display: flex; align-items: center; justify-content: space-between; min-height: 4rem; padding: 0.8rem 1.25rem; border-bottom: 1px solid rgb(255 255 255 / 0.1); background: #100b25; color: rgb(255 255 255 / 0.72); }
-    .lab-live-status { display: flex; align-items: center; gap: 0.55rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
-    .lab-live-status span { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #f9e71c; box-shadow: 0 0 0.8rem #f9e71c; }
-    .lab-canvas-actions { display: flex; gap: 0.4rem; }
-    .lab-canvas-actions button { padding: 0.5rem 0.75rem; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 9999px; font-size: 0.7rem; transition: background 180ms ease, color 180ms ease; }
-    .lab-canvas-actions button:hover { background: rgb(255 255 255 / 0.1); color: white; }
-    .lab-canvas-actions select { max-width: 9rem; padding: 0.35rem 1.8rem 0.35rem 0.65rem; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 9999px; background-color: #1b1338; color: rgb(255 255 255 / 0.72); font-size: 0.7rem; }
-    .lab-canvas-actions i { margin-right: 0.2rem; }
-    .lab-canvas-wrap { position: relative; height: clamp(24rem, 55vw, 42rem); background: radial-gradient(circle at 50% 45%, #251851, #100b25 72%); }
-    .lab-canvas-wrap canvas { width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
-    .lab-canvas-hint { position: absolute; top: 1.25rem; left: 1.25rem; padding: 0.5rem 0.7rem; border: 1px solid rgb(255 255 255 / 0.12); border-radius: 9999px; background: rgb(16 11 37 / 0.65); color: rgb(255 255 255 / 0.62); font-size: 0.68rem; pointer-events: none; backdrop-filter: blur(8px); }
-    .lab-canvas-readout { position: absolute; right: 1.25rem; bottom: 1rem; display: flex; gap: 1rem; color: rgb(255 255 255 / 0.38); font-family: monospace; font-size: 0.6rem; letter-spacing: 0.1em; }
-    .lab-controls { display: grid; grid-template-columns: repeat(3, 1fr) 0.85fr; gap: 1.5rem; padding: 1.4rem 1.5rem 1.6rem; border-top: 1px solid rgb(255 255 255 / 0.1); background: #100b25; color: white; }
-    .lab-local-data { display: flex; justify-content: space-between; gap: 1rem; padding: 0.7rem 1.4rem; border-top: 1px solid rgb(255 255 255 / 0.08); background: #171030; color: rgb(255 255 255 / 0.6); font-family: monospace; font-size: 0.62rem; letter-spacing: 0.08em; }
-    .lab-local-data strong { color: #f9e71c; font-weight: 400; }
-    .lab-controls label > span { display: flex; justify-content: space-between; margin-bottom: 0.7rem; color: rgb(255 255 255 / 0.6); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    .lab-controls output { color: #f9e71c; }
-    .lab-controls input[type="range"] { width: 100%; height: 2px; padding: 0; border: 0; background: rgb(255 255 255 / 0.2); accent-color: #f9e71c; }
-    .lab-controls input[type="range"]::-webkit-slider-thumb { width: 0.85rem; height: 0.85rem; border: 2px solid #100b25; border-radius: 50%; background: #f9e71c; box-shadow: 0 0 0 1px #f9e71c; appearance: none; }
-    .lab-palettes { display: flex; align-items: center; justify-content: flex-end; gap: 0.7rem; }
-    .lab-palettes > span { margin-right: 0.2rem; color: rgb(255 255 255 / 0.55); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
-    .lab-palettes button { width: 1.25rem; height: 1.25rem; border: 2px solid #100b25; border-radius: 50%; background: #9a6dff; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.2); }
-    .lab-palettes button:nth-of-type(2) { background: #ff8c42; }
-    .lab-palettes button:nth-of-type(3) { background: #42d9c8; }
-    .lab-palettes button.is-active { box-shadow: 0 0 0 2px #f9e71c; }
 
     .lab-notes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding-top: 4rem; }
     .lab-note { display: flex; gap: 1.1rem; border-top: 1px solid rgb(85 64 175 / 0.22); padding-top: 1.4rem; }
@@ -194,26 +168,6 @@ body {
     .lab-note h3 { color: #281c58; font-family: Raleway, sans-serif; font-size: 1rem; font-weight: 700; text-transform: uppercase; }
     .lab-note p { padding-top: 0.7rem; color: #756e83; font-size: 0.86rem; line-height: 1.65; }
 
-    .lab-sandbox { background: linear-gradient(155deg, #f9f8fc, #eeeaf9); }
-    .lab-life { background: #fff; }
-    .lab-page .glass-panel.cellular-console { overflow: hidden; border-color: rgb(255 255 255 / .14); border-radius: 1.5rem; background: #100b25; box-shadow: 0 2rem 5rem rgb(25 15 65 / .22); }
-    .cellular-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; padding: .8rem 1.2rem; border-bottom: 1px solid rgb(255 255 255 / .1); background: #100b25; color: rgb(255 255 255 / .72); }
-    .cellular-toolbar .lab-live-status strong { color: #f9e71c; font-family: monospace; }
-    .material-tools, .life-presets { display: flex; gap: .35rem; }
-    .material-tools button, .life-presets button { display: flex; align-items: center; gap: .4rem; padding: .5rem .65rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 9999px; color: rgb(255 255 255 / .55); font-size: .65rem; }
-    .material-tools button:hover, .life-presets button:hover, .material-tools button.is-active { border-color: rgb(249 231 28 / .6); color: white; background: rgb(255 255 255 / .06); }
-    .material-tools i { width: .55rem; height: .55rem; border-radius: 50%; background: #f9e71c; }
-    .material-tools button[data-sand-material="water"] i { background: #42d9c8; }
-    .material-tools button[data-sand-material="stone"] i { background: #8b7fa7; }
-    .material-tools button[data-sand-material="erase"] i { border: 1px solid rgb(255 255 255 / .5); background: transparent; }
-    .cellular-stage { position: relative; height: clamp(28rem, 58vw, 44rem); overflow: hidden; background: radial-gradient(circle at 50% 20%, #251851, #100b25 70%); }
-    .cellular-stage canvas { width: 100%; height: 100%; cursor: crosshair; touch-action: none; image-rendering: pixelated; }
-    .cellular-footer { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 1rem 1.3rem; border-top: 1px solid rgb(255 255 255 / .1); background: #100b25; color: rgb(255 255 255 / .4); font: .6rem monospace; letter-spacing: .08em; }
-    .cellular-footer label { display: flex; align-items: center; gap: .75rem; color: rgb(255 255 255 / .6); text-transform: uppercase; }
-    .cellular-footer output { color: #f9e71c; }
-    .cellular-footer input { width: min(12rem, 22vw); height: 2px; padding: 0; border: 0; background: rgb(255 255 255 / .18); accent-color: #f9e71c; }
-    .life-stage { background: #100b25; }
-    .life-presets button { color: rgb(255 255 255 / .65); }
 
     .lab-page .glass-panel.rides-console { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(19rem, 0.7fr); overflow: hidden; border-color: rgb(255 255 255 / .14); border-radius: 1.5rem; background: #120d29; box-shadow: 0 2rem 5rem rgb(25 15 65 / 0.2); }
     .rides-map { position: relative; min-height: 38rem; overflow: hidden; border-right: 1px solid rgb(255 255 255 / 0.1); background: #d9d5df; }
@@ -541,22 +495,10 @@ body {
     @media (max-width: 767px) {
         .lab-intro, .lab-experiment-heading, .lab-next-heading { align-items: start; flex-direction: column; }
         .lab-title { font-size: clamp(3.1rem, 16vw, 5rem); }
-        .lab-canvas-wrap { height: 28rem; }
-        .lab-controls { grid-template-columns: 1fr; }
-        .lab-palettes { justify-content: flex-start; padding-top: 0.5rem; }
         .lab-notes, .lab-next-grid { grid-template-columns: 1fr; }
         .lab-page .glass-panel.rides-console, .photo-lab { grid-template-columns: 1fr; }
         .rides-map, .photo-lab-stage { min-height: 27rem; }
         .rides-map { border-right: 0; border-bottom: 1px solid rgb(255 255 255 / .1); }
-        .lab-canvas-toolbar { align-items: flex-start; gap: .7rem; }
-        .lab-canvas-actions { flex-wrap: wrap; justify-content: flex-end; }
-        .lab-local-data { flex-direction: column; }
-        .cellular-toolbar { align-items: flex-start; flex-wrap: wrap; }
-        .material-tools, .life-presets { order: 3; width: 100%; overflow-x: auto; padding-top: .4rem; }
-        .material-tools button, .life-presets button { flex-shrink: 0; }
-        .cellular-stage { height: 30rem; }
-        .cellular-footer { align-items: flex-start; flex-direction: column; gap: .8rem; }
-        .cellular-footer input { width: 10rem; }
         .constellation-toolbar { align-items: flex-start; flex-direction: column; }
         .constellation-axes { max-width: 100%; overflow-x: auto; padding-bottom: .25rem; }
         .constellation-axes button { flex-shrink: 0; }
@@ -585,7 +527,6 @@ body {
         .service-load-row { grid-template-columns: minmax(8rem, 1fr) minmax(8rem, 1.5fr) 4rem; gap: .65rem; padding-right: 1rem; padding-left: 1rem; }
         .service-load-row [data-service-latency], .service-load-row [data-service-health] { display: none; }
         .service-load-header { align-items: flex-start; }
-        .lab-canvas-hint { display: none; }
         .lab-card-visual { height: 15rem; }
     }
 
@@ -594,8 +535,6 @@ body {
         .lab-experiment { background: linear-gradient(155deg, #17102f, #211741); }
         .lab-next { background: #110c23; }
         .lab-rides { background: #110c23; }
-        .lab-sandbox { background: linear-gradient(155deg, #17102f, #211741); }
-        .lab-life { background: #110c23; }
         .photo-constellation-section, .time-machine-section { background: linear-gradient(155deg, #17102f, #211741); }
         .photographers-eye-section { background: #110c23; }
         .composition-studio-section { background: #110c23; }
@@ -626,6 +565,24 @@ body {
         box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
         -webkit-backdrop-filter: blur(8px) saturate(145%);
         backdrop-filter: blur(8px) saturate(145%);
+    }
+
+    .hero-secondary-button {
+        border: 1px solid rgb(255 255 255 / 0.55);
+        background: rgb(15 9 42 / 0.24);
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14);
+        transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+    }
+
+    .hero-secondary-button:hover {
+        border-color: #f9e71c;
+        background: rgb(15 9 42 / 0.42);
+        transform: translateY(-1px);
+    }
+
+    .hero-secondary-button:focus-visible {
+        outline: 3px solid rgb(249 231 28 / 0.72);
+        outline-offset: 3px;
     }
 
     .about-copy {
@@ -845,6 +802,19 @@ body {
         background-color: rgb(255 255 255 / 0.92);
         box-shadow: inset 0 1px 2px rgb(25 19 52 / 0.05);
         transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .contact-label {
+        color: #5540af;
+        font-family: Raleway, sans-serif;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .contact-label { color: #ddd8ef; }
     }
 
     .contact-input:hover {

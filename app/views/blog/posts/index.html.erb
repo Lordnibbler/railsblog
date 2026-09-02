@@ -1,6 +1,6 @@
 <% set_meta_tags(
   title: 'Coding, Hacking, Gadgets, and Technology Blog',
-  description: 'Ben Radler is an Engineer in San Francisco. He uses technology like Ruby, Rails, Javascript, Node.js',
+  description: 'Writing by Ben Radler about distributed systems, software testing, developer productivity, and building dependable products.',
 ) %>
 
 <div class="page-surface flex-shrink-0">
@@ -16,7 +16,7 @@
           <%= render partial: 'meta', locals: { post: post } %>
 
           <div class="pt-8 prose max-w-full dark:text-primary-700" itemprop="articleBody">
-            <%= image_tag cdn_image_url(post.featured_image), class: "rounded-xl", loading: "lazy", decoding: "async" if post.featured_image.attached? %>
+            <%= image_tag cdn_image_url(post.featured_image), alt: "Featured image for #{post.title}", class: "rounded-xl", loading: "lazy", decoding: "async" if post.featured_image.attached? %>
             <%= markdown post.excerpt %>
             <a href="<%= blog_posts_permalink_path(post) %>" class="glass-button inline-flex items-center px-5 py-2.5 rounded-full no-underline">
                 <span class="font-body font-bold text-white text-base uppercase block">

@@ -59,4 +59,7 @@ SitemapGenerator::Sitemap.create do
 
   # /photography
   add photography_path, changefreq: 'monthly'
+
+  # /lab
+  add lab_path, changefreq: 'monthly'
 end

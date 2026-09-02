@@ -2,6 +2,29 @@
 # helper methods for views used application-wide
 #
 module ApplicationHelper
+  PROFESSIONAL_START_YEAR = 2011
+  DESKTOP_NAVIGATION_CLASSES = %w[
+    font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8
+    decoration-2 decoration-yellow
+  ].join(' ').freeze
+  MOBILE_NAVIGATION_CLASSES = %w[
+    font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8
+    decoration-2 decoration-yellow
+  ].join(' ').freeze
+  MOBILE_LINK_NAVIGATION_CLASSES = %w[
+    font-header font-semibold text-2xl text-white uppercase py-2 hover:underline underline-offset-8 decoration-2
+    decoration-yellow
+  ].join(' ').freeze
+
+  def professional_experience_years
+    Time.current.year - PROFESSIONAL_START_YEAR
+  end
+
+  def site_description
+    "Ben Radler is a software engineer with #{professional_experience_years} years of experience building " \
+      'dependable, high-scale systems for companies including Cruise, Lyft, Teespring, and OneLogin.'
+  end
+
   def current_page_url
     request&.original_url || root_url
   end
@@ -59,7 +82,7 @@ module ApplicationHelper
       link_to(
         name,
         path,
-        class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+        class: DESKTOP_NAVIGATION_CLASSES,
       )
     end
   end
@@ -75,13 +98,13 @@ module ApplicationHelper
           :a,
           name,
           'x-on:click': "triggerNavItem('#{path}')",
-          class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+          class: DESKTOP_NAVIGATION_CLASSES,
         )
       else
         content_tag(
           :a,
           href: "#{root_path}#{path}", 'data-turbo': 'false',
-          class: 'font-header font-semibold text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+          class: DESKTOP_NAVIGATION_CLASSES,
         ) do
           name
         end
@@ -97,7 +120,7 @@ module ApplicationHelper
       link_to(
         name,
         path,
-        class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+        class: MOBILE_NAVIGATION_CLASSES,
       )
     end
   end
@@ -113,14 +136,14 @@ module ApplicationHelper
           :a,
           name,
           'x-on:click': "triggerMobileNavItem('#{path}')",
-          class: 'font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow',
+          class: MOBILE_NAVIGATION_CLASSES,
         )
       else
         content_tag(
           :a,
           href: "#{root_path}#{path}",
           'data-turbo': 'false',
-          class: 'font-header font-semibold text-2xl text-white uppercase py-2 hover:underline underline-offset-8 decoration-2 decoration-yellow',
+          class: MOBILE_LINK_NAVIGATION_CLASSES,
         ) do
           name
         end
