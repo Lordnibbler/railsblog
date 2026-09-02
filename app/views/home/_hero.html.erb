@@ -17,13 +17,15 @@
                     <div class="font-thin uppercase">Software Engineer</div>
                 </h1>
                 <p class="mx-auto lg:mx-0 mt-5 max-w-xl font-body text-white/90 text-lg sm:text-xl text-center lg:text-left leading-relaxed">
-                    I build dependable platforms for complex, high-scale systems—and bring a filmmaker’s eye to how they work and feel.
+                    I build dependable platforms for complex, high-scale systems and bring a creative eye shaped by photography and art to how they work and feel.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mt-6">
-                    <a href="#work" class="glass-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
+                    <a href="#work" x-data x-on:click.prevent="$scroll('#work', { offset: 40 })"
+                        class="glass-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
                         View my work
                     </a>
-                    <a href="#contact" class="hero-secondary-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
+                    <a href="#contact" x-data x-on:click.prevent="$scroll('#contact', { offset: 40 })"
+                        class="hero-secondary-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
                         Start a conversation
                     </a>
                 </div>

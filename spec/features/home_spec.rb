@@ -17,8 +17,12 @@ describe '/' do
       expect(page).to have_css('.glass-card-static', count: 3)
     end
 
-    expect(page).to have_link('View my work', href: '#work')
-    expect(page).to have_link('Start a conversation', href: '#contact')
+    work_link = find_link('View my work', href: '#work')
+    contact_link = find_link('Start a conversation', href: '#contact')
+    expect(work_link['x-data']).not_to be_nil
+    expect(contact_link['x-data']).not_to be_nil
+    expect(work_link['x-on:click.prevent']).to eq("$scroll('#work', { offset: 40 })")
+    expect(contact_link['x-on:click.prevent']).to eq("$scroll('#contact', { offset: 40 })")
 
     within '#videos' do
       expect(page).to have_css('.video-glass-card.glass-panel', count: 3)
