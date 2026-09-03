@@ -134,14 +134,14 @@ body {
         letter-spacing: -0.055em;
     }
 
-    .lab-title span {
-        padding-right: 0.04em;
+    .lab-title-highlight > span {
+        display: inline-block;
+        padding-right: 0.06em;
         color: transparent;
-        background: linear-gradient(90deg, #f9e71c, #d6caff 65%);
+        background: linear-gradient(90deg, #f9e71c, #fff 68%);
         -webkit-background-clip: text;
         background-clip: text;
-        -webkit-box-decoration-break: clone;
-        box-decoration-break: clone;
+        filter: drop-shadow(0 0.015em 0 rgb(16 11 37 / 0.45));
     }
 
     .lab-intro {
@@ -498,6 +498,12 @@ body {
     .lab-cta-button { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2.5rem; padding: 0.85rem 1.4rem; border-radius: 9999px; color: white; font-family: Raleway, sans-serif; font-weight: 700; text-transform: uppercase; }
 
     @media (max-width: 767px) {
+        .lab-orb-one {
+            top: 10%;
+            right: -3rem;
+            box-shadow: 0 0 4rem #9a6dff;
+        }
+
         .lab-intro, .lab-experiment-heading, .lab-next-heading { align-items: start; flex-direction: column; }
         .lab-title { font-size: clamp(3.1rem, 16vw, 5rem); }
         .lab-notes, .lab-next-grid { grid-template-columns: 1fr; }
