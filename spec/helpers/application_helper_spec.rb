@@ -87,6 +87,28 @@ describe ApplicationHelper do
     end
   end
 
+  describe 'home_desktop_navigation_link' do
+    it 'smooth-scrolls to the top on the homepage' do
+      helper.request.path = '/'
+
+      link = Nokogiri::HTML.fragment(helper.home_desktop_navigation_link(name: 'Home')).at_css('a')
+
+      expect(link['href']).to eq('/')
+      expect(link['x-on:click.prevent']).to eq('triggerHomeItem()')
+    end
+
+    %w[/blog /photography /lab].each do |path|
+      it "navigates home from #{path}" do
+        helper.request.path = path
+
+        link = Nokogiri::HTML.fragment(helper.home_desktop_navigation_link(name: 'Home')).at_css('a')
+
+        expect(link['href']).to eq('/')
+        expect(link).not_to have_attribute('x-on:click.prevent')
+      end
+    end
+  end
+
   describe 'scrolling_desktop_navigation_link' do
     context 'when request_path is "/"' do
       before { helper.request.path = '/' }
@@ -118,6 +140,28 @@ describe ApplicationHelper do
       # rubocop:disable Layout/LineLength
       expect(link).to eq('<li class="pb-4"><a class="font-header font-semibold text-2xl text-white uppercase py-2 cursor-pointer hover:underline underline-offset-8 decoration-2 decoration-yellow" href="/">Home</a></li>')
       # rubocop:enable Layout/LineLength
+    end
+  end
+
+  describe 'home_mobile_navigation_link' do
+    it 'closes the menu and smooth-scrolls to the top on the homepage' do
+      helper.request.path = '/'
+
+      link = Nokogiri::HTML.fragment(helper.home_mobile_navigation_link(name: 'Home')).at_css('a')
+
+      expect(link['href']).to eq('/')
+      expect(link['x-on:click.prevent']).to eq('triggerMobileHomeItem()')
+    end
+
+    %w[/blog /photography /lab].each do |path|
+      it "navigates home from #{path}" do
+        helper.request.path = path
+
+        link = Nokogiri::HTML.fragment(helper.home_mobile_navigation_link(name: 'Home')).at_css('a')
+
+        expect(link['href']).to eq('/')
+        expect(link).not_to have_attribute('x-on:click.prevent')
+      end
     end
   end
 

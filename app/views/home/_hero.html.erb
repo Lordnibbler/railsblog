@@ -8,7 +8,7 @@
     <div class="container z-30 relative pt-20 sm:pt-56 lg:pt-64 pb-12 sm:pb-48 lg:pb-48">
         <div class="flex flex-col lg:flex-row justify-center items-center">
             <div class="rounded-full border-8 border-white shadow-xl">
-                <%= image_tag "home/blog-author-#{rand(1..5)}.jpg", class: "h-48 w-48 sm:h-56 sm:w-56 rounded-full object-cover", alt: "author", width: 425, height: 425, fetchpriority: "high" %>
+                <%= image_tag "home/blog-author-#{rand(1..5)}.jpg", class: "h-48 w-48 sm:h-56 sm:w-56 rounded-full object-cover", alt: "Portrait of Ben Radler", width: 425, height: 425, fetchpriority: "high" %>
             </div>
             <div class="lg:pl-8 pt-8 sm:pt-10 lg:pt-0">
                 <h1
@@ -16,12 +16,23 @@
                     <div class="font-bold uppercase">Ben Radler</div>
                     <div class="font-thin uppercase">Software Engineer</div>
                 </h1>
+                <p class="mx-auto lg:mx-0 mt-5 max-w-xl font-body text-white/90 text-lg sm:text-xl text-center lg:text-left leading-relaxed">
+                    I build resilient, high-scale systems with technical discipline and an artist's eye for clarity, composition, and detail.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 mt-6">
+                    <a href="#work" x-data x-on:click.prevent="window.smoothScrollTo('#work', 40)"
+                        class="glass-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
+                        View my work
+                    </a>
+                    <a href="#contact" x-data x-on:click.prevent="window.smoothScrollTo('#contact', 40)"
+                        class="hero-secondary-button font-header font-bold text-white px-6 py-3 rounded uppercase text-center">
+                        Start a conversation
+                    </a>
+                </div>
                 <div class="hero-social-bar flex flex-col sm:flex-row justify-center lg:justify-start mx-auto lg:mx-0 mt-5">
-                    <div class="flex justify-center sm:justify-start items-center pl-0 md:pl-1">
-                        <p class="font-body text-white text-lg uppercase">Find Me Here</p>
-                        <div class="hidden sm:block">
-                            <i class='bx bx-chevron-right text-yellow text-3xl'></i>
-                        </div>
+                    <div class="hero-social-label flex justify-center sm:justify-start items-center">
+                        <p class="font-body font-semibold text-white/80 text-sm uppercase tracking-widest">Find me here</p>
+                        <span class="hero-social-divider hidden sm:block" aria-hidden="true"></span>
                     </div>
                     <%= render partial: 'shared/social_icons', locals: { icon_classes: 'text-white hover:text-yellow' } %>
                 </div>

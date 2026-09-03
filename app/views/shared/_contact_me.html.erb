@@ -3,18 +3,23 @@
 <%= form_for ContactForm.new, url: contact_forms_path(request_route: request_route), validate: true, html: { class: "w-full sm:w-3/4 pt-10 #{form_classes}" } do |f| %>
 
   <% # this invisible input is required for captcha %>
-  <%= f.text_field :nickname, class: 'hidden invisible' %>
+  <div class="hidden" aria-hidden="true">
+    <%= f.text_field :nickname, tabindex: -1, autocomplete: 'off' %>
+  </div>
 
   <div class="flex flex-col md:flex-row gap-x-4">
       <div class="flex-auto">
-        <%= f.text_field :name, placeholder: 'name',   class: "contact-input w-full font-body text-black px-4 py-3 rounded" %>
+        <%= f.label :name, 'Name', class: 'contact-label' %>
+        <%= f.text_field :name, placeholder: 'Your name', autocomplete: 'name', required: true, class: "contact-input w-full font-body text-black px-4 py-3 rounded mt-2" %>
       </div>
       <div class="flex-auto">
-        <%= f.text_field :email, placeholder: 'email', class: "contact-input w-full font-body text-black px-4 py-3 rounded mt-6 md:mt-0" %>
+        <%= f.label :email, 'Email', class: 'contact-label block mt-6 md:mt-0' %>
+        <%= f.email_field :email, placeholder: 'you@example.com', autocomplete: 'email', required: true, class: "contact-input w-full font-body text-black px-4 py-3 rounded mt-2" %>
       </div>
   </div>
 
-  <%= f.text_area  :message, placeholder: 'message', class:"contact-input w-full font-body text-black px-4 py-3 rounded mt-6 md:mt-8", cols: "30", rows: "10" %>
+  <%= f.label :message, 'Message', class: 'contact-label block mt-6 md:mt-8' %>
+  <%= f.text_area :message, placeholder: 'How can I help?', required: true, class:"contact-input w-full font-body text-black px-4 py-3 rounded mt-2", cols: "30", rows: "10" %>
 
   <button
     type="submit"
