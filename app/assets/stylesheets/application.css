@@ -125,6 +125,8 @@ body {
     }
 
     .lab-title {
+        position: relative;
+        z-index: 2;
         max-width: 65rem;
         padding-top: 1.5rem;
         font-size: clamp(3.4rem, 9vw, 8.2rem);
@@ -133,10 +135,13 @@ body {
     }
 
     .lab-title span {
+        padding-right: 0.04em;
         color: transparent;
         background: linear-gradient(90deg, #f9e71c, #d6caff 65%);
         -webkit-background-clip: text;
         background-clip: text;
+        -webkit-box-decoration-break: clone;
+        box-decoration-break: clone;
     }
 
     .lab-intro {
