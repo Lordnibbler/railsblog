@@ -331,7 +331,7 @@ The technologies used are:
 * [rspsec](https://rspec.info/) is used for [unit testing](spec/)
 * [factorybot](https://github.com/thoughtbot/factory_bot) is used to make reusable [test objects](spec/factories)
 * [VCR](https://github.com/vcr/vcr) is used for recording/playing back HTTP requests and responses in lieu of mocking
-* [capybara](https://github.com/teamcapybara/capybara) + headless chrome ([webdrivers](https://github.com/titusfortner/webdrivers)) is used for [feature testing](spec/features)
+* [capybara](https://github.com/teamcapybara/capybara) + headless chrome ([Selenium](https://www.selenium.dev/)) is used for [feature testing](spec/features). Selenium Manager locates browser drivers when an explicit driver path is not configured.
 
 ### Static Code Analysis
 * [guard](https://github.com/guard/guard) is used to automatically run unit tests and static code analysis tools during development
