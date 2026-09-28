@@ -56,10 +56,11 @@ group :test do
   gem 'launchy' # capybara save_and_open_page automatic launching
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter' # formatting for circleci
+  gem 'rubyzip', '>= 3.4.0' # patched archive extraction used by Selenium
+  gem 'selenium-webdriver', '~> 4.0' # includes Selenium Manager for browser drivers
   gem 'vcr' # record http requests and play them back in tests
-  gem 'webrick' # Capybara test server
-  gem 'webdrivers'
   gem 'webmock'
+  gem 'webrick' # Capybara test server
 end
 
 group :production do
