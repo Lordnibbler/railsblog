@@ -203,12 +203,21 @@ Recent deployment rows come from successful runs of CircleCI’s `build_test_dep
 
 ### Manual Deployments to Heroku via containers
 
+Before every production image build, run `python3 bin/generate-test-inventory`
+from the checkout. CircleCI runs this automatically before `heroku container:push`.
+The generated `config/test_inventory.json` contains the control room's spec-file
+count, example declaration count, and CI provider. It is ignored by Git and copied
+into the image; `spec/` and `.circleci/` stay excluded. These are source counts,
+not a report of executed or passing tests. Local development reads the source files
+directly. Production builds fail if the inventory has not been generated.
+
 ```shell
 # authenticate
 heroku login
 heroku container:login
 
 # creates the container and pushes it to the heroku registry
+python3 bin/generate-test-inventory
 heroku container:push web -a benradler
 
 # NOTE: you can override env vars if needed like so:
@@ -218,10 +227,10 @@ heroku container:push web --arg RAILS_ENV=production -a benradler
 heroku container:release web -a benradler
 
 # Production all in one command:
-heroku login && heroku container:login && heroku container:push web -a benradler && heroku container:release web -a benradler
+heroku login && heroku container:login && python3 bin/generate-test-inventory && heroku container:push web -a benradler && heroku container:release web -a benradler
 
 # Staging all in one command:
-heroku login && heroku container:login && heroku container:push web -a benradler-staging && heroku container:release web -a benradler-staging
+heroku login && heroku container:login && python3 bin/generate-test-inventory && heroku container:push web -a benradler-staging && heroku container:release web -a benradler-staging
 ```
 
 ### Debugging
