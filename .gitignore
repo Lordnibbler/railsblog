@@ -44,3 +44,6 @@ config/credentials.yml.enc
 # js/css build output
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Generated before container builds
+/config/test_inventory.json

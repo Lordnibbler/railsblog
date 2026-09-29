@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+"""Snapshot test source counts without booting Rails or installing test gems."""
+import json
+import re
+from pathlib import Path
+
+root = Path(__file__).resolve().parent.parent
+spec_files = list(root.glob("spec/**/*_spec.rb"))
+if not spec_files:
+    raise SystemExit("No spec files found; generate the inventory from a full checkout.")
+
+inventory = {
+    "files": len(spec_files),
+    "examples": sum(len(re.findall(r"^\s*it\s+['\"]", path.read_text(), re.MULTILINE)) for path in spec_files),
+    "ci": "CircleCI" if (root / ".circleci/config.yml").is_file() else "Not configured",
+}
+output = root / "config/test_inventory.json"
+output.write_text(json.dumps(inventory) + "\n")
+print(f"Wrote {output.relative_to(root)}: {inventory}")

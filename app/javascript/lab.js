@@ -69,7 +69,14 @@ const setupRidesSimulation = () => {
     const offsetX = width / 2 - (centerX - startX) * tileSize; const offsetY = height / 2 - (centerY - startY) * tileSize;
     [mapCenterX, mapCenterY] = worldPoint([longitude, latitude]); tileLayer.replaceChildren();
     for (let y = 0; y < tilesDown; y += 1) for (let x = 0; x < tilesAcross; x += 1) {
-      const image = document.createElement('img'); image.alt = ''; image.decoding = 'async'; image.src = `https://a.basemaps.cartocdn.com/light_all/${zoom}/${startX + x}/${startY + y}@2x.png`; image.style.left = `${offsetX + x * tileSize}px`; image.style.top = `${offsetY + y * tileSize}px`; tileLayer.appendChild(image);
+      const image = document.createElement('img');
+      image.alt = '';
+      image.decoding = 'async';
+      image.referrerPolicy = 'strict-origin-when-cross-origin';
+      image.src = `https://tile.openstreetmap.org/${zoom}/${startX + x}/${startY + y}.png`;
+      image.style.left = `${offsetX + x * tileSize}px`;
+      image.style.top = `${offsetY + y * tileSize}px`;
+      tileLayer.appendChild(image);
     }
   };
 

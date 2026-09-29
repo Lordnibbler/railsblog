@@ -111,6 +111,7 @@ jobs:
       - run:
           name: Deploy to Heroku
           command: |
+            python3 bin/generate-test-inventory
             heroku container:push web \
               --arg SECRET_KEY_BASE=$(openssl rand -hex 64) \
               --app $HEROKU_APP_NAME

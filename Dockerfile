@@ -48,6 +48,12 @@ RUN yarn install --frozen-lockfile
 # 7) Copy the rest of your app
 COPY . .
 
+# Production telemetry is generated from the checkout before the Docker build.
+RUN if [ "$RAILS_ENV" = "production" ]; then \
+      test -s config/test_inventory.json || \
+      (echo "Run python3 bin/generate-test-inventory before building production" >&2; exit 1); \
+    fi
+
 # 8) Compile your JS/CSS packs (only runs if RAILS_ENV=production)
 RUN if [ "$RAILS_ENV" = "production" ]; then \
       # if no build-arg was passed, generate a one-off secret for this build

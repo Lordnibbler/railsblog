@@ -98,6 +98,10 @@ class LabController < ApplicationController
   end
 
   def test_status
+    if Rails.env.production?
+      return JSON.parse(Rails.root.join('config/test_inventory.json').read, symbolize_names: true)
+    end
+
     spec_files = Rails.root.glob('spec/**/*_spec.rb')
     {
       files: spec_files.count,
