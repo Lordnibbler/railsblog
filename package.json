@@ -7,6 +7,7 @@
   },
   "packageManager": "yarn@1.22.19",
   "resolutions": {
+    "postcss-selector-parser": "7.1.6",
     "postcss-cli/tinyglobby/picomatch": "4.0.4"
   },
   "dependencies": {
