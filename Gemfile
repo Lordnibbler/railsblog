@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-ruby '4.0.6'
-gem 'rails', '~> 8'
+ruby '4.0.7'
+gem 'rails', '~> 8.1', '>= 8.1.4'
 
 gem 'activeadmin', '~> 3' # admin UI scaffolding
 gem 'client_side_validations' # validate forms in views before submitting to server
