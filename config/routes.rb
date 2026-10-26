@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  # Consolidate the public www alias, preserving paths and query strings.
+  constraints(host: 'www.benradler.com') do
+    match '*path', to: redirect { |_params, request| "https://benradler.com#{request.fullpath}" },
+                  via: [:get, :head], format: false
+    root to: redirect('https://benradler.com/'), as: :www_root
+  end
+
+  # A legacy embedded gist exposed this relative URL to crawlers.
+  get '/Lordnibbler/11002759', to: redirect('https://gist.github.com/Lordnibbler/11002759')
+
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

@@ -14,7 +14,7 @@ div[class="my-gallery grid are-images-unloaded mt-14 sm:mt-20 lg:mt-18" data-nav
         = photo[:description]
 
 - if @gallery_has_more
-  = link_to 'Next page', photography_path(seed: @gallery_seed, page: @gallery_page + 1), class: 'pagination-next glass-button rounded-full'
+  = link_to 'Next page', photography_path(page: @gallery_page + 1), class: 'pagination-next glass-button rounded-full'
 
 .page-load-status aria-live="polite"
   .infinite-scroll-request role="status"

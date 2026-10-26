@@ -354,3 +354,35 @@ For observing performance data about the rails application.
 
 #### LogDNA
 For observing stderr and stdout logs emitted by the rails application.
+
+### Search indexing
+
+Public canonical URLs use `https://benradler.com`, omit tracking/legacy query
+parameters, and retain `page` for blog and photography pagination. Short blog
+URLs canonicalize to dated permalinks. The gallery uses a fixed shuffle seed;
+old seeded URLs permanently redirect to seed-free pagination. The photo catalog
+can still change order when the daily Flickr sync runs.
+
+After deploying indexing changes:
+
+1. In Cloudflare, enable **Always Use HTTPS** (or an equivalent permanent edge
+   redirect). Rails uses `assume_ssl`, so HTTP must be redirected at the edge.
+   Verify `http://benradler.com/` redirects to `https://benradler.com/`, and that
+   `https://www.benradler.com/` redirects to the apex host.
+2. Run `rails sitemap:refresh` in production and verify
+   `https://benradler.com/sitemap.xml.gz` resolves to a readable sitemap. Submit
+   that URL in Search Console; remove the obsolete `benradler.s3.amazonaws.com`
+   sitemap submission if present.
+3. Inspect the homepage and important excluded blog posts in Search Console.
+   Confirm the live response is 200 and the declared canonical is the intended
+   HTTPS, non-www URL, then request indexing for those canonical URLs.
+4. Validate the fixed server-error, duplicate-canonical, and broken gist URL
+   reports after checking the deployed responses. The gallery URL reported as
+   a 5xx returned 200 during the October 26, 2026 investigation; its original
+   failure still requires production logs if it recurs.
+
+“Alternate page with proper canonical tag” is expected for redundant URLs.
+“Crawled – currently not indexed” is not itself a server error: useful canonical
+articles may need content updates and relevant internal links, and Google does
+not guarantee indexing. Do not redirect unrelated articles to the homepage or
+canonicalize all pagination to page one just to clear the report.

@@ -26,7 +26,13 @@ module ApplicationHelper
   end
 
   def current_page_url
-    request&.original_url || root_url
+    path = request&.path || '/'
+    path = blog_posts_permalink_path(canonical_post) if canonical_post
+    path = '/pages/contact-me' if path == '/contact-me'
+    page = params[:page].to_i
+    paginated = %w[/blog /photography].include?(path)
+    query = paginated && page > 1 ? "?page=#{page}" : ''
+    "https://benradler.com#{path}#{query}"
   end
 
   #

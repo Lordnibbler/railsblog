@@ -7,10 +7,10 @@ RSpec.describe 'Page metadata and markup', type: :request do
 
       document = Nokogiri::HTML(response.body)
 
-      expect(document.at_css('link[rel="canonical"]')['href']).to eq('http://www.example.com/')
-      expect(document.at_css('meta[property="og:url"]')['content']).to eq('http://www.example.com/')
-      expect(document.at_css('meta[name="twitter:url"]')['content']).to eq('http://www.example.com/')
-      expect(document.at_css('meta[itemprop="url"]')['content']).to eq('http://www.example.com/')
+      expect(document.at_css('link[rel="canonical"]')['href']).to eq('https://benradler.com/')
+      expect(document.at_css('meta[property="og:url"]')['content']).to eq('https://benradler.com/')
+      expect(document.at_css('meta[name="twitter:url"]')['content']).to eq('https://benradler.com/')
+      expect(document.at_css('meta[itemprop="url"]')['content']).to eq('https://benradler.com/')
     end
 
     it 'only loads the frontend bundle used by the homepage contact form' do
@@ -43,7 +43,7 @@ RSpec.describe 'Page metadata and markup', type: :request do
       get post_path
 
       document = Nokogiri::HTML(response.body)
-      expected_url = "http://www.example.com#{post_path}"
+      expected_url = "https://benradler.com#{post_path}"
 
       expect(document.at_css('link[rel="canonical"]')['href']).to eq(expected_url)
       expect(document.at_css('meta[property="og:url"]')['content']).to eq(expected_url)

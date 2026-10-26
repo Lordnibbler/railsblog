@@ -15,6 +15,10 @@ class Blog::PostsController < ApplicationController
     raise ActiveRecord::RecordNotFound unless permalink_date_matches?
   end
 
+  def canonical_post
+    @post
+  end
+
   private
 
   def permalink_date_matches?
