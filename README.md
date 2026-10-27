@@ -266,6 +266,8 @@ It uses Heroku Scheduler add on to run two recurring jobs:
 
 * `rails sitemap:refresh`
   * runs daily to refresh the sitemap file for the site
+  * the refresh task skips obsolete search-engine pings; discovery uses robots.txt and Search Console.
+  * on releases before this fix, use `heroku run rails sitemap:refresh:no_ping -a benradler` to avoid the post-upload `cgi/session` LoadError.
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
   * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
