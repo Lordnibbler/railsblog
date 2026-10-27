@@ -25,14 +25,20 @@ module ApplicationHelper
       'dependable, high-scale systems for companies including Cruise, Lyft, Teespring, and OneLogin.'
   end
 
-  def current_page_url
-    path = request&.path || '/'
-    path = blog_posts_permalink_path(canonical_post) if canonical_post
-    path = '/pages/contact-me' if path == '/contact-me'
+  # Preferred URL for search engines and social sharing, without tracking or shuffle parameters.
+  def canonical_url
+    url = "https://benradler.com#{canonical_path}"
     page = params[:page].to_i
-    paginated = %w[/blog /photography].include?(path)
-    query = paginated && page > 1 ? "?page=#{page}" : ''
-    "https://benradler.com#{path}#{query}"
+    return "#{url}?page=#{page}" if %w[/blog /photography].include?(request.path) && page > 1
+
+    url
+  end
+
+  def canonical_path
+    return blog_posts_permalink_path(canonical_post) if canonical_post
+    return '/pages/contact-me' if request.path == '/contact-me'
+
+    request.path
   end
 
   #
