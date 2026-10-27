@@ -360,6 +360,6 @@ For observing stderr and stdout logs emitted by the rails application.
 
 Public canonical URLs use `https://benradler.com`, omit tracking/legacy query
 parameters, and retain `page` for blog and photography pagination. Short blog
-URLs canonicalize to dated permalinks. The gallery uses a fixed shuffle seed;
-old seeded URLs permanently redirect to seed-free pagination. The photo catalog
-can still change order when the daily Flickr sync runs.
+URLs canonicalize to dated permalinks. The gallery reshuffles on each fresh
+visit and carries its seed through pagination to preserve that visit’s order.
+Canonical URLs omit the shuffle seed.

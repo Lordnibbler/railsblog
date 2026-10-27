@@ -39,20 +39,24 @@ RSpec.describe 'Search indexing URLs', type: :request do
     expect(canonical).to eq('https://benradler.com/pages/contact-me')
   end
 
-  it 'redirects old seeded gallery URLs before loading photos' do
-    expect(FlickrService).not_to receive(:get_photos)
-    get '/photography?page=5&seed=252435744364975031376081631016339898845'
-    expect(response).to have_http_status(:moved_permanently)
-    expect(response).to redirect_to('/photography?page=5')
-  end
-
-  it 'renders stable gallery pagination and a page-specific canonical' do
-    allow(FlickrService).to receive(:get_photos).with(page: 2, seed: 0).and_return([])
+  it 'preserves the gallery seed in pagination but omits it from the canonical' do
+    seed = '252435744364975031376081631016339898845'
+    allow(FlickrService).to receive(:get_photos).with(page: 2, seed: seed).and_return([])
     allow(FlickrPhoto).to receive(:count).and_return(60)
-    get '/photography?page=2'
+    get '/photography', params: { page: 2, seed: seed }
     expect(response).to have_http_status(:ok)
     expect(canonical).to eq('https://benradler.com/photography?page=2')
-    expect(Nokogiri::HTML(response.body).at_css('a.pagination-next')['href']).to eq('/photography?page=3')
+    next_link = Nokogiri::HTML(response.body).at_css('a.pagination-next')['href']
+    expect(Rack::Utils.parse_query(URI.parse(next_link).query)).to eq('page' => '3', 'seed' => seed)
+  end
+
+  it 'generates a new shuffle seed on each fresh gallery visit' do
+    allow(Random).to receive(:new_seed).and_return(123, 456)
+    allow(FlickrService).to receive(:get_photos).and_return([])
+    2.times { get '/photography' }
+    expect(FlickrService).to have_received(:get_photos).with(page: 1, seed: 123)
+    expect(FlickrService).to have_received(:get_photos).with(page: 1, seed: 456)
+    expect(canonical).to eq('https://benradler.com/photography')
   end
 
   it 'redirects the broken gist URL to its original source' do
