@@ -267,7 +267,6 @@ It uses Heroku Scheduler add on to run two recurring jobs:
 * `rails sitemap:refresh`
   * runs daily to refresh the sitemap file for the site
   * the refresh task skips obsolete search-engine pings; discovery uses robots.txt and Search Console.
-  * on releases before this fix, use `heroku run rails sitemap:refresh:no_ping -a benradler` to avoid the post-upload `cgi/session` LoadError.
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
   * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
@@ -364,27 +363,3 @@ parameters, and retain `page` for blog and photography pagination. Short blog
 URLs canonicalize to dated permalinks. The gallery uses a fixed shuffle seed;
 old seeded URLs permanently redirect to seed-free pagination. The photo catalog
 can still change order when the daily Flickr sync runs.
-
-After deploying indexing changes:
-
-1. In Cloudflare, enable **Always Use HTTPS** (or an equivalent permanent edge
-   redirect). Rails uses `assume_ssl`, so HTTP must be redirected at the edge.
-   Verify `http://benradler.com/` redirects to `https://benradler.com/`, and that
-   `https://www.benradler.com/` redirects to the apex host.
-2. Run `rails sitemap:refresh` in production and verify
-   `https://benradler.com/sitemap.xml.gz` resolves to a readable sitemap. Submit
-   that URL in Search Console; remove the obsolete `benradler.s3.amazonaws.com`
-   sitemap submission if present.
-3. Inspect the homepage and important excluded blog posts in Search Console.
-   Confirm the live response is 200 and the declared canonical is the intended
-   HTTPS, non-www URL, then request indexing for those canonical URLs.
-4. Validate the fixed server-error, duplicate-canonical, and broken gist URL
-   reports after checking the deployed responses. The gallery URL reported as
-   a 5xx returned 200 during the October 26, 2026 investigation; its original
-   failure still requires production logs if it recurs.
-
-“Alternate page with proper canonical tag” is expected for redundant URLs.
-“Crawled – currently not indexed” is not itself a server error: useful canonical
-articles may need content updates and relevant internal links, and Google does
-not guarantee indexing. Do not redirect unrelated articles to the homepage or
-canonicalize all pagination to page one just to clear the report.
