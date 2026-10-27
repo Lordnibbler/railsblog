@@ -13,11 +13,12 @@ class MarkdownService
     include Rouge::Plugins::Redcarpet
 
     def link(link, title, content)
-      %(<a href="#{link}" title="#{title}" class="dark:text-primary-500">#{content}</a>)
+      %(<a href="#{ERB::Util.h(link)}" title="#{ERB::Util.h(title)}" class="dark:text-primary-500">#{content}</a>)
     end
 
-    def autolink(link, _link_type)
-      %(<a href="#{link}" class="dark:text-primary-500">#{link}</a>)
+    def autolink(link, link_type)
+      href = link_type == :email ? "mailto:#{link}" : link
+      %(<a href="#{ERB::Util.h(href)}" class="dark:text-primary-500">#{ERB::Util.h(link)}</a>)
     end
 
     def header(text, header_level)
