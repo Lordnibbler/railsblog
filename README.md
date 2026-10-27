@@ -264,8 +264,9 @@ It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to
 ### Cron
 It uses Heroku Scheduler add on to run two recurring jobs:
 
-* `rails sitemap:refresh`
+* `rails sitemap:refresh:no_ping`
   * runs daily to refresh the sitemap file for the site
+  * the scheduler uses the no-ping task to skip obsolete search-engine pings; discovery uses robots.txt and Search Console.
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
   * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
@@ -354,3 +355,11 @@ For observing performance data about the rails application.
 
 #### LogDNA
 For observing stderr and stdout logs emitted by the rails application.
+
+### Search indexing
+
+Public canonical URLs use `https://benradler.com`, omit tracking/legacy query
+parameters, and retain `page` for blog and photography pagination. Short blog
+URLs canonicalize to dated permalinks. The gallery reshuffles on each fresh
+visit and carries its seed through pagination to preserve that visit’s order.
+Canonical URLs omit the shuffle seed.
