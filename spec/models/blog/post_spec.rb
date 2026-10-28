@@ -36,6 +36,12 @@ RSpec.describe Blog::Post do
     end
   end
 
+  it 'returns an empty excerpt when the body contains only the excerpt marker' do
+    post.body = described_class::EXCERPT_TAG
+
+    expect(post.excerpt).to eq('')
+  end
+
   describe 'more_text?' do
     context 'when no EXCERPT_TAG' do
       it 'returns false' do
