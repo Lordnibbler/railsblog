@@ -2,6 +2,21 @@ require 'rails_helper'
 
 describe MarkdownService do
   describe '.call' do
+    it 'renders email autolinks as mailto links' do
+      rendered = Nokogiri::HTML.fragment(described_class.call('<hello@example.com>'))
+
+      expect(rendered.at_css('a')['href']).to eq('mailto:hello@example.com')
+      expect(rendered.at_css('a').text).to eq('hello@example.com')
+    end
+
+    it 'preserves quotes in link titles without creating extra attributes' do
+      rendered = Nokogiri::HTML.fragment(described_class.call(%q([Example](https://example.com 'A "quoted" title'))))
+      link = rendered.at_css('a')
+
+      expect(link['title']).to eq('A "quoted" title')
+      expect(link.attribute_nodes.map(&:name)).to contain_exactly('href', 'title', 'class')
+    end
+
     context 'with standard markdown' do
       let(:markdown) do
         "# This is a header!\r\n\r\nthis is some markdown\r\n\r\n* this is a list\r\n* and so is " \

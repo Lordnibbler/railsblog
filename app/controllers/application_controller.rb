@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_meta_tags_title
+  helper_method :canonical_post
+
+  def canonical_post
+    nil
+  end
 
   private
 

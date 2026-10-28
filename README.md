@@ -1,14 +1,26 @@
 # benradler.com
-This is a Ruby on Rails 8 app. It does the following:
+This is a Ruby 4.0.7 / Rails 8.1 app. It does the following:
 * displays a portfolio homepage with personal information and work history - [link](https://benradler.com)
 * offers a contact form - [link](https://benradler.com/#contact)
 * offers a newsletter signup form
+* includes an interactive Lab with a Site Control Room and Composition Studio - [link](https://benradler.com/lab)
 * renders Markdown-formatted blog posts as HTML - [link](https://benradler.com/blog)
 * synchronizes Flickr photo metadata into PostgreSQL and renders the gallery using photoswipe.js - [link](https://benradler.com/photography)
 
 ## Development
 
-Follow these instructions to get the app running locally.
+Follow these instructions to get the app running locally. Install Docker with
+Compose (`docker-compose`, as used by `Procfile.dev`) for the container services.
+
+Before starting either development setup, create your local environment file:
+
+```shell
+cp .env.example .env
+# edit .env with the credentials needed for the integrations you use
+```
+
+The Docker web service requires `.env`; native Rails loads it through dotenv.
+Keep local credentials out of Git.
 
 ### Start Everything with docker-compose
 
@@ -25,7 +37,7 @@ docker-compose build
 
 ### Start Postgres with docker-compose
 
-This automatically restores the raw sql dump from `db/init/heroku_dump.sql` onto the database on first start.
+This automatically restores the raw sql dump from `db/init/00-heroku_dump.sql` onto the database on first start.
 
 ```shell
 # start db container inside docker
@@ -46,17 +58,17 @@ If you wish to generate an updated heroku sql dump:
 
 ```shell
 # get the database url
-$ $DB_URL=`heroku config:get DATABASE_URL --app benradler`
+DB_URL=$(heroku config:get DATABASE_URL --app benradler)
 
-# create a dump file and copy it to pwd
-$ docker run --rm \
-  -v "$(pwd)":/backups \
+# write the dump to the initialization directory for a future empty database
+docker run --rm \
+  -v "$(pwd)/db/init":/backups \
   postgres:17.4 \
   pg_dump \
     --no-owner \
     --no-acl \
     --format=plain \
-    --file=/backups/heroku_dump.sql \
+    --file=/backups/00-heroku_dump.sql \
     "$DB_URL"
 ```
 
@@ -72,21 +84,29 @@ docker-compose exec -e RAILS_ENV=test web bundle exec rspec
 # JS feature specs will precompile assets once automatically
 ```
 
-### Start rails server and asset bundlers without docker
+### Run Rails and asset bundlers on the host
 
-Setup (one time)
+Install Ruby **4.0.7**, Node.js **22.x**, and Yarn **1.x** (the Docker image uses
+1.22.19). Versions are declared in `.ruby-version`, `Gemfile`, and `package.json`.
+This setup runs Rails and asset watchers on the host, with PostgreSQL in Docker.
+`bin/dev` starts all four processes through `Procfile.dev` and requires Foreman.
+
+Setup (one time, after creating `.env` above)
 
 ```shell
 # install dependencies
 brew bundle
 
-# create a YAML file to stub environment variables
-mv config/env.yml.example config/env.yml
-vi config/env.yml
+# install the process manager used by bin/dev
+gem install foreman
 
 # install dependencies
-bundle
-yarn
+bundle install
+yarn install --frozen-lockfile
+
+# start PostgreSQL and apply pending migrations
+docker-compose up -d db
+bin/rails db:prepare
 ```
 
 One-shot command to start everything
@@ -102,8 +122,11 @@ finish and refresh the browser; the development processes do not need restarting
 Start everything individually
 
 ```shell
+# start PostgreSQL
+docker-compose up -d db
+
 # start the rails web server
-rails s
+bundle exec rails s
 
 # watch JS bundles with esbuild
 yarn build:js:watch
@@ -125,25 +148,36 @@ open "http://localhost:3000"
 
 This app is deployed to heroku via a docker container, using the `container` stack.
 
-No Procfile needed due to [`heroku.yml`](https://www.heroku.com/blog/build-docker-images-heroku-yml/). Heroku will honor this manifest instead. On each `container:release`:
+The current manual and CircleCI deployment paths build and push the `web` image
+with `heroku container:push web`, then release it with `heroku container:release web`.
+The image starts through [`entrypoint.sh`](./entrypoint.sh), which runs
+`bundle exec puma -C config/puma.rb`. Web startup does not run migrations.
 
-1. Pull the web image you just pushed.
-2. Run the release phase command, [`release-tasks.sh`](./release-tasks.sh), which runs `bundle exec rails db:migrate`.
-3. Start the web dyno with [`entrypoint.sh`](./entrypoint.sh), which runs [`release-tasks.sh`](./release-tasks.sh) in production and then starts `bundle exec puma -C config/puma.rb`.
+[`heroku.yml`](./heroku.yml) also declares a release command for Heroku's
+manifest-based build flow, but that is separate from the Container Registry flow
+used here. [Container Registry release phases](https://devcenter.heroku.com/articles/container-registry-and-runtime#release-phase)
+require a separately pushed and released `release` process image; the checked-in
+CI workflow only pushes and releases `web`. Do not assume it automatically runs
+[`release-tasks.sh`](./release-tasks.sh). When a deployment includes schema changes,
+run migrations explicitly against the released app:
+
+```shell
+heroku run bundle exec rails db:migrate --app benradler
+```
 
 The Flickr synchronization is intentionally not part of web dyno startup. It runs via Heroku Scheduler so a slow Flickr response cannot make a freshly deployed web dyno return errors while it is coming up. Web requests read only from PostgreSQL and never call Flickr directly.
 
 ### Automatic Deployments
 
-Automatic deployments are configured in CircleCI. If the `build` and `test` steps are green, and the branch is `master`, the `deploy` step begins. It uses the same heroku container registry deployment approach, but the docker container is built via docker directly and pushed to Heroku registry explicitly.
+Automatic deployments are configured in [`.circleci/config.yml`](.circleci/config.yml). The `build_test_deploy` workflow runs the `test` job, which builds the test image, precompiles assets, runs RSpec, and runs RuboCop. After it passes on `master`, the `deploy` job generates the test inventory and invokes `heroku container:push web` followed by `heroku container:release web`.
 
-The authentication is handled via a 1 year long lived token which was generated via
+Authentication uses `HEROKU_API_KEY`, with `HEROKU_APP_NAME` selecting the target app. Configure both in CircleCI project environment variables. A Heroku authorization can be generated with
 
 ```shell
 heroku authorizations:create
 ```
 
-and set at <https://app.circleci.com/settings/project/github/Lordnibbler/railsblog/environment-variables>.
+Store the token at <https://app.circleci.com/settings/project/github/Lordnibbler/railsblog/environment-variables> and rotate it before its configured expiration.
 
 ### Lab operations telemetry
 
@@ -244,7 +278,7 @@ heroku releases -a benradler
 See any output from some release:
 
 ```shell
-heroku releases:output <replace with release version>
+heroku releases:output v123 --app benradler # replace v123 with the release version
 ```
 
 Tail release logs:
@@ -264,12 +298,13 @@ It uses Heroku Postgresql, configured via `DATABASE_URL` env var. In addition to
 ### Cron
 It uses Heroku Scheduler add on to run two recurring jobs:
 
-* `rails sitemap:refresh`
+* `rails sitemap:refresh:no_ping`
   * runs daily to refresh the sitemap file for the site
+  * the scheduler uses the no-ping task to skip obsolete search-engine pings; discovery uses robots.txt and Search Console.
 * `rails flickr:sync`
   * runs daily to fetch all Flickr photos and atomically synchronize their metadata into PostgreSQL.
   * analyzes up to 20 photographs only when they have no stored composition analysis and `OPENAI_API_KEY` is configured. Existing paid results are retained even when the analysis version changes. Set `COMPOSITION_ANALYSIS_LIMIT` to tune that batch size and `OPENAI_COMPOSITION_MODEL` to override the default `gpt-5-mini` model.
-  * each successful run assigns a new shuffled display order, which remains stable across paginated requests until the next run.
+  * each successful run assigns a new base display order. Gallery visits apply their own shuffle seed, carried through pagination to keep that visit’s order stable while the catalog is unchanged.
   * Flickr is fully fetched before the database transaction begins, so existing photos remain available if Flickr is unavailable or the fetch fails.
   * run this task once after the migration is first deployed to populate the initially empty `flickr_photos` table; subsequent refreshes are handled by Heroku Scheduler.
 
@@ -337,7 +372,7 @@ The technologies used are:
   * for loading batches of photos when scrolling in the photography page
 
 ### Testing
-* [rspsec](https://rspec.info/) is used for [unit testing](spec/)
+* [RSpec](https://rspec.info/) is used for [unit testing](spec/)
 * [factorybot](https://github.com/thoughtbot/factory_bot) is used to make reusable [test objects](spec/factories)
 * [VCR](https://github.com/vcr/vcr) is used for recording/playing back HTTP requests and responses in lieu of mocking
 * [capybara](https://github.com/teamcapybara/capybara) + headless chrome ([Selenium](https://www.selenium.dev/)) is used for [feature testing](spec/features). Selenium Manager locates browser drivers when an explicit driver path is not configured.
@@ -354,3 +389,11 @@ For observing performance data about the rails application.
 
 #### LogDNA
 For observing stderr and stdout logs emitted by the rails application.
+
+### Search indexing
+
+Public canonical URLs use `https://benradler.com`, omit tracking/legacy query
+parameters, and retain `page` for blog and photography pagination. Short blog
+URLs canonicalize to dated permalinks. The gallery reshuffles on each fresh
+visit and carries its seed through pagination to preserve that visit’s order.
+Canonical URLs omit the shuffle seed.
