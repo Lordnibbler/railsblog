@@ -2,6 +2,19 @@ require 'rails_helper'
 
 describe MarkdownService do
   describe '.call' do
+    it 'repairs the list marker accidentally included in a legacy external link' do
+      url = 'https://github.com/Lordnibbler/colorpicker-server/pull/17'
+      rendered = Nokogiri::HTML.fragment(described_class.call("[The first](* #{url})"))
+
+      expect(rendered.at_css('a')['href']).to eq(url)
+    end
+
+    it 'preserves ordinary relative links' do
+      rendered = Nokogiri::HTML.fragment(described_class.call('[Photography](/photography)'))
+
+      expect(rendered.at_css('a')['href']).to eq('/photography')
+    end
+
     it 'renders email autolinks as mailto links' do
       rendered = Nokogiri::HTML.fragment(described_class.call('<hello@example.com>'))
 

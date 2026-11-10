@@ -13,6 +13,9 @@ class MarkdownService
     include Rouge::Plugins::Redcarpet
 
     def link(link, title, content)
+      # Older posts accidentally included a Markdown list marker in external URLs.
+      # Without normalization the browser resolves these against the article path.
+      link = link.sub(/\A\*\s+(https?:\/\/)/, '\1')
       %(<a href="#{ERB::Util.h(link)}" title="#{ERB::Util.h(title)}" class="dark:text-primary-500">#{content}</a>)
     end
 
