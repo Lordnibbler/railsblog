@@ -64,4 +64,16 @@ RSpec.describe 'Search indexing URLs', type: :request do
     expect(response).to have_http_status(:moved_permanently)
     expect(response).to redirect_to('https://gist.github.com/Lordnibbler/11002759')
   end
+
+  it 'redirects the old WordPress Macsales permalink to the migrated article' do
+    slug = 'macsales-com-27-imac-ssd-esata-upgrade-nightmare-owc-other-world-computing'
+    create(:post, slug: slug, created_at: Time.zone.local(2010, 10, 19, 12))
+
+    get "/#{slug}/"
+    expect(response).to have_http_status(:moved_permanently)
+    expect(response).to redirect_to("/blog/2010/10/19/#{slug}")
+    follow_redirect!
+    expect(response).to have_http_status(:ok)
+    expect(canonical).to eq("https://benradler.com/blog/2010/10/19/#{slug}")
+  end
 end

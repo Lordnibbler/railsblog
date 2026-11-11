@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   # A legacy embedded gist exposed this relative URL to crawlers.
   get '/Lordnibbler/11002759', to: redirect('https://gist.github.com/Lordnibbler/11002759')
 
+  # Known WordPress permalink whose article was preserved during the migration.
+  get '/macsales-com-27-imac-ssd-esata-upgrade-nightmare-owc-other-world-computing',
+      to: redirect('/blog/2010/10/19/macsales-com-27-imac-ssd-esata-upgrade-nightmare-owc-other-world-computing')
+
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
